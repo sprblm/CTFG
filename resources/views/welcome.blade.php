@@ -216,7 +216,7 @@
     <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <!-- Google Autocomplete -->
-    <script>
+    <!-- <script>
         function initAutocomplete() {
           var input = document.getElementById('autocomplete-input');
           var autocomplete = new google.maps.places.Autocomplete(input);
@@ -236,7 +236,7 @@
         }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&libraries=places&callback=initAutocomplete"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&libraries=places&callback=initAutocomplete"></script> -->
     
 </body>
 </html>
