@@ -121,19 +121,6 @@
                                 <a href="#" class="list active"><i class="fa fa-align-justify"></i></a>
                             </div>
                         </div>
-                        <!-- <div class="col-md-6 col-xs-6">
-                            <div class="sort-by">
-                                <div class="sort-by-select">
-                                    <select data-placeholder="Default order" class="chosen-select-no-single">
-                                        <option>All Categories</option>
-                                        <option>Category 1</option>
-                                        <option>Category 2</option>
-                                        <option>Category 3</option>
-                                        <option>Category 4</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                     <!-- Sorting / Layout Switcher / End -->
                     <div class="row">
@@ -163,6 +150,38 @@
                                         </div>
                                         <span class="like-icon"></span>
                                         <div class="listing-item-details">www.100cities.org</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="listing-item-container list-layout">
+                                <a href="/listing/single" class="listing-item">
+                                    <!-- Image -->
+                                    <div class="listing-item-image">
+                                        <img src="https://guidedevsite2.wpengine.com/wp-content/uploads/2020/09/logo2-800x400.png" alt="">
+                                        <!-- <span class="tag">Events</span> -->
+                                    </div>
+                                    <!-- Content -->
+                                    <div class="listing-item-content">
+                                        <div class="listing-item-inner">
+                                            <h3>A Beginner’s Guide To Local Government</h3>
+                                            <span>
+                                            	With our "Beginner's Guide To Local Government" coloring book, workshops, happy hours, and lecture series, we make it as easy as possible for you to get involved.
+                                            </span>
+                                            <div class="star-rating">
+                                                <div class="rating-counter">
+                                                	<ul class="tags">
+														<li class="highlighted">books</li>
+														<li class="highlighted">cities</li>
+														<li class="highlighted">local</li>
+													</ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="like-icon"></span>
+                                        <div class="listing-item-details">www.afunctionaldemocracy.com</div>
                                     </div>
                                 </a>
                             </div>
