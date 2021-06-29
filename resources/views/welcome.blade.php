@@ -31,11 +31,16 @@
                         <nav id="navigation" class="style-1">
                             <ul id="responsive">
                                 <li>
-                                    <a href="#">Entries</a>
+                                	<div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="padding: 0px !important;">
+										<div class="main-search-input-item">
+											<input type="text" placeholder="Search CivicTech.Guide" value=""/>
+										</div>
+									</div>
+                                    <!--<a href="#">Entries</a>
                                     <ul>
                                         <li><a href="#">Entry 1</a></li>
                                         <li><a href="#">Entry 2</a></li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                             </ul>
                         </nav>
@@ -53,15 +58,13 @@
                             <a href="/projects/add" class="button border with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
                         </div>
                     </div>
-                    <!-- Right Side Content / End -->
                
                 </div>
             </div>
-            <!-- Header / End -->
         </header>
         <div class="clearfix"></div>
         
-        <div id="titlebar" class="gradient">
+        <div id="titlebar" class="gradient" style="margin-bottom: 1px;">
             <!-- <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -72,14 +75,26 @@
         </div> 
         
         <div class="container">
+        	<div class="row">
+        		<div class="col-md-12" style="margin-bottom: 20px;">
+					<div class="main-search-input gray-style margin-top-0 margin-bottom-10">
+						<div class="main-search-input-item">
+							<input type="text" placeholder="Search CivicTech.Guide ... " value=""/>
+						</div>
+
+						<button class="button">Search</button>
+					</div>
+				</div>
+        	</div>
+
             <div class="row">
             	<div class="col-lg-3 col-md-4">
                     <div class="sidebar">
                         <!-- Widget -->
                         <div class="widget margin-bottom-40">
                             <h3 class="margin-top-0 margin-bottom-30">Categories</h3>
-                            
-                            <div class="row with-forms">
+                            @include('partials.categories')
+                            <!-- <div class="row with-forms">
                                 <div class="col-md-12">
                                     <select data-placeholder="All Categories" class="chosen-select" >
                                         <option>All Categories</option>
@@ -90,10 +105,8 @@
                                         <option>Category 5</option>
                                     </select>
                                 </div>
-                            </div>
-                          
+                            </div> -->
                         </div>
-                        <!-- Widget / End -->
                     </div>
                 </div>
 
@@ -108,8 +121,7 @@
                                 <a href="#" class="list active"><i class="fa fa-align-justify"></i></a>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xs-6">
-                            <!-- Sort by -->
+                        <!-- <div class="col-md-6 col-xs-6">
                             <div class="sort-by">
                                 <div class="sort-by-select">
                                     <select data-placeholder="Default order" class="chosen-select-no-single">
@@ -121,36 +133,42 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Sorting / Layout Switcher / End -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="listing-item-container list-layout">
-                                <a href="listings-single-page.html" class="listing-item">
+                                <a href="/listing/single" class="listing-item">
                                     <!-- Image -->
                                     <div class="listing-item-image">
-                                        <img src="{{ asset('images/listing-item-02.jpg') }}" alt="">
-                                        <span class="tag">Events</span>
+                                        <img src="https://guidedevsite2.wpengine.com/wp-content/uploads/2018/10/image-243-1170x400.png" alt="">
+                                        <!-- <span class="tag">Events</span> -->
                                     </div>
                                     <!-- Content -->
                                     <div class="listing-item-content">
                                         <div class="listing-item-inner">
-                                            <h3>Sticky Band</h3>
-                                            <span>Bishop Avenue, New York</span>
-                                            <div class="star-rating" data-rating="5.0">
-                                                <div class="rating-counter">(23 reviews)</div>
+                                            <h3>100 Resilient Cities</h3>
+                                            <span>
+                                            	We help cities around the world become more resilient to the physical, social, and economic challenges that are a growing part of the 21st century.
+                                            </span>
+                                            <div class="star-rating">
+                                                <div class="rating-counter">
+                                                	<ul class="tags">
+														<li class="highlighted">cities</li>
+														<li class="highlighted">gig economy</li>
+													</ul>
+                                                </div>
                                             </div>
                                         </div>
                                         <span class="like-icon"></span>
-                                        <div class="listing-item-details">Friday, August 10</div>
+                                        <div class="listing-item-details">www.100cities.org</div>
                                     </div>
                                 </a>
                             </div>
                         </div>
                         
                     </div>
-                    <!-- Pagination -->
                     <div class="clearfix"></div>
                    
                 </div>
