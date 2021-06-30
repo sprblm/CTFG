@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/listing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
 </head>
 <body>
@@ -41,7 +42,7 @@
                         </nav>
                         <div class="clearfix"></div>
                     </div>
-                    
+
                     <div class="right-side">
                         <div class="header-widget">
                             <span style="padding-right: 25px;">

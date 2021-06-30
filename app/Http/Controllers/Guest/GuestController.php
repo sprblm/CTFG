@@ -24,9 +24,11 @@ class GuestController extends Controller {
             echo $cat->name."<br>";
         } */
 
+        $projects = DB::table('listings')->paginate(10);
+
         return view ('welcome', [
             'title' => 'CTFG',
-            'activeCat' => 'CRM',
+            'projects' => $projects,
         ]);
     }
 }
