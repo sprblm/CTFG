@@ -69,13 +69,15 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-lg-12 col-md-12">
+                <div class="col-lg-12 col-md-12">
                     <div class="listing-item-container list-layout">
                         <a href="/listing/single" class="listing-item">
+                            <!-- Image -->
                             <div class="listing-item-image">
                                 <img src="https://guidedevsite2.wpengine.com/wp-content/uploads/2020/09/logo2-800x400.png" alt="">
+                                <!-- <span class="tag">Events</span> -->
                             </div>
-
+                            <!-- Content -->
                             <div class="listing-item-content">
                                 <div class="listing-item-inner">
                                     <h3>A Beginner’s Guide To Local Government</h3>
@@ -97,7 +99,7 @@
                             </div>
                         </a>
                     </div>
-                </div> -->
+                </div>
                 
             </div>
             <div class="clearfix"></div>

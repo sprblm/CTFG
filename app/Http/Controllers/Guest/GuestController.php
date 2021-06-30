@@ -5,9 +5,28 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use DB;
+
 class GuestController extends Controller {
     // Welcome page
     public function index() {
-        return view ('welcome');
+        /*$projects = DB::table('listings')->get();
+        print_r($projects);
+
+        foreach ($projects as $project) {
+            echo "Name: ".$project->project_name."<br>";
+        }*/
+
+        //$cats = DB::table('listing_categories')->get();
+        /*$cats = DB::table('listing_categories')->distinct('parent_category')->get();
+        
+        foreach ($cats as $cat) {
+            echo $cat->name."<br>";
+        } */
+
+        return view ('welcome', [
+            'title' => 'CTFG',
+            'activeCat' => 'CRM',
+        ]);
     }
 }

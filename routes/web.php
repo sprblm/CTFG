@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/', 'Guest\GuestController@index');
+Route::get('/projects', 'Projects\ProjectController@index');
+Route::get('/projects/add', 'Projects\ProjectController@add');
 
 Route::get('/t', 'TestController@test');
 

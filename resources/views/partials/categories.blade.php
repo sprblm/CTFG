@@ -25,64 +25,18 @@
 
 </style>
 <ul>
-    <li class="font-sans my-1">
-        <a aria-current="page" class="" href="/categories/the-tech">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 bg-gray-300" style="padding: 1px 8px;"><span class="text-sm">The Tech</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/media">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Media</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/the-people">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">The People</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/advocacy-tech">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Advocacy Tech</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/artificial-intelligence">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Artificial Intelligence</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/govtech">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Govtech</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/voting-and-elections">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Voting &amp; Elections</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/campaigns">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Campaigns</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/mapping">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Mapping</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/hardware">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Hardware</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/civic-data">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">Civic Data</span></div>
-        </a>
-    </li>
-    <li class="font-sans my-1">
-        <a href="/categories/sms">
-            <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300"  style="padding: 1px 8px;"><span class="text-sm">SMS</span></div>
-        </a>
-    </li>
+    @foreach($categories as $cat)
+        <li class="font-sans my-1">
+            {{-- <a aria-current="page" class="" href="/categories/the-tech">
+                <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 bg-gray-300" style="padding: 1px 8px;"><span class="text-sm">{{ $cat->name }}</span></div>
+            </a> --}}
+            <a href="/categories/{{ $cat->name }}">
+                <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 <?php if(@$activeCat == $cat->name ) { echo 'bg-gray-300'; } ?> " style="padding: 1px 8px; border-radius: 20px;">
+                    <span class="text-sm cat-wrap">
+                        {{ $cat->name }}
+                    </span>
+                </div>
+            </a>
+        </li>
+    @endforeach
 </ul>
