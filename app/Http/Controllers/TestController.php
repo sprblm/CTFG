@@ -7,55 +7,38 @@ use Illuminate\Http\Request;
 use DB;
 
 class TestController extends Controller {
-    public function load(Request $request) {
-        echo "loaderio-766414ee00dde3c55989cd46e8533eb8";
-    }
+    
     public function test(Request $request){
-    	//echo "test";
-        $candidates = DB::table('candidates')->get();
-        $issues = DB::table('issues')->get();
+    	//$projects = DB::table('listings')->limit(5)->get();
+        //print_r($projects);
 
-        $content = DB::table('content')->get();
+        /*foreach ($projects as $project) {
+            echo "Name: ".$project->images."<br>";
+        }*/
 
-        $url = "http://127.0.0.1:8000/compare?candidates%5B%5D=recZkuP0lAMUjBKJC&candidates%5B%5D=recNxWXPOzYJwoPtn&issues%5B%5D=rec1YK8Hw75udjCSO&issues%5B%5D=rec6t72xa2FL3z7b2&issues%5B%5D=recvXTaCuszeS6Z1b";
+        //$cats = DB::table('listing_categories')->get();
+        /*$cats = DB::table('listing_categories')->distinct('parent_category')->get();
+        
+        foreach ($cats as $cat) {
+            echo $cat->name."<br>";
+        } */
 
-        return view('welcome', [
-            'candidates' => $candidates,
-            'issues' => $issues,
-            'content' => $content,
-        ]);
+        /*$projects = DB::table('listings')->paginate(10); */
 
-
-        /*return view('comparison', [
-            'ctd1' => $candidate1,
-            'ctd2' => $candidate2,
-            'ppls' => $proposals1,
-            'ppls2' => $proposals2,
-            'ct2Image' => $ct2Image,
-            'ct1Image' => $ct1Image,
+        /*return view ('welcome', [
+            'title' => 'CTFG',
+            'projects' => $projects,
         ]); */
+
+        $cats = Category::limit(1)->get();
+
+        foreach ($cats as $cat) {
+            echo "Name: ".$cat->name;
+            echo "<br><br>";
+            print_r($cat->listings);
+        }
     }	
 
-    public function en(Request $request){
-        $candidates = $request->candidates;
-        $issues = $request->issues;
-
-        $url = "/comparison?";
-
-        for ($i=0; $i < sizeof($candidates); $i++) { 
-            $url .= "candidates%5B%5D=".$candidates[$i]."&";
-        }
-
-        $lastElement = end($issues);
-        for ($i=0; $i < sizeof($issues); $i++) { 
-            if ($issues[$i] == $lastElement) {
-                $url .= "issues%5B%5D=".$issues[$i];
-            } else {
-                $url .= "issues%5B%5D=".$issues[$i]."&";
-            }
-        }
-
-        echo url($url);
-    }
+    
 
 }
