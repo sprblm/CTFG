@@ -10,12 +10,12 @@ use DB;
 class GuestController extends Controller {
     // Welcome page
     public function index() {
-        /*$projects = DB::table('listings')->get();
-        print_r($projects);
+        $projects = DB::table('listings')->limit(5)->get();
+        //print_r($projects);
 
         foreach ($projects as $project) {
-            echo "Name: ".$project->project_name."<br>";
-        }*/
+            echo "Name: ".$project->images."<br>";
+        }
 
         //$cats = DB::table('listing_categories')->get();
         /*$cats = DB::table('listing_categories')->distinct('parent_category')->get();
@@ -24,11 +24,11 @@ class GuestController extends Controller {
             echo $cat->name."<br>";
         } */
 
-        $projects = DB::table('listings')->paginate(10);
+        /*$projects = DB::table('listings')->paginate(10);
 
         return view ('welcome', [
             'title' => 'CTFG',
             'projects' => $projects,
-        ]);
+        ]); */
     }
 }
