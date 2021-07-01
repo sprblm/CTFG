@@ -10,4 +10,9 @@ class Listing extends Model {
     public function category() {
         return $this->belongsTo('App\Models\Category', 'categories', 'listings');
     }
+
+    public function images() {
+        $fkey = '{'.$this->id.'}';
+        return $this->hasMany('App\Models\Media', $fkey);
+    }
 }

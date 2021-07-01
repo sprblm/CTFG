@@ -9684,8 +9684,8 @@ section.fullwidth .listing-item-container.list-layout, .fs-content .listing-item
 } */
 .listing-item img {
     object-fit: cover;
-    height: 100%;
-    width: 100%;
+    /*height: 100%;
+    width: 100%; */
     border-radius: 4px 4px 0 0;
 }
 /*.listing-item:before {

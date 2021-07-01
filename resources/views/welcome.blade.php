@@ -31,8 +31,11 @@
                     <div class="listings-container list-layout">
                         @foreach($projects as $project)
                             <div class="listing-item">
-                                <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container" style="height: 100%;">
-                                    <img src="https://guidedevsite2.wpengine.com/wp-content/uploads/2018/10/image-243-1170x400.png" height="100%" alt="" style="height: 100%;">
+                                <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container" style="text-align: center; padding: 5px 0;">
+                                	@php
+                                		$media = DB::table('media')->where('listings', '{'.$project->id.'}')->get();
+                                	@endphp
+                                    <img src="{{ @$media->first()->link }}" alt="{{ $project->project_name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;">
                                 </a>
                                 
                                 <div class="listing-content">

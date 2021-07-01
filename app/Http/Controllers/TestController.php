@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use App\Models\Category;
+use App\Models\Listing;
+use App\Models\Media;
+use App\Models\Location;
+
 class TestController extends Controller {
     
     public function test(Request $request){
@@ -30,13 +35,38 @@ class TestController extends Controller {
             'projects' => $projects,
         ]); */
 
-        $cats = Category::limit(1)->get();
+        $listings = DB::table('listings')->limit(50)->get();
 
-        foreach ($cats as $cat) {
-            echo "Name: ".$cat->name;
+        foreach ($listings as $list) {
+            echo "Name: ".$list->project_name;
+            echo "<br>";
+            echo "ID: ".$list->id;
+            echo "<br>";
+            echo "Concated ID: ".'{'.$list->id.'}';
+            echo "<br>";
+
+            $location = DB::table('listing_locations')->where('listings_2', '{'.$list->id.'}')->get();
+            echo "Count L: ".$location->count();
+            echo "<br>";
+
+            $media = DB::table('media')->where('listings', '{'.$list->id.'}')->get();
+            echo "Count M: ".$media->count();
+            echo "<br>";
+            /*echo @$media->first()->link;
+            echo "<br>"; */
+
+            $tags = DB::table('listing_tags')->where('listings', '{'.$list->id.'}')->get();
+            echo "Count T: ".$tags->count();
+            echo "<br>";
+
+            $cats = DB::table('listing_categories')->where('listings', '{'.$list->id.'}')->get();
+            echo "Count C: ".$cats->count();
             echo "<br><br>";
-            print_r($cat->listings);
-        }
+        } 
+
+        /*$images = Media::whereIn('listings', '{'.$listings[0]->project_name.'}')->get();
+
+        echo $images->count();*/
     }	
 
     
