@@ -33,9 +33,11 @@
                             <div class="listing-item">
                                 <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container" style="text-align: center; padding: 5px 0;">
                                 	@php
-                                		$media = DB::table('media')->where('listings', '{'.$project->id.'}')->get();
+                                		$media = DB::table('media')->where('listings', '{'.$project->id.'}')->first();
+                                		$location = DB::table('listing_locations')->where('listings_2', '{'.$project->id.'}')->first();
+                                		$pCats = DB::table('listing_tags')->where('listings', '{'.$project->id.'}')->get();
                                 	@endphp
-                                    <img src="{{ @$media->first()->link }}" alt="{{ $project->project_name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;">
+                                    <img src="{{ @$media->link }}" alt="{{ $project->project_name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;">
                                 </a>
                                 
                                 <div class="listing-content">
@@ -47,7 +49,7 @@
                                         </h4>
                                         <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="listing-address popup-gmaps">
                                             <i class="fa fa-map-marker"></i>
-                                            {{ $project->location }}
+                                            {{ @$location->name }}
                                         </a>
 
                                         <a href="/projects/single/{{ $project->project_name }}" class="details button border">  Details
@@ -59,10 +61,12 @@
                                     </p>
 
                                     <ul class="listing-details" style="padding: 10px 30px;">
-                                        <li>Cities</li>
-                                        <li>gig economy</li>
+                                    	@foreach(@$pCats as $cat)
+                                        	<li>{{ @$cat->name }}</li>
+                                        @endforeach
+                                        <!-- <li>gig economy</li>
                                         <li>elections</li>
-                                        <li>job boards</li>
+                                        <li>job boards</li> -->
                                     </ul>
 
                                     <div class="listing-footer">
