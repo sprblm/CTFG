@@ -10,8 +10,7 @@ use DB;
 class ProjectController extends Controller {
     // Get all projects view
     public function index() {
-        //$projects = DB::table('listings')->limit(10)->get();
-        $projects = DB::table('listings')->paginate(10);
+        $projects = DB::table('listings')->simplePaginate(10);
 
         return view('projects.all', [
             'title' => 'Projects',

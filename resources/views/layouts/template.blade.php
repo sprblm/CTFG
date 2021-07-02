@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/listing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
+    @yield('styles')
 </head>
 <body>
     <!-- Wrapper -->

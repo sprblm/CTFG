@@ -31,13 +31,15 @@
                     <div class="listings-container list-layout">
                         @foreach($projects as $project)
                             <div class="listing-item">
-                                <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container" style="text-align: center; padding: 5px 0;">
+                                <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container">
+                                {{-- <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container" style="text-align: center; padding: 5px 0;"> --}}
                                 	@php
                                 		$media = DB::table('media')->where('listings', '{'.$project->id.'}')->first();
                                 		$location = DB::table('listing_locations')->where('listings_2', '{'.$project->id.'}')->first();
                                 		$pCats = DB::table('listing_tags')->where('listings', '{'.$project->id.'}')->get();
                                 	@endphp
-                                    <img src="{{ @$media->link }}" alt="{{ $project->project_name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;">
+                                    <img src="{{ @$media->link }}" alt="{{ $project->project_name }}">
+                                    {{-- <img src="{{ @$media->link }}" alt="{{ $project->project_name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;"> --}}
                                 </a>
                                 
                                 <div class="listing-content">
@@ -81,9 +83,9 @@
                     </div>
                     
                 </div>
-                {{-- <div class="col-lg-12 col-md-12" style="display: inline-block;">
+                <div class="col-lg-12 col-md-12">
                 	{{ $projects->links() }}
-                </div> --}}
+                </div>
 
             </div>
             <div class="clearfix"></div>

@@ -23,6 +23,28 @@
         text-overflow: ellipsis;
     }
 
+    .pagination {
+        list-style: none;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .pagination li {
+        display: inline-block;
+    }
+
+    .pagination li+li {
+        margin-left: 1rem;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        padding: 0.2rem 0.4rem;
+        color: red;
+        border: 0.5px solid red;
+        border-radius: 4px;
+    }
+
     input, input[type=text], input[type=password], input[type=email], input[type=number], textarea, select {
     height: 51px;
     line-height: 51px;
