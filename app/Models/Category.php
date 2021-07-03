@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model {
-    protected $table = "listing_categories";
+    protected $connection = "mysql2";
+    protected $table = "categories";
 
     public function listings() {
-        return $this->hasMany('App\Models\Listing', 'listings', 'categories');
+        return $this->belongsToMany('App\Models\Listing', 'listing_categories', 
+          'category_id', 'listing_id');
     }
 }

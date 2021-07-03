@@ -15,7 +15,8 @@
         "laravel-frontend-presets/tailwindcss": "^4.2",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.3"
+        "livewire/livewire": "^2.3",
+        "tapp/laravel-airtable": "^0.20.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
