@@ -21,6 +21,11 @@ class Listing extends Model {
           'listing_id', 'category_id');
     }
 
+    public function categoriesOrdered() {
+        return $this->belongsToMany('App\Models\Category', 'listing_categories', 
+          'listing_id', 'category_id')->orderBy('hits', 'DESC');
+    }
+
     public function founders() {
         return $this->belongsToMany('App\Models\People', 'listing_founders', 
           'listing_id', 'people_id');

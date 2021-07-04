@@ -25,7 +25,7 @@
 
 </style>
 <ul>
-    @foreach($categories as $cat)
+    @foreach($categories->take(50) as $cat)
         <li class="font-sans my-1">
             {{-- <a aria-current="page" class="" href="/categories/the-tech">
                 <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 bg-gray-300" style="padding: 1px 8px;"><span class="text-sm">{{ $cat->name }}</span></div>

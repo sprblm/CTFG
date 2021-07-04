@@ -58,12 +58,9 @@
                                     </p>
 
                                     <ul class="listing-details" style="padding: 10px 30px;">
-                                    	@foreach(@$project->categories as $cat)
+                                    	@foreach(@$project->categoriesOrdered->take(3) as $cat)
                                         	<li>{{ @$cat->name }}</li>
                                         @endforeach
-                                        <!-- <li>gig economy</li>
-                                        <li>elections</li>
-                                        <li>job boards</li> -->
                                     </ul>
 
                                     <div class="listing-footer">
