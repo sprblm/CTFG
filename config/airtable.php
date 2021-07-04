@@ -68,6 +68,9 @@ return [
         'impact' => [
             'name' => env('AIRTABLE_TABLE_IMPACT', 'Impact'),
         ],
+        'knowledge' => [
+            'name' => env('AIRTABLE_TABLE_KWD', 'Knowledge'),
+        ],
 
     ],
 

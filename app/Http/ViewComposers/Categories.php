@@ -3,7 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use DB;
+use App\Models\Category;
 
 class Categories
 {
@@ -15,7 +15,7 @@ class Categories
      * @return void
      */
     public function __construct() {
-        $categories = DB::table('listing_categories')->distinct('parent_category')->get();
+        $categories = Category::distinct('name')->get();
         
         //$this->categories = collect($categories);
         $this->categories = $categories;

@@ -5,8 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model {
-    protected $connection = "mysql2";
     protected $table = "listings";
+
+    protected $fillable = [
+        'host_org_id',
+        'host_organization'
+    ];
+
+    public function hostOrg() {
+        return $this->belongsTo('App\Models\Knowledge', 'host_org_id');
+    }
 
     public function categories() {
         return $this->belongsToMany('App\Models\Category', 'listing_categories', 
@@ -19,7 +27,7 @@ class Listing extends Model {
     }
 
     public function funding() {
-        return $this->belongsToMany('App\Models\Funding', 'listing_founding', 
+        return $this->belongsToMany('App\Models\Funding', 'listing_funding', 
           'listing_id', 'funding_id');
     }
 

@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Projects;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use DB;
+use App\Models\Listing;
 
 class ProjectController extends Controller {
     // Get all projects view
     public function index() {
-        $projects = DB::table('listings')->simplePaginate(10);
+        $projects = Listing::simplePaginate(10);
 
         return view('projects.all', [
             'title' => 'Projects',

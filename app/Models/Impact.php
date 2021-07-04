@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Impact extends Model {
-    protected $connection = "mysql2";
     protected $table = "impact";
 
     public function listings() {
