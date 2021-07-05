@@ -31,44 +31,36 @@
                     <div class="listings-container list-layout">
                         @foreach($projects as $project)
                             <div class="listing-item">
-                                <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container">
+                                <a href="/projects/single/{{ $project->name }}" class="listing-img-container">
                                 {{-- <a href="/projects/single/{{ $project->project_name }}" class="listing-img-container" style="text-align: center; padding: 5px 0;"> --}}
-                                    @php
-                                        $media = DB::table('media')->where('listings', '{'.$project->id.'}')->first();
-                                        $location = DB::table('listing_locations')->where('listings_2', '{'.$project->id.'}')->first();
-                                        $pCats = DB::table('listing_tags')->where('listings', '{'.$project->id.'}')->get();
-                                    @endphp
-                                    <img src="{{ @$media->link }}" alt="{{ $project->project_name }}">
-                                    {{-- <img src="{{ @$media->link }}" alt="{{ $project->project_name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;"> --}}
+                                    <img src="{{ @$project->media->first()->link }}" alt="{{ $project->name }}">
+                                    {{-- <img src="{{ @$project->media->first()->link }}" alt="{{ $project->name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;"> --}}
                                 </a>
                                 
                                 <div class="listing-content">
                                     <div class="listing-title">
                                         <h4>
-                                            <a href="/projects/single/{{ $project->project_name }}">
-                                                {{ $project->project_name }}
+                                            <a href="/projects/single/{{ $project->name }}">
+                                                {{ $project->name }}
                                             </a>
                                         </h4>
                                         <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="listing-address popup-gmaps">
                                             <i class="fa fa-map-marker"></i>
-                                            {{ @$location->name }}
+                                            {{ @$project->location->first()->name }}
                                         </a>
 
-                                        <a href="/projects/single/{{ $project->project_name }}" class="details button border">  Details
+                                        <a href="/projects/single/{{ $project->name }}" class="details button border">  Details
                                         </a>
                                     </div>
 
                                     <p style="padding: 0 30px; font-size: 15px; line-height: 22px;">
-                                        {{ $project->_1_liner }}
+                                        {{ $project->introduction }}
                                     </p>
 
                                     <ul class="listing-details" style="padding: 10px 30px;">
-                                        @foreach(@$pCats as $cat)
+                                        @foreach(@$project->categoriesOrdered->take(3) as $cat)
                                             <li>{{ @$cat->name }}</li>
                                         @endforeach
-                                        <!-- <li>gig economy</li>
-                                        <li>elections</li>
-                                        <li>job boards</li> -->
                                     </ul>
 
                                     <div class="listing-footer">

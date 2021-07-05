@@ -30,7 +30,7 @@
             {{-- <a aria-current="page" class="" href="/categories/the-tech">
                 <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 bg-gray-300" style="padding: 1px 8px;"><span class="text-sm">{{ $cat->name }}</span></div>
             </a> --}}
-            <a href="/categories/{{ $cat->name }}">
+            <a href="/category/projects/{{ $cat->name }}">
                 <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 <?php if(@$activeCat == $cat->name ) { echo 'bg-gray-300'; } ?> " style="padding: 1px 8px; border-radius: 20px;">
                     <span class="text-sm cat-wrap">
                         {{ $cat->name }}

@@ -11,4 +11,5 @@ class Category extends Model {
         return $this->belongsToMany('App\Models\Listing', 'listing_categories', 
           'category_id', 'listing_id');
     }
+
 }
