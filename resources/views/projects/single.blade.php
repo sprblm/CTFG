@@ -185,17 +185,17 @@
             <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
                 <h3>Links</h3>
                 <ul>
-                    <li>Founded <span>{{ @$project->founded }}</span></li>
-                    <li>Language <span>{{ @$project->language }}</span></li>
-                    <li>LinkedIn <a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></li>
-                    <li>Youtube <a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></li>
-                    <li>Contact page <a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></li>
-                    <li>Github <a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></li>
-                    <li>Events page <a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a></li>
-                    <li>Jobs page <a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></li>
-                    <li>Blog <a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></li>
-                    <li>Host Org <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></li>
-                    <li>Host Org <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></li>
+                    <li>Founded: <span>{{ @$project->founded }}</span></li>
+                    <li>Language: <span>{{ @$project->language }}</span></li>
+                    <li>LinkedIn: <a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></li>
+                    <li>Youtube: <a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></li>
+                    <li>Contact page: <a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></li>
+                    <li>Github: <a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></li>
+                    <li>Events page: <a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a></li>
+                    <li>Jobs page: <a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></li>
+                    <li>Blog: <a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></li>
+                    <li>Host Org: <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></li>
+                    <li>Host Org Url: <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></li>
                 </ul>
             </div>
 
