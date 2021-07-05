@@ -122,6 +122,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    @yield('scripts')
     <!-- Google Autocomplete -->
     <!-- <script>
         function initAutocomplete() {

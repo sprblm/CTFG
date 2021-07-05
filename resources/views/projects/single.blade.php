@@ -9,7 +9,7 @@
                 <span>
                     <a href="#" class="listing-address">
                         <i class="fa fa-map-marker"></i>
-                        {{ $project->location->first()->name }}
+                        {{ @$project->location->first()->name }}
                     </a>
                 </span>
             </div>
@@ -77,14 +77,14 @@
     <div class="col-lg-5 col-md-5 margin-top-50 sticky">
         <div id="listing-location" class="listing-section">
             <div id="singleListingMap-container">
-                <div id="singleListingMap" data-latitude="{{ $project->latitude }}" data-longitude="{{ $project->longitude }}" data-map-icon="im im-icon-Hamburger"></div>
+                <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-map-icon="fa fa-map-marker"></div>
             </div>
         </div>
        
         <!-- Share / Like -->
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
             <button class="like-button">Suggest a change</button> 
-            <span>159 people suggested a change</span>
+            <span id="suggest"></span>
             
             <ul class="share-buttons margin-top-40 margin-bottom-0">
                 @if(!empty($project->facebook_url))
@@ -107,4 +107,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&sensor=false&amp;language=ene"></script>
+    <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/maps.js') }}"></script>
 @endsection
