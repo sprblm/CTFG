@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHostOrgIdToListings extends Migration
+class AddParentCategoryIdToCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddHostOrgIdToListings extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->table('listings', function (Blueprint $table) {
-            $table->unsignedBigInteger('host_org_id')->nullable()->after('id');
-            $table->foreign('host_org_id')->references('id')->on('knowledge');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('parent_category_id')->nullable()->after('id');
+            $table->foreign('parent_category_id')->references('id')->on('parent_categories');
         });
     }
 
@@ -26,7 +26,7 @@ class AddHostOrgIdToListings extends Migration
      */
     public function down()
     {
-        Schema::table('listings', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             //
         });
     }

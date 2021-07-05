@@ -16,4 +16,8 @@ class Category extends Model {
           'category_id', 'listing_id');
     }
 
+    public function parentCategory() {
+        return $this->belongsTo('App\Models\ParentCategory');
+    }
+
 }

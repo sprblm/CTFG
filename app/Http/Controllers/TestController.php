@@ -10,10 +10,19 @@ use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Media;
 use App\Models\Location;
+use App\Models\ParentCategory;
 
 class TestController extends Controller {
     
     public function test(Request $request){
+        $pc = new ParentCategory;
+        $pc->name = "The Tech";
+        $pc->save();
+
+        $pc = new ParentCategory;
+        $pc->name = "The People";
+        $pc->save();
+
     	//$projects = DB::table('listings')->limit(5)->get();
         //print_r($projects);
 
@@ -35,7 +44,7 @@ class TestController extends Controller {
             'projects' => $projects,
         ]); */
 
-        $listings = DB::table('listings')->limit(50)->get();
+        /*$listings = DB::table('listings')->limit(50)->get();
 
         foreach ($listings as $list) {
             echo "Name: ".$list->project_name;
@@ -52,8 +61,6 @@ class TestController extends Controller {
             $media = DB::table('media')->where('listings', '{'.$list->id.'}')->get();
             echo "Count M: ".$media->count();
             echo "<br>";
-            /*echo @$media->first()->link;
-            echo "<br>"; */
 
             $tags = DB::table('listing_tags')->where('listings', '{'.$list->id.'}')->get();
             echo "Count T: ".$tags->count();
@@ -62,7 +69,7 @@ class TestController extends Controller {
             $cats = DB::table('listing_categories')->where('listings', '{'.$list->id.'}')->get();
             echo "Count C: ".$cats->count();
             echo "<br><br>";
-        } 
+        } */
 
         /*$images = Media::whereIn('listings', '{'.$listings[0]->project_name.'}')->get();
 

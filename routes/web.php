@@ -24,7 +24,7 @@ Route::get('/projects/single/{name}', 'Projects\ProjectController@singleProject'
 
 Route::get('/category/projects/{name}', 'Category\ProjectController@getProjectsByCategory');
 
-Route::get('/a/test', 'Airtable\ImportsController@test');
+//Route::get('/a/test', 'Airtable\ImportsController@test');
 
 Route::get('/t', 'TestController@test');
 
