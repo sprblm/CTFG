@@ -118,7 +118,7 @@ h4{font-family:"Varela Round", "HelveticaNeue", "Helvetica Neue", Helvetica, Ari
 .list-layout .listing-title{padding-right:30px;}
 }
 /*! CSS Used from: https://www.vasterad.com/themes/findeo_updated/css/color.css */
-.listing-title h4 a:hover,a,a.button.border{color:#274abb;}
+.listing-title h4 a:hover,a.button.border{color:#274abb;}
 /*.listing-img-container:after{background:linear-gradient(to bottom, transparent 60%, #274abb);}*/
 .listing-badges .featured{background-color:#274abb;}
 /*.list-layout .listing-img-container:after{background:linear-gradient(to bottom, transparent 55%, #274abb);}*/

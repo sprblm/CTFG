@@ -6,6 +6,21 @@
         <div id="titlebar" class="listing-titlebar">
             <div class="listing-titlebar-title">
                 <h2>{{ $project->name }}</h2>
+                <br>
+                <span>
+                    <a href="#">
+                        <i class="fa fa-envelope-o"></i>
+                        {{ @$project->email }}
+                    </a>
+                </span>
+                <br>
+                <span>
+                    <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
+                        <i class="fa fa-globe"></i>
+                        {{ @$project->website_url }}
+                    </a>
+                </span>
+                <br>
                 <span>
                     <a href="#" class="listing-address">
                         <i class="fa fa-map-marker"></i>
@@ -70,6 +85,36 @@
                 </div>
             @endif
         </div>
+
+        <div id="add-review" class="add-review-box">
+            <h3 class="listing-desc-headline margin-bottom-10">Funding Details</h3>
+            <p class="comment-notes">Funded By: {{ @$project->funding->first()->funded_by }}</p>
+
+            <div class="sub-ratings-container">
+                <div class="add-sub-rating">
+                    <div class="sub-rating-title">Date:</div>
+                    <div>
+                        {{ @$project->funding->first()->funding_date }}
+                    </div>
+                </div>
+
+                <div class="add-sub-rating">
+                    <div class="sub-rating-title">Amount:</div>
+                    <div>
+                        $ {{ @$project->funding->first()->amount }}
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="sub-rating-title">Link:</div>
+                    <a href="{{ @$project->funding->first()->link }}" target="_blank" style="color: blue;">
+                        {{ @$project->funding->first()->link }}
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
 
 
@@ -81,11 +126,17 @@
             </div>
         </div>
        
-        <!-- Share / Like -->
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
-            <button class="like-button">Suggest a change</button> 
-            <span id="suggest"></span>
-            
+            <div class="boxed-widget margin-top-35">
+                <div class="hosted-by-title" style="text-align: left;">
+                    <h4><span>Founded by</span> {{ @$project->founders->first()->name }}</h4>
+                    <a href="#" class="hosted-by-avatar"><img src="{{ asset('images/avatar.jpg') }}" alt=""></a>
+                </div>
+                <ul class="listing-details-sidebar">
+                    <li><i class="fa fa-envelope-o"></i> {{ @$project->founders->first()->email }}</li>
+                </ul>
+            </div>
+
             <ul class="share-buttons margin-top-40 margin-bottom-0">
                 @if(!empty($project->facebook_url))
                     <li>
@@ -103,6 +154,28 @@
                     </li>
                 @endif
             </ul>
+
+            <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
+                <h3>Links</h3>
+                <ul>
+                    <li>Founded <span>{{ @$project->founded }}</span></li>
+                    <li>Language <span>{{ @$project->language }}</span></li>
+                    <li>LinkedIn <a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></li>
+                    <li>Youtube <a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></li>
+                    <li>Contact page <a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></li>
+                    <li>Github <a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></li>
+                    <li>Events page <a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a></li>
+                    <li>Jobs page <a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></li>
+                    <li>Blog <a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></li>
+                    <li>Host Org <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></li>
+                    <li>Host Org <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></li>
+                </ul>
+            </div>
+
+            <div class="margin-top-35">
+                <button class="like-button">Suggest a change</button> 
+                <span id="suggest"></span>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>

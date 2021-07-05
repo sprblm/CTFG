@@ -35,6 +35,13 @@ class ProjectController extends Controller {
             return abort(404);
         }
 
+        // Update category hits
+        foreach ($project->categories as $cat) {
+            $cat->update([
+                'hits' => $cat->hits + 1,
+            ]);
+        }
+
         return view('projects.single', [
             'title' => 'Project - '.$projectName,
             'project' => $project,
