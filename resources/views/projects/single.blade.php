@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        <div id="add-review" class="add-review-box">
+        <div id="add-review" class="add-review-box" style="margin-top: 10px; background-color: #fcfcfc;">
             <h3 class="listing-desc-headline margin-bottom-10">Impact</h3>
             <div class="sub-ratings-container">
                 <div class="add-sub-rating">
