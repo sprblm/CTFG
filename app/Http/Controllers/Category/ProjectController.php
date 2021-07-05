@@ -14,6 +14,14 @@ class ProjectController extends Controller {
 
         $category = Category::where('name', $categoryName)->first();
 
+        if (!$category) {
+            return abort(404);
+        }
+
+        $category->update([
+            'hits' => $category->hits + 1,
+        ]);
+
         return view ('projects.all', [
             'title' => 'Projects - '.$categoryName,
             'projects' => $category->listings()->simplePaginate(10),

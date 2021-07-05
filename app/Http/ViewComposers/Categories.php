@@ -17,7 +17,6 @@ class Categories
     public function __construct() {
         $categories = Category::distinct('name')->orderBy('hits', 'DESC')->get();
         
-        //$this->categories = collect($categories);
         $this->categories = $categories;
     }
 

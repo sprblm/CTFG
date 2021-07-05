@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Guest\GuestController@index');
 Route::get('/projects', 'Projects\ProjectController@index');
 Route::get('/projects/add', 'Projects\ProjectController@add');
+Route::get('/projects/single/{name}', 'Projects\ProjectController@singleProject');
 
 Route::get('/category/projects/{name}', 'Category\ProjectController@getProjectsByCategory');
 

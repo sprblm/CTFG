@@ -24,4 +24,20 @@ class ProjectController extends Controller {
             'title' => 'Create Projects',
         ]);
     }
+
+    // Get a single project - by name
+    public function singleProject(Request $request) {
+        $projectName = $request->segment(3);
+
+        $project = Listing::where('name', $projectName)->first();
+
+        if (!$project) {
+            return abort(404);
+        }
+
+        return view('projects.single', [
+            'title' => 'Project - '.$projectName,
+            'project' => $project,
+        ]);
+    }
 }
