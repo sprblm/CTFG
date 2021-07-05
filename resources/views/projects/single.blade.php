@@ -115,6 +115,33 @@
             </div>
         </div>
 
+        <div id="add-review" class="add-review-box">
+            <h3 class="listing-desc-headline margin-bottom-10">Impact</h3>
+            <div class="sub-ratings-container">
+                <div class="add-sub-rating">
+                    <div class="sub-rating-title">Date:</div>
+                    <div>
+                        {{ @$project->impact->first()->impact_date }}
+                    </div>
+                </div>
+
+                <div class="add-sub-rating">
+                    <div class="sub-rating-title">Url:</div>
+                    <a href="{{ @$project->impact->first()->url }}" target="_blank" style="color: blue;">
+                        {{ @$project->impact->first()->url }}
+                    </a>
+                </div>
+
+                <div class="">
+                    <div class="sub-rating-title">Statement:</div>
+                    <div>
+                        {{ @$project->impact->first()->statement }}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
 
 
