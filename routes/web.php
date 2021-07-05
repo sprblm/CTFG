@@ -22,6 +22,9 @@ Route::get('/projects', 'Projects\ProjectController@index');
 Route::get('/projects/add', 'Projects\ProjectController@add');
 Route::get('/projects/single/{name}', 'Projects\ProjectController@singleProject');
 
+Route::get('/category/parent/the-tech', 'Category\ParentCategoryController@theTech');
+Route::get('/category/parent/the-people', 'Category\ParentCategoryController@thePeople');
+
 Route::get('/category/projects/{name}', 'Category\ProjectController@getProjectsByCategory');
 
 //Route::get('/a/test', 'Airtable\ImportsController@test');

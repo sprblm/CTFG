@@ -15,54 +15,12 @@ use App\Models\ParentCategory;
 class TestController extends Controller {
     
     public function test(Request $request){
-        $pct = ParentCategory::where('name', 'The Tech')->first();
+        /*$pct = ParentCategory::where('name', 'The Tech')->first();
         $pcp = ParentCategory::where('name', 'The People')->first();
 
-        /*echo $pct->categories->count();
+        echo $pct->categories->count();
         echo "<br>";
         echo $pcp->categories->count(); */
-
-        $cats = Category::where('parent_category_id', $pct->id)->get();
-        foreach ($cats as $cat) {
-            $cat->update([
-                'parent_category_id' => NULL,
-            ]);
-        }
-
-        $c = Category::where('airtable_id', 'recrDOucQ9Hdirp8U')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
-
-        $c = Category::where('airtable_id', 'recbd0P6IpVs74yWK')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
-
-        $c = Category::where('airtable_id', 'recGnL44NUs4wOQk9')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
-
-        $c = Category::where('airtable_id', 'rectUkdj5JkQS10eD')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
-
-        $c = Category::where('airtable_id', 'reczADOWHJOitVQeh')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
-
-        $c = Category::where('airtable_id', 'recjmKUGFcT38Hvt0')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
-
-        $c = Category::where('airtable_id', 'recnYt58sH3KalWlu')->first();
-        $c->update([
-            'parent_category_id' => $pct->id,
-        ]);
         
 
 

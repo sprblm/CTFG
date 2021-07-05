@@ -47,8 +47,8 @@
                     <div class="right-side">
                         <div class="header-widget">
                             <span style="padding-right: 25px;">
-                                <a href="#" style="padding-right: 10px;">The Tech</a>
-                                <a href="#">The People</a>
+                                <a href="/category/parent/the-tech" style="padding-right: 10px;">The Tech</a>
+                                <a href="/category/parent/the-people">The People</a>
                             </span>
                             <a href="/projects/add" class="button border with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
                         </div>
