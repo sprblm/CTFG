@@ -14,7 +14,7 @@ class GuestController extends Controller {
         $projects = Listing::simplePaginate(10);
 
         return view ('welcome', [
-            'title' => 'CTFG',
+            'title' => 'CivicTech.Guide',
             'projects' => $projects,
         ]);
 

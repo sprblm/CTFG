@@ -3,13 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12" style="margin-bottom: 20px;">
-            <div class="main-search-input gray-style margin-top-0 margin-bottom-10">
-                <div class="main-search-input-item">
-                    <input type="text" placeholder="Search CivicTech.Guide ... " value=""/>
-                </div>
-
-                <button class="button">Search</button>
-            </div>
+            @include('partials.search')
         </div>
     </div>
 

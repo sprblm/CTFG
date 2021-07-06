@@ -47,4 +47,14 @@ class ProjectController extends Controller {
             'project' => $project,
         ]);
     }
+
+    // Search autocomplete
+    public function searchAutoComplete(Request $request) {
+        $q = $request->query->get('query');
+        $data = Listing::select("name")
+                ->where("name", "LIKE", "%{$q}%")
+                ->get();
+   
+        return response()->json($data);
+    }
 }

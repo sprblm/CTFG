@@ -21,6 +21,7 @@ Route::get('/', 'Guest\GuestController@index');
 Route::get('/projects', 'Projects\ProjectController@index');
 Route::get('/projects/add', 'Projects\ProjectController@add');
 Route::get('/projects/single/{name}', 'Projects\ProjectController@singleProject');
+Route::get('/projects/autocomplete', 'Projects\ProjectController@searchAutoComplete')->name('autocomplete');
 
 Route::get('/category/parent/the-tech', 'Category\ParentCategoryController@theTech');
 Route::get('/category/parent/the-people', 'Category\ParentCategoryController@thePeople');

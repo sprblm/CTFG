@@ -30,17 +30,17 @@
                             </button>
                         </div>
                         <!-- Main Navigation -->
-                        <nav id="navigation" class="style-1">
+                        <!-- <nav id="navigation" class="style-1">
                             <ul id="responsive">
                                 <li>
                                     <div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="padding: 0px !important;">
                                         <div class="main-search-input-item">
-                                            <input type="text" placeholder="Search CivicTech.Guide" value=""/>
+                                            <input type="text" class="typeahead" placeholder="Search CivicTech.Guide ..." value=""/>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav> -->
                         <div class="clearfix"></div>
                     </div>
 
@@ -122,6 +122,27 @@
     <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript">
+        var path = "{{ route('autocomplete') }}";
+
+        $('input.typeahead').typeahead({
+            displayKey: 'name',
+            source:  function (query, process) {
+                return $.get(path, { query: query }, function (data) {
+                    /*var entry = "<a href='/search'>"+data.name+"</a>";
+                    return process(entry); */
+                    return process(data);
+                });
+            }
+        });
+
+        $('#search').click(function(e) {
+            var name = $(".typeahead").val();
+            return window.location.href  = "/projects/single/"+name;
+        });
+
+    </script>
     @yield('scripts')
     <!-- Google Autocomplete -->
     <!-- <script>

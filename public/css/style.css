@@ -5,6 +5,57 @@
     @import 'https: //fonts.googleapis.com/css?family=Raleway:300, 400, 500, 600, 700';
     @import 'https: //fonts.googleapis.com/css?family=Open+Sans:500, 600, 700';
 
+    input.typeahead {
+        position: relative;
+        /*z-index: 10000; */
+    }
+
+    .typeahead, .tt-query, .tt-hint {
+        border: 1px solid #CCCCCC;
+        border-radius: 8px;
+        font-size: 15px; /* Set input font size */
+        max-height: 200px;
+        line-height: 20px;
+        outline: medium none;
+        padding: 8px 12px;
+        width: auto;
+        /*z-index: 9999 !important; */
+        box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 20%);
+    }
+    .typeahead {
+        background-color: #FFFFFF;
+    }
+    .typeahead:focus {
+        border: 2px solid #0097CF;
+    }
+    .tt-query {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    }
+    .tt-hint {
+        color: #999999;
+    }
+    .tt-menu {
+        background-color: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 12px;
+        padding: 8px 0;
+        width: 422px;
+    }
+    ul.typeahead li {
+        font-size: 15px;  /* Set suggestion dropdown font size */
+        padding: 3px 10px;
+    }
+    ul.typeahead li:hover {
+        cursor: pointer;
+        background-color: #0097CF;
+        color: #fff !important;
+    }
+    ul.typeahead li p {
+        margin: 0;
+    }
+
     ul.tags {
         list-style: none;
 
