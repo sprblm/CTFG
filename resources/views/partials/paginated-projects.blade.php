@@ -13,7 +13,7 @@
                         {{ $project->name }}
                     </a>
                 </h4>
-                <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="listing-address popup-gmaps">
+                <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="popup-gmaps">
                     <i class="fa fa-map-marker"></i>
                     {{ @$project->location->first()->name }}
                 </a>
