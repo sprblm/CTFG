@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use Illuminate\Support\Str;
 
 use App\Models\Category;
 use App\Models\Listing;
@@ -15,6 +16,24 @@ use App\Models\ParentCategory;
 class TestController extends Controller {
     
     public function test(Request $request){
+        $cats = Category::get();
+        foreach ($cats as $cat) {
+            $string = Str::of($cat->name);
+
+            $cat->update([
+                'slug' => $string->slug(),
+            ]);
+        }
+
+        $listings = Listing::get();
+        foreach ($listings as $list) {
+            $string = Str::of($list->name);
+
+            $list->update([
+                'slug' => $string->slug(),
+            ]);
+        }
+
         /*$pct = ParentCategory::where('name', 'The Tech')->first();
         $pcp = ParentCategory::where('name', 'The People')->first();
 
