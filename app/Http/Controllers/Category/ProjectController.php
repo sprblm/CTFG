@@ -10,9 +10,9 @@ use App\Models\Category;
 class ProjectController extends Controller {
     // Get projects by category
     public function getProjectsByCategory(Request $request) {
-        $categoryName = $request->segment(3);
+        $slug = $request->segment(2);
 
-        $category = Category::where('name', $categoryName)->first();
+        $category = Category::where('slug', $slug)->first();
 
         if (!$category) {
             return abort(404);
@@ -22,8 +22,11 @@ class ProjectController extends Controller {
             'hits' => $category->hits + 1,
         ]);
 
-        return view ('projects.all', [
-            'title' => 'Projects - '.$categoryName,
+        return view ('projects.projects-by-category', [
+            'title' => 'Projects - '.$category->name,
+            'categoryName' => $category->name,
+            'parentCategoryName' => @$category->parentCategory->name,
+            'categoryDesc' => @$category->description,
             'projects' => $category->listings()->simplePaginate(10),
         ]);
     }

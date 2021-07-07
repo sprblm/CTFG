@@ -142,6 +142,22 @@
             return window.location.href  = "/projects/single/"+name;
         });
 
+        function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var linkText = document.getElementById("readMore");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                linkText.innerHTML = "&nbsp;&nbsp;[++ Expand ++]";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                linkText.innerHTML = "&nbsp;&nbsp;[ -- Collapse --]";
+                moreText.style.display = "inline";
+            }
+        }
+
     </script>
     @yield('scripts')
     <!-- Google Autocomplete -->

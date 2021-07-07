@@ -8,16 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 
 class ProjectController extends Controller {
-    // Get all projects view
-    public function index() {
-        $projects = Listing::simplePaginate(10);
-
-        return view('projects.all', [
-            'title' => 'Projects',
-            'projects' => $projects,
-        ]);
-    }
-
     // Embed add project Airtable form view
     public function add() {
         return view('projects.add', [
@@ -27,9 +17,9 @@ class ProjectController extends Controller {
 
     // Get a single project - by name
     public function singleProject(Request $request) {
-        $projectName = $request->segment(3);
+        $slug = $request->segment(2);
 
-        $project = Listing::where('name', $projectName)->first();
+        $project = Listing::where('slug', $slug)->first();
 
         if (!$project) {
             return abort(404);
@@ -43,7 +33,7 @@ class ProjectController extends Controller {
         }
 
         return view('projects.single', [
-            'title' => 'Project - '.$projectName,
+            'title' => 'Project - '.$project->name,
             'project' => $project,
         ]);
     }
