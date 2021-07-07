@@ -88,61 +88,88 @@
             @endif
         </div>
 
-        <div id="add-review" class="add-review-box">
-            <h3 class="listing-desc-headline margin-bottom-10">Funding Details</h3>
-            <p class="comment-notes">Funded By: {{ @$project->funding->first()->funded_by }}</p>
+        @if(@$project->funding->count() > 0)
+            <div id="add-review" class="add-review-box">
+                <h3 class="listing-desc-headline margin-bottom-10">Funding Details</h3>
+                <hr style="border-bottom: 1px solid #e6e6e6;">
+                <ol>
+                    @foreach($project->funding as $fng)
+                        <li>
+                            <div class="sub-ratings-container" style="border: none; border-bottom: 1px dotted #e6e6e6;">
+                                <p class="comment-notes"><strong>Funded By:</strong> {{ @$fng->funded_by }}</p>
+                                @if(!empty($fng->funding_date))
+                                    <div class="add-sub-rating">
+                                        <div class="sub-rating-title">Date:</div>
+                                        <div>
+                                            {{ @$fng->funding_date }}
+                                        </div>
+                                    </div>
+                                @endif
 
-            <div class="sub-ratings-container">
-                <div class="add-sub-rating">
-                    <div class="sub-rating-title">Date:</div>
-                    <div>
-                        {{ @$project->funding->first()->funding_date }}
-                    </div>
-                </div>
+                                @if(!empty($fng->amount))
+                                    <div class="add-sub-rating">
+                                        <div class="sub-rating-title">Amount:</div>
+                                        <div>
+                                            $ {{ @$fng->amount }}
+                                        </div>
+                                    </div>
+                                @endif
 
-                <div class="add-sub-rating">
-                    <div class="sub-rating-title">Amount:</div>
-                    <div>
-                        $ {{ @$project->funding->first()->amount }}
-                    </div>
-                </div>
-
-                <div class="">
-                    <div class="sub-rating-title">Link:</div>
-                    <a href="{{ @$project->funding->first()->link }}" target="_blank" style="color: blue;">
-                        {{ @$project->funding->first()->link }}
-                    </a>
-                </div>
-                
+                                @if(!empty($fng->link))
+                                    <div class="">
+                                        <div class="sub-rating-title">Link:</div>
+                                        <a href="{{ @$fng->link }}" target="_blank" style="color: blue;">
+                                            {{ @$fng->link }}
+                                        </a>
+                                    </div>    
+                                @endif
+                            </div>
+                        </li>
+                    @endforeach
+                </ol>
             </div>
-        </div>
+        @endif
 
-        <div id="add-review" class="add-review-box" style="margin-top: 10px; background-color: #fcfcfc;">
-            <h3 class="listing-desc-headline margin-bottom-10">Impact</h3>
-            <div class="sub-ratings-container">
-                <div class="add-sub-rating">
-                    <div class="sub-rating-title">Date:</div>
-                    <div>
-                        {{ @$project->impact->first()->impact_date }}
-                    </div>
-                </div>
+        @if(@$project->impact->count() > 0)
+            <div id="add-review" class="add-review-box" style="margin-top: 10px; background-color: #fcfcfc;">
+                <h3 class="listing-desc-headline margin-bottom-10">Impact</h3>
+                <hr style="border-bottom: 1px solid #e6e6e6;">
+                <ol>
+                    @foreach($project->impact as $impt)
+                        <li>
+                            <div class="sub-ratings-container" style="border: none; border-bottom: 1px dotted #e6e6e6;">
+                                @if(!empty($impt->impact_date))
+                                    <div class="add-sub-rating">
+                                        <div class="sub-rating-title">Date:</div>
+                                        <div>
+                                            {{ @$impt->impact_date }}
+                                        </div>
+                                    </div>
+                                @endif
 
-                <div class="add-sub-rating">
-                    <div class="sub-rating-title">Url:</div>
-                    <a href="{{ @$project->impact->first()->url }}" target="_blank" style="color: blue;">
-                        {{ @$project->impact->first()->url }}
-                    </a>
-                </div>
+                                @if(!empty($impt->url))
+                                    <div class="">
+                                        <div class="sub-rating-title">Url:</div>
+                                        <a href="{{ @$impt->url }}" target="_blank" style="color: blue;">
+                                            {{ @$impt->url }}
+                                        </a>
+                                    </div>
+                                @endif
 
-                <div class="">
-                    <div class="sub-rating-title">Statement:</div>
-                    <div>
-                        {{ @$project->impact->first()->statement }}
-                    </div>
-                </div>
-                
+                                @if(!empty($impt->statement))
+                                    <div class="">
+                                        <div class="sub-rating-title">Statement:</div>
+                                        <div>
+                                            {{ @$impt->statement }}
+                                        </div>
+                                    </div> 
+                                @endif
+                            </div>
+                        </li>
+                    @endforeach
+                </ol>
             </div>
-        </div>
+        @endif
 
     </div>
 
