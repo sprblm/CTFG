@@ -50,24 +50,26 @@
                     @endforeach
                 </ul>
             @endif
-            
-            <p>
-                {{ $project->introduction }}
-            </p>
-            <p>
-                {{ $project->description }}
-            </p>
-
-            <div class="clearfix"></div>
 
             @if($project->categories->count() > 0)
                 <h3 class="listing-desc-headline">Project Categories</h3>
                 <ul class="listing-features checkboxes">
                     @foreach($project->categories as $category)
-                        <li>{{ $category->name }}</li>
+                        <li><a href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
                     @endforeach
                 </ul>
             @endif
+            
+            <div class="margin-top-35">
+                <p>
+                    {{ $project->introduction }}
+                </p>
+                <p>
+                    {{ $project->description }}
+                </p>
+            </div>
+
+            <div class="clearfix"></div>
         </div>
 
         <!-- Slider -->
@@ -154,15 +156,17 @@
         </div>
        
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
-            <div class="boxed-widget margin-top-35">
-                <div class="hosted-by-title" style="text-align: left;">
-                    <h4><span>Founded by</span> {{ @$project->founders->first()->name }}</h4>
-                    <a href="#" class="hosted-by-avatar"><img src="{{ asset('images/avatar.jpg') }}" alt=""></a>
-                </div>
-                <ul class="listing-details-sidebar">
-                    <li><i class="fa fa-envelope-o"></i> {{ @$project->founders->first()->email }}</li>
-                </ul>
+            @if(@$project->founders->count() > 0)
+                <div class="boxed-widget margin-top-35">
+                    <div class="hosted-by-title" style="text-align: left;">
+                        <h4><span>Founded by</span> {{ @$project->founders->first()->name }}</h4>
+                        <a href="#" class="hosted-by-avatar"><img src="{{ asset('images/avatar.jpg') }}" alt=""></a>
+                    </div>
+                    <ul class="listing-details-sidebar">
+                        <li><i class="fa fa-envelope-o"></i> {{ @$project->founders->first()->email }}</li>
+                    </ul>
             </div>
+            @endif
 
             <ul class="share-buttons margin-top-40 margin-bottom-0">
                 @if(!empty($project->facebook_url))
