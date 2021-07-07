@@ -16,23 +16,14 @@ use App\Models\ParentCategory;
 class TestController extends Controller {
     
     public function test(Request $request){
-        $cats = Category::get();
+        /*$cats = Category::get();
         foreach ($cats as $cat) {
             $string = Str::of($cat->name);
 
             $cat->update([
                 'slug' => $string->slug(),
             ]);
-        }
-
-        $listings = Listing::get();
-        foreach ($listings as $list) {
-            $string = Str::of($list->name);
-
-            $list->update([
-                'slug' => $string->slug(),
-            ]);
-        }
+        } */
 
         /*$pct = ParentCategory::where('name', 'The Tech')->first();
         $pcp = ParentCategory::where('name', 'The People')->first();

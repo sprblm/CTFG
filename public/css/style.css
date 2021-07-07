@@ -5604,7 +5604,7 @@ a.send-message-to-owner.button {
     font-size: 15px;
     color: #888;
 }
-.like-button {
+.like-button, .suggest-button {
     outline: none;
     border: none;
     color: #444;
@@ -5619,7 +5619,7 @@ a.send-message-to-owner.button {
     transition: .3s;
     cursor: pointer;
 }
-.like-button:hover {
+.like-button:hover, .suggest-button:hover {
     background-color: #fafafa;
     border: 1px solid #ddd;
 }

@@ -157,15 +157,25 @@
        
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
             @if(@$project->founders->count() > 0)
-                <div class="boxed-widget margin-top-35">
-                    <div class="hosted-by-title" style="text-align: left;">
-                        <h4><span>Founded by</span> {{ @$project->founders->first()->name }}</h4>
-                        <a href="#" class="hosted-by-avatar"><img src="{{ asset('images/avatar.jpg') }}" alt=""></a>
+                <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
+                    <h3>Founder(s) Details</h3>
+                    <div class="row with-forms  margin-top-0">
+                        <ol>
+                            @foreach($project->founders as $founder)
+                                <li>
+                                    <div class="col-lg-12">
+                                        <ul>
+                                            <li>Name: <span>{{ @$founder->name }}</span></li>
+                                            <li>Email: <span>{{ @$founder->email }}</span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <span>&nbsp;</span>
+                            @endforeach
+                        </ol>
                     </div>
-                    <ul class="listing-details-sidebar">
-                        <li><i class="fa fa-envelope-o"></i> {{ @$project->founders->first()->email }}</li>
-                    </ul>
-            </div>
+                </div>
+
             @endif
 
             <ul class="share-buttons margin-top-40 margin-bottom-0">
@@ -189,23 +199,44 @@
             <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
                 <h3>Links</h3>
                 <ul>
-                    <li>Founded: <span>{{ @$project->founded }}</span></li>
-                    <li>Language: <span>{{ @$project->language }}</span></li>
-                    <li>LinkedIn: <a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></li>
-                    <li>Youtube: <a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></li>
-                    <li>Contact page: <a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></li>
-                    <li>Github: <a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></li>
-                    <li>Events page: <a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a></li>
-                    <li>Jobs page: <a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></li>
-                    <li>Blog: <a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></li>
-                    <li>Host Org: <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></li>
-                    <li>Host Org Url: <a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></li>
+                    @if(!empty(@$project->founded))
+                        <li>Founded: <span>{{ @$project->founded }}</span></li>
+                    @endif
+                    @if(!empty(@$project->language))
+                        <li>Language: <span>{{ @$project->language }}</span></li>
+                    @endif
+                    @if(!empty(@$project->linkedin_url))
+                        <li>LinkedIn: <span><a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->youtube_channel))
+                        <li>Youtube: <span><a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->contact_page_url))
+                        <li>Contact page: <span><a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->github_url))
+                        <li>Github: <span><a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->events_page_url))
+                        <li>Events page: <span><a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a><span></li>
+                    @endif
+                    @if(!empty(@$project->jobs_page_url))
+                        <li>Jobs page: <span><a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->blog_url))
+                        <li>Blog: <span><a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->host_organization_url))
+                        <li>Host Org: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></span></li>
+                    @endif
+                    @if(!empty(@$project->host_organization_url))
+                        <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>
+                    @endif
                 </ul>
             </div>
 
             <div class="margin-top-35">
-                <button class="like-button">Suggest a change</button> 
-                <span id="suggest"></span>
+                <a class="suggest-button" target="_blank" href="https://airtable.com/shrAPHxxye5l9CIpQ">Suggest a change</a>
             </div>
             <div class="clearfix"></div>
         </div>
