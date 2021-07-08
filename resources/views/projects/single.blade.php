@@ -6,27 +6,33 @@
         <div id="titlebar" class="listing-titlebar">
             <div class="listing-titlebar-title">
                 <h2>{{ $project->name }}</h2>
-                <br>
-                <span>
-                    <a href="#">
-                        <i class="fa fa-envelope-o"></i>
-                        {{ @$project->email }}
-                    </a>
-                </span>
-                <br>
-                <span>
-                    <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
-                        <i class="fa fa-globe"></i>
-                        {{ @$project->website_url }}
-                    </a>
-                </span>
-                <br>
-                <span>
-                    <a href="#" class="listing-address">
-                        <i class="fa fa-map-marker"></i>
-                        {{ @$project->location->first()->name }}
-                    </a>
-                </span>
+                @if(!empty($project->email))
+                    <br>
+                    <span>
+                        <a href="#">
+                            <i class="fa fa-envelope-o"></i>
+                            {{ @$project->email }}
+                        </a>
+                    </span>
+                @endif
+                @if(!empty($project->website_url))
+                    <br>
+                    <span>
+                        <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
+                            <i class="fa fa-globe"></i>
+                            {{ @$project->website_url }}
+                        </a>
+                    </span>
+                @endif
+                @if($project->location->count() > 0)
+                    <br>
+                    <span>
+                        <a href="#" class="listing-address">
+                            <i class="fa fa-map-marker"></i>
+                            {{ @$project->location->first()->name }}
+                        </a>
+                    </span>
+                @endif
             </div>
         </div>
 
@@ -176,11 +182,13 @@
 
     <!-- Sidebar -->
     <div class="col-lg-5 col-md-5 margin-top-50 sticky">
-        <div id="listing-location" class="listing-section">
-            <div id="singleListingMap-container">
-                <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-map-icon="fa fa-map-marker"></div>
+        @if(!empty($project->latitude) && !empty($project->longitude))
+            <div id="listing-location" class="listing-section">
+                <div id="singleListingMap-container">
+                    <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-map-icon="fa fa-map-marker"></div>
+                </div>
             </div>
-        </div>
+        @endif
        
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
             @if(@$project->founders->count() > 0)
