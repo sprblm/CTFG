@@ -29,15 +29,15 @@
         </div>
         <div class="col-md-6">
             <select name="countries[]" data-placeholder="All Countries" class="chosen-select-no-single" multiple style="display: none;">
-                <option>Apartments</option>
-                <option>Houses</option>
-                <option>Commercial</option>
-                <option>Apartments</option>
-                <option>Houses</option>
-                <option>Commercial</option>
-                <option>Apartments</option>
-                <option>Houses</option>
-                <option>Commercial</option>
+                @foreach($allCountries as $country)
+                    <option value="{{ $country->country }}"
+                        <?php 
+                            if (@in_array($country->country, @$filterCountries)) {
+                                echo "selected";
+                            }
+                        ?>
+                        >{{ $country->country }}</option>
+                @endforeach
             </select>
         </div>
 

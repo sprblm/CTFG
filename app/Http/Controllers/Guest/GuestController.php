@@ -43,6 +43,13 @@ class GuestController extends Controller {
             });
         }
 
+        if ($request->has('countries')) {
+            $listings->whereHas('location', function($q) {
+                //$q->whereLike('name', $catIds);
+                $q->whereIn('name', 'LIKE', "%{$tweet}%");
+            });
+        }
+
         if ($request->has('status')) {
             $listings->where('status', 'Active');
         }
@@ -56,6 +63,7 @@ class GuestController extends Controller {
             'projects' => $projects,
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
+            'filterCountries' => @$countries,
         ]);
 
     }
