@@ -22,13 +22,20 @@
         <div class="col-lg-9 col-md-8 padding-right-30">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <div class="listings-container list-layout">
-                        @include('partials.paginated-projects')
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            @include('partials.filters')
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="listings-container list-layout">
+                                @include('partials.paginated-projects')
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
+
                 <div class="col-lg-12 col-md-12">
-                    {{ $projects->links() }}
+                    {{ $projects->withQueryString()->links() }}
                 </div>
 
             </div>

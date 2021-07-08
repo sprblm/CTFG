@@ -26,5 +26,10 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(
             '*', 'App\Http\ViewComposers\Categories',
         );
+
+        view()->composer(
+            ['welcome', 'projects-by-category'],
+            'App\Http\ViewComposers\Tags'
+        );
     }
 }
