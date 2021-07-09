@@ -44,17 +44,33 @@ class GuestController extends Controller {
         }
 
         if ($request->has('countries')) {
-            $listings->whereHas('location', function($q) {
-                //$q->whereLike('name', $catIds);
-                $q->whereIn('name', 'LIKE', "%{$tweet}%");
+            $countries = $request->query('countries');
+
+            // Add variants of US
+            if (in_array('United States of America', $countries)) {
+                array_push($countries, 'USA');
+                array_push($countries, 'United States');
+            }
+
+            // Add variants of UK
+            if (in_array('United Kingdom', $countries)) {
+                array_push($countries, 'UK');
+            }
+
+            $listings->when(count($countries),function ($query)use ($countries) {
+                $query->whereHas('location', function($q) use ($countries) {
+                    $q->where( function($q) use ($countries) {
+                        foreach ($countries as $country) {
+                            $q->orWhere('name', 'like', '%' . $country . '%');
+                        }
+                    });
+                });
             });
         }
 
         if ($request->has('status')) {
             $listings->where('status', 'Active');
         }
-
-        //echo $listings->count();
         
         $projects = $listings->simplePaginate(10);
 
