@@ -80,6 +80,7 @@ class GuestController extends Controller {
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
+            'filterStatus' => @$request->query('status'),
         ]);
 
     }

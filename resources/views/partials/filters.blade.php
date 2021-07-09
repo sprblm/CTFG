@@ -43,7 +43,13 @@
 
         <div class="col-md-3">
             <div class="checkboxes in-row">
-                <input id="check-2" type="checkbox" name="status" value="Active">
+                <input id="check-2" type="checkbox" name="status" value="Active"
+                    <?php 
+                        if (@$filterStatus == "Active") {
+                            echo "checked";
+                        }
+                    ?>
+                >
                 <label for="check-2">Active</label>
             </div>
         </div>
