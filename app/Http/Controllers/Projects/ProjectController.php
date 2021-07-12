@@ -38,13 +38,32 @@ class ProjectController extends Controller {
         ]);
     }
 
+    // Search
+    public function search(Request $request) {
+        $q = $request->query('q');
+        
+        $results = Listing::where("name", "LIKE", "%{$q}%")
+                ->orWhere("introduction", "LIKE", "%{$q}%")
+                ->orWhere("description", "LIKE", "%{$q}%")
+                ->simplePaginate(10);
+        
+        //echo $data->count();
+        return view ('projects.search-results', [
+            'title' => 'CivicTech.Guide - Search Results',
+            'projects' => $results,
+            'query' => @$q,
+        ]);
+
+    }
+
     // Search autocomplete
-    public function searchAutoComplete(Request $request) {
+    /* public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
         $data = Listing::select("name")
                 ->where("name", "LIKE", "%{$q}%")
+                ->orWhere("introduction", "LIKE", "%{$q}%")
                 ->get();
    
         return response()->json($data);
-    }
+    } */
 }

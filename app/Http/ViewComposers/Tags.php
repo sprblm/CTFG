@@ -15,7 +15,7 @@ class Tags
      * @return void
      */
     public function __construct() {
-        $tags = Tag::distinct('name')->get();
+        $tags = Tag::distinct('name')->orderBy('name')->get();
         
         $this->tags = $tags;
     }

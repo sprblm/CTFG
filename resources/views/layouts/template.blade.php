@@ -124,22 +124,20 @@
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
-        var path = "{{ route('autocomplete') }}";
+        /*var path = "{{ route('autocomplete') }}";
 
         $('input.typeahead').typeahead({
             displayKey: 'name',
             source:  function (query, process) {
                 return $.get(path, { query: query }, function (data) {
-                    /*var entry = "<a href='/search'>"+data.name+"</a>";
-                    return process(entry); */
                     return process(data);
                 });
             }
-        });
+        }); */
 
         $('#search').click(function(e) {
-            var name = $(".typeahead").val();
-            return window.location.href  = "/projects/single/"+name;
+            var param = $(".typeahead").val();
+            window.location.href  = "/listings/search?q="+param;
         });
 
         function myFunction() {

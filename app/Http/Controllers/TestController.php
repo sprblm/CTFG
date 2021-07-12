@@ -16,10 +16,6 @@ use App\Models\ParentCategory;
 class TestController extends Controller {
     
     public function test(Request $request){
-        print_r($request->query('countries'));
-
-        $locs = Location::whereLike()
-
         /*$cats = Category::get();
         foreach ($cats as $cat) {
             $string = Str::of($cat->name);
