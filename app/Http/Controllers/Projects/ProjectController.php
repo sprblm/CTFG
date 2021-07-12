@@ -45,7 +45,7 @@ class ProjectController extends Controller {
         $results = Listing::where("name", "LIKE", "%{$q}%")
                 ->orWhere("introduction", "LIKE", "%{$q}%")
                 ->orWhere("description", "LIKE", "%{$q}%")
-                ->simplePaginate(10);
+                ->paginate(10);
         
         //echo $data->count();
         return view ('projects.search-results', [

@@ -12,7 +12,6 @@ use App\Models\Tag;
 class GuestController extends Controller {
     // Welcome page
     public function index(Request $request) {
-        //$projects = Listing::simplePaginate(10);
         $listings = Listing::where('id', '>', 0);
 
         if ($request->has('tags')) {
@@ -72,7 +71,7 @@ class GuestController extends Controller {
             $listings->where('status', 'Active');
         }
         
-        $projects = $listings->simplePaginate(10);
+        $projects = $listings->paginate(10);
 
         return view ('welcome', [
             'title' => 'CivicTech.Guide',

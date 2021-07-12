@@ -77,7 +77,7 @@ class ProjectController extends Controller {
             $listings->where('status', 'Active');
         }
         
-        $projects = $listings->simplePaginate(10);
+        $projects = $listings->paginate(10);
 
         $category->update([
             'hits' => $category->hits + 1,
@@ -89,6 +89,7 @@ class ProjectController extends Controller {
             'parentCategoryName' => @$category->parentCategory->name,
             'categoryDesc' => @$category->description,
             'projects' => $projects,
+            'activeCat' => $category->name,
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,

@@ -5,6 +5,7 @@
     *,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0;}
     a{color:inherit;text-decoration:inherit;}
     .bg-gray-300{--bg-opacity:1;background-color:#e2e8f0;background-color:rgba(226,232,240,var(--bg-opacity));}
+    .bg-red-600{--tw-bg-opacity: 1; background-color: #f91942;}
     .border-gray-300{--border-opacity:1;border-color:#e2e8f0;border-color:rgba(226,232,240,var(--border-opacity));}
     .rounded{border-radius:.25rem;}
     .border{border-width:1px;}
@@ -20,6 +21,7 @@
     .text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity));}
     .text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity));}
     .text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity));}
+    .text-white-600{color: #fff !important;}
     .no-underline{text-decoration:none;}
     .truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
@@ -31,8 +33,8 @@
                 <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 bg-gray-300" style="padding: 1px 8px;"><span class="text-sm">{{ $cat->name }}</span></div>
             </a> --}}
             <a href="/listing-category/{{ $cat->slug }}">
-                <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 <?php if(@$activeCat == $cat->name ) { echo 'bg-gray-300'; } ?> " style="padding: 1px 8px; border-radius: 20px;">
-                    <span class="text-sm cat-wrap">
+                <div class="no-underline inline-block truncate leading-snug text-gray-700 rounded border border-gray-300 <?php if(@$activeCat == $cat->name ) { echo 'bg-red-600'; } ?> " style="padding: 1px 8px; border-radius: 20px;">
+                    <span class="text-sm cat-wrap <?php if(@$activeCat == $cat->name ) { echo 'text-white-600'; } ?>">
                         {{ $cat->name }}
                     </span>
                 </div>
