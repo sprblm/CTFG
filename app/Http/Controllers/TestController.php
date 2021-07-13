@@ -41,9 +41,8 @@ class TestController extends Controller {
             }
         }*/
 
-        $countries = Location::select('country')->distinct()->orderBy('country')->get();
-        echo $countries->count();
-        echo "<br>";
+        $parentlesscategories = Category::whereNull('parent_category_id')->get();
+        echo $parentlesscategories->count();
         
         
 

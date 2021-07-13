@@ -19,6 +19,12 @@
         background-color: #f91942;
     }
 
+    li.cat-dropdown.active, li.cat-dropdown-single.active {
+        color: #fff !important;
+        border-radius: 25px;
+        background-color: #f91942;
+    }
+
     #more {display: none;}
 
     input.typeahead {

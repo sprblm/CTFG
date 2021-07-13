@@ -63,6 +63,11 @@ a:hover{color: #f91942 !important;}
                 </ul>
             </li>
         @endforeach
+        @foreach($parentlessCategories as $plesscat)
+            <li class="nav-item cat-dropdown-single <?php if(@$activeCat == $plesscat->name ) { echo 'active'; } ?>">
+                <a class="nav-link" href="/listing-category/{{ $plesscat->slug }}">{{ $plesscat->name }} </a>
+            </li>
+        @endforeach
     </ul>
 </nav>
 

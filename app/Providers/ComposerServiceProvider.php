@@ -32,6 +32,10 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer(
+            '*', 'App\Http\ViewComposers\ParentlessCategories',
+        );
+
+        view()->composer(
             ['welcome', 'projects.projects-by-category', 'projects.search-results'],
             'App\Http\ViewComposers\Tags'
         );
