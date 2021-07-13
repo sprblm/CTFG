@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use Airtable;
 use Illuminate\Support\Str;
 
 use App\Models\Category;
@@ -12,49 +13,64 @@ use App\Models\Listing;
 use App\Models\Media;
 use App\Models\Location;
 use App\Models\ParentCategory;
+use App\Models\Country;
 
 class TestController extends Controller {
     
     public function test(Request $request){
-        /*$cats = Category::get();
-        foreach ($cats as $cat) {
-            $string = Str::of($cat->name);
+    
+        /*$cats = Airtable::table('categories')->all();
+        
+        foreach($cats as $cat) {
+            $category = Category::where('airtable_id', $cat["id"])->first();
+            if (!empty($cat["fields"]["Parent Category"][0])) {
+                $pc = Category::where('airtable_id', $cat["fields"]["Parent Category"][0])->first();
+                if ($pc) {
+                    $pcdb = ParentCategory::where('name', $pc->name)->first();
+                    if ($pcdb) {
+                        $category->update([
+                            'parent_category_id' => $pcdb->id
+                        ]);
+                    } else {
+                        $pcdb = new ParentCategory;
+                        $pcdb->name = $pc->name;
+                        $pcdb->save();
 
-            $cat->update([
-                'slug' => $string->slug(),
-            ]);
+                        $category->update([
+                            'parent_category_id' => $pcdb->id
+                        ]);
+                    }
+                    
+                } else {
+                    $rec = Airtable::table('categories')->find($cat["fields"]["Parent Category"][0]);
+
+                    $pcdb = ParentCategory::where('name', $rec["fields"]["Name"])->first();
+
+                    if ($pcdb) {
+                        $category->update([
+                            'parent_category_id' => $pcdb->id
+                        ]);
+                    } else {
+                        $pc = new ParentCategory;
+                        $pc->name = $rec["fields"]["Name"];
+                        $pc->save();
+
+                        $category->update([
+                            'parent_category_id' => $pc->id
+                        ]);
+                    }
+                    
+                } 
+            }
         } */
 
-        /*$pct = ParentCategory::where('name', 'The Tech')->first();
-        $pcp = ParentCategory::where('name', 'The People')->first();
+        //$rec = Airtable::table('categories')->find('recgsIAmClTwo5Doe');
+        //echo sizeof($rec);
+        //print_r($rec);
 
-        echo $pct->categories->count();
-        echo "<br>";
-        echo $pcp->categories->count(); */
-        
-
-
-        /*$pc = new ParentCategory;
-        $pc->name = "The Tech";
-        $pc->save();
-
-        $pc = new ParentCategory;
-        $pc->name = "The People";
-        $pc->save(); */
-
-    	//$projects = DB::table('listings')->limit(5)->get();
-        //print_r($projects);
-
-        /*foreach ($projects as $project) {
-            echo "Name: ".$project->images."<br>";
-        }*/
-
-        //$cats = DB::table('listing_categories')->get();
-        /*$cats = DB::table('listing_categories')->distinct('parent_category')->get();
-        
-        foreach ($cats as $cat) {
+        /*foreach ($cats as $cat) {
             echo $cat->name."<br>";
-        } */
+        }*/
 
         /*$projects = DB::table('listings')->paginate(10); */
 

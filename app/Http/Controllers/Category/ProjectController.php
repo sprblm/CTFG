@@ -62,7 +62,7 @@ class ProjectController extends Controller {
                 array_push($countries, 'UK');
             }
 
-            $listings->when(count($countries),function ($query)use ($countries) {
+            $listings->when(count($countries), function ($query) use ($countries) {
                 $query->whereHas('location', function($q) use ($countries) {
                     $q->where( function($q) use ($countries) {
                         foreach ($countries as $country) {
@@ -90,6 +90,7 @@ class ProjectController extends Controller {
             'categoryDesc' => @$category->description,
             'projects' => $projects,
             'activeCat' => $category->name,
+            'activePCat' => @$category->parentCategory->name,
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,

@@ -5,11 +5,29 @@
     @import 'https: //fonts.googleapis.com/css?family=Raleway:300, 400, 500, 600, 700';
     @import 'https: //fonts.googleapis.com/css?family=Open+Sans:500, 600, 700';
 
+    body {
+        font-size: 1.4rem !important;
+    }
+
+    li.cat-dropdown {
+        color: #979799 !important;
+    }
+
+    li.cat-dropdown.active {
+        color: #fff !important;
+        border-radius: 25px;
+        background-color: #f91942;
+    }
+
     #more {display: none;}
 
     input.typeahead {
         position: relative;
         /*z-index: 10000; */
+    }
+
+    a.button.border:hover {
+        color: #fff !important;
     }
 
     .typeahead, .tt-query, .tt-hint {
