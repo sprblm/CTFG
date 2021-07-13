@@ -18,7 +18,35 @@ use App\Models\Country;
 class TestController extends Controller {
     
     public function test(Request $request){
-    
+        $locations = Location::get();
+
+        foreach($locations as $loc) {
+            $pieces = explode(' ', $loc->name);
+            $country = array_pop($pieces);
+
+            if ($country == "USA" || $country == "United States" || $country == "United States of America") {
+                $country = "United States of America";
+            }
+
+            if ($country == "UK" || $country == "United Kingdom") {
+                $country = "United Kingdom";
+            }
+
+            $ct = Country::where('country', $country)->first();
+            if ($ct) {
+                //echo "Present Country: ".$ct->country."<br>";
+                $loc->update([
+                    'country' => $ct->country
+                ]);
+            }
+        }
+
+        /*echo Location::count();
+        echo "<br>";
+        echo Location::distinct('country')->count(); */
+
+        
+
         /*$cats = Airtable::table('categories')->all();
         
         foreach($cats as $cat) {

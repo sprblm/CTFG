@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model {
     protected $table = "locations";
 
+    protected $fillable = [
+        'country',
+    ];
+
     public function listings() {
         return $this->belongsToMany('App\Models\Listing', 'listing_location', 
           'location_id', 'listing_id');
