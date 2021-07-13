@@ -18,7 +18,7 @@ use App\Models\Country;
 class TestController extends Controller {
     
     public function test(Request $request){
-        $locations = Location::get();
+        /*$locations = Location::get();
 
         foreach($locations as $loc) {
             $pieces = explode(' ', $loc->name);
@@ -39,11 +39,11 @@ class TestController extends Controller {
                     'country' => $ct->country
                 ]);
             }
-        }
+        }*/
 
-        /*echo Location::count();
+        echo Location::count();
         echo "<br>";
-        echo Location::distinct('country')->count(); */
+        echo Location::distinct('country')->count();
 
         
 
