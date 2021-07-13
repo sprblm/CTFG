@@ -4,6 +4,7 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use App\Models\Country;
+use App\Models\Location;
 
 class Countries
 {
@@ -15,7 +16,8 @@ class Countries
      * @return void
      */
     public function __construct() {
-        $countries = Country::distinct('name')->orderBy('country')->get();
+        //$countries = Country::distinct('name')->orderBy('country')->get();
+        $countries = Location::select('country')->distinct()->orderBy('country')->get();
         
         $this->countries = $countries;
     }

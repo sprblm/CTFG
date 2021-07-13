@@ -41,10 +41,10 @@ class TestController extends Controller {
             }
         }*/
 
-        echo Location::count();
+        $countries = Location::select('country')->distinct()->orderBy('country')->get();
+        echo $countries->count();
         echo "<br>";
-        echo Location::distinct('country')->count();
-
+        
         
 
         /*$cats = Airtable::table('categories')->all();
