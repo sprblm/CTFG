@@ -44,11 +44,11 @@ a:hover{color: #f91942 !important;}
 
 <nav class="sidebar card py-2 mb-4">
     <ul class="nav flex-column" id="nav_accordion">
-        @foreach($ancestors as $ancestor)
+        @foreach($parentCategories as $pcat)
             <li class="nav-item has-submenu">
-                <a class="nav-link" href="#" title="{{ $ancestor->name }}"> 
-                    <span class="text-sm cat-wrap <?php if(@$activeCat == $ancestor->name ) { echo 'text-white-600'; } ?>">
-                        {{ $ancestor->name }}
+                <a class="nav-link" href="#" title="{{ $pcat->name }}"> 
+                    <span class="text-sm cat-wrap <?php if(@$activeCat == $pcat->name ) { echo 'text-white-600'; } ?>">
+                        {{ $pcat->name }}
                     </span>
                     <span class="text-sm" style="margin-top: -15px !important;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
@@ -56,51 +56,13 @@ a:hover{color: #f91942 !important;}
                         </svg>
                     </span>
                 </a>
-                <ul class="submenu collapse <?php if(@$activeAncestor == $ancestor->name ) { echo 'show'; } ?>">
-                    @foreach($ancestor->grandParentCategories as $gpc)
-                        <li class="nav-item has-submenu">
-                            <a class="nav-link" href="#" title="{{ $gpc->name }}"> 
-                                <span class="text-sm cat-wrap <?php if(@$activeCat == $gpc->name ) { echo 'text-white-600'; } ?>">
-                                    {{ $gpc->name }}
-                                </span>
-                                <span class="text-sm" style="margin-top: -15px !important;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
-                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                                    </svg>
-                                </span>
-                            </a>
-                            <ul class="submenu collapse <?php if(@$activeGrandParent == $gpc->name ) { echo 'show'; } ?>">
-                                @foreach($gpc->parentCategories as $pc)
-                                    <li class="nav-item has-submenu">
-                                        <a class="nav-link" href="#" title="{{ $pc->name }}"> 
-                                            <span class="text-sm cat-wrap <?php if(@$activeCat == $pc->name ) { echo 'text-white-600'; } ?>">
-                                                {{ $pc->name }}
-                                            </span>
-                                            <span class="text-sm" style="margin-top: -15px !important;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
-                                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                        <ul class="submenu collapse <?php if(@$activeParent == $pc->name ) { echo 'show'; } ?>">
-                                            @foreach($pc->categories as $cat)
-                                                <li class="cat-dropdown <?php if(@$activeCat == $cat->name ) { echo 'active'; } ?>">
-                                                    <a class="nav-link" href="/listing-category/{{ $cat->slug }}">
-                                                        {{ $cat->name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
+                <ul class="submenu collapse <?php if(@$activePCat == $pcat->name ) { echo 'show'; } ?>">
+                    @foreach($pcat->categories as $cat)
+                        <li class="cat-dropdown <?php if(@$activeCat == $cat->name ) { echo 'active'; } ?>"><a class="nav-link" href="/listing-category/{{ $cat->slug }}">{{ $cat->name }} </a></li>
                     @endforeach
                 </ul>
             </li>
         @endforeach
-
-
         @foreach($parentlessCategories as $plesscat)
             <li class="nav-item cat-dropdown-single <?php if(@$activeCat == $plesscat->name ) { echo 'active'; } ?>">
                 <a class="nav-link" href="/listing-category/{{ $plesscat->slug }}">{{ $plesscat->name }} </a>

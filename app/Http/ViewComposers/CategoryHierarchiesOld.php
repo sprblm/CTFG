@@ -3,11 +3,14 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
+use App\Models\GrandParentCategory;
 use App\Models\ParentCategory;
+use App\Models\Category;
 
-class ParentCategories
+class CategoryHierarchies
 {
     public $parentCategories = [];
+    public $parentlessCategories = [];
     
     /**
      * Create a movie composer.
@@ -16,8 +19,10 @@ class ParentCategories
      */
     public function __construct() {
         $parentCategories = ParentCategory::distinct('name')->orderBy('name')->get();
-        
         $this->parentCategories = $parentCategories;
+
+        $parentlessCategories = Category::whereNull('parent_category_id')->orderBy('name')->get();
+        $this->parentlessCategories = $parentlessCategories;
     }
 
     /**
@@ -28,6 +33,6 @@ class ParentCategories
      */
     public function compose(View $view)
     {
-        $view->with(['parentCategories' => $this->parentCategories]);
+        $view->with(['parentCategories' => $this->parentCategories, 'parentlessCategories' => $this->parentlessCategories]);
     }
 }

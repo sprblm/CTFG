@@ -8,10 +8,14 @@ class ParentCategory extends Model {
     protected $table = "parent_categories";
 
     protected $fillable = [
-        'name', 'grant_parent_category_id',
+        'name', 'grand_parent_category_id', 'airtable_id',
     ];
 
     public function categories(){
         return $this->hasMany('App\Models\Category');
+    }
+
+    public function grandParent() {
+        return $this->belongsTo('App\Models\GrandParentCategory');
     }
 }

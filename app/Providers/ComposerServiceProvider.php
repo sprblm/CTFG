@@ -28,11 +28,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer(
-            '*', 'App\Http\ViewComposers\ParentCategories',
-        );
-
-        view()->composer(
-            '*', 'App\Http\ViewComposers\ParentlessCategories',
+            '*', 'App\Http\ViewComposers\CategoryHierarchies',
         );
 
         view()->composer(

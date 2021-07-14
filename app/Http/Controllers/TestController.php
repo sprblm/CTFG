@@ -13,11 +13,26 @@ use App\Models\Listing;
 use App\Models\Media;
 use App\Models\Location;
 use App\Models\ParentCategory;
+use App\Models\GrandParentCategory;
+use App\Models\AncestorCategory;
 use App\Models\Country;
 
 class TestController extends Controller {
     
     public function test(Request $request){
+        //$ancestors = GrandParentCategory::whereNotNull('ancestor_category_id')->select('name')->groupBy('name')->orderBy('name')->get();
+
+        $grandParents = GrandParentCategory::whereNull('ancestor_category_id')->orderBy('name')->get();
+
+        echo $grandParents->count();
+        
+        /*foreach ($ancestors as $ancestor) {
+            echo $ancestor->name."<br>";
+            echo $ancestor->ancestorCategory->name."<br>";
+            echo "<br>";
+        } */
+
+
         /*$locations = Location::get();
 
         foreach($locations as $loc) {
@@ -41,8 +56,76 @@ class TestController extends Controller {
             }
         }*/
 
-        $parentlesscategories = Category::whereNull('parent_category_id')->get();
-        echo $parentlesscategories->count();
+        /*$parentlesscategories = Category::whereNull('parent_category_id')->get();
+        echo $parentlesscategories->count();*/
+
+
+        // $rec = Airtable::table('categories')->find($cat["fields"]["Parent Category"][0]);
+
+        /*$gpcs = GrandParentCategory::get();
+        foreach ($gpcs as $gpc) {
+            $cat = Category::where('airtable_id', $gpc->airtable_id)->first();
+            if ($cat) {
+                $gpc->update([
+                    'name' => $cat->name
+                ]);
+            }
+        } */
+
+        /*$gpcs = GrandParentCategory::get();
+
+        $count = 0;
+        foreach ($gpcs as $gpc) {
+            $rec = Airtable::table('categories')->find($gpc->airtable_id);
+
+            if (!empty($rec["fields"]["Parent Category"][0])) {
+                $cat = Category::where('airtable_id', $rec["fields"]["Parent Category"][0])->first();
+
+                $ancestor = AncestorCategory::where('airtable_id', $rec["fields"]["Parent Category"][0])->first();
+
+                if ($ancestor) {
+                    if ($gpc) {
+                        $gpc->update([
+                            'ancestor_category_id' => $ancestor->id
+                        ]);
+                    }
+                } else {
+                    $ancestor = new AncestorCategory;
+                    $ancestor->airtable_id = $rec["fields"]["Parent Category"][0];
+                    $ancestor->name = $cat->name;
+                    $ancestor->save();
+
+                    if ($gpc) {
+                        $gpc->update([
+                            'ancestor_category_id' => $ancestor->id
+                        ]);
+                    }
+                }
+
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            }
+
+        } */
+
+        /*$pcdb = ParentCategory::where('name', $rec["fields"]["Name"])->first();
+
+        if ($pcdb) {
+            $category->update([
+                'parent_category_id' => $pcdb->id
+            ]);
+        } else {
+            $pc = new ParentCategory;
+            $pc->name = $rec["fields"]["Name"];
+            $pc->save();
+
+            $category->update([
+                'parent_category_id' => $pc->id
+            ]);
+        } */
         
         
 
