@@ -46,7 +46,7 @@ a:hover{color: #f91942 !important;}
     <ul class="nav flex-column" id="nav_accordion">
         @foreach($ancestors as $ancestor)
             <li class="nav-item has-submenu">
-                <a class="nav-link" href="#" title="{{ $ancestor->name }}"> 
+                <a class="nav-link" href="/listing-category/{{ $ancestor->slug }}" title="{{ $ancestor->name }}"> 
                     <span class="text-sm cat-wrap <?php if(@$activeCat == $ancestor->name ) { echo 'text-white-600'; } ?>">
                         {{ $ancestor->name }}
                     </span>
@@ -59,7 +59,7 @@ a:hover{color: #f91942 !important;}
                 <ul class="submenu collapse <?php if(@$activeAncestor == $ancestor->name ) { echo 'show'; } ?>">
                     @foreach($ancestor->grandParentCategories as $gpc)
                         <li class="nav-item has-submenu">
-                            <a class="nav-link" href="#" title="{{ $gpc->name }}"> 
+                            <a class="nav-link" href="/listing-category/{{ $gpc->slug }}" title="{{ $gpc->name }}"> 
                                 <span class="text-sm cat-wrap <?php if(@$activeCat == $gpc->name ) { echo 'text-white-600'; } ?>">
                                     {{ $gpc->name }}
                                 </span>
@@ -72,7 +72,7 @@ a:hover{color: #f91942 !important;}
                             <ul class="submenu collapse <?php if(@$activeGrandParent == $gpc->name ) { echo 'show'; } ?>">
                                 @foreach($gpc->parentCategories as $pc)
                                     <li class="nav-item has-submenu">
-                                        <a class="nav-link" href="#" title="{{ $pc->name }}"> 
+                                        <a class="nav-link" href="/listing-category/{{ $pc->slug }}" title="{{ $pc->name }}"> 
                                             <span class="text-sm cat-wrap <?php if(@$activeCat == $pc->name ) { echo 'text-white-600'; } ?>">
                                                 {{ $pc->name }}
                                             </span>
