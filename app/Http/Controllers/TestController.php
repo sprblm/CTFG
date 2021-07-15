@@ -22,15 +22,30 @@ class TestController extends Controller {
     public function test(Request $request){
         //$ancestors = GrandParentCategory::whereNotNull('ancestor_category_id')->select('name')->groupBy('name')->orderBy('name')->get();
 
-        $grandParents = GrandParentCategory::whereNull('ancestor_category_id')->orderBy('name')->get();
 
-        echo $grandParents->count();
-        
-        /*foreach ($ancestors as $ancestor) {
-            echo $ancestor->name."<br>";
-            echo $ancestor->ancestorCategory->name."<br>";
-            echo "<br>";
-        } */
+        $ancestors = AncestorCategory::get();
+
+        foreach ($ancestors as $ancestor) {
+            $ancestor->update([
+                'slug' => Str::of($ancestor->name)->slug(),
+            ]);
+        }
+
+        $gpcs = GrandParentCategory::get();
+
+        foreach ($gpcs as $gpc) {
+            $gpc->update([
+                'slug' => Str::of($gpc->name)->slug(),
+            ]);
+        }
+
+        $pcs = ParentCategory::get();
+
+        foreach ($pcs as $pc) {
+            $pc->update([
+                'slug' => Str::of($pc->name)->slug(),
+            ]);
+        }
 
 
         /*$locations = Location::get();

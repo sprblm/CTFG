@@ -8,7 +8,7 @@ class GrandParentCategory extends Model {
     protected $table = "grand_parent_categories";
 
     protected $fillable = [
-        'name', 'ancestor_category_id', 'airtable_id',
+        'name', 'ancestor_category_id', 'airtable_id', 'slug',
     ];
 
     public function parentCategories(){
