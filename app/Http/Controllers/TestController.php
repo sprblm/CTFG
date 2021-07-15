@@ -23,31 +23,6 @@ class TestController extends Controller {
         //$ancestors = GrandParentCategory::whereNotNull('ancestor_category_id')->select('name')->groupBy('name')->orderBy('name')->get();
 
 
-        $ancestors = AncestorCategory::get();
-
-        foreach ($ancestors as $ancestor) {
-            $ancestor->update([
-                'slug' => Str::of($ancestor->name)->slug(),
-            ]);
-        }
-
-        $gpcs = GrandParentCategory::get();
-
-        foreach ($gpcs as $gpc) {
-            $gpc->update([
-                'slug' => Str::of($gpc->name)->slug(),
-            ]);
-        }
-
-        $pcs = ParentCategory::get();
-
-        foreach ($pcs as $pc) {
-            $pc->update([
-                'slug' => Str::of($pc->name)->slug(),
-            ]);
-        }
-
-
         /*$locations = Location::get();
 
         foreach($locations as $loc) {

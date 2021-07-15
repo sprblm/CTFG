@@ -112,7 +112,7 @@ a:hover{color: #f91942 !important;}
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(){
         document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
-            element.addEventListener('click', function (e) {
+            element.addEventListener('mouseenter', function (e) {
                 let nextEl = element.nextElementSibling;
                 let parentEl  = element.parentElement;  
 
