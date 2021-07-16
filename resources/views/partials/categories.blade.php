@@ -37,6 +37,7 @@ a:hover{color: #f91942 !important;}
     font-family: raleway, helveticaneue, helvetica neue, Helvetica, Arial, sans-serif !important;
 }
 .sidebar .nav-link:hover{color:var(--bs-primary);}
+.sidebar .nav-link{display:inline-block;}
 /*! CSS Used fontfaces */
 @font-face{font-family:"bootstrap-icons";src:url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff2?8bd4575acf83c7696dc7a14a966660a3") format("woff2"), url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff?8bd4575acf83c7696dc7a14a966660a3") format("woff");}
 </style>
@@ -49,6 +50,8 @@ a:hover{color: #f91942 !important;}
                     <span class="text-sm cat-wrap <?php if(@$activeCat == $ancestor->name ) { echo 'text-white-600'; } ?>">
                         {{ $ancestor->name }}
                     </span>
+                </a>
+                <a class="nav-link submenu-button">
                     <span class="text-sm" style="margin-top: -15px !important;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -62,6 +65,8 @@ a:hover{color: #f91942 !important;}
                                 <span class="text-sm cat-wrap <?php if(@$activeCat == $gpc->name ) { echo 'text-white-600'; } ?>">
                                     {{ $gpc->name }}
                                 </span>
+                            </a>
+                            <a class="nav-link submenu-button">
                                 <span class="text-sm" style="margin-top: -15px !important;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
                                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -75,6 +80,8 @@ a:hover{color: #f91942 !important;}
                                             <span class="text-sm cat-wrap <?php if(@$activeCat == $pc->name ) { echo 'text-white-600'; } ?>">
                                                 {{ $pc->name }}
                                             </span>
+                                        </a>
+                                        <a class="nav-link submenu-button">
                                             <span class="text-sm" style="margin-top: -15px !important;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
                                                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -110,8 +117,8 @@ a:hover{color: #f91942 !important;}
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(){
-        document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
-            element.addEventListener('mouseenter', function (e) {
+        document.querySelectorAll('.sidebar .submenu-button').forEach(function(element){
+            element.addEventListener('click', function (e) {
                 let nextEl = element.nextElementSibling;
                 let parentEl  = element.parentElement;
 
