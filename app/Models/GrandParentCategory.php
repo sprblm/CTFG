@@ -16,6 +16,6 @@ class GrandParentCategory extends Model {
     }
 
     public function ancestorCategory() {
-        return $this->belongsTo('App\Models\AncestorCategory');
+        return $this->belongsTo('App\Models\AncestorCategory', 'ancestor_category_id' , 'id');
     }
 }

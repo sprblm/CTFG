@@ -16,6 +16,6 @@ class ParentCategory extends Model {
     }
 
     public function grandParent() {
-        return $this->belongsTo('App\Models\GrandParentCategory');
+        return $this->belongsTo('App\Models\GrandParentCategory', 'grand_parent_category_id', 'id');
     }
 }

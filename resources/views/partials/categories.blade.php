@@ -41,12 +41,11 @@ a:hover{color: #f91942 !important;}
 @font-face{font-family:"bootstrap-icons";src:url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff2?8bd4575acf83c7696dc7a14a966660a3") format("woff2"), url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff?8bd4575acf83c7696dc7a14a966660a3") format("woff");}
 </style>
 
-
 <nav class="sidebar card py-2 mb-4">
     <ul class="nav flex-column" id="nav_accordion">
         @foreach($ancestors as $ancestor)
             <li class="nav-item has-submenu">
-                <a class="nav-link" href="/listing-category/{{ $ancestor->slug }}" title="{{ $ancestor->name }}"> 
+                <a class="nav-link" href="/listing-category/{{ $ancestor->slug }}" title="{{ $ancestor->name }}">
                     <span class="text-sm cat-wrap <?php if(@$activeCat == $ancestor->name ) { echo 'text-white-600'; } ?>">
                         {{ $ancestor->name }}
                     </span>
@@ -59,7 +58,7 @@ a:hover{color: #f91942 !important;}
                 <ul class="submenu collapse <?php if(@$activeAncestor == $ancestor->name ) { echo 'show'; } ?>">
                     @foreach($ancestor->grandParentCategories as $gpc)
                         <li class="nav-item has-submenu">
-                            <a class="nav-link" href="/listing-category/{{ $gpc->slug }}" title="{{ $gpc->name }}"> 
+                            <a class="nav-link" href="/listing-category/{{ $gpc->slug }}" title="{{ $gpc->name }}">
                                 <span class="text-sm cat-wrap <?php if(@$activeCat == $gpc->name ) { echo 'text-white-600'; } ?>">
                                     {{ $gpc->name }}
                                 </span>
@@ -72,7 +71,7 @@ a:hover{color: #f91942 !important;}
                             <ul class="submenu collapse <?php if(@$activeGrandParent == $gpc->name ) { echo 'show'; } ?>">
                                 @foreach($gpc->parentCategories as $pc)
                                     <li class="nav-item has-submenu">
-                                        <a class="nav-link" href="/listing-category/{{ $pc->slug }}" title="{{ $pc->name }}"> 
+                                        <a class="nav-link" href="/listing-category/{{ $pc->slug }}" title="{{ $pc->name }}">
                                             <span class="text-sm cat-wrap <?php if(@$activeCat == $pc->name ) { echo 'text-white-600'; } ?>">
                                                 {{ $pc->name }}
                                             </span>
@@ -114,10 +113,10 @@ a:hover{color: #f91942 !important;}
         document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
             element.addEventListener('mouseenter', function (e) {
                 let nextEl = element.nextElementSibling;
-                let parentEl  = element.parentElement;  
+                let parentEl  = element.parentElement;
 
                 if(nextEl) {
-                    e.preventDefault(); 
+                    e.preventDefault();
                     let mycollapse = new bootstrap.Collapse(nextEl);
 
                     if(nextEl.classList.contains('show')){
@@ -125,7 +124,7 @@ a:hover{color: #f91942 !important;}
                     } else {
                         mycollapse.show();
                         var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
-                        
+
                         if(opened_submenu){
                             new bootstrap.Collapse(opened_submenu);
                         }
@@ -136,5 +135,5 @@ a:hover{color: #f91942 !important;}
             });
         })
 
-    }); 
+    });
 </script>
