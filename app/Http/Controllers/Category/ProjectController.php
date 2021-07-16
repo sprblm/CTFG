@@ -24,7 +24,7 @@ class ProjectController extends Controller {
             $tags = $request->query('tags');
             $tagIds = array();
 
-            for ($i=0; $i < sizeof($tags); $i++) { 
+            for ($i=0; $i < sizeof($tags); $i++) {
                 $tagId = Tag::where('name', $tags[$i])->first();
                 array_push($tagIds, $tagId->id);
             }
@@ -38,7 +38,7 @@ class ProjectController extends Controller {
             $categories = $request->query('categories');
             $catIds = array();
 
-            for ($i=0; $i < sizeof($categories); $i++) { 
+            for ($i=0; $i < sizeof($categories); $i++) {
                 $catId = Category::where('name', $categories[$i])->first();
                 array_push($catIds, $catId->id);
             }
@@ -76,7 +76,7 @@ class ProjectController extends Controller {
         if ($request->has('status')) {
             $listings->where('status', 'Active');
         }
-        
+
         $projects = $listings->paginate(10);
 
         $category->update([
@@ -89,8 +89,8 @@ class ProjectController extends Controller {
             'parentCategoryName' => @$category->parentCategory->name,
             'categoryDesc' => @$category->description,
             'projects' => $projects,
-            'activeAncestor' => @$category->parentCategory->grandParentCategory->ancestorCategory->name,
-            'activeGrandParent' => @$category->parentCategory->grandParentCategory->name,
+            'activeAncestor' => @$category->parentCategory->grandParent->ancestorCategory->name,
+            'activeGrandParent' => @$category->parentCategory->grandParent->name,
             'activeParent' => @$category->parentCategory->name,
             'activeCat' => $category->name,
             'filterCategories' => @$categories,
