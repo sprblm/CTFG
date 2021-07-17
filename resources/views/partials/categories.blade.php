@@ -38,6 +38,8 @@ a:hover{color: #f91942 !important;}
 }
 .sidebar .nav-link:hover{color:var(--bs-primary);}
 .sidebar .nav-link{display:inline-block;}
+.sidebar .menu-open{color: #f91942}
+.sidebar .menu-open svg{margin: 0 !important; transform: rotate(90deg)}
 /*! CSS Used fontfaces */
 @font-face{font-family:"bootstrap-icons";src:url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff2?8bd4575acf83c7696dc7a14a966660a3") format("woff2"), url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff?8bd4575acf83c7696dc7a14a966660a3") format("woff");}
 </style>
@@ -121,6 +123,7 @@ a:hover{color: #f91942 !important;}
             element.addEventListener('click', function (e) {
                 let nextEl = element.nextElementSibling;
                 let parentEl  = element.parentElement;
+                element.classList.add('menu-open');
 
                 if(nextEl) {
                     e.preventDefault();
@@ -138,9 +141,21 @@ a:hover{color: #f91942 !important;}
 
                     }
                 }
-
             });
-        })
-
+        });
+        // Function called on page reload
+        openMenu();
     });
+
+    function openMenu() {
+        document.querySelectorAll('.submenu.show').forEach((el) => {
+            el.previousElementSibling.classList.add('menu-open');
+        });
+    }
+
+    // On Menu hide remove class
+    var myCollapsible = document.getElementById('nav_accordion')
+    myCollapsible.addEventListener('hide.bs.collapse', function (element) {
+        element.target.previousElementSibling.classList.remove('menu-open');
+    })
 </script>
