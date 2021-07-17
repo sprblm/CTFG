@@ -22,6 +22,13 @@ class TestController extends Controller {
     public function test(Request $request){
         //$ancestors = GrandParentCategory::whereNotNull('ancestor_category_id')->select('name')->groupBy('name')->orderBy('name')->get();
 
+        $cat = Category::where('slug', 'legal-tech')->first();
+
+        echo $cat->name."<br>";
+        echo $cat->parentCategory->name."<br>";
+        echo $cat->parentCategory->grandParent->name."<br>";
+        echo $cat->parentCategory->grandParent->ancestorCategory->name."<br>";
+
 
         /*$locations = Location::get();
 

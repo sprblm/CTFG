@@ -86,6 +86,7 @@ class ProjectController extends Controller {
         return view ('projects.projects-by-category', [
             'title' => 'Projects - '.$category->name,
             'categoryName' => $category->name,
+            'category' => $category,
             'parentCategoryName' => @$category->parentCategory->name,
             'categoryDesc' => @$category->description,
             'projects' => $projects,
