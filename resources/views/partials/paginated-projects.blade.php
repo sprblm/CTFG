@@ -13,10 +13,13 @@
                         {{ $project->name }}
                     </a>
                 </h4>
-                <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="popup-gmaps">
-                    <i class="fa fa-map-marker"></i>
-                    {{ @$project->location->first()->name }}
-                </a>
+
+                @if(!empty(@$project->location->first()->name))
+                    <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="popup-gmaps">
+                        <i class="fa fa-map-marker"></i>
+                        {{ @$project->location->first()->name }}
+                    </a>
+                @endif
 
                 {{-- <a href="/listing/{{ $project->slug }}" class="details button border">  
                     Details
@@ -33,11 +36,13 @@
                 @endforeach
             </ul>
 
-            <div class="listing-footer">
-                <a href="{{ $project->website_url }}" target="_blank">
-                    <i class="fa fa-globe"></i> {{ $project->website_url }}
-                </a>
-            </div>
+            @if(!empty($project->website_url))
+                <div class="listing-footer">
+                    <a href="{{ $project->website_url }}" target="_blank">
+                        <i class="fa fa-globe"></i> {{ $project->website_url }}
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 @endforeach
