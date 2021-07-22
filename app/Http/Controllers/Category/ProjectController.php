@@ -73,8 +73,11 @@ class ProjectController extends Controller {
             });
         }
 
+        $activeProjects = 1;
         if ($request->has('status')) {
             $listings->where('status', 'Active');
+        } else {
+            $activeProjects = 0;
         }
 
         $projects = $listings->paginate(10);
@@ -97,7 +100,7 @@ class ProjectController extends Controller {
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
-            'filterStatus' => @$request->query('status'),
+            'filterStatus' => $activeProjects,
         ]);
     }
 }

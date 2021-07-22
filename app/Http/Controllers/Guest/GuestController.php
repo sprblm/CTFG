@@ -67,8 +67,14 @@ class GuestController extends Controller {
             });
         }
 
+        $activeProjects = 1;
         if ($request->has('status')) {
             $listings->where('status', 'Active');
+            if ($request->query('status') == 'Active') {
+                $activeProjects = 1;
+            } else {
+                $activeProjects = 0;
+            }
         }
         
         $projects = $listings->paginate(10);
@@ -79,7 +85,7 @@ class GuestController extends Controller {
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
-            'filterStatus' => @$request->query('status'),
+            'filterStatus' => @$activeProjects,
         ]);
 
     }

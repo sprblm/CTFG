@@ -18,8 +18,9 @@
                     {{ @$project->location->first()->name }}
                 </a>
 
-                <a href="/listing/{{ $project->slug }}" class="details button border">  Details
-                </a>
+                {{-- <a href="/listing/{{ $project->slug }}" class="details button border">  
+                    Details
+                </a> --}}
             </div>
 
             <p style="padding: 0 30px; font-size: 15px; line-height: 22px;">

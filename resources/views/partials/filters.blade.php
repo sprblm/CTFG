@@ -45,12 +45,12 @@
                 <div class="checkboxes in-row">
                     <input id="check-2" type="checkbox" name="status" value="Active"
                         <?php 
-                            if (@$filterStatus == "Active") {
+                            if (@$filterStatus == "1") {
                                 echo "checked";
                             }
                         ?>
                     >
-                    <label for="check-2">Active</label>
+                    <label for="check-2">Show active projects only</label>
                 </div>
             </div>
 
