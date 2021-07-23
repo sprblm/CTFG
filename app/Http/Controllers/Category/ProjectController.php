@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Tag;
 
 class ProjectController extends Controller {
     // Get projects by category
@@ -101,6 +102,27 @@ class ProjectController extends Controller {
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
             'filterStatus' => $activeProjects,
+        ]);
+    }
+
+    // Get projects by tag
+    public function getProjectsByTag(Request $request) {
+        $name = $request->segment(2);
+
+        $tag = Tag::where('name', $name)->first();
+
+        if (!$tag) {
+            return abort(404);
+        }
+
+        $listings = $tag->listings();
+        $projects = $listings->paginate(10);
+
+        return view ('projects.projects-by-tag', [
+            'projects' => $projects,
+            'title' => 'Projects - '.$tag->name,
+            'tagName' => $tag->name,
+            'tag' => $tag,
         ]);
     }
 }

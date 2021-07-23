@@ -32,12 +32,12 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer(
-            ['welcome', 'projects.projects-by-category', 'projects.search-results'],
+            ['welcome', 'projects.projects-by-category', 'projects.projects-by-tag', 'projects.search-results'],
             'App\Http\ViewComposers\Tags'
         );
 
         view()->composer(
-            ['welcome', 'projects.projects-by-category', 'projects.search-results'],
+            ['welcome', 'projects.projects-by-category', 'projects.projects-by-tag', 'projects.search-results'],
             'App\Http\ViewComposers\Countries'
         );
     }

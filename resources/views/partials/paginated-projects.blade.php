@@ -30,6 +30,12 @@
                 {{ $project->introduction }}
             </p>
 
+            <ul class="listing-details" style="padding: 10px 30px; background-color: #fff;">
+                @foreach(@$project->tags->take(3) as $tag)
+                    <li><a href="/listing-tag/{{ @$tag->name }}">{{ @$tag->name }}</a></li>
+                @endforeach
+            </ul>
+
             <ul class="listing-details" style="padding: 10px 30px;">
                 @foreach(@$project->categoriesOrdered->take(3) as $cat)
                     <li><a href="/listing-category/{{ @$cat->slug }}">{{ @$cat->name }}</a></li>
