@@ -57,7 +57,7 @@ class ProjectController extends Controller {
     }
 
     // Search autocomplete
-    /* public function searchAutoComplete(Request $request) {
+    public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
         $data = Listing::select("name")
                 ->where("name", "LIKE", "%{$q}%")
@@ -65,5 +65,5 @@ class ProjectController extends Controller {
                 ->get();
    
         return response()->json($data);
-    } */
+    }
 }

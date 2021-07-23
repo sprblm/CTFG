@@ -75,6 +75,8 @@ class GuestController extends Controller {
             } else {
                 $activeProjects = 0;
             }
+        } else {
+            $listings->where('status', 'Active');
         }
         
         $projects = $listings->paginate(10);

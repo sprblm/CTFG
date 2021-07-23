@@ -124,7 +124,7 @@
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
-        /*var path = "{{ route('autocomplete') }}";
+        var path = "{{ route('autocomplete') }}";
 
         $('input.typeahead').typeahead({
             displayKey: 'name',
@@ -133,7 +133,7 @@
                     return process(data);
                 });
             }
-        }); */
+        });
 
         $('#search').click(function(e) {
             var param = $(".typeahead").val();

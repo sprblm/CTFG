@@ -1,4 +1,4 @@
-<div class="main-search-box no-shadow margin-bottom-30">
+<div class="main-search-box no-shadow margin-bottom-30" style="border-bottom: 2px dotted #ccc;">
     <form method="GET">
         <div class="row with-forms">
             <div class="col-md-6">
@@ -41,7 +41,7 @@
                 </select>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="checkboxes in-row">
                     <input id="check-2" type="checkbox" name="status" value="Active"
                         <?php 
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2" style="text-align: right;">
                 <button class="button">Filter</button>
             </div>
         </div>
