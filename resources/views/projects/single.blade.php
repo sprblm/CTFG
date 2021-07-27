@@ -73,6 +73,12 @@
                 <p>
                     {{ $project->description }}
                 </p>
+                {{-- <p>
+                    <iframe loading="lazy" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/lnoOgCXrjl9I1X" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen"> </iframe>
+                </p>
+                <p>
+                    <a class="twitter-timeline" data-width="900" data-height="1000" data-dnt="true" href="<https://twitter.com/viawater>" data-tweet-limit="5">Tweets by </a>
+                </p> --}}
             </div>
 
             <div class="clearfix"></div>
@@ -281,6 +287,7 @@
 
 @section('scripts')
     <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script> -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&sensor=false&amp;language=ene"></script>
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>

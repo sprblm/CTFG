@@ -8,7 +8,7 @@ class Listing extends Model {
     protected $table = "listings";
 
     protected $fillable = [
-        'host_org_id', 'host_organization', 'slug', 'name',
+        'host_org_id', 'host_organization', 'slug', 'name', 'raw_description', 'markdown_description', 'is_twitter_feed', 'is_youtube_channel', 'is_slideshare_embed',
     ];
 
     public function hostOrg() {
