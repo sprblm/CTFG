@@ -36,6 +36,7 @@ Route::get('/a/test/d', 'Airtable\ImportsController@testd');
 Route::get('/a/test/e', 'Airtable\ImportsController@teste');
 Route::get('/a/test/f', 'Airtable\ImportsController@testf');
 Route::get('/a/test/g', 'Airtable\ImportsController@testg');
+Route::get('/a/test/h', 'Airtable\ImportsController@testh');
 
 
 Route::get('/t', 'TestController@test');

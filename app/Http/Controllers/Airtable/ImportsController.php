@@ -22,31 +22,45 @@ use League\HTMLToMarkdown\HtmlConverter;
 
 class ImportsController extends Controller {
     public function testa() {
-        $lists = Listing::where('id', '>', 5000)->where('id', '<=', 5500)->get();
+        $lists = Listing::where('id', '>', 5152)->where('id', '<=', 5500)->get();
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                if(($list->airtable_id != "recq73fNADlx8IoSs") && ($list->airtable_id != "recpCX0KplcHOLquG")){
+                    Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+                }
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
+            
         }
     }
 
     public function testb() {
-        $lists = Listing::where('id', '>', 5500)->where('id', '<=', 6000)->get();
+        $lists = Listing::where('id', '>', 5970)->where('id', '<=', 6000)->get();
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                if($list->airtable_id != "reccv3B1JXaZMfHmw"){
+                    Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+                }
+                
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
         }
     }
@@ -56,12 +70,16 @@ class ImportsController extends Controller {
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
         }
     }
@@ -71,12 +89,16 @@ class ImportsController extends Controller {
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
         }
     }
@@ -86,12 +108,16 @@ class ImportsController extends Controller {
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
         }
     }
@@ -101,12 +127,35 @@ class ImportsController extends Controller {
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
+            }
+        }
+    }
+
+    public function testh() {
+        $lists = Listing::where('id', '>', 8001)->where('id', '<=', 8500)->get();
+
+        $count = 0;
+        foreach ($lists as $list) {
+            try {
+                Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
         }
     }
@@ -116,12 +165,16 @@ class ImportsController extends Controller {
 
         $count = 0;
         foreach ($lists as $list) {
-            Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
+            try {
+                Airtable::table('listings')->patch($list->airtable_id, ['Longer description' => $list->markdown_description]);
 
-            $count += 1;
-            if ($count >= 5) {
-                sleep(2);
-                $count = 0;
+                $count += 1;
+                if ($count >= 5) {
+                    sleep(2);
+                    $count = 0;
+                }
+            } catch (Exception $e) {
+               
             }
         }
     }

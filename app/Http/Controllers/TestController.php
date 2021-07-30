@@ -28,12 +28,13 @@ class TestController extends Controller {
         $doc = new DOMDocument();
         $doc->loadHTML($string);
         $iframes = $doc->getElementsByTagName('iframe');
-        $results = [];
+        print_r($iframes);
+        /*$results = [];
         foreach ($iframes as $iframe) {
             if ($attr = $iframe->attributes->getNamedItem('loading') !== null) {
                 $results['loading'] = $attr;
             }
-        }
+        } */
 
         //echo $string;
 

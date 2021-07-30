@@ -4,49 +4,45 @@
 <div class="row sticky-wrapper">
     <div class="col-lg-7 col-md-7 padding-right-30">
         <div id="titlebar" class="listing-titlebar">
-            <div class="listing-titlebar-title">
-                <h2>{{ $project->name }}</h2>
-                @if(!empty($project->email))
-                    <br>
-                    <span>
-                        <a href="#">
-                            <i class="fa fa-envelope-o"></i>
-                            {{ @$project->email }}
-                        </a>
-                    </span>
-                @endif
-                @if(!empty($project->website_url))
-                    <br>
-                    <span>
-                        <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
-                            <i class="fa fa-globe"></i>
-                            {{ @$project->website_url }}
-                        </a>
-                    </span>
-                @endif
-                @if($project->location->count() > 0)
-                    <br>
-                    <span>
-                        <a href="#" class="listing-address">
-                            <i class="fa fa-map-marker"></i>
-                            {{ @$project->location->first()->name }}
-                        </a>
-                    </span>
-                @endif
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <img src="{{ @$project->media->last()->link }}" height="150px" title="Project image"/>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="listing-titlebar-title">
+                        <h2>{{ $project->name }}</h2>
+                        @if(!empty($project->email))
+                            <br>
+                            <span>
+                                <a href="#">
+                                    <i class="fa fa-envelope-o"></i>
+                                    {{ @$project->email }}
+                                </a>
+                            </span>
+                        @endif
+                        @if(!empty($project->website_url))
+                            <br>
+                            <span>
+                                <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
+                                    <i class="fa fa-globe"></i>
+                                    {{ @$project->website_url }}
+                                </a>
+                            </span>
+                        @endif
+                        @if($project->location->count() > 0)
+                            <br>
+                            <span>
+                                <a href="#" class="listing-address">
+                                    <i class="fa fa-map-marker"></i>
+                                    {{ @$project->location->first()->name }}
+                                </a>
+                            </span>
+                        @endif
+                    </div>
+                </div>
             </div>
+            
         </div>
-
-        <!-- Listing Nav
-        <div id="listing-nav" class="listing-nav-container">
-            <ul class="listing-nav">
-                <li><a href="listings-single-page-2.html#listing-overview" class="active">Overview</a></li>
-                <li><a href="listings-single-page-2.html#listing-gallery">Gallery</a></li>
-                <li><a href="listings-single-page-2.html#listing-location">Location</a></li>
-                <li><a href="listings-single-page-2.html#listing-reviews">Reviews</a></li>
-                <li><a href="listings-single-page-2.html#add-review">Add Review</a></li>
-            </ul>
-        </div>
-        -->
 
         <div id="listing-overview" class="listing-section">
             @if($project->tags->count() > 0)
@@ -59,7 +55,7 @@
 
             @if($project->categories->count() > 0)
                 <h3 class="listing-desc-headline">Project Categories</h3>
-                <ul class="listing-features checkboxes">
+                <ul class="listing-features">
                     @foreach($project->categories as $category)
                         <li><a href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
                     @endforeach
@@ -85,101 +81,66 @@
         </div>
 
         <!-- Slider -->
-        <div id="listing-gallery" class="listing-section">
-            <h3 class="listing-desc-headline margin-top-70">Featured Images</h3>
-            @if($project->media->count() > 0)
-            <div class="listing-slider-small mfp-gallery-container margin-bottom-0">
-                @foreach($project->media as $fi)
-                    <a href="{{ $fi->link }}" data-background-image="{{ $fi->link }}" class="item mfp-gallery" title="Featured image"></a>
-                @endforeach
-            </div>
-            @else
+        @if($project->media->count() > 1)
+            <div id="listing-gallery" class="listing-section">
+                <h3 class="listing-desc-headline margin-top-70">Additional Images</h3>
                 <div class="listing-slider-small mfp-gallery-container margin-bottom-0">
-                    <p>No featured image(s).</p>
+                    @foreach($project->media as $fi)
+                        <a href="{{ $fi->link }}" data-background-image="{{ $fi->link }}" class="item mfp-gallery" title="Featured image"></a>
+                    @endforeach
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
 
         @if(@$project->funding->count() > 0)
             <div id="add-review" class="add-review-box">
                 <h3 class="listing-desc-headline margin-bottom-10">Funding Details</h3>
-                <hr style="border-bottom: 1px solid #e6e6e6;">
-                <ol>
-                    @foreach($project->funding as $fng)
-                        <li>
-                            <div class="sub-ratings-container" style="border: none; border-bottom: 1px dotted #e6e6e6;">
-                                <p class="comment-notes"><strong>Funded By:</strong> {{ @$fng->funded_by }}</p>
-                                @if(!empty($fng->funding_date))
-                                    <div class="add-sub-rating">
-                                        <div class="sub-rating-title">Date:</div>
-                                        <div>
-                                            {{ @$fng->funding_date }}
-                                        </div>
-                                    </div>
-                                @endif
-
-                                @if(!empty($fng->amount))
-                                    <div class="add-sub-rating">
-                                        <div class="sub-rating-title">Amount:</div>
-                                        <div>
-                                            $ {{ @$fng->amount }}
-                                        </div>
-                                    </div>
-                                @endif
-
-                                @if(!empty($fng->link))
-                                    <div class="">
-                                        <div class="sub-rating-title">Link:</div>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Funded By</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($project->funding as $fng)
+                            <tr>
+                                <td>{{ @$fng->funded_by }}</td>
+                                <td>
+                                    @if(!empty($fng->link))
                                         <a href="{{ @$fng->link }}" target="_blank" style="color: blue;">
-                                            {{ @$fng->link }}
-                                        </a>
-                                    </div>    
-                                @endif
-                            </div>
-                        </li>
-                    @endforeach
-                </ol>
+                                            {{ @$fng->funding_date }}
+                                        </a>    
+                                    @else
+                                        {{ @$fng->funding_date }}
+                                    @endif
+                                </td>
+                                <td>$ {{ @$fng->amount }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
             </div>
         @endif
 
-        @if(@$project->impact->count() > 0)
+        @if(@$project->impact->count() > 0 && !empty(@$project->impact->first()->statement))
             <div id="add-review" class="add-review-box" style="margin-top: 10px; background-color: #fcfcfc;">
-                <h3 class="listing-desc-headline margin-bottom-10">Impact</h3>
-                <hr style="border-bottom: 1px solid #e6e6e6;">
-                <ol>
-                    @foreach($project->impact as $impt)
-                        <li>
-                            <div class="sub-ratings-container" style="border: none; border-bottom: 1px dotted #e6e6e6;">
-                                @if(!empty($impt->impact_date))
-                                    <div class="add-sub-rating">
-                                        <div class="sub-rating-title">Date:</div>
-                                        <div>
-                                            {{ @$impt->impact_date }}
-                                        </div>
-                                    </div>
-                                @endif
-
-                                @if(!empty($impt->url))
-                                    <div class="">
-                                        <div class="sub-rating-title">Url:</div>
-                                        <a href="{{ @$impt->url }}" target="_blank" style="color: blue;">
-                                            {{ @$impt->url }}
-                                        </a>
-                                    </div>
-                                @endif
-
-                                @if(!empty($impt->statement))
-                                    <div class="">
-                                        <div class="sub-rating-title">Statement:</div>
-                                        <div>
-                                            {{ @$impt->statement }}
-                                        </div>
-                                    </div> 
-                                @endif
-                            </div>
-                        </li>
-                    @endforeach
-                </ol>
+                <h3 class="listing-desc-headline margin-bottom-10">Impact Stament</h3>
+                <p> 
+                    {{ @$project->impact->first()->statement }}
+                    @if(!empty(@$project->impact->first()->url))
+                        (<a href="{{ @$project->impact->first()->url }}" style="color: #03cafc;">Source</a>
+                    @endif
+                    @if(!empty(@$project->impact->first()->impact_date))
+                        <a href="{{ @$project->impact->first()->impact_date }}">
+                            , {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->impact->first()->impact_date)->format('Y') }}
+                        </a>)
+                    @else
+                        )
+                    @endif
+                </p>
             </div>
         @endif
 
@@ -199,7 +160,7 @@
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
             @if(@$project->founders->count() > 0)
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
-                    <h3>Founder(s) Details</h3>
+                    <h3>Founder(s)</h3>
                     <div class="row with-forms  margin-top-0">
                         <ol>
                             @foreach($project->founders as $founder)
@@ -207,7 +168,6 @@
                                     <div class="col-lg-12">
                                         <ul>
                                             <li>Name: <span>{{ @$founder->name }}</span></li>
-                                            <li>Email: <span>{{ @$founder->email }}</span></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -216,7 +176,6 @@
                         </ol>
                     </div>
                 </div>
-
             @endif
 
             <ul class="share-buttons margin-top-40 margin-bottom-0">
@@ -237,44 +196,46 @@
                 @endif
             </ul>
 
-            <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
-                <h3>Links</h3>
-                <ul>
-                    @if(!empty(@$project->founded))
-                        <li>Founded: <span>{{ @$project->founded }}</span></li>
-                    @endif
-                    @if(!empty(@$project->language))
-                        <li>Language: <span>{{ @$project->language }}</span></li>
-                    @endif
-                    @if(!empty(@$project->linkedin_url))
-                        <li>LinkedIn: <span><a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->youtube_channel))
-                        <li>Youtube: <span><a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->contact_page_url))
-                        <li>Contact page: <span><a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->github_url))
-                        <li>Github: <span><a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->events_page_url))
-                        <li>Events page: <span><a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a><span></li>
-                    @endif
-                    @if(!empty(@$project->jobs_page_url))
-                        <li>Jobs page: <span><a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->blog_url))
-                        <li>Blog: <span><a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->host_organization_url))
-                        <li>Host Org: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></span></li>
-                    @endif
-                    @if(!empty(@$project->host_organization_url))
-                        <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>
-                    @endif
-                </ul>
-            </div>
+            @if(!empty(@$project->founded) || !empty(@$project->language) || !empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
+                <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
+                    <h3>Links</h3>
+                    <ul>
+                        @if(!empty(@$project->founded))
+                            <li>Founded: <span>{{ @$project->founded }}</span></li>
+                        @endif
+                        @if(!empty(@$project->language))
+                            <li>Language: <span>{{ @$project->language }}</span></li>
+                        @endif
+                        @if(!empty(@$project->linkedin_url))
+                            <li>LinkedIn: <span><a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->youtube_channel))
+                            <li>Youtube: <span><a href="{{ @$project->youtube_channel }}" target="_blank">{{ @$project->youtube_channel }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->contact_page_url))
+                            <li>Contact page: <span><a href="{{ @$project->contact_page_url }}" target="_blank">{{ @$project->contact_page_url }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->github_url))
+                            <li>Github: <span><a href="{{ @$project->github_url }}" target="_blank">{{ @$project->github_url }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->events_page_url))
+                            <li>Events page: <span><a href="{{ @$project->events_page_url }}" target="_blank">{{ @$project->events_page_url }}</a><span></li>
+                        @endif
+                        @if(!empty(@$project->jobs_page_url))
+                            <li>Jobs page: <span><a href="{{ @$project->jobs_page_url }}" target="_blank">{{ @$project->jobs_page_url }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->blog_url))
+                            <li>Blog: <span><a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->host_organization_url))
+                            <li>Host Org: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></span></li>
+                        @endif
+                        @if(!empty(@$project->host_organization_url))
+                            <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>
+                        @endif
+                    </ul>
+                </div>
+            @endif
 
             <div class="margin-top-35">
                 <a class="suggest-button" target="_blank" href="https://airtable.com/shrAPHxxye5l9CIpQ">Suggest a change</a>
