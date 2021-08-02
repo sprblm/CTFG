@@ -53,20 +53,6 @@ class ProjectController extends Controller {
                     END")
                 ->paginate(10);
 
-        /*$results = Listing::selectRaw(
-            "SELECT *
-               FROM  listings
-               WHERE name LIKE '%".$q."%' 
-               OR introduction LIKE '%".$q."%' 
-               OR description LIKE '%".$q."%' 
-               ORDER BY
-                CASE
-                WHEN name LIKE '".$q."' THEN 1
-                WHEN name LIKE '%".$q."%' THEN 2
-                ELSE 3
-            END"); */
-        
-        //print_r($results);
         return view ('projects.search-results', [
             'title' => 'CivicTech.Guide - Search Results',
             'projects' => $results,
