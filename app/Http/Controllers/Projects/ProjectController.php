@@ -49,7 +49,9 @@ class ProjectController extends Controller {
                 ->orWhere("description", "LIKE", "%{$q}%")
                 ->orderByRaw("CASE
                     WHEN name = '{$q}' THEN 1
-                    ELSE 2
+                    WHEN name LIKE '{$q}%' THEN 2
+                    WHEN name LIKE '%{$q}%' THEN 3
+                    ELSE 4
                     END")
                 ->paginate(10);
 
