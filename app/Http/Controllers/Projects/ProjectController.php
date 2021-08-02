@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Projects;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use DB;
+
 use App\Models\Listing;
 
 class ProjectController extends Controller {
@@ -45,9 +47,26 @@ class ProjectController extends Controller {
         $results = Listing::where("name", "LIKE", "%{$q}%")
                 ->orWhere("introduction", "LIKE", "%{$q}%")
                 ->orWhere("description", "LIKE", "%{$q}%")
+                ->orderByRaw("CASE
+                    WHEN name = '{$q}' THEN 1
+                    ELSE 2
+                    END")
                 ->paginate(10);
+
+        /*$results = Listing::selectRaw(
+            "SELECT *
+               FROM  listings
+               WHERE name LIKE '%".$q."%' 
+               OR introduction LIKE '%".$q."%' 
+               OR description LIKE '%".$q."%' 
+               ORDER BY
+                CASE
+                WHEN name LIKE '".$q."' THEN 1
+                WHEN name LIKE '%".$q."%' THEN 2
+                ELSE 3
+            END"); */
         
-        //echo $data->count();
+        //print_r($results);
         return view ('projects.search-results', [
             'title' => 'CivicTech.Guide - Search Results',
             'projects' => $results,

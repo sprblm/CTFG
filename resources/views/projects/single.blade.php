@@ -53,15 +53,6 @@
                 </ul>
             @endif
 
-            @if($project->categories->count() > 0)
-                <h3 class="listing-desc-headline">Project Categories</h3>
-                <ul class="listing-features">
-                    @foreach($project->categories as $category)
-                        <li><a href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
-                    @endforeach
-                </ul>
-            @endif
-            
             <div class="margin-top-35">
                 <p>
                     {{ $project->introduction }}
@@ -76,6 +67,95 @@
                     <a class="twitter-timeline" data-width="900" data-height="1000" data-dnt="true" href="<https://twitter.com/viawater>" data-tweet-limit="5">Tweets by </a>
                 </p> --}}
             </div>
+
+            <div class="margin-top-35">
+                <table class="table table-responsive">
+                    <tbody>
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Organization Type: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->status))
+                            <tr><th>Status: </th><td>{{ $project->status }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->email))
+                            <tr><th>Email: </th><td>{{ $project->email }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->claimed_status))
+                            <tr><th>Claimed Status: </th><td>{{ $project->claimed_status }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->founded))
+                            <tr><th>Founded: </th><td>{{ $project->founded }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->closed))
+                            <tr><th>Closed: </th><td>{{ $project->closed }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->shutdown_reason))
+                            <tr><th>If shutdown, what happened?: </th><td>{{ $project->shutdown_reason }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->postmortem))
+                            <tr><th>Postmortem: </th><td>{{ $project->postmortem }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->host_organization))
+                            <tr><th>Host Organization: </th><td>{{ $project->host_organization }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->language))
+                            <tr>
+                                <th>Language(s): </th>
+                                <td>{{ $project->language }}
+                                    @if(!empty(@$project->secondary_language))
+                                        , {{ $project->secondary_language }}
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
+                        @if(!empty(@$project->open_source))
+                            <tr><th>Open Source: </th><td>{{ $project->open_source }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->open_source_license))
+                            <tr><th>Open Source License: </th><td>{{ $project->open_source_license }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->updated_at))
+                            <tr>
+                                <th>Last Modified: </th>
+                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->updated_at)->format('M d, Y') }}</td>
+                            </tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->organization_type))
+                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+
+            @if($project->categories->count() > 0)
+                <h3 class="listing-desc-headline">Project Categories</h3>
+                <ul class="listing-features">
+                    @foreach($project->categories as $category)
+                        <li><a href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
+                    @endforeach
+                </ul>
+            @endif
 
             <div class="clearfix"></div>
         </div>
