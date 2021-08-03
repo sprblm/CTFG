@@ -20,15 +20,23 @@ use App\Models\Country;
 
 class TestController extends Controller {
     
-    public function test(Request $request){
+    public function test(Request $request) {
         $string = '
             <p><iframe loading="lazy" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/lnoOgCXrjl9I1X" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen"> </iframe></p><div style="margin-bottom: 5px;"><strong> <a title="Improving Civic Discourse on Facebook, Facebook Civic Engagement Team" href="//www.slideshare.net/mysociety/improving-civic-discourse-on-facebook-facebooks-civic-engagement-team" target="_blank" rel="noopener noreferrer">Improving Civic Discourse on Facebook, Facebook’s Civic Engagement Team</a> </strong> from <strong><a href="https://www.slideshare.net/mysociety" target="_blank" rel="noopener noreferrer">mysociety</a></strong></div> <a class="twitter-timeline" data-width="900" data-height="1000" data-dnt="true" href="https://twitter.com/samidh" data-tweet-limit="5">Tweets by </a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> <div id="jp-relatedposts" class="jp-relatedposts"><h3 class="jp-relatedposts-headline"><em>Related</em></h3></div>
             ';
 
-        $doc = new DOMDocument();
-        $doc->loadHTML($string);
-        $iframes = $doc->getElementsByTagName('iframe');
-        print_r($iframes);
+        $dom = new DOMDocument();
+        $dom->loadHTML($string);
+        //$iframes = $doc->getElementsByTagName('iframe');
+        //print_r($iframes);
+
+        //$iframe = $dom->getElementsByTagName('iframe')->item(0);
+        //echo $iframe->attributes->getNamedItem("src")->value;
+        //print_r($iframe);
+
+        foreach($dom->getElementsByTagName('*') as $element ){
+            echo $element->tagName."<br><br>";
+        }
         /*$results = [];
         foreach ($iframes as $iframe) {
             if ($attr = $iframe->attributes->getNamedItem('loading') !== null) {
@@ -37,8 +45,6 @@ class TestController extends Controller {
         } */
 
         //echo $string;
-
-        print_r($iframes);
 
 
         /*$locations = Location::get();

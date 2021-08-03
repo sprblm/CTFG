@@ -114,35 +114,26 @@
                         @if(!empty(@$project->open_source_license))
                             <tr><th>Open Source License: </th><td>{{ $project->open_source_license }}</td></tr>
                         @endif
-                        @if(!empty(@$project->updated_at))
+                        @if(!empty(@$project->features))
+                            <tr><th>Features: </th><td>{{ $project->features }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->project_stage))
+                            <tr><th>Project Stage: </th><td>{{ $project->project_stage }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->used_by))
+                            <tr><th>Who's it used by?: </th><td>{{ $project->used_by }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->pricing_information))
+                            <tr><th>Pricing information: </th><td>{{ $project->pricing_information }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->no_of_employees))
+                            <tr><th>Number of employees: </th><td>{{ $project->no_of_employees }}</td></tr>
+                        @endif
+                        @if(!empty(@$project->last_modified))
                             <tr>
                                 <th>Last Modified: </th>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->updated_at)->format('M d, Y') }}</td>
+                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->last_modified)->format('M d, Y') }}</td>
                             </tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
-                        @endif
-                        @if(!empty(@$project->organization_type))
-                            <tr><th>Status: </th><td>{{ $project->organization_type }}</td></tr>
                         @endif
                     </tbody>
                 </table>
@@ -150,9 +141,9 @@
 
             @if($project->categories->count() > 0)
                 <h3 class="listing-desc-headline">Project Categories</h3>
-                <ul class="listing-features">
+                <ul class="listing-features" style="list-style: inherit; padding-left: 30px;">
                     @foreach($project->categories as $category)
-                        <li><a href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
+                        <li><a  style="color: #03cafc;" href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
                     @endforeach
                 </ul>
             @endif
@@ -211,11 +202,11 @@
                 <p> 
                     {{ @$project->impact->first()->statement }}
                     @if(!empty(@$project->impact->first()->url))
-                        (<a href="{{ @$project->impact->first()->url }}" style="color: #03cafc;">Source</a>
+                        (<a href="{{ @$project->impact->first()->url }}" style="color: #03cafc;">Source</a>,
                     @endif
                     @if(!empty(@$project->impact->first()->impact_date))
                         <a href="{{ @$project->impact->first()->impact_date }}">
-                            , {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->impact->first()->impact_date)->format('Y') }}
+                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->impact->first()->impact_date)->format('Y') }}
                         </a>)
                     @else
                         )
@@ -239,21 +230,15 @@
        
         <div class="listing-share margin-top-40 margin-bottom-40 no-border">
             @if(@$project->founders->count() > 0)
-                <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
+                <div class="boxed-widget" style="text-align: left;">
                     <h3>Founder(s)</h3>
-                    <div class="row with-forms  margin-top-0">
-                        <ol>
+                    <div class="row with-forms">
+                        <ul style="padding-left: 30px;">
                             @foreach($project->founders as $founder)
-                                <li>
-                                    <div class="col-lg-12">
-                                        <ul>
-                                            <li>Name: <span>{{ @$founder->name }}</span></li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                <li><span>{{ @$founder->name }}</span></li>
                                 <span>&nbsp;</span>
                             @endforeach
-                        </ol>
+                        </ul>
                     </div>
                 </div>
             @endif
@@ -276,16 +261,10 @@
                 @endif
             </ul>
 
-            @if(!empty(@$project->founded) || !empty(@$project->language) || !empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
+            @if(!empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
                     <h3>Links</h3>
                     <ul>
-                        @if(!empty(@$project->founded))
-                            <li>Founded: <span>{{ @$project->founded }}</span></li>
-                        @endif
-                        @if(!empty(@$project->language))
-                            <li>Language: <span>{{ @$project->language }}</span></li>
-                        @endif
                         @if(!empty(@$project->linkedin_url))
                             <li>LinkedIn: <span><a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></span></li>
                         @endif

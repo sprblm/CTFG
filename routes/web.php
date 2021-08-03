@@ -29,14 +29,7 @@ Route::get('/category/parent/the-people', 'Category\ParentCategoryController@the
 Route::get('/listing-category/{slug}', 'Category\ProjectController@getProjectsByCategory');
 Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag');
 
-Route::get('/a/test/a', 'Airtable\ImportsController@testa');
-Route::get('/a/test/b', 'Airtable\ImportsController@testb');
-Route::get('/a/test/c', 'Airtable\ImportsController@testc');
-Route::get('/a/test/d', 'Airtable\ImportsController@testd');
-Route::get('/a/test/e', 'Airtable\ImportsController@teste');
-Route::get('/a/test/f', 'Airtable\ImportsController@testf');
-Route::get('/a/test/g', 'Airtable\ImportsController@testg');
-Route::get('/a/test/h', 'Airtable\ImportsController@testh');
+Route::get('/a/test', 'Airtable\ImportsController@test');
 
 
 Route::get('/t', 'TestController@test');
