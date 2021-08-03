@@ -1,5 +1,14 @@
 @extends('layouts.template')
 
+@section('styles')
+    <style type="text/css">
+        div iframe {
+            width: 100%;
+            
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="row sticky-wrapper">
     <div class="col-lg-7 col-md-7 padding-right-30">
@@ -60,12 +69,6 @@
                 <p>
                     {{ $project->description }}
                 </p>
-                {{-- <p>
-                    <iframe loading="lazy" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/lnoOgCXrjl9I1X" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen"> </iframe>
-                </p>
-                <p>
-                    <a class="twitter-timeline" data-width="900" data-height="1000" data-dnt="true" href="<https://twitter.com/viawater>" data-tweet-limit="5">Tweets by </a>
-                </p> --}}
             </div>
 
             <div class="margin-top-35">
@@ -214,6 +217,17 @@
                 </p>
             </div>
         @endif
+
+        <div class="margin-top-50">
+            @if(!empty($project->has_iframe_embed))
+                {!! $project->has_iframe_embed !!}
+            @endif
+        </div>
+        <div class="margin-top-50">
+            @if(!empty($project->has_twitter_feed))
+                {!! $project->has_twitter_feed !!}
+            @endif
+        </div>
 
     </div>
 
