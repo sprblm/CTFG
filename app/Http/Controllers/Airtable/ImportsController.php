@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Airtable;
+use DB;
 
 use App\Models\Category;
 use App\Models\Media;
@@ -17,15 +18,65 @@ use App\Models\People;
 use App\Models\Listing;
 use App\Models\Project;
 use App\Models\Knowledge;
+use App\Models\ListingCategory;
 
 use League\HTMLToMarkdown\HtmlConverter;
+use Illuminate\Support\Str;
 
 class ImportsController extends Controller {
     public function test() {
         $listings = Airtable::table('listings')->all();
 
+        foreach($listings as $list) {
+            if (!empty(@$list["fields"]["Categories"]) && sizeof(@$list["fields"]["Categories"]) > 0) {
+                foreach (@$list["fields"]["Categories"] as $lc) {
+                    $dbCat = Category::where('airtable_id', $lc)->first();
+                    $dbList = Listing::where('airtable_id', $list["id"])->first();
+
+                    if ($dbList) {
+                        if ($dbCat) {
+                            //$dbList->categories()->attach($dbCat->id);
+                            DB::table('listing_categories')->insert([
+                                'listing_id' => $dbList->id,
+                                'category_id' => $dbCat->id
+                            ]);
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        /*echo sizeof($listings[0]["fields"]["Categories"]);
+        print_r($listings[0]);
+        echo "<br><br>";
+
+        echo sizeof($listings[1]["fields"]["Categories"]);
+        print_r($listings[1]);
+        echo "<br><br>";
+
+        echo sizeof($listings[2]["fields"]["Categories"]);
+        print_r($listings[2]);
+        echo "<br><br>"; */
+
+        /*$cats = Airtable::table('categories')->all();
+
+        
+        foreach ($cats as $cat) {
+            $c = new Category;
+            $c->airtable_id = @$cat["id"];
+            $c->name = @$cat["fields"]["Name"];
+            $c->description = strip_tags(@$cat["fields"]["Description"]);
+            $c->slug = Str::of(@$cat["fields"]["Name"])->slug();
+            $c->save();
+        } */
+
         //print_r($listings);
-        foreach ($listings as $list) {
+        /*foreach ($listings as $list) {
+            print_r($list);
+            echo "<br>";
+
+
             $airtableID = $list["id"];
 
             $entry = Listing::where('airtable_id', $airtableID)->first();
@@ -44,9 +95,9 @@ class ImportsController extends Controller {
                     'wikimedia_url' => @$list["fields"]["Wikimedia URL"],
                     'tiktok_url' => @$list["fields"]["TikTok URL"],
                 ]);
-            }
+            } 
             
-        } 
+        } */
     }
 
 
