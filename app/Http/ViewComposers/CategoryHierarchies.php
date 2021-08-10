@@ -12,7 +12,7 @@ class CategoryHierarchies
 {
     public $ancestors = [];
     public $grandParents = [];
-    public $catHierachies = [];
+    public $catHierarchies;
     
     /**
      * Create a movie composer.
@@ -29,8 +29,8 @@ class CategoryHierarchies
         $parentlessCategories = Category::whereNull('parent_category_id')->orderBy('name')->get();
         $this->parentlessCategories = $parentlessCategories;
 
-        $catHierachies = Category::get();
-        $this->catHierachies = $catHierachies;
+        $catHierarchies = Category::whereNull('parent_id')->with('childItems')->get();
+        $this->catHierarchies = $catHierarchies;
     }
 
     /**
@@ -41,6 +41,6 @@ class CategoryHierarchies
      */
     public function compose(View $view)
     {
-        $view->with(['parentlessCategories' => $this->parentlessCategories, 'grandParents' => $this->grandParents, 'catHierachies' => $this->catHierachies, 'ancestors' => $this->ancestors]);
+        $view->with(['parentlessCategories' => $this->parentlessCategories, 'grandParents' => $this->grandParents, 'catHierarchies' => $this->catHierarchies, 'ancestors' => $this->ancestors]);
     }
 }

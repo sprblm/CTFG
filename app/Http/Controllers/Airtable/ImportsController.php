@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
 
 class ImportsController extends Controller {
     public function test() {
-        /*$listings = Airtable::table('listings')->all();
+        $listings = Airtable::table('listings')->all();
 
         foreach($listings as $list) {
             if (!empty(@$list["fields"]["Categories"]) && sizeof(@$list["fields"]["Categories"]) > 0) {
@@ -35,17 +35,17 @@ class ImportsController extends Controller {
 
                     if ($dbList) {
                         if ($dbCat) {
-                            //$dbList->categories()->attach($dbCat->id);
-                            DB::table('listing_categories')->insert([
+                            $dbList->categories()->attach($dbCat->id);
+                            /*DB::table('listing_categories')->insert([
                                 'listing_id' => $dbList->id,
                                 'category_id' => $dbCat->id
-                            ]);
+                            ]); */
                         }
                     }
                 }
             }
             
-        } */
+        } 
 
         /*echo sizeof($listings[0]["fields"]["Categories"]);
         print_r($listings[0]);

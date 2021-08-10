@@ -76,3 +76,48 @@ a:hover{color: #f91942 !important;}
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(){
+            document.querySelectorAll('.sidebar .submenu-button').forEach(function(element){
+                element.addEventListener('click', function (e) {
+                    let nextEl = element.nextElementSibling;
+                    let parentEl  = element.parentElement;
+                    element.classList.add('menu-open');
+
+                    if(nextEl) {
+                        e.preventDefault();
+                        let mycollapse = new bootstrap.Collapse(nextEl);
+
+                        if(nextEl.classList.contains('show')){
+                            mycollapse.hide();
+                        } else {
+                            mycollapse.show();
+                            var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+
+                            if(opened_submenu){
+                                new bootstrap.Collapse(opened_submenu);
+                            }
+
+                        }
+                    }
+                });
+            });
+            // Function called on page reload
+            openMenu();
+        });
+
+        function openMenu() {
+            document.querySelectorAll('.submenu.show').forEach((el) => {
+                el.previousElementSibling.classList.add('menu-open');
+            });
+        }
+
+        // On Menu hide remove class
+        var myCollapsible = document.getElementById('nav_accordion')
+        myCollapsible.addEventListener('hide.bs.collapse', function (element) {
+            element.target.previousElementSibling.classList.remove('menu-open');
+        })
+    </script>
+@endsection
