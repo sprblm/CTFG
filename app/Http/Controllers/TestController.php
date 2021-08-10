@@ -19,21 +19,12 @@ use App\Models\AncestorCategory;
 use App\Models\Country;
 
 class TestController extends Controller {
-    function get_string_between($string, $start, $end){
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
-        $ini += strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
-        return substr($string, $ini, $len);
-    }
-
-    
     public function test(Request $request) {
-        $listings = Listing::whereNotNull('has_iframe_embed')->get();
-        foreach ($listings as $list) {
-            echo $list->has_iframe_embed."<br>";
-            echo $list->name."<br><br>";
-        }
+        $items = Category::whereNull('parent_id')->with('childItems')->get();
+
+        //$items = Category::where('name', 'More')->with('childItems')->get();
+
+        return view('test', compact('items'));
 
         /*$listings = Listing::get();
         foreach($listings as $list) {

@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
 
 class ImportsController extends Controller {
     public function test() {
-        $listings = Airtable::table('listings')->all();
+        /*$listings = Airtable::table('listings')->all();
 
         foreach($listings as $list) {
             if (!empty(@$list["fields"]["Categories"]) && sizeof(@$list["fields"]["Categories"]) > 0) {
@@ -45,7 +45,7 @@ class ImportsController extends Controller {
                 }
             }
             
-        }
+        } */
 
         /*echo sizeof($listings[0]["fields"]["Categories"]);
         print_r($listings[0]);
@@ -60,8 +60,22 @@ class ImportsController extends Controller {
         echo "<br><br>"; */
 
         /*$cats = Airtable::table('categories')->all();
-
         
+        foreach ($cats as $cat) {
+            if (!empty(@$cat["fields"]["Parent Category"]) && sizeof(@$cat["fields"]["Parent Category"]) > 0) {
+                $dbCat = Category::where('airtable_id', $cat["id"])->first();
+                if ($dbCat) {
+                    $parentCat = Category::where('airtable_id', $cat["fields"]["Parent Category"][0])->first();
+                    if ($parentCat) {
+                        $dbCat->update([
+                            'parent_id' => $parentCat->id
+                        ]);
+                    }
+                }
+            }
+        } */
+
+        /*$cats = Airtable::table('categories')->all();
         foreach ($cats as $cat) {
             $c = new Category;
             $c->airtable_id = @$cat["id"];

@@ -8,7 +8,7 @@ class Category extends Model {
     protected $table = "categories";
 
     protected $fillable = [
-        'hits', 'parent_category_id', 'slug', 'name',
+        'hits', 'parent_category_id', 'slug', 'name', 'parent_id',
     ];
 
     public function listings() {
@@ -19,5 +19,15 @@ class Category extends Model {
     public function parentCategory() {
         return $this->belongsTo('App\Models\ParentCategory');
     }
+
+    public function items()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function childItems()
+    {
+        return $this->hasMany(Category::class, 'parent_id')->with('items');
+    } 
 
 }

@@ -26,7 +26,9 @@ Route::get('/listings/search', 'Projects\ProjectController@search');
 Route::get('/category/parent/the-tech', 'Category\ParentCategoryController@theTech');
 Route::get('/category/parent/the-people', 'Category\ParentCategoryController@thePeople');
 
+Route::get('/listing-category', 'Category\CategoryHierarchy@getCategoryHierarchy');
 Route::get('/listing-category/{slug}', 'Category\ProjectController@getProjectsByCategory');
+
 Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag');
 
 Route::get('/a/test', 'Airtable\ImportsController@test');
