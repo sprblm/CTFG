@@ -16,7 +16,7 @@
 </li>
 
 @if ($sub_items->items)
-    <ul class="nav flex-column" id="nav_accordion">
+    <ul class="submenu collapse">
         @if(count($sub_items->items) > 0)
             @foreach ($sub_items->items as $childItems)
                 @include('partials.sub_categories', ['sub_items' => $childItems])

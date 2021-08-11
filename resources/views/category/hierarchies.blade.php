@@ -54,21 +54,21 @@ a:hover{color: #f91942 !important;}
             <div class="row">
                 @if(count($items) > 0)
                     @foreach ($items as $item)
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="listings-container list-layout">
-                            <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">{{ @$item->name }}</h3>
-                            <nav class="sidebar py-2 mb-4">
-                                <ul class="nav flex-column" id="nav_accordion">
-                                    @if(count($item->childItems))
-                                        @foreach ($item->childItems as $childItems)
-                                            @include('partials.sub_categories', ['sub_items' => $childItems])
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </nav>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="listings-container list-layout">
+                                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">{{ @$item->name }}</h3>
+                                <nav class="sidebar py-2 mb-4">
+                                    <ul class="nav flex-column" id="nav_accordion">
+                                        @if(count($item->childItems))
+                                            @foreach ($item->childItems as $childItems)
+                                                @include('partials.sub_categories', ['sub_items' => $childItems])
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
                 @endif
 
             </div>

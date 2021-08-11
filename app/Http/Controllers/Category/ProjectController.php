@@ -21,7 +21,10 @@ class ProjectController extends Controller {
 
         $parent = $category->parent;
         $grandParent = '';
+        $greatGrandParent = '';
+        $greatGreatGrandParent = '';
         $ancestor = '';
+        
         if (!empty($parent)) {
             if (!empty(Category::where('name', $parent->name)->first()->parent->name)) {
                 $grandParent = Category::where('name', $parent->name)->first()->parent;
@@ -30,7 +33,19 @@ class ProjectController extends Controller {
 
         if (!empty($grandParent)) {
             if (!empty(Category::where('name', $grandParent->name)->first()->parent)) {
-                $ancestor = Category::where('name', $grandParent->name)->first()->parent;
+                $greatGrandParent = Category::where('name', $grandParent->name)->first()->parent;
+            }
+        }
+
+        if (!empty($greatGrandParent)) {
+            if (!empty(Category::where('name', $greatGrandParent->name)->first()->parent)) {
+                $greatGreatGrandParent = Category::where('name', $greatGrandParent->name)->first()->parent;
+            }
+        }
+
+        if (!empty($greatGreatGrandParent)) {
+            if (!empty(Category::where('name', $greatGreatGrandParent->name)->first()->parent)) {
+                $ancestor = Category::where('name', $greatGreatGrandParent->name)->first()->parent;
             }
         }
 
@@ -115,6 +130,8 @@ class ProjectController extends Controller {
             'categoryDesc' => @$category->description,
             'projects' => $projects,
             'activeAncestor' => @$ancestor,
+            'activeGreatGreatGrandParent' => @$greatGreatGrandParent,
+            'activeGreatGrandParent' => @$greatGrandParent,
             'activeGrandParent' => @$grandParent,
             'activeParent' => @$parent,
             'activeCat' => $category->name,

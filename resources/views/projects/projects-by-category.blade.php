@@ -9,6 +9,20 @@
                         {{ $activeAncestor->name }}
                     </a> > 
                 @endif 
+                @if(!empty($activeGreatGreatGrandParent))
+                    <span style="color: #7f8280; font-size: 22px;">
+                        <a href="/listing-category/{{ $activeGreatGreatGrandParent->slug }}">
+                            {{ $activeGreatGreatGrandParent->name }}
+                        </a> > 
+                    </span>
+                @endif
+                @if(!empty($activeGreatGrandParent))
+                    <span style="color: #7f8280; font-size: 22px;">
+                        <a href="/listing-category/{{ $activeGreatGrandParent->slug }}">
+                            {{ $activeGreatGrandParent->name }}
+                        </a> > 
+                    </span>
+                @endif
                 @if(!empty($activeGrandParent))
                     <span style="color: #7f8280; font-size: 22px;">
                         <a href="/listing-category/{{ $activeGrandParent->slug }}">

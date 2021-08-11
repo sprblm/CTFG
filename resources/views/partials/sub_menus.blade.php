@@ -1,6 +1,6 @@
 <li class="nav-item has-submenu">
     <a class="nav-link" href="/listing-category/{{ $sub_items->slug }}" title="{{ $sub_items->name }}">
-        <span class="text-sm cat-wrap <?php if(@$activeCat == $sub_items->name ) { echo 'text-white-600'; } ?>">
+        <span class="text-sm cat-wrap <?php if(@$activeGrandParent == $sub_items->name ) { echo 'text-white-600'; } ?>">
             {{ $sub_items->name }}
         </span>
     </a>
@@ -14,7 +14,7 @@
         </a>
     @endif
     @if ($sub_items->items)
-        <ul class="submenu collapse <?php if(@$activeGrandParent == $sub_items->name ) { echo 'show'; } ?>">
+        <ul class="submenu collapse <?php if(@$activeParent->name == $sub_items->name ) { echo 'show'; } ?>">
             @if(count($sub_items->items) > 0)
                 @foreach($sub_items->items as $childItems)
                     @include('partials.sub_menus', ['sub_items' => $childItems])
