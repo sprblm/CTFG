@@ -19,6 +19,26 @@ class ProjectController extends Controller {
             return abort(404);
         }
 
+        $parent = $category->parent;
+        $grandParent = '';
+        $ancestor = '';
+        if (!empty($parent)) {
+            if (!empty(Category::where('name', $parent)->first()->parent)) {
+                $grandParent = Category::where('name', $parent)->first()->parent;
+            }
+        }
+
+        if (!empty($grandParent)) {
+            if (!empty(Category::where('name', $grandParent)->first()->parent)) {
+                $ancestor = Category::where('name', $grandParent)->first()->parent;
+            }
+        }
+
+        /*echo $parent."<br>";
+        echo $grandParent."<br>";
+        echo $ancestor."<br>"; */
+
+
         $listings = $category->listings();
 
         if ($request->has('tags')) {
@@ -94,9 +114,9 @@ class ProjectController extends Controller {
             'parentCategoryName' => @$category->parentCategory->name,
             'categoryDesc' => @$category->description,
             'projects' => $projects,
-            'activeAncestor' => @$category->parentCategory->grandParent->ancestorCategory->name,
-            'activeGrandParent' => @$category->parentCategory->grandParent->name,
-            'activeParent' => @$category->parentCategory->name,
+            'activeAncestor' => @$ancestor,
+            'activeGrandParent' => @$grandParent,
+            'activeParent' => @$parent,
             'activeCat' => $category->name,
             'filterCategories' => @$categories,
             'filterTags' => @$tags,

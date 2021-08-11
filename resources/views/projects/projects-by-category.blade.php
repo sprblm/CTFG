@@ -4,22 +4,22 @@
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
             <h2>
-                @if(!empty(@$category->parentCategory->grandParent->ancestorCategory)) 
-                    <a href="/listing-category/{{ $category->parentCategory->grandParent->ancestorCategory->slug }}">
-                        {{ $category->parentCategory->grandParent->ancestorCategory->name }}
+                @if(!empty($activeAncestor)) 
+                    <a href="/listing-category/{{ $activeAncestor->slug }}">
+                        {{ $activeAncestor->name }}
                     </a> > 
                 @endif 
-                @if(!empty($category->parentCategory->grandParent))
+                @if(!empty($activeGrandParent))
                     <span style="color: #7f8280; font-size: 22px;">
-                        <a href="/listing-category/{{ $category->parentCategory->grandParent->slug }}">
-                            {{ $category->parentCategory->grandParent->name }}
+                        <a href="/listing-category/{{ $activeGrandParent->slug }}">
+                            {{ $activeGrandParent->name }}
                         </a> > 
                     </span>
                 @endif
-                @if(!empty($category->parentCategory))
+                @if(!empty($activeParent))
                     <span style="color: #7f8280; font-size: 22px;">
-                        <a href="/listing-category/{{ $category->parentCategory->slug }}">
-                            {{ $category->parentCategory->name }}
+                        <a href="/listing-category/{{ $activeParent->slug }}">
+                            {{ $activeParent->name }}
                         </a> > 
                     </span>
                 @endif

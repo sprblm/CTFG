@@ -20,14 +20,21 @@ class Category extends Model {
         return $this->belongsTo('App\Models\ParentCategory');
     }
 
-    public function items()
-    {
+    // Recursive
+    public function items() {
         return $this->hasMany(Category::class, 'parent_id');
     }
 
-    public function childItems()
-    {
+    public function childItems() {
         return $this->hasMany(Category::class, 'parent_id')->with('items');
     } 
+
+    public function children() {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+
+    public function parent() {
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
 
 }
