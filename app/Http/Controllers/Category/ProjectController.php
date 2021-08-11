@@ -23,20 +23,20 @@ class ProjectController extends Controller {
         $grandParent = '';
         $ancestor = '';
         if (!empty($parent)) {
-            if (!empty(Category::where('name', $parent)->first()->parent)) {
-                $grandParent = Category::where('name', $parent)->first()->parent;
+            if (!empty(Category::where('name', $parent->name)->first()->parent->name)) {
+                $grandParent = Category::where('name', $parent->name)->first()->parent;
             }
         }
 
         if (!empty($grandParent)) {
-            if (!empty(Category::where('name', $grandParent)->first()->parent)) {
-                $ancestor = Category::where('name', $grandParent)->first()->parent;
+            if (!empty(Category::where('name', $grandParent->name)->first()->parent)) {
+                $ancestor = Category::where('name', $grandParent->name)->first()->parent;
             }
         }
 
-        /*echo $parent."<br>";
-        echo $grandParent."<br>";
-        echo $ancestor."<br>"; */
+        /*echo $parent->name."<br>";
+        echo $grandParent->name."<br>";
+        echo $ancestor->name."<br>"; */
 
 
         $listings = $category->listings();
@@ -122,7 +122,7 @@ class ProjectController extends Controller {
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
             'filterStatus' => $activeProjects,
-        ]);
+        ]); 
     }
 
     // Get projects by tag
