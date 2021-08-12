@@ -13,14 +13,14 @@
             </span>
         </a>
     @endif
+    @if ($sub_items->items)
+        <ul class="submenu collapse">
+            @if(count($sub_items->items) > 0)
+                @foreach ($sub_items->items as $childItems)
+                    @include('partials.sub_categories', ['sub_items' => $childItems])
+                @endforeach
+            @endif
+        </ul>
+    @endif
 </li>
 
-@if ($sub_items->items)
-    <ul class="submenu collapse">
-        @if(count($sub_items->items) > 0)
-            @foreach ($sub_items->items as $childItems)
-                @include('partials.sub_categories', ['sub_items' => $childItems])
-            @endforeach
-        @endif
-    </ul>
-@endif
