@@ -63,7 +63,7 @@ a:hover{color: #f91942 !important;}
                     </span>
                 </a>
                 @if(count($catHierachy->childItems))
-                    <ul class="submenu collapse <?php if(@$activeAncestor->name == $catHierachy->name ) { echo 'show'; } ?>">
+                    <ul class="submenu collapse <?php if(@$activeParent->name == $catHierachy->name ) { echo 'show'; } ?>">
                         @foreach($catHierachy->childItems as $childItems)
                             @include('partials.sub_menus', ['sub_items' => $childItems])
                         @endforeach
