@@ -18,13 +18,19 @@ use App\Models\GrandParentCategory;
 use App\Models\AncestorCategory;
 use App\Models\Country;
 
+use Carbon\Carbon;
+
 class TestController extends Controller {
     public function test(Request $request) {
-        $items = Category::whereNull('parent_id')->with('childItems')->get();
+        $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
+        $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
+        \Log::info("Attaching funding sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
+
+        //$items = Category::whereNull('parent_id')->with('childItems')->get();
 
         //$items = Category::where('name', 'More')->with('childItems')->get();
 
-        return view('test', compact('items'));
+        //return view('test', compact('items'));
 
         /*$listings = Listing::get();
         foreach($listings as $list) {

@@ -18,6 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/webhooks/listing/updated', function(Request $request) {
-    \Log::info($request->all());
-});
+Route::post('/webhooks/listing/updated', 'Api\Webhooks\Airtable\ListingController@handleUpdate');
+
