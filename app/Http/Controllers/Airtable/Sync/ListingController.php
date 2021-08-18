@@ -118,11 +118,12 @@ class ListingController extends Controller {
     }
 
     public function syncRelations($dbListings, $airtableListings) {
+        $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
+
         foreach ($airtableListings as $artList) {   
             // listing_categories
             $dbList = Listing::where('airtable_id', $artList["id"])->first();
 
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Categories"]) && sizeof(@$artList["fields"]["Categories"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Categories"]); $i++) { 
                     $dbCat = Category::where('airtable_id', @$artList["fields"]["Categories"][$i])->first();
@@ -132,11 +133,8 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching categories sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
 
             // listing_tags
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Tags"]) && sizeof(@$artList["fields"]["Tags"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Tags"]); $i++) { 
                     $dbTag = Tag::where('airtable_id', @$artList["fields"]["Tags"][$i])->first();
@@ -146,11 +144,8 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching tags sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
 
             // listing_media
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Images"]) && sizeof(@$artList["fields"]["Images"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Images"]); $i++) { 
                     $dbMedia = Media::where('airtable_id', @$artList["fields"]["Images"][$i])->first();
@@ -160,11 +155,8 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching media sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
 
             // listing_location
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Location"]) && sizeof(@$artList["fields"]["Location"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Location"]); $i++) { 
                     $dbLocation = Location::where('airtable_id', @$artList["fields"]["Location"][$i])->first();
@@ -174,11 +166,8 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching locations sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
 
             // listing_founders
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Founder(s)"]) && sizeof(@$artList["fields"]["Founder(s)"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Founder(s)"]); $i++) { 
                     $dbFounder = People::where('airtable_id', @$artList["fields"]["Founder(s)"][$i])->first();
@@ -188,11 +177,8 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching founders sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
 
             // listing_impact
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Impact"]) && sizeof(@$artList["fields"]["Impact"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Impact"]); $i++) { 
                     $dbImpact = Impact::where('airtable_id', @$artList["fields"]["Impact"][$i])->first();
@@ -202,11 +188,8 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching impact sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
 
             // listing_funding
-            $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
             if (!empty(@$artList["fields"]["Funding"]) && sizeof(@$artList["fields"]["Funding"]) > 0) {
                 for ($i=0; $i < sizeof(@$artList["fields"]["Funding"]); $i++) { 
                     $dbFunding = Funding::where('airtable_id', @$artList["fields"]["Funding"][$i])->first();
@@ -216,9 +199,10 @@ class ListingController extends Controller {
                 }
 
             }
-            $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-            \Log::info("Attaching funding sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
         }
+
+        $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
+        \Log::info("Attaching relations sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
     }
 
     public function updateEmbeds ($listings) {
@@ -262,4 +246,13 @@ class ListingController extends Controller {
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Extracting youtube videos, twitter timeline and slideshare embeds finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
     }
+
+    public function get_string_between($string, $start, $end){
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
+
 }

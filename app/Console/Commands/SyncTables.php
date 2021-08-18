@@ -36,28 +36,27 @@ class SyncTables extends Command
      * @return int
      */
     public function handle() {
-        app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
-        /*try {
-            //app(\App\Http\Controllers\Airtable\Sync\CategoryController::class)->syncCategories();
+        try {
+            app(\App\Http\Controllers\Airtable\Sync\CategoryController::class)->syncCategories();
 
-            //app(\App\Http\Controllers\Airtable\Sync\FundingController::class)->syncFunding();
+            app(\App\Http\Controllers\Airtable\Sync\FundingController::class)->syncFunding();
 
-            //app(\App\Http\Controllers\Airtable\Sync\ImpactController::class)->syncImpact();
+            app(\App\Http\Controllers\Airtable\Sync\ImpactController::class)->syncImpact();
 
-            //app(\App\Http\Controllers\Airtable\Sync\KnowledgeController::class)->syncKnowledge();
+            app(\App\Http\Controllers\Airtable\Sync\KnowledgeController::class)->syncKnowledge();
 
-            //app(\App\Http\Controllers\Airtable\Sync\LocationController::class)->syncLocation();
+            app(\App\Http\Controllers\Airtable\Sync\LocationController::class)->syncLocation();
 
-            //app(\App\Http\Controllers\Airtable\Sync\MediaController::class)->syncMedia();
+            app(\App\Http\Controllers\Airtable\Sync\MediaController::class)->syncMedia();
 
-            //app(\App\Http\Controllers\Airtable\Sync\PeopleController::class)->syncPeople();
+            app(\App\Http\Controllers\Airtable\Sync\PeopleController::class)->syncPeople();
 
-            //app(\App\Http\Controllers\Airtable\Sync\TagController::class)->syncTag();
+            app(\App\Http\Controllers\Airtable\Sync\TagController::class)->syncTag();
 
-            //app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
+            app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
 
         } catch (\Throwable $th) {
             \Log::error('Error from Airtable auto sync cronjob: ' . $th->getMessage());
-        } */
+        }
     }
 }
