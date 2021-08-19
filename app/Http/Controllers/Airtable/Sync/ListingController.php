@@ -25,6 +25,9 @@ class ListingController extends Controller {
     public function syncListing () {
         \Log::info("Listings table sync started at ".date('Y-m-d H:i:s'));
 
+        // Recreate listings
+        $listings = Airtable::table('listings')->all();
+
         if (Listing::count() > 0) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Listing::truncate();
@@ -36,9 +39,6 @@ class ListingController extends Controller {
             DB::table('listing_media')->truncate();
             DB::table('listing_tags')->truncate();
         }
-
-        // Recreate listings
-        $listings = Airtable::table('listings')->all();
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         foreach ($listings as $l) {

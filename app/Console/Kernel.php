@@ -22,9 +22,10 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
-        // $schedule->command('inspire')->hourly();
+    protected function schedule(Schedule $schedule) {
+        $schedule->command('sync:tables')
+            ->dailyAt('3:00')
+            ->timezone('America/Chicago');
 
         //$schedule->command('twitter:mentions')->cron('* * * * *');
 
