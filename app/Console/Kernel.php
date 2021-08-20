@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule) {
         $schedule->command('sync:tables')
-            ->dailyAt('3:00')
-            ->timezone('America/Chicago');
+            ->dailyAt('2:00')
+            ->timezone('America/New_York');
 
         //$schedule->command('twitter:mentions')->cron('* * * * *');
 
