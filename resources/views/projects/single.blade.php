@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="listing-titlebar-title">
-                        <h2>{{ $project->name }}</h2>
+                        <h2>{!! $project->name !!}</h2>
                         @if(!empty($project->email))
                             <br>
                             <span>
@@ -64,10 +64,10 @@
 
             <div class="margin-top-35">
                 <p>
-                    {{ $project->introduction }}
+                    {!! $project->introduction !!}
                 </p>
                 <p>
-                    {{ $project->description }}
+                    {!! $project->description !!}
                 </p>
             </div>
 

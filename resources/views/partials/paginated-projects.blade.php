@@ -10,7 +10,7 @@
             <div class="listing-title">
                 <h4>
                     <a href="/listing/{{ $project->slug }}">
-                        {{ $project->name }}
+                        {!! $project->name !!}
                     </a>
                 </h4>
 
@@ -27,7 +27,7 @@
             </div>
 
             <p style="padding: 0 30px; font-size: 15px; line-height: 22px;">
-                {{ $project->introduction }}
+                {!! $project->introduction !!}
             </p>
 
             <ul class="listing-details" style="padding: 10px 30px; background-color: #fff;">
