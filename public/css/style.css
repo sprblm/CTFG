@@ -287,12 +287,12 @@ header.fullwidth .container {
 }
 .left-side {
     float: left;
-    width: 65%;
+    width: 60%;
     display: inline-block;
 }
 .right-side {
     float: right;
-    width: 35%;
+    width: 40%;
     display: inline-block;
 }
 @media(min-width:1025px) and (max-width:1239px) {

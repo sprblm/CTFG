@@ -18,7 +18,10 @@
                     <div class="left-side">
                         <a href="/">
                             <div id="logo">
-                                <h2 style="margin-top: 2px;">CivicTech.Guide</h2>
+                                <!-- <h2 style="margin-top: 2px;">CivicTech.Guide</h2> -->
+                                <h2 style="margin-top: 2px;">
+                                    Civic Tech Field Guide
+                                </h2>
                             </div>
                         </a>
                         <!-- Mobile Navigation -->
@@ -47,8 +50,9 @@
                     <div class="right-side">
                         <div class="header-widget">
                             <span style="padding-right: 25px;">
-                                <a href="/category/parent/the-tech" style="padding-right: 10px;">The Tech</a>
-                                <a href="/category/parent/the-people">The People</a>
+                                <a href="/listing-category/the-tech" style="padding-right: 10px;">The Tech</a>
+                                <a href="/listing-category/the-people" style="padding-right: 10px;">The People</a>
+                                <a href="/about">About</a>
                             </span>
                             <a href="/projects/add" class="button border with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
                         </div>
