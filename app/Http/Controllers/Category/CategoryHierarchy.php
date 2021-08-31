@@ -9,7 +9,7 @@ use App\Models\Category;
 
 class CategoryHierarchy extends Controller {
     public function getCategoryHierarchy() {
-        $hierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields', 'More'])->orderBy('hits')->with('childItems')->get();
+        $hierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields', 'More'])->orderByRaw("FIELD(name , 'The Tech', 'The People', 'Adjacent Fields', 'More') ASC")->with('childItems')->get();
 
         return view ('category.hierarchies', [
             'items' => $hierarchies,

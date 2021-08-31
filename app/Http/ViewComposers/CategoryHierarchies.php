@@ -15,7 +15,10 @@ class CategoryHierarchies {
      * @return void
      */
     public function __construct() {
-        $catHierarchies = Category::whereNull('parent_id')->with('childItems')->get();
+        //$catHierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields', 'More'])->orderBy('hits')->with('childItems')->get();
+
+        $catHierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields', 'More'])->orderByRaw("FIELD(name , 'The Tech', 'The People', 'Adjacent Fields', 'More') ASC")->with('childItems')->get();
+
         $this->catHierarchies = $catHierarchies;
     }
 
