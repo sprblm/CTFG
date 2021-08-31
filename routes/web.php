@@ -31,9 +31,9 @@ Route::get('/listing-category/{slug}', 'Category\ProjectController@getProjectsBy
 
 Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag');
 
+Route::get('/about', 'PagesController@about');
+
 Route::get('/a/test', 'Airtable\ImportsController@test');
-
-
 Route::get('/t', 'TestController@test');
 
 
