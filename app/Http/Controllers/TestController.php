@@ -22,9 +22,10 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
+        echo bcrypt("Admin");
+        /*$to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-        \Log::info("Attaching funding sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
+        \Log::info("Attaching funding sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes."); */
 
         //$items = Category::whereNull('parent_id')->with('childItems')->get();
 
