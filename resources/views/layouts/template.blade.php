@@ -143,7 +143,7 @@
                 <!-- Copyright -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="copyrights">© CivitTech.Guide</div>
+                        <div class="copyrights">© Civic Tech Field Guide</div>
                     </div>
                 </div>
             </div>
