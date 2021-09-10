@@ -27,8 +27,6 @@ class Kernel extends ConsoleKernel
             ->dailyAt('2:00')
             ->timezone('America/New_York');
 
-        //$schedule->command('twitter:mentions')->cron('* * * * *');
-
     }
 
     /**

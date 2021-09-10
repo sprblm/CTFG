@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/', 'Guest\GuestController@index');
+Route::get('/all-categories', 'Guest\GuestController@index');
 Route::get('/projects/add', 'Projects\ProjectController@add');
 Route::get('/listing/{slug}', 'Projects\ProjectController@singleProject');
 Route::get('/projects/autocomplete', 'Projects\ProjectController@searchAutoComplete')->name('autocomplete');

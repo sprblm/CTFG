@@ -52,6 +52,8 @@
                             <span style="padding-right: 25px;">
                                 <a href="/listing-category/the-tech" style="padding-right: 10px;">The Tech</a>
                                 <a href="/listing-category/the-people" style="padding-right: 10px;">The People</a>
+                                <a href="/all-categories" style="padding-right: 10px;">All Categories</a>
+                                <a href="/world-map" style="padding-right: 10px;">World Map</a>
                                 <a href="/about">About</a>
                             </span>
                             <a href="/projects/add" class="button border with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
@@ -127,23 +129,37 @@
                             </li>
                         </ul>
                         <div class="clearfix">&nbsp;&nbsp;</div>
-                        <div class="text-widget">
-                            <h4>Founding organization</h4>
-                            <img src="{{ asset('images/civic_hall.png') }}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row social-icons margin-top-20">
+                            <div class="col-md-3">
+                                <h4>Founding organization</h4>
+                                <img width="150" height="150" src="{{ asset('images/civic_hall.png') }}" />
+                            </div>
+                            <div class="col-md-6">
+                                <h4>With support from</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img width="300" height="150" src="{{ asset('images/knight_foundation.png') }}" />
+                                    </div>
+                                    <div class="col-md-6" style="vertical-align: text-top;">
+                                        <img width="200" height="150" src="{{ asset('images/luminate.png') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Technology Partner</h4>
+                                <img width="150" height="150" src="{{ asset('images/sarapis.png') }}" />
+                            </div>
                         </div>
-                        <div class="clearfix">&nbsp;&nbsp;</div>
-                        <div class="text-widget">
-                            <h4>With support from</h4>
-                            <img src="{{ asset('images/knight_foundation.png') }}" />
-                        </div>
-                        <div class="clearfix">&nbsp;&nbsp;</div>
-                        
                     </div>
                 </div>
                 <!-- Copyright -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="copyrights">© Civic Tech Field Guide</div>
+                        <div class="copyrights"><img width="18" height="18" src="{{ asset('images/cc.png') }}" /> Civic Tech Field Guide</div>
                     </div>
                 </div>
             </div>
