@@ -23,6 +23,7 @@ Route::get('/projects/add', 'Projects\ProjectController@add');
 Route::get('/listing/{slug}', 'Projects\ProjectController@singleProject');
 Route::get('/projects/autocomplete', 'Projects\ProjectController@searchAutoComplete')->name('autocomplete');
 Route::get('/listings/search', 'Projects\ProjectController@search');
+Route::get('/world-map', 'Guest\GuestController@worldMap');
 
 Route::get('/category/parent/the-tech', 'Category\ParentCategoryController@theTech');
 Route::get('/category/parent/the-people', 'Category\ParentCategoryController@thePeople');

@@ -56,7 +56,7 @@ class ProjectController extends Controller {
                 ->paginate(10);
 
         return view ('projects.search-results', [
-            'title' => 'CivicTech.Guide - Search Results',
+            'title' => 'Civic Tech Field Guide - Search Results',
             'projects' => $results,
             'query' => @$q,
         ]);

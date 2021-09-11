@@ -18,7 +18,7 @@
                     <div class="left-side">
                         <a href="/">
                             <div id="logo">
-                                <!-- <h2 style="margin-top: 2px;">CivicTech.Guide</h2> -->
+                                <!-- <h2 style="margin-top: 2px;">Civic Tech Field Guide</h2> -->
                                 <h2 style="margin-top: 2px;">
                                     Civic Tech Field Guide
                                 </h2>
@@ -38,7 +38,7 @@
                                 <li>
                                     <div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="padding: 0px !important;">
                                         <div class="main-search-input-item">
-                                            <input type="text" class="typeahead" placeholder="Search CivicTech.Guide ..." value=""/>
+                                            <input type="text" class="typeahead" placeholder="Search Civic Tech Field Guide ..." value=""/>
                                         </div>
                                     </div>
                                 </li>
@@ -215,6 +215,7 @@
         }
 
     </script>
+    
     @yield('scripts')
     <!-- Google Autocomplete -->
     <!-- <script>

@@ -82,7 +82,7 @@ class GuestController extends Controller {
         $projects = $listings->paginate(10);
 
         return view ('welcome', [
-            'title' => 'CivicTech.Guide',
+            'title' => 'Civic Tech Field Guide',
             'projects' => $projects,
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
@@ -90,5 +90,17 @@ class GuestController extends Controller {
             'filterStatus' => @$activeProjects,
         ]);
 
+    }
+
+    // Get world map
+    public function worldMap() {
+        $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get();
+
+        //echo $projects->count();
+
+        return view ('map.all-projects', [
+            'title' => 'Civic Tech Field Guide - World Map',
+            'projects' => $projects,
+        ]);
     }
 }
