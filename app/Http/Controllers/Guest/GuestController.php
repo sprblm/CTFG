@@ -94,9 +94,9 @@ class GuestController extends Controller {
 
     // Get world map
     public function worldMap() {
-        $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get();
+        //$projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->limit(20)->get(['latitude', 'longitude', 'name']);
 
-        //echo $projects->count();
+        $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get(['latitude', 'longitude', 'name']);
 
         return view ('map.all-projects', [
             'title' => 'Civic Tech Field Guide - World Map',
