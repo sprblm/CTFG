@@ -1,19 +1,24 @@
-@extends('layouts.template')
+@extends('layouts.maps')
 
-@section('styles')
-    <style type="text/css">
-        #map {
-            height: 100% !important;
-        }
-    </style>
+@section('content')
+    <div class="row">
+        <div class="col-lg-12 col-md-12" style="height:600px; width: 100%;">
+            <div id="worldMap" style="height: 100%; width: 100%;"></div>
+        </div>
+    </div>
 
+@endsection
+
+@section('scripts')
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
     <script type="text/javascript">
         function initMap() {
-          const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 3,
-            center: { lat: -28.024, lng: 140.887 },
+          const map = new google.maps.Map(document.getElementById("worldMap"), {
+            zoom: 2,
+            center: new google.maps.LatLng(0, 0),
+            streetViewControl: false,
+            mapTypeControl: false,
           });
           // Create an array of alphabetical characters used to label the markers.
           const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -28,7 +33,7 @@
           // Add a marker clusterer to manage the markers.
           new MarkerClusterer(map, markers, {
             imagePath:
-              "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+              `{{ asset('/images/markers') }}/m`,
           });
         }
 
@@ -58,17 +63,6 @@
           { lat: -43.999792, lng: 170.463352 },
         ];
     </script>
-@endsection
 
-@section('content')
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div id="map" style="height: 100%"></div>
-        </div>
-    </div>
-
-@endsection
-
-@section('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&callback=initMap"async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&callback=initMap&libraries=places" async></script>
 @endsection

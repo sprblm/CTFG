@@ -18,7 +18,6 @@
                     <div class="left-side">
                         <a href="/">
                             <div id="logo">
-                                <!-- <h2 style="margin-top: 2px;">Civic Tech Field Guide</h2> -->
                                 <h2 style="margin-top: 2px;">
                                     Civic Tech Field Guide
                                 </h2>
@@ -32,18 +31,6 @@
                             </span>
                             </button>
                         </div>
-                        <!-- Main Navigation -->
-                        <!-- <nav id="navigation" class="style-1">
-                            <ul id="responsive">
-                                <li>
-                                    <div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="padding: 0px !important;">
-                                        <div class="main-search-input-item">
-                                            <input type="text" class="typeahead" placeholder="Search Civic Tech Field Guide ..." value=""/>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav> -->
                         <div class="clearfix"></div>
                     </div>
 
@@ -64,14 +51,9 @@
             </div>
         </header>
         <div class="clearfix"></div>
+        <div>&nbsp;</div>
         
-        @if(@$template != "map")
-            <div id="titlebar" class="gradient" style="margin-bottom: 1px;"></div> 
-        @else
-            <div>&nbsp;</div>
-        @endif
-        
-        <div class="container">
+        <div class="container" style="width: 100%;">
             @yield('content')
         </div>
 
@@ -184,65 +166,9 @@
     <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-    <script type="text/javascript">
-        var path = "{{ route('autocomplete') }}";
-
-        $('input.typeahead').typeahead({
-            displayKey: 'name',
-            source:  function (query, process) {
-                return $.get(path, { query: query }, function (data) {
-                    return process(data);
-                });
-            }
-        });
-
-        $('#search').click(function(e) {
-            var param = $(".typeahead").val();
-            window.location.href  = "/listings/search?q="+param;
-        });
-
-        function myFunction() {
-            var dots = document.getElementById("dots");
-            var moreText = document.getElementById("more");
-            var linkText = document.getElementById("readMore");
-
-            if (dots.style.display === "none") {
-                dots.style.display = "inline";
-                linkText.innerHTML = "&nbsp;&nbsp;[++ Expand ++]";
-                moreText.style.display = "none";
-            } else {
-                dots.style.display = "none";
-                linkText.innerHTML = "&nbsp;&nbsp;[ -- Collapse --]";
-                moreText.style.display = "inline";
-            }
-        }
-
-    </script>
     
     @yield('scripts')
-    <!-- Google Autocomplete -->
-    <!-- <script>
-        function initAutocomplete() {
-          var input = document.getElementById('autocomplete-input');
-          var autocomplete = new google.maps.places.Autocomplete(input);
-        
-          autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-              window.alert("No details available for input: '" + place.name + "'");
-              return;
-            }
-          });
-        
-        if ($('.main-search-input-item')[0]) {
-           setTimeout(function(){ 
-               $(".pac-container").prependTo("#autocomplete-container");
-           }, 300);
-        }
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&libraries=places&callback=initAutocomplete"></script> -->
+    
     
 </body>
 </html>

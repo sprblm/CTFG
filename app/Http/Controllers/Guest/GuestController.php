@@ -101,6 +101,7 @@ class GuestController extends Controller {
         return view ('map.all-projects', [
             'title' => 'Civic Tech Field Guide - World Map',
             'projects' => $projects,
+            'template' => 'map',
         ]);
     }
 }
