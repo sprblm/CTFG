@@ -37,7 +37,7 @@
                 });
                 google.maps.event.addListener(marker, 'click', function(evt) {
                     //Sample Click Event
-                    alert(location.name);
+                    alert(location.name+', '+location.address);
                 });
 
                 return marker;
@@ -54,8 +54,9 @@
             var latitude = Number(projects[i].latitude);
             var longitude = Number(projects[i].longitude);
             var project = projects[i].name;
+            var add = projects[i].first_location;
 
-            var entry = { lat: latitude, lng: longitude, name: project }
+            var entry = { lat: latitude, lng: longitude, name: project, address: add }
 
             locations.push(entry);
         }
