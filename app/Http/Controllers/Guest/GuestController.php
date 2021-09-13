@@ -98,7 +98,7 @@ class GuestController extends Controller {
 
         
 
-        $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get(['latitude', 'longitude', 'first_location', 'name']);
+        $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get(['latitude', 'longitude', 'first_location', 'name', 'slug']);
 
         /*$projects = Listing::get();
 

@@ -37,7 +37,7 @@
                 '<div id="content">' +
                 '<div id="siteNotice">' +
                 "</div>" +
-                '<h3 id="firstHeading" class="firstHeading">'+location.name+'</h3>' +
+                '<h3 id="firstHeading" class="firstHeading"><a href="'+location.url+'">'+location.name+'</a></h3>' +
                 '<div id="bodyContent">' +
                 "<p><i class='fa fa-map-marker'></i> "+location.address+"</p>" +
                 "</div>" +
@@ -69,8 +69,9 @@
             var longitude = Number(projects[i].longitude);
             var project = projects[i].name;
             var add = projects[i].first_location;
+            var slug = '/listing/'+projects[i].slug;
 
-            var entry = { lat: latitude, lng: longitude, name: project, address: add }
+            var entry = { lat: latitude, lng: longitude, name: project, address: add, url: slug }
 
             locations.push(entry);
         }

@@ -52,7 +52,7 @@
                             <span style="padding-right: 25px;">
                                 <a href="/listing-category/the-tech" style="padding-right: 10px;">The Tech</a>
                                 <a href="/listing-category/the-people" style="padding-right: 10px;">The People</a>
-                                <a href="/all-categories" style="padding-right: 10px;">All Categories</a>
+                                <a href="/listing-categories" style="padding-right: 10px;">All Categories</a>
                                 <a href="/world-map" style="padding-right: 10px;">World Map</a>
                                 <a href="/about">About</a>
                             </span>
