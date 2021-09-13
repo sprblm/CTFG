@@ -27,20 +27,21 @@
                 streetViewControl: false,
                 mapTypeControl: false,
             });
-            // Create an array of alphabetical characters used to label the markers.
-            const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
             const markers = locations.map((location, i) => {
-                return new google.maps.Marker({
+                /*return new google.maps.Marker({
                     position: location,
-                    label: labels[i % labels.length],
+                }); */
+                var marker = new google.maps.Marker({
+                    position: location
                 });
-            });
+                google.maps.event.addListener(marker, 'click', function(evt) {
+                    //Sample Click Event
+                    alert(location.name);
+                });
 
-            // Add a marker clusterer to manage the markers.
-            /*new MarkerClusterer(map, markers, {
-                imagePath: `{{ asset('/images/markers') }}/m`,
-            }); */
+                return marker;
+            });
 
             var markerCluster = new MarkerClusterer(map, markers, {
                 imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
@@ -52,9 +53,9 @@
         for (var i = 0; i < projects.length; i++) {
             var latitude = Number(projects[i].latitude);
             var longitude = Number(projects[i].longitude);
-            var name = projects[i].name;
+            var project = projects[i].name;
 
-            var entry = { lat: latitude, lng: longitude }
+            var entry = { lat: latitude, lng: longitude, name: project }
 
             locations.push(entry);
         }
