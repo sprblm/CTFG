@@ -1,5 +1,17 @@
 @extends('layouts.maps')
 
+@section('styles')
+    <!-- <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.css" /> -->
+    <style type="text/css">
+        a.location {
+            color: #1DA1F2;
+        }
+        a.location:hover {
+            text-decoration: underline;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-lg-12 col-md-12" style="height:600px; width: 100%;">
@@ -10,7 +22,11 @@
 @endsection
 
 @section('scripts')
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- <script src="https://unpkg.com/leaflet.markercluster@1.1.0/dist/leaflet.markercluster.js"></script>
+
+    <script type="text/javascript">
+        
+    </script> -->
     
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script type="text/javascript">
@@ -26,9 +42,6 @@
             });
 
             const markers = locations.map((location, i) => {
-                /*return new google.maps.Marker({
-                    position: location,
-                }); */
                 var marker = new google.maps.Marker({
                     position: location
                 });
@@ -37,7 +50,7 @@
                 '<div id="content">' +
                 '<div id="siteNotice">' +
                 "</div>" +
-                '<h3 id="firstHeading" class="firstHeading"><a href="'+location.url+'">'+location.name+'</a></h3>' +
+                '<h3 id="firstHeading" class="firstHeading"><a class="location" title="Go to listing profile" href="'+location.url+'">'+location.name+'</a></h3>' +
                 '<div id="bodyContent">' +
                 "<p><i class='fa fa-map-marker'></i> "+location.address+"</p>" +
                 "</div>" +
@@ -58,8 +71,11 @@
             });
 
             var markerCluster = new MarkerClusterer(map, markers, {
-                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                maxZoom: 8,
             });
+
+            
         }
 
         var locations = [];
@@ -75,6 +91,7 @@
 
             locations.push(entry);
         }
+
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&callback=initMap&libraries=places"></script>
