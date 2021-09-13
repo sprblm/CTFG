@@ -11,7 +11,8 @@
 
 @section('scripts')
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+    
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script type="text/javascript">
         var projects = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
 
@@ -20,27 +21,30 @@
         //console.log(projects.length);
 
         function initMap() {
-          const map = new google.maps.Map(document.getElementById("worldMap"), {
-            zoom: 2,
-            center: new google.maps.LatLng(0, 0),
-            streetViewControl: false,
-            mapTypeControl: false,
-          });
-          // Create an array of alphabetical characters used to label the markers.
-          const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-          const markers = locations.map((location, i) => {
-            return new google.maps.Marker({
-              position: location,
-              label: labels[i % labels.length],
+            const map = new google.maps.Map(document.getElementById("worldMap"), {
+                zoom: 2,
+                center: new google.maps.LatLng(0, 0),
+                streetViewControl: false,
+                mapTypeControl: false,
             });
-          });
+            // Create an array of alphabetical characters used to label the markers.
+            const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-          // Add a marker clusterer to manage the markers.
-          new MarkerClusterer(map, markers, {
-            imagePath:
-              `{{ asset('/images/markers') }}/m`,
-          });
+            const markers = locations.map((location, i) => {
+                return new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length],
+                });
+            });
+
+            // Add a marker clusterer to manage the markers.
+            /*new MarkerClusterer(map, markers, {
+                imagePath: `{{ asset('/images/markers') }}/m`,
+            }); */
+
+            var markerCluster = new MarkerClusterer(map, markers, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
         }
 
         var locations = [];
@@ -56,5 +60,5 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&callback=initMap&libraries=places" async></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOZ3iFXxO0dN75GKYwNsToH3W6u1kcGR0&callback=initMap&libraries=places"></script>
 @endsection
