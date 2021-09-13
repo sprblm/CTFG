@@ -16,9 +16,6 @@
     <script type="text/javascript">
         var projects = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
 
-        //console.log(projects);
-        //console.log(projects[0].latitude);
-        //console.log(projects.length);
 
         function initMap() {
             const map = new google.maps.Map(document.getElementById("worldMap"), {
@@ -35,9 +32,26 @@
                 var marker = new google.maps.Marker({
                     position: location
                 });
-                google.maps.event.addListener(marker, 'click', function(evt) {
-                    //Sample Click Event
-                    alert(location.name+', '+location.address);
+
+                var contentString =
+                '<div id="content">' +
+                '<div id="siteNotice">' +
+                "</div>" +
+                '<h3 id="firstHeading" class="firstHeading">'+location.name+'</h3>' +
+                '<div id="bodyContent">' +
+                "<p><i class='fa fa-map-marker'></i> "+location.address+"</p>" +
+                "</div>" +
+                "</div>";
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                });
+
+                marker.addListener("click", () => {
+                    infowindow.open({
+                        anchor: marker, map,
+                        shouldFocus: false,
+                    });
                 });
 
                 return marker;
