@@ -27,6 +27,7 @@ class CategoryHierarchies {
             return Tag::whereNull('parent_id')->with('childItems')->get();
         });
 
+
         /*$catHierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields', 'More'])->orderByRaw("FIELD(name , 'The Tech', 'The People', 'Adjacent Fields', 'More') ASC")->with('childItems')->get();
 
         $tagHierarchies = Tag::whereNull('parent_id')->with('childItems')->get(); */
