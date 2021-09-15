@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-4">
             <div class="sidebar">
-                <!-- Widget -->
+                <!-- Categories Widget -->
                 <div class="widget margin-bottom-40">
                     <h3 class="margin-top-0 margin-bottom-30">Categories</h3>
                     @include('partials.categories')
