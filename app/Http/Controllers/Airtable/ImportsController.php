@@ -25,7 +25,41 @@ use Illuminate\Support\Str;
 
 class ImportsController extends Controller {
     public function test() {
-        $listings = Airtable::table('listings')->all();
+        $tags = Airtable::table('tags')->all();
+        if (Tag::count() > 0) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            Tag::truncate();
+        }
+
+        foreach ($tags as $tag) {
+            $tg = new Tag;
+            $tg->airtable_id = @$tag["id"];
+            $tg->name = @$tag["fields"]["Name"];
+            $tg->save();
+
+            /*if (!empty(@$tag["fields"]["Parent Tag"]) && sizeof(@$tag["fields"]["Parent Tag"]) > 0) {
+
+                echo "Tag: ".$tag["id"].", name: ".$tag["fields"]["Name"]."<br>";
+                echo "Parent: ".$tag["fields"]["Parent Tag"][0]."<br>";
+
+                $dbTag = Tag::where('airtable_id', $tag["id"])->first();
+                if ($dbTag) {
+                    $parentTag = Tag::where('airtable_id', $tag["fields"]["Parent Tag"][0])->first();
+                    if ($parentTag) {
+                        $dbTag->update([
+                            'parent_id' => $parentTag->id
+                        ]);
+                    }
+                }
+            } */
+
+        }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+
+
+        /*$listings = Airtable::table('listings')->all();
 
         foreach($listings as $list) {
             if (!empty(@$list["fields"]["Categories"]) && sizeof(@$list["fields"]["Categories"]) > 0) {
@@ -36,16 +70,16 @@ class ImportsController extends Controller {
                     if ($dbList) {
                         if ($dbCat) {
                             $dbList->categories()->attach($dbCat->id);
-                            /*DB::table('listing_categories')->insert([
+                            DB::table('listing_categories')->insert([
                                 'listing_id' => $dbList->id,
                                 'category_id' => $dbCat->id
-                            ]); */
+                            ]);
                         }
                     }
                 }
             }
             
-        } 
+        } */
 
         /*echo sizeof($listings[0]["fields"]["Categories"]);
         print_r($listings[0]);
