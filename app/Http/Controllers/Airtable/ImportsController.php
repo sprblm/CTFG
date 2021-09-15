@@ -26,36 +26,25 @@ use Illuminate\Support\Str;
 class ImportsController extends Controller {
     public function test() {
         $tags = Airtable::table('tags')->all();
-        if (Tag::count() > 0) {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            Tag::truncate();
-        }
 
         foreach ($tags as $tag) {
-            $tg = new Tag;
-            $tg->airtable_id = @$tag["id"];
-            $tg->name = @$tag["fields"]["Name"];
-            $tg->save();
+            if (!empty(@$tag["fields"]["Parent Tag"]) && sizeof(@$tag["fields"]["Parent Tag"]) > 0) {
 
-            /*if (!empty(@$tag["fields"]["Parent Tag"]) && sizeof(@$tag["fields"]["Parent Tag"]) > 0) {
-
-                echo "Tag: ".$tag["id"].", name: ".$tag["fields"]["Name"]."<br>";
-                echo "Parent: ".$tag["fields"]["Parent Tag"][0]."<br>";
+                //echo "Tag: ".$tag["id"].", name: ".$tag["fields"]["Name"]."<br>";
+                //echo "Parent: ".$tag["fields"]["Parent Tag"][0]."<br>";
 
                 $dbTag = Tag::where('airtable_id', $tag["id"])->first();
                 if ($dbTag) {
                     $parentTag = Tag::where('airtable_id', $tag["fields"]["Parent Tag"][0])->first();
                     if ($parentTag) {
                         $dbTag->update([
-                            'parent_id' => $parentTag->id
+                            'parent_id' => $parentTag->id,
                         ]);
                     }
                 }
-            } */
+            }
 
         }
-
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
 
