@@ -30,6 +30,7 @@ class CategoryController extends Controller {
             $c->save();
         }
 
+        // Update category parent category relationship
         foreach ($airtableCategories as $cat) {
             if (!empty(@$cat["fields"]["Parent Category"]) && sizeof(@$cat["fields"]["Parent Category"]) > 0) {
                 $dbCat = Category::where('airtable_id', $cat["id"])->first();

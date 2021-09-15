@@ -30,9 +30,6 @@ class ImportsController extends Controller {
         foreach ($tags as $tag) {
             if (!empty(@$tag["fields"]["Parent Tag"]) && sizeof(@$tag["fields"]["Parent Tag"]) > 0) {
 
-                //echo "Tag: ".$tag["id"].", name: ".$tag["fields"]["Name"]."<br>";
-                //echo "Parent: ".$tag["fields"]["Parent Tag"][0]."<br>";
-
                 $dbTag = Tag::where('airtable_id', $tag["id"])->first();
                 if ($dbTag) {
                     $parentTag = Tag::where('airtable_id', $tag["fields"]["Parent Tag"][0])->first();

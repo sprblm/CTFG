@@ -31,6 +31,23 @@ class TagController extends Controller {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        // Update tag parent tag relationship
+        foreach ($tags as $tag) {
+            if (!empty(@$tag["fields"]["Parent Tag"]) && sizeof(@$tag["fields"]["Parent Tag"]) > 0) {
+
+                $dbTag = Tag::where('airtable_id', $tag["id"])->first();
+                if ($dbTag) {
+                    $parentTag = Tag::where('airtable_id', $tag["fields"]["Parent Tag"][0])->first();
+                    if ($parentTag) {
+                        $dbTag->update([
+                            'parent_id' => $parentTag->id,
+                        ]);
+                    }
+                }
+            }
+
+        }
+
         $count = Tag::count();
         \Log::info("Tags table sync finished at ".date('Y-m-d H:i:s')." ... ".$count." records synced.");
     }
