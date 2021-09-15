@@ -27,6 +27,12 @@
                     <h3 class="margin-top-0 margin-bottom-30">Categories</h3>
                     @include('partials.categories')
                 </div>
+
+                <!-- Tags widget -->
+                <div class="widget margin-bottom-40">
+                    <h3 class="margin-top-0 margin-bottom-30">Tags</h3>
+                    @include('partials.tags')
+                </div>
             </div>
         </div>
 
