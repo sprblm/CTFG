@@ -28,7 +28,7 @@ class CategoryHierarchies {
         }); */
 
 
-        $catHierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields', 'More'])->orderByRaw("FIELD(name , 'The Tech', 'The People', 'Adjacent Fields', 'More') ASC")->with('childItems')->get();
+        $catHierarchies = Category::whereNull('parent_id')->whereIn('name', ['The Tech', 'The People', 'Adjacent Fields ', 'More'])->orderByRaw("FIELD(name , 'The Tech', 'The People', 'Adjacent Fields ', 'More') ASC")->with('childItems')->get();
 
         $tagHierarchies = Tag::whereNull('parent_id')
             ->whereIn('name', ['Issue', 'Format', 'Community', 'Current event', 'Sustainable Development Goals', 'Political unit', 'Platform', 'Feature', 'coop', 'Other'])
