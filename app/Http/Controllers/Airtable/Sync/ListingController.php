@@ -46,7 +46,7 @@ class ListingController extends Controller {
             $list->airtable_id = @$l["id"];
             //$list->host_org_id = @$l["fields"]["Name"];
             $list->name = @$l["fields"]["Project name"];
-            $list->slug = Str::of(@$l["fields"]["Name"])->slug();
+            $list->slug = Str::of(@$l["fields"]["Project name"])->slug();
             $list->introduction = @$l["fields"]["1-liner"];
             $list->type = @$l["fields"]["Type"][0];
 

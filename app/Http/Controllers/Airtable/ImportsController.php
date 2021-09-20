@@ -48,8 +48,9 @@ class ImportsController extends Controller {
             \Log::error('Error from Airtable auto sync cronjob: ' . $th->getMessage());
         }
     }
+
     public function test() {
-        $tags = Airtable::table('tags')->all();
+        /*$tags = Airtable::table('tags')->all();
 
         foreach ($tags as $tag) {
             if (!empty(@$tag["fields"]["Parent Tag"]) && sizeof(@$tag["fields"]["Parent Tag"]) > 0) {
@@ -65,7 +66,7 @@ class ImportsController extends Controller {
                 }
             }
 
-        }
+        } */
 
 
 
@@ -258,5 +259,16 @@ class ImportsController extends Controller {
         } */
 
         //echo "Done";
+
+        $listings = Listing::whereNotNull('name')->get();
+
+        foreach ($listings as $list) {
+            $list->update([
+                'slug' => Str::of($list->name)->slug(),
+            ]);
+        }
+
+        
+
     
 }
