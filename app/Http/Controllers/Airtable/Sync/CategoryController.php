@@ -26,12 +26,14 @@ class CategoryController extends Controller {
         //echo $airtableCategories[0]["fields"]["Name"];
         
         foreach ($airtableCategories as $cat) {
-            if(!empty(@$cat["fields"]["Name"])){
+            if(!empty(trim(@$cat["fields"]["Name"]))){
+                $name = trim(@$cat["fields"]["Name"]);
+
                 $c = new Category;
                 $c->airtable_id = @$cat["id"];
-                $c->name = @$cat["fields"]["Name"];
+                $c->name = $name;
                 $c->description = strip_tags(@$cat["fields"]["Description"]);
-                $c->slug = Str::of(@$cat["fields"]["Name"])->slug();
+                $c->slug = Str::of($name)->slug();
                 $c->save();
             }
         }
