@@ -157,6 +157,14 @@ class ImportsController extends Controller {
             } 
             
         } */
+
+        $listings = Listing::whereNotNull('name')->get();
+
+        foreach ($listings as $list) {
+            $list->update([
+                'slug' => Str::of($list->name)->slug(),
+            ]);
+        }
     }
 
 
@@ -260,15 +268,7 @@ class ImportsController extends Controller {
 
         //echo "Done";
 
-        $listings = Listing::whereNotNull('name')->get();
 
-        foreach ($listings as $list) {
-            $list->update([
-                'slug' => Str::of($list->name)->slug(),
-            ]);
-        }
-
-        
 
     
 }
