@@ -22,7 +22,17 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        echo bcrypt("Admin");
+        $projects = Listing::get();
+
+        foreach ($projects as $pj) {
+            $pj->update([
+                'first_location' => @$pj->location->first()->name,
+                'first_country' => @$pj->location->first()->country,
+            ]);
+        }
+
+
+        //echo bcrypt("Admin");
         /*$to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Attaching funding sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes."); */

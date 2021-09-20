@@ -100,14 +100,6 @@ class GuestController extends Controller {
 
         $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get(['latitude', 'longitude', 'first_location', 'name', 'slug']);
 
-        /*$projects = Listing::get();
-
-        foreach ($projects as $pj) {
-            $pj->update([
-                'first_location' => @$pj->location->first()->name,
-            ]);
-        } */
-
         return view ('map.all-projects', [
             'title' => 'Civic Tech Field Guide - World Map',
             'projects' => $projects,

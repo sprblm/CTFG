@@ -115,6 +115,7 @@ class ListingController extends Controller {
 
         $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
+        $this->updateLocationFields($dbListings);
     }
 
     public function syncRelations($dbListings, $airtableListings) {
@@ -245,6 +246,15 @@ class ListingController extends Controller {
         }
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Extracting youtube videos, twitter timeline and slideshare embeds finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
+    }
+
+    public function updateLocationFields($listings){
+        foreach ($listings as $list) {
+            $list->update([
+                'first_location' => @$list->location->first()->name,
+                'first_country' => @$list->location->first()->country,
+            ]);
+        }
     }
 
     public function get_string_between($string, $start, $end){
