@@ -28,7 +28,7 @@ class ImportsController extends Controller {
         try {
             app(\App\Http\Controllers\Airtable\Sync\CategoryController::class)->syncCategories();
 
-            /*app(\App\Http\Controllers\Airtable\Sync\FundingController::class)->syncFunding();
+            app(\App\Http\Controllers\Airtable\Sync\FundingController::class)->syncFunding();
 
             app(\App\Http\Controllers\Airtable\Sync\ImpactController::class)->syncImpact();
 
@@ -42,7 +42,7 @@ class ImportsController extends Controller {
 
             app(\App\Http\Controllers\Airtable\Sync\TagController::class)->syncTag();
 
-            app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing(); */
+            app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
 
         } catch (\Throwable $th) {
             \Log::error('Error from Airtable auto sync cronjob: ' . $th->getMessage());

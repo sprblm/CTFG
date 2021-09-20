@@ -19,7 +19,7 @@ class CategoryController extends Controller {
         }
 
         // Recreate categories
-        $airtableCategories = Airtable::table('categories')->get();
+        $airtableCategories = Airtable::table('categories')->all();
 
         //print_r($airtableCategories[0]);
 
