@@ -19,15 +19,21 @@ class CategoryController extends Controller {
         }
 
         // Recreate categories
-        $airtableCategories = Airtable::table('categories')->all();
+        $airtableCategories = Airtable::table('categories')->get();
+
+        //print_r($airtableCategories[0]);
+
+        //echo $airtableCategories[0]["fields"]["Name"];
         
         foreach ($airtableCategories as $cat) {
-            $c = new Category;
-            $c->airtable_id = @$cat["id"];
-            $c->name = @$cat["fields"]["Name"];
-            $c->description = strip_tags(@$cat["fields"]["Description"]);
-            $c->slug = Str::of(@$cat["fields"]["Name"])->slug();
-            $c->save();
+            if(!empty(@$cat["fields"]["Name"])){
+                $c = new Category;
+                $c->airtable_id = @$cat["id"];
+                $c->name = @$cat["fields"]["Name"];
+                $c->description = strip_tags(@$cat["fields"]["Description"]);
+                $c->slug = Str::of(@$cat["fields"]["Name"])->slug();
+                $c->save();
+            }
         }
 
         // Update category parent category relationship
