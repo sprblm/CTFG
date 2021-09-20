@@ -35,6 +35,7 @@ Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag')
 
 Route::get('/about', 'PagesController@about');
 
+Route::get('/sync/manual', 'Airtable\ImportsController@manualSync');
 Route::get('/a/test', 'Airtable\ImportsController@test');
 Route::get('/t', 'TestController@test');
 

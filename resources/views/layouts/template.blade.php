@@ -112,6 +112,9 @@
                 return $.get(path, { query: query }, function (data) {
                     return process(data);
                 });
+            },
+            afterSelect: function (data) {
+                window.location.replace("/listings/search?q="+data.name);
             }
         });
 

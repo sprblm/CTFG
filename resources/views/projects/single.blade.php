@@ -20,7 +20,7 @@
                 <div class="col-lg-8 col-md-8">
                     <div class="listing-titlebar-title">
                         <h2>{!! $project->name !!}</h2>
-                        @if(!empty($project->email))
+                        {{-- @if(!empty($project->email))
                             <br>
                             <span>
                                 <a href="#">
@@ -28,7 +28,7 @@
                                     {{ @$project->email }}
                                 </a>
                             </span>
-                        @endif
+                        @endif --}}
                         @if(!empty($project->website_url))
                             <br>
                             <span>
@@ -218,12 +218,12 @@
             </div>
         @endif
 
-        <div class="margin-top-50">
+        <div class="margin-top-50" style="max-height: 600px; overflow-y: scroll;">
             @if(!empty($project->has_iframe_embed))
                 {!! $project->has_iframe_embed !!}
             @endif
         </div>
-        <div class="margin-top-50">
+        <div class="margin-top-50" style="max-height: 600px; overflow-y: scroll;">
             @if(!empty($project->has_twitter_feed))
                 {!! $project->has_twitter_feed !!}
             @endif
