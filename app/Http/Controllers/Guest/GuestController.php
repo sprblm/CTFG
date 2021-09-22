@@ -65,6 +65,7 @@ class GuestController extends Controller {
                     });
                 });
             });
+
         }
 
         $activeProjects = 1;

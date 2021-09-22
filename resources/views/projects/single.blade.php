@@ -80,9 +80,9 @@
                         @if(!empty(@$project->status))
                             <tr><th>Status: </th><td>{{ $project->status }}</td></tr>
                         @endif
-                        @if(!empty(@$project->email))
+                        {{-- @if(!empty(@$project->email))
                             <tr><th>Email: </th><td>{{ $project->email }}</td></tr>
-                        @endif
+                        @endif --}}
                         @if(!empty(@$project->claimed_status))
                             <tr><th>Claimed Status: </th><td>{{ $project->claimed_status }}</td></tr>
                         @endif
