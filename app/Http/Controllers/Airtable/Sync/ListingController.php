@@ -204,6 +204,7 @@ class ListingController extends Controller {
 
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Attaching relations sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
+        \Log::info("\n");
     }
 
     public function updateEmbeds ($listings) {

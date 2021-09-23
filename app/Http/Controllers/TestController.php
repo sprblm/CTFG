@@ -22,14 +22,16 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        $projects = Listing::get();
+        \Log::info("\n");
+
+        /*$projects = Listing::get();
 
         foreach ($projects as $pj) {
             $pj->update([
                 'first_location' => @$pj->location->first()->name,
                 'first_country' => @$pj->location->first()->country,
             ]);
-        }
+        } */
 
 
         //echo bcrypt("Admin");
