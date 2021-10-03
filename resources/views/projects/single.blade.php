@@ -209,7 +209,7 @@
                     @endif
                     @if(!empty(@$project->impact->first()->impact_date))
                         <a href="{{ @$project->impact->first()->impact_date }}">
-                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->impact->first()->impact_date)->format('Y') }}
+                            {{ \Carbon\Carbon::createFromFormat('m/Y', @$project->impact->first()->impact_date)->format('Y') }}
                         </a>)
                     @else
                         )
