@@ -84,7 +84,13 @@
                             <tr><th>Email: </th><td>{{ $project->email }}</td></tr>
                         @endif --}}
                         @if(!empty(@$project->claimed_status))
-                            <tr><th>Claimed Status: </th><td>{{ $project->claimed_status }}</td></tr>
+                            <tr>
+                                <th>Claimed Status: </th>
+                                <td>
+                                    {{ $project->claimed_status }}
+                                    <span class="status-claimed">Claimed</span>
+                                </td>
+                            </tr>
                         @endif
                         @if(!empty(@$project->founded))
                             <tr><th>Founded: </th><td>{{ $project->founded }}</td></tr>
@@ -272,6 +278,19 @@
                     <li>
                         <a class="gplus-share" target="_blank" href="{{ $project->instagram_url }}"><i class="fa fa-instagram"></i> Instagram</a>
                     </li>
+                @endif
+            </ul>
+
+            <ul class="share-buttons margin-top-40 margin-bottom-0">
+                @if(!empty(@$project->claimed_status))
+                    <li>
+                        <span class="status-claimed" style="color: #fff !important;">Claimed</span>
+                    </li>
+                @else
+                    <div class="margin-top-35">
+                        <a class="suggest-button button border" target="_blank" href="https://airtable.com/shrxW8FswmOECWlBE?prefill_Requested+Claim={{ $project->airtable_id }}">    Claim This Listing
+                        </a>
+                    </div>
                 @endif
             </ul>
 

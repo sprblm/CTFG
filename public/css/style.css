@@ -122,6 +122,22 @@
         border-radius: 4px;
     }
 
+    span.status-claimed {
+        background-color: #64bc36;
+    }
+    span.status-claimed {
+        border-radius: 50px;
+        line-height: 20px;
+        font-weight: 600;
+        font-size: 13px;
+        color: #fff;
+        font-style: normal;
+        padding: 2px 8px;
+        margin-left: 3px;
+        position: relative;
+        top: -2px;
+    }
+
     input, input[type=text], input[type=password], input[type=email], input[type=number], textarea, select {
     height: 51px;
     line-height: 51px;
