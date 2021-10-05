@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use App\Jobs\LogSearch;
+
 use App\Models\Listing;
 
 class ProjectController extends Controller {
@@ -54,6 +56,10 @@ class ProjectController extends Controller {
                     ELSE 4
                     END")
                 ->paginate(10);
+
+        // Queue job for logging
+        $resultsTotal = $results->total();
+        LogSearch::dispatch($q, $resultsTotal);
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Search Results',
