@@ -163,11 +163,15 @@ class ProjectController extends Controller {
         $listings = $tag->listings();
         $projects = $listings->paginate(10);
 
+        $parentTag = $tag->parent;
+
         return view ('projects.projects-by-tag', [
             'projects' => $projects,
             'title' => 'Projects - '.$tag->name,
             'tagName' => $tag->name,
             'tag' => $tag,
+            'activeTag' => $tag,
+            'activeParentTag' => $parentTag,
         ]);
     }
 }

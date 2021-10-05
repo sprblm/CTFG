@@ -1,4 +1,4 @@
-<li class="nav-item has-subtag <?php if(@$activeCat == $sub_tags->name ) { echo 'active'; } ?>">
+<li class="nav-item has-subtag <?php if(@$activeTag->name == $sub_tags->name ) { echo 'active'; } ?>">
     <a class="nav-link" href="/listing-tag/{{ $sub_tags->name }}" title="{{ $sub_tags->name }}">
         <span class="text-sm cat-wrap <?php if(@$activeGrandParent == $sub_tags->name ) { echo 'text-white-600'; } ?>">
             {{ $sub_tags->name }}
@@ -14,7 +14,7 @@
         </a>
     @endif
     @if ($sub_tags->items)
-        <ul class="subtag collapse <?php if(@$activeParent->name == $sub_tags->name ) { echo 'show'; } ?>">
+        <ul class="subtag collapse <?php if(@$activeParentTag->name == $sub_tags->name ) { echo 'show'; } ?>">
             @if(count($sub_tags->items) > 0)
                 @foreach($sub_tags->items as $childItems)
                     @include('partials.sub_menus', ['sub_tags' => $childItems])

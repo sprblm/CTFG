@@ -5,9 +5,18 @@
         <div class="col-md-12 margin-bottom-40">
             <h2>
                 Tag: 
-                <span style="color: #7f8280; font-size: 22px;">
-                    {{ $tag->name }}
-                </span>
+                @if(!empty($activeParentTag->name))
+                    <span style="color: #7f8280; font-size: 22px;">
+                        <a href="/listing-tag/{{ $activeParentTag->slug }}">
+                            {{ $activeParentTag->name }}
+                        </a> > 
+                    </span>
+                @endif
+                @if(!empty($tag))
+                    <span style="color: #7f8280; font-size: 22px;">
+                        {{ $tag->name }}
+                    </span>
+                @endif
                 <span style="color: #7f8280; font-size: 22px;">
                     - ({{ @$projects->total() }})
                 </span>

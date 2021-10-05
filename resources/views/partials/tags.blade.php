@@ -51,7 +51,7 @@ a:hover{color: #f91942 !important;}
         @foreach($tagHierarchies as $tagHierarchy)
             <li class="nav-item has-subtag">
                 <a class="nav-link" href="/listing-tag/{{ $tagHierarchy->name }}" title="{{ $tagHierarchy->name }}">
-                    <span class="text-sm cat-wrap <?php if(@$activeCat == $tagHierarchy->name ) { echo 'text-white-600'; } ?>">
+                    <span class="text-sm cat-wrap <?php if(@$activeTag->name == $tagHierarchy->name ) { echo 'text-white-600'; } ?>">
                         {{ $tagHierarchy->name }}
                     </span>
                 </a>
@@ -63,7 +63,7 @@ a:hover{color: #f91942 !important;}
                     </span>
                 </a>
                 @if(count($tagHierarchy->childItems))
-                    <ul class="subtag collapse <?php if(@$activeParent->name == $tagHierarchy->name ) { echo 'show'; } ?>">
+                    <ul class="subtag collapse <?php if(@$activeParentTag->name == $tagHierarchy->name ) { echo 'show'; } ?>">
                         @foreach($tagHierarchy->childItems as $childItems)
                             @include('partials.sub_tags', ['sub_tags' => $childItems])
                         @endforeach
