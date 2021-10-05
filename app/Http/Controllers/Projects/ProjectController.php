@@ -59,7 +59,7 @@ class ProjectController extends Controller {
 
         // Queue job for logging
         $resultsTotal = $results->total();
-        LogSearch::dispatch($q, $resultsTotal);
+        @LogSearch::dispatch($q, $resultsTotal);
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Search Results',
