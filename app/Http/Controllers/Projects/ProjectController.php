@@ -10,6 +10,7 @@ use DB;
 use App\Jobs\LogSearch;
 
 use App\Models\Listing;
+use App\Models\SearchLog;
 
 class ProjectController extends Controller {
     // Embed add project Airtable form view
@@ -59,12 +60,14 @@ class ProjectController extends Controller {
 
         // Queue job for logging
         $resultsTotal = $results->total();
-        
-        try {
+
+        $this->logSearch($q, $resultsTotal);
+
+        /* try {
             LogSearch::dispatch($q, $resultsTotal);
         } catch (\Throwable $th) {
             \Log::error('Error from search log: ' . $th->getMessage());
-        }
+        } */
         
 
         return view ('projects.search-results', [
@@ -84,5 +87,27 @@ class ProjectController extends Controller {
                 ->get();
    
         return response()->json($data);
+    }
+
+    // Log Search
+    public function logSearch($query, $total) {
+        $previousSearches = SearchLog::where('item', $query)->first();
+
+        if ($previousSearches) {
+            // update
+            $previousSearches->update([
+                'search_count' => ($previousSearches->search_count) + 1,
+                'total_results_count' => ($previousSearches->total_results_count) + $total,
+                'last_search_results_count' => $total,
+            ]);
+        } else {
+            // Create new entry
+            $log = new SearchLog;
+            $log->item = $query;
+            $log->search_count =  $total;
+            $log->total_results_count = $total;
+            $log->last_search_results_count = $total;
+            $log->save();
+        }
     }
 }

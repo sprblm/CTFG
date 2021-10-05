@@ -118,11 +118,6 @@ class ProjectController extends Controller {
             'hits' => $category->hits + 1,
         ]);
 
-        $catName = $category->name;
-        $parent = @$category->parent->name;
-        $gp = @$category->parent->parent->name;
-        $anc = @$category->parent->parent->parent;
-
         return view ('projects.projects-by-category', [
             'title' => 'Projects - '.$category->name,
             'categoryName' => $category->name,
