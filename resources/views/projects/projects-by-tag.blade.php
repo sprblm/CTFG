@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
             <h2>
-                Tag: 
+                Tag: &nbsp; 
                 @if(!empty($activeParentTag->name))
                     <span style="color: #7f8280; font-size: 22px;">
                         <a href="/listing-tag/{{ $activeParentTag->slug }}">
