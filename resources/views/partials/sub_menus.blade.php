@@ -1,6 +1,6 @@
 <li class="nav-item has-submenu <?php if(@$activeCat == $sub_items->name ) { echo 'active'; } ?>">
     <a class="nav-link" href="/listing-category/{{ $sub_items->slug }}" title="{{ $sub_items->name }}">
-        <span class="text-sm cat-wrap <?php if(@$activeGrandParent == $sub_items->name ) { echo 'text-white-600'; } ?>">
+        <span class="text-sm cat-wrap <?php if(@$activeGrandParent->name == $sub_items->name ) { echo 'text-white-600'; } ?>">
             {{ $sub_items->name }}
         </span>
     </a>

@@ -49,10 +49,6 @@ class ProjectController extends Controller {
             }
         }
 
-        /*echo $parent->name."<br>";
-        echo $grandParent->name."<br>";
-        echo $ancestor->name."<br>"; */
-
 
         $listings = $category->listings();
 
@@ -122,6 +118,20 @@ class ProjectController extends Controller {
             'hits' => $category->hits + 1,
         ]);
 
+        $catName = $category->name;
+        $parent = $category->parent->name;
+        $gp = $category->parent->parent->name;
+        $anc = @$category->parent->parent->parent;
+
+        /*echo @$activeAncestor."<br>";
+        echo @$activeGreatGreatGrandParent."<br>";
+        echo @$activeGreatGrandParent."<br>";
+        echo @$activeGrandParent."<br>";
+        echo @$catName."<br>";
+        echo @$parent."<br>";
+        echo @$gp."<br>";
+        echo @$anc->name."<br>"; */
+
         return view ('projects.projects-by-category', [
             'title' => 'Projects - '.$category->name,
             'categoryName' => $category->name,
@@ -129,17 +139,15 @@ class ProjectController extends Controller {
             'parentCategoryName' => @$category->parentCategory->name,
             'categoryDesc' => @$category->description,
             'projects' => $projects,
-            'activeAncestor' => @$ancestor,
-            'activeGreatGreatGrandParent' => @$greatGreatGrandParent,
-            'activeGreatGrandParent' => @$greatGrandParent,
-            'activeGrandParent' => @$grandParent,
-            'activeParent' => @$parent,
+            'activeAncestor' => @$category->parent->parent->parent,
+            'activeGrandParent' => @$category->parent->parent,
+            'activeParent' => @$category->parent,
             'activeCat' => $category->name,
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
             'filterStatus' => $activeProjects,
-        ]); 
+        ]);
     }
 
     // Get projects by tag
