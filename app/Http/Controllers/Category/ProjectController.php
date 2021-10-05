@@ -119,18 +119,9 @@ class ProjectController extends Controller {
         ]);
 
         $catName = $category->name;
-        $parent = $category->parent->name;
-        $gp = $category->parent->parent->name;
+        $parent = @$category->parent->name;
+        $gp = @$category->parent->parent->name;
         $anc = @$category->parent->parent->parent;
-
-        /*echo @$activeAncestor."<br>";
-        echo @$activeGreatGreatGrandParent."<br>";
-        echo @$activeGreatGrandParent."<br>";
-        echo @$activeGrandParent."<br>";
-        echo @$catName."<br>";
-        echo @$parent."<br>";
-        echo @$gp."<br>";
-        echo @$anc->name."<br>"; */
 
         return view ('projects.projects-by-category', [
             'title' => 'Projects - '.$category->name,
