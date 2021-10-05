@@ -59,7 +59,13 @@ class ProjectController extends Controller {
 
         // Queue job for logging
         $resultsTotal = $results->total();
-        @LogSearch::dispatch($q, $resultsTotal);
+        
+        try {
+            LogSearch::dispatch($q, $resultsTotal);
+        } catch (\Throwable $th) {
+            \Log::error('Error from search log: ' . $th->getMessage());
+        }
+        
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Search Results',
