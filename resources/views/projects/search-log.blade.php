@@ -24,7 +24,7 @@
                                         <th>#</th>
                                         <th>Item</th>
                                         <th>Times Searched</th>
-                                        <th>Searched On</th>
+                                        <th>Last Searched</th>
                                     </tr>
                                 </thead>
                                 <tbody>

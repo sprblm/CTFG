@@ -60,8 +60,9 @@ class ProjectController extends Controller {
 
         // Queue job for logging
         $resultsTotal = $results->total();
-
-        $this->logSearch($q, $resultsTotal);
+        if (!empty($q)) {
+            $this->logSearch($q, $resultsTotal);
+        }
 
         /* try {
             LogSearch::dispatch($q, $resultsTotal);
