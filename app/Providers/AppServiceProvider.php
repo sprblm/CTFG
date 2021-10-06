@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot() {
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
         /*DB::listen(function($query) {
             File::append(
                 storage_path('/logs/query.log'),
