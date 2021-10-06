@@ -88,7 +88,7 @@
                                 <th>Claimed Status: </th>
                                 <td>
                                     {{ $project->claimed_status }}
-                                    <span class="status-claimed">Claimed</span>
+                                    <!-- <span class="status-claimed">Claimed</span> -->
                                 </td>
                             </tr>
                         @endif
