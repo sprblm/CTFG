@@ -14,7 +14,7 @@ class SearchController extends Controller {
     public function getLog () {
         //$logs = SearchLog::get();
 
-        $logs = DB::select(DB::raw("SELECT item, count(item) as times_searched, date(created_at) as created_at from search_log group BY item, date(created_at) order BY count(item) DESC"));
+        $logs = DB::select(DB::raw("SELECT item, count(item) as times_searched, date(created_at) as created_at from search_log group BY item, date(created_at) order BY count(item) DESC, date(created_at) DESC"));
         //print_r(collect($logs));
 
         return view ('projects.search-log', [
