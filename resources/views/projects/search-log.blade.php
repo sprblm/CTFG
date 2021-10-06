@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
@@ -8,44 +12,36 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-12 col-md-12 padding-right-30">
+        <div class="col-lg-12 col-md-12">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <div class="dashboard-list-box margin-top-0">
+                    <div class="margin-top-0">
+                        <?php $count = 1; ?>
                         @if($logs->count() > 0)
-                            <ul>
-                                @foreach($logs as $log)
-                                    <li class="pending-booking">
-                                        <a href="/listings/search?q={{ $log->item }}">
-                                            <div class="list-box-listing bookings">
-                                                <div class="list-box-listing-content">
-                                                    <div class="inner">
-                                                        <h3>{{ $log->item }}</h3>
-                                                        <div class="inner-booking-list">
-                                                            <h5 style="font-weight: normal;">Last Time Searched:</h5>
-                                                            <ul class="booking-list">
-                                                                <li class="highlighted">{{ $log->updated_at }}</li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="inner-booking-list">
-                                                            <h5 style="font-weight: normal;">Last Search Results:</h5>
-                                                            <ul class="booking-list">
-                                                                <li>{{ $log->last_search_results_count }}</li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="inner-booking-list">
-                                                            <h5 style="font-weight: normal;">Total Search Results:</h5>
-                                                            <ul class="booking-list">
-                                                                <li>{{ $log->total_results_count }}</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <table id="search-log-table" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Item</th>
+                                        <th>Times Searched</th>
+                                        <th>Searched On</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($logs as $log)
+                                        <tr>
+                                            <td>{{ $count }}</td>
+                                            <a href="/listings/search?q={{ $log->item }}">
+                                                <td>{{ $log->item }}</td>
+                                            </a>
+                                            <td>{{ $log->times_searched }}</td>
+                                            <td>{{ $log->created_at }}</td>
+                                            
+                                        </tr>
+                                        @php $count += 1; @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
                         @else
                             <p>Search log not yet available :-(</p>
                         @endif
@@ -53,12 +49,25 @@
 
                 </div>
 
-                <div class="col-lg-12 col-md-12">
+                {{-- <div class="col-lg-12 col-md-12">
                     {{ $logs->links() }}
-                </div>
+                </div> --}}
 
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#search-log-table').DataTable({
+                searching: false, 
+                paging: false, 
+                bPaginate: true,
+            });
+        });
+    </script>
 @endsection
