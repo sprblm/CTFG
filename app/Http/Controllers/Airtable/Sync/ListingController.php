@@ -28,7 +28,7 @@ class ListingController extends Controller {
         // Recreate listings
         $listings = Airtable::table('listings')->all();
 
-        if (Listing::count() > 0) {
+        if ((Listing::count() > 0) && (sizeof($listings) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Listing::truncate();
             DB::table('listing_categories')->truncate();

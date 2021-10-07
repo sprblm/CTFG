@@ -14,14 +14,13 @@ class PeopleController extends Controller {
     public function syncPeople () {
         \Log::info("People table sync started at ".date('Y-m-d H:i:s'));
 
-        if (People::count() > 0) {
+        $people = Airtable::table('people')->all();
+        if ((People::count() > 0) && (sizeof($people) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             People::truncate();
         }
 
         // Recreate people
-        $people = Airtable::table('people')->all();
-        
         foreach ($people as $f) {
             $pp = new People;
             $pp->airtable_id = @$f["id"];

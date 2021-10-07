@@ -14,14 +14,13 @@ class MediaController extends Controller {
     public function syncMedia () {
         \Log::info("Media table sync started at ".date('Y-m-d H:i:s'));
 
-        if (Media::count() > 0) {
+        $media = Airtable::table('media')->all();
+        if ((Media::count() > 0) && (sizeof($media) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Media::truncate();
         }
 
         // Recreate media
-        $media = Airtable::table('media')->all();
-        
         foreach ($media as $f) {
             $md = new Media;
             $md->airtable_id = @$f["id"];

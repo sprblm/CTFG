@@ -14,14 +14,14 @@ class FundingController extends Controller {
     public function syncFunding () {
         \Log::info("Funding table sync started at ".date('Y-m-d H:i:s'));
 
-        if (Funding::count() > 0) {
+        $funding = Airtable::table('funding')->all();
+
+        if ((Funding::count() > 0) && (sizeof($funding) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Funding::truncate();
         }
 
         // Recreate categories
-        $funding = Airtable::table('funding')->all();
-        
         foreach ($funding as $f) {
             $fund = new Funding;
             $fund->airtable_id = @$f["id"];

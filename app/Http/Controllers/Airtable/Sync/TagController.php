@@ -14,14 +14,13 @@ class TagController extends Controller {
     public function syncTag () {
         \Log::info("Tag table sync started at ".date('Y-m-d H:i:s'));
 
-        if (Tag::count() > 0) {
+        $tags = Airtable::table('tags')->all();
+        if ((Tag::count() > 0) && (sizeof($tags) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Tag::truncate();
         }
 
         // Recreate people
-        $tags = Airtable::table('tags')->all();
-        
         foreach ($tags as $f) {
             $tg = new Tag;
             $tg->airtable_id = @$f["id"];

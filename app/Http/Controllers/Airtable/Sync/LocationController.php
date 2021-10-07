@@ -14,15 +14,14 @@ use App\Models\Country;
 class LocationController extends Controller {
     public function syncLocation () {
         \Log::info("Location table sync started at ".date('Y-m-d H:i:s'));
+        $locations = Airtable::table('locations')->all();
 
-        if (Location::count() > 0) {
+        if ((Location::count() > 0) && (sizeof($locations) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Location::truncate();
         }
 
         // Recreate categories
-        $locations = Airtable::table('locations')->all();
-
         foreach($locations as $loc) {
             $lc = new Location;
             $lc->airtable_id = @$loc["id"];

@@ -14,14 +14,13 @@ class ImpactController extends Controller {
     public function syncImpact () {
         \Log::info("Impact table sync started at ".date('Y-m-d H:i:s'));
 
-        if (Impact::count() > 0) {
+        $impact = Airtable::table('impact')->all();
+        if ((Impact::count() > 0) && (sizeof($impact) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Impact::truncate();
         }
 
         // Recreate categories
-        $impact = Airtable::table('impact')->all();
-        
         foreach ($impact as $f) {
             $imp = new Impact;
             $imp->airtable_id = @$f["id"];

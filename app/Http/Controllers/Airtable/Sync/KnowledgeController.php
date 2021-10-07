@@ -14,14 +14,14 @@ class KnowledgeController extends Controller {
     public function syncKnowledge () {
         \Log::info("Knowledge table sync started at ".date('Y-m-d H:i:s'));
 
-        if (Knowledge::count() > 0) {
+        $knowledge = Airtable::table('knowledge')->all();
+        
+        if ((Knowledge::count() > 0) && (sizeof($knowledge) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Knowledge::truncate();
         }
 
         // Recreate categories
-        $knowledge = Airtable::table('knowledge')->all();
-        
         foreach ($knowledge as $f) {
             $kng = new Knowledge;
             $kng->airtable_id = @$f["id"];
