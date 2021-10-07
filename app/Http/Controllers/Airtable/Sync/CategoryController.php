@@ -13,14 +13,15 @@ use App\Models\Category;
 class CategoryController extends Controller {
     public function syncCategories () {
         \Log::info("Categories sync started at ".date('Y-m-d H:i:s'));
+        $airtableCategories = Airtable::table('categories')->all();
 
-        if (Category::count() > 0) {
+        // Check if Airtable returned data then truncate table
+        if ((Category::count() > 0) && (sizeof($airtableCategories) > 0)) {
             Category::truncate();
         }
 
         // Recreate categories
-        $airtableCategories = Airtable::table('categories')->all();
-
+        
         //print_r($airtableCategories[0]);
 
         //echo $airtableCategories[0]["fields"]["Name"];

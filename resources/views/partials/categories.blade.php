@@ -42,9 +42,9 @@ a:hover{color: #f91942 !important;}
 .sidebar .menu-open svg{margin: 0 !important; transform: rotate(90deg)}
 .sidebar .has-submenu.active {color: #fff !important;border-radius: 25px;background-color: #f91942;}
 
-.sidebar li.nav-item a.nav-link:hover{color: #fff !important; text-decoration: underline;}
+.sidebar li.nav-item a.nav-link:hover{color: #7f8280 !important; text-decoration: underline;}
 .sidebar .menu-open span {
-    color: #fff !important;
+    color: #7f8280 !important;
 }
 
 /*! CSS Used fontfaces */
