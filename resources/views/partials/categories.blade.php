@@ -51,7 +51,7 @@ a:hover{color: #f91942 !important;}
 @font-face{font-family:"bootstrap-icons";src:url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff2?8bd4575acf83c7696dc7a14a966660a3") format("woff2"), url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff?8bd4575acf83c7696dc7a14a966660a3") format("woff");}
 </style>
 
-<nav class="sidebar card py-2 mb-4">
+{{-- <nav class="sidebar card py-2 mb-4">
     <ul class="nav flex-column" id="nav_accordion">
         @foreach($catHierarchies as $catHierachy)
             <li class="nav-item has-submenu">
@@ -77,7 +77,7 @@ a:hover{color: #f91942 !important;}
             </li>
         @endforeach
     </ul>
-</nav>
+</nav> --}}
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(){

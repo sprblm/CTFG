@@ -27,8 +27,12 @@ class ComposerServiceProvider extends ServiceProvider
             '*', 'App\Http\ViewComposers\Categories',
         );
 
-        view()->composer(
+        /*view()->composer(
             '*', 'App\Http\ViewComposers\CategoryHierarchies',
+        );*/
+
+        view()->composer(
+            '*', 'App\Http\ViewComposers\TagHierarchies',
         );
 
         view()->composer(
