@@ -1,9 +1,7 @@
 @foreach($projects as $project)
     <div class="listing-item">
         <a href="/listing/{{ $project->slug }}" class="listing-img-container">
-        {{-- <a href="/listing/{{ $project->slug }}" class="listing-img-container" style="text-align: center; padding: 5px 0;"> --}}
-            <img src="{{ @$project->media->first()->link }}" alt="{{ $project->name }}">
-            {{-- <img src="{{ @$project->media->first()->link }}" alt="{{ $project->name }}" style="width: 200px !important; height: 200px !important; border-radius: 50% !important;"> --}}
+            <img src="{{ @$project->media->first()->link }}" loading="lazy" alt="{{ $project->name }}">
         </a>
         
         <div class="listing-content">
@@ -20,10 +18,6 @@
                         {{ @$project->location->first()->name }}
                     </a>
                 @endif
-
-                {{-- <a href="/listing/{{ $project->slug }}" class="details button border">  
-                    Details
-                </a> --}}
             </div>
 
             <p style="padding: 0 30px; font-size: 15px; line-height: 22px;">
