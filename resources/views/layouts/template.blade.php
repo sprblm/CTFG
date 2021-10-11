@@ -91,16 +91,16 @@
     
     <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-migrate-3.1.0.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script> -->
     <script type="text/javascript" src="{{ asset('js/chosen.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/rangeslider.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/magnific-popup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script> -->
     <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
         var path = "{{ route('autocomplete') }}";
@@ -141,28 +141,6 @@
     </script>
     
     @yield('scripts')
-    <!-- Google Autocomplete -->
-    <!-- <script>
-        function initAutocomplete() {
-          var input = document.getElementById('autocomplete-input');
-          var autocomplete = new google.maps.places.Autocomplete(input);
-        
-          autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-              window.alert("No details available for input: '" + place.name + "'");
-              return;
-            }
-          });
-        
-        if ($('.main-search-input-item')[0]) {
-           setTimeout(function(){ 
-               $(".pac-container").prependTo("#autocomplete-container");
-           }, 300);
-        }
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm6llrO2VUicflJMJFpgXOA1aS3VIUSGs&libraries=places&callback=initAutocomplete"></script> -->
-    
+
 </body>
 </html>
