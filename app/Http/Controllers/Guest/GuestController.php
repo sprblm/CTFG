@@ -95,10 +95,6 @@ class GuestController extends Controller {
 
     // Get world map
     public function worldMap() {
-        //$projects = Listing::with('location')->whereNotNull('latitude')->whereNotNull('longitude')->limit(50)->get(['latitude', 'longitude', 'name']);
-
-        
-
         $projects = Listing::whereNotNull('latitude')->whereNotNull('longitude')->get(['latitude', 'longitude', 'first_location', 'name', 'slug']);
 
         return view ('map.all-projects', [
