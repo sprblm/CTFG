@@ -9,6 +9,10 @@
         font-size: 1.4rem !important;
     }
 
+    p.listing-description a, #listing-overview a {
+        color: #03cafc !important;
+    }
+
     li.cat-dropdown {
         color: #979799 !important;
     }

@@ -66,8 +66,8 @@
                 <p>
                     {!! $project->introduction !!}
                 </p>
-                <p>
-                    {!! $project->description !!}
+                <p class="listing-description">
+                    {{ Illuminate\Mail\Markdown::parse($project->description) }}
                 </p>
             </div>
 
