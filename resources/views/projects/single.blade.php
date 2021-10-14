@@ -141,7 +141,7 @@
                         @if(!empty(@$project->last_modified))
                             <tr>
                                 <th>Last Modified: </th>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->last_modified)->format('M d, Y') }}</td>
+                                <td>{{ @\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->last_modified)->format('M d, Y') }}</td>
                             </tr>
                         @endif
                     </tbody>
@@ -215,7 +215,7 @@
                     @endif
                     @if(!empty(@$project->impact->first()->impact_date))
                         <a href="{{ @$project->impact->first()->impact_date }}">
-                            {{ \Carbon\Carbon::createFromFormat('m/Y', @$project->impact->first()->impact_date)->format('Y') }}
+                            {{ @\Carbon\Carbon::createFromFormat('m/Y', @$project->impact->first()->impact_date)->format('Y') }}
                         </a>)
                     @else
                         )
