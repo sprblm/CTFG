@@ -17,12 +17,17 @@ use App\Models\ParentCategory;
 use App\Models\GrandParentCategory;
 use App\Models\AncestorCategory;
 use App\Models\Country;
+use App\Models\Tag;
 
 use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        \Log::info("\n");
+        $tags = Tag::distinct('name')->orderBy('name')->get();
+
+        print_r($tags);
+
+        //\Log::info("\n");
 
         /*$projects = Listing::get();
 
