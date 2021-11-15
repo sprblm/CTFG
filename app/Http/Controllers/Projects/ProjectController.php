@@ -46,14 +46,15 @@ class ProjectController extends Controller {
     // Search
     public function search(Request $request) {
         $q = $request->query('q');
+        $escapedQuery = addslashes($q, "'");
         
-        $results = Listing::where("name", "LIKE", "%{$q}%")
-                ->orWhere("introduction", "LIKE", "%{$q}%")
-                ->orWhere("description", "LIKE", "%{$q}%")
+        $results = Listing::where("name", "LIKE", "%{$escapedQuery}%")
+                ->orWhere("introduction", "LIKE", "%{$escapedQuery}%")
+                ->orWhere("description", "LIKE", "%{$escapedQuery}%")
                 ->orderByRaw("CASE
-                    WHEN name = '{$q}' THEN 1
-                    WHEN name LIKE '{$q}%' THEN 2
-                    WHEN name LIKE '%{$q}%' THEN 3
+                    WHEN name = '{$escapedQuery}' THEN 1
+                    WHEN name LIKE '{$escapedQuery}%' THEN 2
+                    WHEN name LIKE '%{$escapedQuery}%' THEN 3
                     ELSE 4
                     END")
                 ->paginate(10);
