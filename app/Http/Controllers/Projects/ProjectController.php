@@ -46,7 +46,7 @@ class ProjectController extends Controller {
     // Search
     public function search(Request $request) {
         $q = $request->query('q');
-        $escapedQuery = addslashes($q, "'");
+        $escapedQuery = addslashes($q);
         
         $results = Listing::where("name", "LIKE", "%{$escapedQuery}%")
                 ->orWhere("introduction", "LIKE", "%{$escapedQuery}%")
