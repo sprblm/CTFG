@@ -11,6 +11,8 @@ use App\Jobs\LogSearch;
 
 use App\Models\Listing;
 use App\Models\SearchLog;
+use App\Models\Category;
+use App\Models\Tag;
 
 class ProjectController extends Controller {
     // Embed add project Airtable form view
@@ -45,6 +47,8 @@ class ProjectController extends Controller {
 
     // Search
     public function search(Request $request) {
+        //print_r($request->all());
+
         $q = $request->query('q');
         $escapedQuery = addslashes($q);
         
@@ -56,26 +60,92 @@ class ProjectController extends Controller {
                     WHEN name LIKE '{$escapedQuery}%' THEN 2
                     WHEN name LIKE '%{$escapedQuery}%' THEN 3
                     ELSE 4
-                    END")
-                ->paginate(10);
+                    END");
+                //->paginate(10);
+
+        if ($request->has('tags')) {
+            $tags = $request->query('tags');
+            $tagIds = array();
+
+            for ($i=0; $i < sizeof($tags); $i++) { 
+                $tagId = Tag::where('name', $tags[$i])->first();
+                array_push($tagIds, $tagId->id);
+            }
+
+            $results->whereHas('tags', function($q) use ($tagIds) {
+                $q->whereIn('tag_id', $tagIds);
+            });
+        }
+
+        if ($request->has('categories')) {
+            $categories = $request->query('categories');
+            $catIds = array();
+
+            for ($i=0; $i < sizeof($categories); $i++) { 
+                $catId = Category::where('name', $categories[$i])->first();
+                array_push($catIds, $catId->id);
+            }
+
+            $results->whereHas('categories', function($q) use ($catIds) {
+                $q->whereIn('category_id', $catIds);
+            });
+        }
+
+        if ($request->has('countries')) {
+            $countries = $request->query('countries');
+
+            // Add variants of US
+            if (in_array('United States of America', $countries)) {
+                array_push($countries, 'USA');
+                array_push($countries, 'United States');
+            }
+
+            // Add variants of UK
+            if (in_array('United Kingdom', $countries)) {
+                array_push($countries, 'UK');
+            }
+
+            $results->when(count($countries),function ($query)use ($countries) {
+                $query->whereHas('location', function($q) use ($countries) {
+                    $q->where( function($q) use ($countries) {
+                        foreach ($countries as $country) {
+                            $q->orWhere('name', 'like', '%' . $country . '%');
+                        }
+                    });
+                });
+            });
+
+        }
+
+        $activeProjects = 1;
+        if ($request->has('status')) {
+            $results->where('status', 'Active');
+            if ($request->query('status') == 'Active') {
+                $activeProjects = 1;
+            } else {
+                $activeProjects = 0;
+            }
+        } else {
+            $activeProjects = 0;
+        }
+        
+        $projects = $results->paginate(10);
 
         // Queue job for logging
-        $resultsTotal = $results->total();
+        $resultsTotal = $projects->total();
         if (!empty($q)) {
             $this->logSearch($q, $resultsTotal);
         }
-
-        /* try {
-            LogSearch::dispatch($q, $resultsTotal);
-        } catch (\Throwable $th) {
-            \Log::error('Error from search log: ' . $th->getMessage());
-        } */
         
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Search Results',
-            'projects' => $results,
+            'projects' => $projects,
             'query' => @$q,
+            'filterCategories' => @$categories,
+            'filterTags' => @$tags,
+            'filterCountries' => @$countries,
+            'filterStatus' => @$activeProjects,
         ]);
 
     }

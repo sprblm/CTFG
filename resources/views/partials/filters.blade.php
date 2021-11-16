@@ -1,6 +1,7 @@
 <div class="main-search-box no-shadow margin-bottom-30" style="border-bottom: 2px dotted #ccc;">
     <form method="GET">
         <div class="row with-forms">
+            <input type="hidden" name="q" value="{{ @$query }}">
             <div class="col-md-6">
                 <select name="tags[]" data-placeholder="All Tags" class="chosen-select-no-single" multiple style="display: none;">
                     @foreach($allTags as $tag)
