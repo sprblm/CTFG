@@ -1,5 +1,5 @@
 <li class="nav-item has-submenu">
-    <a class="nav-link" href="/listing-category/{{ $sub_items->slug }}" title="{{ $sub_items->name }}">
+    <a class="nav-link overlay" href="/listing-category/{{ $sub_items->slug }}" title="{{ $sub_items->name }}">
         <span class="text-sm cat-wrap">
             {{ $sub_items->name }}
         </span>

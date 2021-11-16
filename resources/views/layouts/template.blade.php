@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/listing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
     @yield('styles')
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1HZWFGK53"></script>
     <script>
@@ -59,9 +60,9 @@
                     <div class="right-side">
                         <div class="header-widget">
                             <span style="padding-right: 25px;">
-                                <a href="/listing-category/the-tech" style="padding-right: 10px;">The Tech</a>
-                                <a href="/listing-category/the-people" style="padding-right: 10px;">The People</a>
-                                <a href="/listing-categories" style="padding-right: 10px;">All Categories</a>
+                                <a href="/listing-category/the-tech" class="overlay" style="padding-right: 10px;">The Tech</a>
+                                <a href="/listing-category/the-people" class="overlay" style="padding-right: 10px;">The People</a>
+                                <a href="/listing-categories" class="overlay" style="padding-right: 10px;">All Categories</a>
                                 <a href="/world-map" style="padding-right: 10px;">World Map</a>
                                 <a href="/about">About</a>
                             </span>
@@ -89,6 +90,7 @@
         <div id="backtotop"><a href="#"></a></div>
     </div>
     
+    
     <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-migrate-3.1.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
@@ -102,7 +104,14 @@
     <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    
     <script type="text/javascript">
+        /*$(window).load(function() {
+            $.LoadingOverlay("hide");
+        }); */
+        
+
         var path = "{{ route('autocomplete') }}";
 
         $('input.typeahead').typeahead({
@@ -137,6 +146,18 @@
                 moreText.style.display = "inline";
             }
         }
+
+        $("#search").click(function() {
+            $.LoadingOverlay("show");
+        });
+
+        $("#filter").click(function() {
+            $.LoadingOverlay("show");
+        });
+
+        $(".overlay").click(function() {
+            $.LoadingOverlay("show");
+        });
 
     </script>
     

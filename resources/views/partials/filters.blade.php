@@ -56,7 +56,7 @@
             </div>
 
             <div class="col-md-2" style="text-align: right;">
-                <button class="button">Filter</button>
+                <button class="button" id="filter">Filter</button>
             </div>
         </div>
     </form>
