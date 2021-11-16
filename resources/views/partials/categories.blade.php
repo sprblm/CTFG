@@ -54,13 +54,13 @@ a:hover{color: #f91942 !important;}
 <nav class="sidebar card py-2 mb-4">
     <ul class="nav flex-column" id="nav_accordion">
         @foreach($catHierarchies as $catHierachy)
-            <li class="nav-item has-submenu <?php if(@$activeParent->name == $catHierachy->name || @$activeCat == $catHierachy->name ) { echo 'active'; } ?>">
+            <li class="nav-item has-submenu <?php if(/*@$activeParent->name == $catHierachy->name || */@$activeCat == $catHierachy->name ) { echo 'active'; } ?>">
                 <a class="nav-link" href="/listing-category/{{ $catHierachy->slug }}" title="{{ $catHierachy->name }}">
                     <span class="text-sm cat-wrap <?php if(@$activeCat == $catHierachy->name ) { echo 'text-white-600'; } ?>">
                         {{ $catHierachy->name }}
                     </span>
                 </a>
-                <a class="nav-link submenu-button <?php if(@$activeParent->name == $catHierachy->name || @$activeCat == $catHierachy->name ) { echo 'menu-open'; } ?>">
+                <a class="nav-link submenu-button <?php if(/*@$activeParent->name == $catHierachy->name || */@$activeCat == $catHierachy->name ) { echo 'menu-open'; } ?>">
                     <span class="text-sm" style="margin-top: -15px !important;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"  style="margin-top: -15px !important;">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
