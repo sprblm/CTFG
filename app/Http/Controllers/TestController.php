@@ -23,7 +23,17 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        $types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
+        if ($request->has('types')) {
+            $types = $request->query('types');
+            if (in_array("Other", $types)) {
+                $key = array_search("Other", $types);
+                $types[$key] = NULL;
+            }
+
+            print_r($types);
+        }
+
+        /*$types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
 
         foreach ($types as $type) {
             if (empty($type)) {
@@ -31,7 +41,7 @@ class TestController extends Controller {
             } 
 
             echo $type."<br>";
-        }
+        } */
 
         /*$tags = Tag::distinct('name')->orderBy('name')->get();
 

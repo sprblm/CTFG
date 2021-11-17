@@ -42,27 +42,6 @@
                 </select>
             </div>
 
-            <!--<div class="col-md-6">
-                <select name="opensource" data-placeholder="Open source" class="chosen-select" style="display: none;">
-                    <option></option>
-                    <option value="Yes" <?php 
-                                if (@$filterOpenSource == "Yes") {
-                                    echo "selected";
-                                }
-                            ?>>Yes</option>
-                    <option value="No" <?php 
-                                if (@$filterOpenSource == "No") {
-                                    echo "selected";
-                                }
-                            ?>>No</option>
-                    <option value="Partially" <?php 
-                                if (@$filterOpenSource == "Partially") {
-                                    echo "selected";
-                                }
-                            ?>>Partially</option>
-                </select>
-            </div> -->
-
             <div class="col-md-6">
                 <select name="opensource[]" data-placeholder="Open source" class="chosen-select-no-single" multiple style="display: none;">
                     <?php
@@ -90,6 +69,20 @@
                                 }
                             ?>
                             >{{ $type }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <select name="organizationtypes[]" data-placeholder="Organization type" class="chosen-select-no-single" multiple style="display: none;">
+                    @foreach($organizationTypes as $orgType)
+                        <option value="{{ $orgType }}"
+                            <?php 
+                                if (@in_array($orgType, @$filterOrgTypes)) {
+                                    echo "selected";
+                                }
+                            ?>
+                            >{{ $orgType }}</option>
                     @endforeach
                 </select>
             </div>

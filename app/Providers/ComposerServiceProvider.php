@@ -40,6 +40,10 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer(
+            '*', 'App\Http\ViewComposers\OrganizationTypes',
+        );
+
+        view()->composer(
             ['welcome', 'projects.projects-by-category', 'projects.projects-by-tag', 'projects.search-results'],
             'App\Http\ViewComposers\Tags'
         );

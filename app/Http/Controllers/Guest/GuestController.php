@@ -76,8 +76,26 @@ class GuestController extends Controller {
 
         if ($request->has('types')) {
             $types = $request->query('types');
+            if (in_array("Other", $types)) {
+                $key = array_search("Other", $types);
+                $types[$key] = NULL;
 
-            $listings->whereIn('type', $types);
+                $listings->whereIn('type', $types)->orWhereNull('type');
+            } else {
+                $listings->whereIn('type', $types);   
+            }
+        }
+
+        if ($request->has('organizationtypes')) {
+            $organizationtypes = $request->query('organizationtypes');
+            if (in_array("Other", $organizationtypes)) {
+                $key = array_search("Other", $organizationtypes);
+                $organizationtypes[$key] = NULL;
+
+                $listings->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
+            } else {
+                $listings->whereIn('organization_type', $organizationtypes);   
+            }
         }
 
         $activeProjects = 1;
@@ -103,6 +121,7 @@ class GuestController extends Controller {
             'filterStatus' => @$activeProjects,
             'filterOpenSource' => @$opensource,
             'filterTypes' => @$types,
+            'filterOrgTypes' => @$organizationtypes,
         ]);
 
     }

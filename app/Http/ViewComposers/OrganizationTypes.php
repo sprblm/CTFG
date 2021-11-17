@@ -5,9 +5,9 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Models\Listing;
 
-class ListingTypes
+class OrganizationTypes
 {
-    public $types = [];
+    public $organizationTypes = [];
     
     /**
      * Create a movie composer.
@@ -15,9 +15,7 @@ class ListingTypes
      * @return void
      */
     public function __construct() {
-        //$types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
-
-        $types = Listing::distinct('type')->orderBy('type', 'DESC')->pluck('type');
+        $types = Listing::distinct('organization_type')->orderBy('organization_type', 'DESC')->pluck('organization_type');
 
         $typesArray = array();
         foreach ($types as $type) {
@@ -28,7 +26,7 @@ class ListingTypes
             array_push($typesArray, $type);
         }
         
-        $this->types = $typesArray;
+        $this->organizationTypes = $typesArray;
     }
 
     /**
@@ -39,6 +37,6 @@ class ListingTypes
      */
     public function compose(View $view)
     {
-        $view->with(['listingTypes' => $this->types]);
+        $view->with(['organizationTypes' => $this->organizationTypes]);
     }
 }

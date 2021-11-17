@@ -123,6 +123,18 @@ class ProjectController extends Controller {
             $listings->where('open_source', $opensource);
         }
 
+        if ($request->has('types')) {
+            $types = $request->query('types');
+            if (in_array("Other", $types)) {
+                $key = array_search("Other", $types);
+                $types[$key] = NULL;
+
+                $listings->whereIn('type', $types)->orWhereNull('type');
+            } else {
+                $listings->whereIn('type', $types);   
+            }
+        }
+
         $activeProjects = 1;
         if ($request->has('status')) {
             $results->where('status', 'Active');
