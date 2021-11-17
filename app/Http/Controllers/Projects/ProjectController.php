@@ -117,6 +117,12 @@ class ProjectController extends Controller {
 
         }
 
+        if ($request->has('opensource')) {
+            $opensource = $request->query('opensource');
+
+            $listings->where('open_source', $opensource);
+        }
+
         $activeProjects = 1;
         if ($request->has('status')) {
             $results->where('status', 'Active');

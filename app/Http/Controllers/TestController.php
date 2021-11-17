@@ -23,9 +23,19 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        $tags = Tag::distinct('name')->orderBy('name')->get();
+        $types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
 
-        print_r($tags);
+        foreach ($types as $type) {
+            if (empty($type)) {
+                $type = "Other";
+            } 
+
+            echo $type."<br>";
+        }
+
+        /*$tags = Tag::distinct('name')->orderBy('name')->get();
+
+        print_r($tags);*/
 
         //\Log::info("\n");
 

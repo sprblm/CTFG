@@ -1,6 +1,6 @@
 <div class="main-search-box no-shadow margin-bottom-30" style="border-bottom: 2px dotted #ccc;">
     <form method="GET">
-        <div class="row with-forms">
+        <div class="row with-forms margin-bottom-30">
             <input type="hidden" name="q" value="{{ @$query }}">
             <div class="col-md-6">
                 <select name="tags[]" data-placeholder="All Tags" class="chosen-select-no-single" multiple style="display: none;">
@@ -38,6 +38,58 @@
                                 }
                             ?>
                             >{{ $country->country }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!--<div class="col-md-6">
+                <select name="opensource" data-placeholder="Open source" class="chosen-select" style="display: none;">
+                    <option></option>
+                    <option value="Yes" <?php 
+                                if (@$filterOpenSource == "Yes") {
+                                    echo "selected";
+                                }
+                            ?>>Yes</option>
+                    <option value="No" <?php 
+                                if (@$filterOpenSource == "No") {
+                                    echo "selected";
+                                }
+                            ?>>No</option>
+                    <option value="Partially" <?php 
+                                if (@$filterOpenSource == "Partially") {
+                                    echo "selected";
+                                }
+                            ?>>Partially</option>
+                </select>
+            </div> -->
+
+            <div class="col-md-6">
+                <select name="opensource[]" data-placeholder="Open source" class="chosen-select-no-single" multiple style="display: none;">
+                    <?php
+                        $opensourceArray = array("Yes", "No", "Partially");
+                    ?>
+                    @foreach($opensourceArray as $ops)
+                        <option value="{{ $ops }}"
+                            <?php 
+                                if (@in_array($ops, @$filterOpenSource)) {
+                                    echo "selected";
+                                }
+                            ?>
+                            >{{ $ops }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <select name="types[]" data-placeholder="Project type" class="chosen-select-no-single" multiple style="display: none;">
+                    @foreach($listingTypes as $type)
+                        <option value="{{ $type }}"
+                            <?php 
+                                if (@in_array($type, @$filterTypes)) {
+                                    echo "selected";
+                                }
+                            ?>
+                            >{{ $type }}</option>
                     @endforeach
                 </select>
             </div>

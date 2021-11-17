@@ -68,6 +68,18 @@ class GuestController extends Controller {
 
         }
 
+        if ($request->has('opensource')) {
+            $opensource = $request->query('opensource');
+
+            $listings->where('open_source', $opensource);
+        }
+
+        if ($request->has('types')) {
+            $types = $request->query('types');
+
+            $listings->whereIn('type', $types);
+        }
+
         $activeProjects = 1;
         if ($request->has('status')) {
             $listings->where('status', 'Active');
@@ -89,6 +101,8 @@ class GuestController extends Controller {
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
             'filterStatus' => @$activeProjects,
+            'filterOpenSource' => @$opensource,
+            'filterTypes' => @$types,
         ]);
 
     }

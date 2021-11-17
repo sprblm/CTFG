@@ -2332,6 +2332,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #888;
+    font-family: raleway, helveticaneue, helvetica neue, Helvetica, Arial, sans-serif;
 }
 .chosen-container-single .chosen-single-with-deselect span {
     margin-right: 38px;
