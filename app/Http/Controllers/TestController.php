@@ -23,15 +23,7 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        if ($request->has('types')) {
-            $types = $request->query('types');
-            if (in_array("Other", $types)) {
-                $key = array_search("Other", $types);
-                $types[$key] = NULL;
-            }
-
-            print_r($types);
-        }
+        echo count($request->all());
 
         /*$types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
 

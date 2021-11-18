@@ -92,10 +92,10 @@
             <div class="col-md-12">
                 <div class="copyrights">
                     <span style="padding: 0 30px; font-size: 15px; line-height: 22px;">
-                        This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution, and share alike with the same license. (Creative Commons BY NC SA 4.0). (With CC license linked to <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">https://creativecommons.org/licenses/by-nc-sa/4.0/</a>)
+                        This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution, and share alike with the same license.
                     </span>
                     <div style="margin-top: 20px;">
-                        <img width="18" height="18" src="{{ asset('images/cc.png') }}" /> Civic Tech Field Guide
+                        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img width="100" height="100" src="https://upload.wikimedia.org/wikipedia/commons/b/bd/CC-BY-NC-SA.svg" /></a> Civic Tech Field Guide
                     </div>
                 </div>
             </div>

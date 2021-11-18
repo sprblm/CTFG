@@ -135,16 +135,21 @@ class ProjectController extends Controller {
             }
         }
 
-        $activeProjects = 1;
-        if ($request->has('status')) {
-            $results->where('status', 'Active');
-            if ($request->query('status') == 'Active') {
-                $activeProjects = 1;
+        if ($request->has('organizationtypes')) {
+            $organizationtypes = $request->query('organizationtypes');
+            if (in_array("Other", $organizationtypes)) {
+                $key = array_search("Other", $organizationtypes);
+                $organizationtypes[$key] = NULL;
+
+                $listings->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
             } else {
-                $activeProjects = 0;
+                $listings->whereIn('organization_type', $organizationtypes);   
             }
-        } else {
-            $activeProjects = 0;
+        }
+
+        if ($request->has('status') || count($request->all()) == 0) {
+            $status = "Active";
+            $listings->where('status', 'Active');
         }
         
         $projects = $results->paginate(10);
@@ -163,7 +168,8 @@ class ProjectController extends Controller {
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
-            'filterStatus' => @$activeProjects,
+            'filterStatus' => @$status,
+            'filterOrgTypes' => @$organizationtypes,
         ]);
 
     }

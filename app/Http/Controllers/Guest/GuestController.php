@@ -98,15 +98,9 @@ class GuestController extends Controller {
             }
         }
 
-        $activeProjects = 1;
-        if ($request->has('status')) {
-            $listings->where('status', 'Active');
-            if ($request->query('status') == 'Active') {
-                $activeProjects = 1;
-            } else {
-                $activeProjects = 0;
-            }
-        } else {
+        
+        if ($request->has('status') || count($request->all()) == 0) {
+            $status = "Active";
             $listings->where('status', 'Active');
         }
         
@@ -118,11 +112,11 @@ class GuestController extends Controller {
             'filterCategories' => @$categories,
             'filterTags' => @$tags,
             'filterCountries' => @$countries,
-            'filterStatus' => @$activeProjects,
+            'filterStatus' => @$status,
             'filterOpenSource' => @$opensource,
             'filterTypes' => @$types,
             'filterOrgTypes' => @$organizationtypes,
-        ]);
+        ]); 
 
     }
 

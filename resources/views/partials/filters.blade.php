@@ -91,7 +91,7 @@
                 <div class="checkboxes in-row">
                     <input id="check-2" type="checkbox" name="status" value="Active"
                         <?php 
-                            if (@$filterStatus == "1") {
+                            if (@$filterStatus == "Active") {
                                 echo "checked";
                             }
                         ?>
