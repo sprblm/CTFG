@@ -110,6 +110,14 @@
         /*$(window).load(function() {
             $.LoadingOverlay("hide");
         }); */
+
+        $('input.typeahead').keypress(function (e) {
+            if (e.which == 13) {
+                var q = $('input.typeahead').val();
+                $.LoadingOverlay("show");
+                window.location.replace("/listings/search?q="+q);
+            }
+        });
         
 
         var path = "{{ route('autocomplete') }}";
@@ -124,10 +132,14 @@
             afterSelect: function (data) {
                 window.location.replace("/listings/search?q="+data.name);
             }
+            
         });
+
+
 
         $('#search').click(function(e) {
             var param = $(".typeahead").val();
+            $.LoadingOverlay("show");
             window.location.href  = "/listings/search?q="+param;
         });
 

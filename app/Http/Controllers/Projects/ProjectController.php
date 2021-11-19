@@ -120,7 +120,7 @@ class ProjectController extends Controller {
         if ($request->has('opensource')) {
             $opensource = $request->query('opensource');
 
-            $listings->where('open_source', $opensource);
+            $results->where('open_source', $opensource);
         }
 
         if ($request->has('types')) {
@@ -129,9 +129,9 @@ class ProjectController extends Controller {
                 $key = array_search("Other", $types);
                 $types[$key] = NULL;
 
-                $listings->whereIn('type', $types)->orWhereNull('type');
+                $results->whereIn('type', $types)->orWhereNull('type');
             } else {
-                $listings->whereIn('type', $types);   
+                $results->whereIn('type', $types);   
             }
         }
 
@@ -141,15 +141,15 @@ class ProjectController extends Controller {
                 $key = array_search("Other", $organizationtypes);
                 $organizationtypes[$key] = NULL;
 
-                $listings->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
+                $results->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
             } else {
-                $listings->whereIn('organization_type', $organizationtypes);   
+                $results->whereIn('organization_type', $organizationtypes);   
             }
         }
 
         if ($request->has('status') || count($request->all()) == 0) {
             $status = "Active";
-            $listings->where('status', 'Active');
+            $results->where('status', 'Active');
         }
         
         $projects = $results->paginate(10);
