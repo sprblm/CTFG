@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Listing extends Model {
     protected $table = "listings";
@@ -58,5 +59,19 @@ class Listing extends Model {
     public function tags() {
         return $this->belongsToMany('App\Models\Tag', 'listing_tags', 
           'listing_id', 'tag_id');
+    }
+
+    // Query scope
+    public function scopeSearchQuery(Builder $builder, $q) {
+        $escapedQuery = addslashes($q);
+        return $builder
+            ->select()
+            ->where("name", "LIKE", "%{$escapedQuery}%")->orWhere("introduction", "LIKE", "%{$escapedQuery}%")->orWhere("description", "LIKE", "%{$escapedQuery}%")->orderByRaw("CASE
+                    WHEN name = '{$escapedQuery}' THEN 1
+                    WHEN name LIKE '{$escapedQuery}%' THEN 2
+                    WHEN name LIKE '%{$escapedQuery}%' THEN 3
+                    ELSE 4
+                    END"
+                );
     }
 }

@@ -47,129 +47,92 @@ class ProjectController extends Controller {
 
     // Search
     public function search(Request $request) {
-        //print_r($request->all());
+        $projects = Listing::query()
+            ->when(request('tags'), function($builder) {
+                $tags = request('tags');
 
-        $q = $request->query('q');
-        $escapedQuery = addslashes($q);
-        
-        $results = Listing::where("name", "LIKE", "%{$escapedQuery}%")
-                ->orWhere("introduction", "LIKE", "%{$escapedQuery}%")
-                ->orWhere("description", "LIKE", "%{$escapedQuery}%")
-                ->orderByRaw("CASE
-                    WHEN name = '{$escapedQuery}' THEN 1
-                    WHEN name LIKE '{$escapedQuery}%' THEN 2
-                    WHEN name LIKE '%{$escapedQuery}%' THEN 3
-                    ELSE 4
-                    END");
-                //->paginate(10);
-
-        if ($request->has('tags')) {
-            $tags = $request->query('tags');
-            $tagIds = array();
-
-            for ($i=0; $i < sizeof($tags); $i++) { 
-                $tagId = Tag::where('name', $tags[$i])->first();
-                array_push($tagIds, $tagId->id);
-            }
-
-            $results->whereHas('tags', function($q) use ($tagIds) {
-                $q->whereIn('tag_id', $tagIds);
-            });
-        }
-
-        if ($request->has('categories')) {
-            $categories = $request->query('categories');
-            $catIds = array();
-
-            for ($i=0; $i < sizeof($categories); $i++) { 
-                $catId = Category::where('name', $categories[$i])->first();
-                array_push($catIds, $catId->id);
-            }
-
-            $results->whereHas('categories', function($q) use ($catIds) {
-                $q->whereIn('category_id', $catIds);
-            });
-        }
-
-        if ($request->has('countries')) {
-            $countries = $request->query('countries');
-
-            // Add variants of US
-            if (in_array('United States of America', $countries)) {
-                array_push($countries, 'USA');
-                array_push($countries, 'United States');
-            }
-
-            // Add variants of UK
-            if (in_array('United Kingdom', $countries)) {
-                array_push($countries, 'UK');
-            }
-
-            $results->when(count($countries),function ($query)use ($countries) {
-                $query->whereHas('location', function($q) use ($countries) {
-                    $q->where( function($q) use ($countries) {
-                        foreach ($countries as $country) {
-                            $q->orWhere('name', 'like', '%' . $country . '%');
-                        }
-                    });
+                $builder->whereHas('tags', function($builder) use ($tags) {
+                    $builder->whereIn('name', $tags);
                 });
-            });
+            })
+            ->when(request('categories'), function($builder) {
+                $categories = request('categories');
 
-        }
+                $builder->whereHas('categories', function($builder) use ($categories) {
+                    $builder->whereIn('name', $categories);
+                });
+            })
+            ->when(request('countries'), function($builder) {
+                $countries = request('countries');
 
-        if ($request->has('opensource')) {
-            $opensource = $request->query('opensource');
+                // Add variants of US
+                if (in_array('United States of America', $countries)) {
+                    array_push($countries, 'USA');
+                    array_push($countries, 'United States');
+                }
 
-            $results->where('open_source', $opensource);
-        }
+                // Add variants of UK
+                if (in_array('United Kingdom', $countries)) {
+                    array_push($countries, 'UK');
+                }
 
-        if ($request->has('types')) {
-            $types = $request->query('types');
-            if (in_array("Other", $types)) {
-                $key = array_search("Other", $types);
-                $types[$key] = NULL;
+                $builder->when(count($countries),function ($builder)use ($countries) {
+                    $builder->whereHas('location', function($builder) use ($countries) {
+                        $builder->where( function($builder) use ($countries) {
+                            foreach ($countries as $country) {
+                                $builder->orWhere('name', 'like', '%' . $country . '%');
+                            }
+                        });
+                    });
+                }); 
+            })
+            ->when(request('opensource'), function($builder) {
+                $builder->where('open_source', request('opensource'));
+            })
+            ->when(request('types'), function($builder) {
+                $types = request('types');
+                if (in_array("Other", $types)) {
+                    $key = array_search("Other", $types);
+                    $types[$key] = NULL;
 
-                $results->whereIn('type', $types)->orWhereNull('type');
-            } else {
-                $results->whereIn('type', $types);   
-            }
-        }
+                    $builder->whereIn('type', $types)->orWhereNull('type');
+                } else {
+                    $builder->whereIn('type', $types);   
+                }
+            })
+            ->when(request('organizationtypes'), function($builder) {
+                $organizationtypes = request('organizationtypes');
+                if (in_array("Other", $organizationtypes)) {
+                    $key = array_search("Other", $organizationtypes);
+                    $organizationtypes[$key] = NULL;
 
-        if ($request->has('organizationtypes')) {
-            $organizationtypes = $request->query('organizationtypes');
-            if (in_array("Other", $organizationtypes)) {
-                $key = array_search("Other", $organizationtypes);
-                $organizationtypes[$key] = NULL;
-
-                $results->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
-            } else {
-                $results->whereIn('organization_type', $organizationtypes);   
-            }
-        }
-
-        if ($request->has('status') || count($request->all()) == 0) {
-            $status = "Active";
-            $results->where('status', 'Active');
-        }
-        
-        $projects = $results->paginate(10);
+                    $builder->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
+                } else {
+                    $builder->whereIn('organization_type', $organizationtypes);   
+                }
+            })
+            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
+                $builder->where('status', 'Active');
+            })
+            ->when(request('q'), function($builder) {
+                $builder->searchQuery(request('q'));
+            })
+            ->paginate(10);
 
         // Queue job for logging
-        $resultsTotal = $projects->total();
-        if (!empty($q)) {
-            $this->logSearch($q, $resultsTotal);
+        if (request('q')) {
+            $this->logSearch(request('q'), $projects->total());
         }
-        
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Search Results',
             'projects' => $projects,
-            'query' => @$q,
-            'filterCategories' => @$categories,
-            'filterTags' => @$tags,
-            'filterCountries' => @$countries,
-            'filterStatus' => @$status,
-            'filterOrgTypes' => @$organizationtypes,
+            'query' => request('q'),
+            'filterCategories' => request('categories'),
+            'filterTags' => request('tags'),
+            'filterCountries' => request('countries'),
+            'filterStatus' => request('status'),
+            'filterOrgTypes' => request('organizationtypes'),
         ]);
 
     }
