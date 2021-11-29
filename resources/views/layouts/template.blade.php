@@ -110,19 +110,11 @@
         /*$(window).load(function() {
             $.LoadingOverlay("hide");
         }); */
-
-        $('input.typeahead').keypress(function (e) {
-            if (e.which == 13) {
-                var q = $('input.typeahead').val();
-                $.LoadingOverlay("show");
-                window.location.replace("/listings/search?q="+q);
-            }
-        });
         
 
         var path = "{{ route('autocomplete') }}";
 
-        $('input.typeahead').typeahead({
+        /*$('input.typeahead').typeahead({
             displayKey: 'name',
             source:  function (query, process) {
                 return $.get(path, { query: query }, function (data) {
@@ -133,8 +125,31 @@
                 window.location.replace("/listings/search?q="+data.name);
             }
             
-        });
+        }); */
 
+        $('input.typeahead').typeahead({
+            displayKey: 'name',
+            source:  function (query, process) {
+                return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+            },
+            afterSelect: function (data) {
+                $.LoadingOverlay("show");
+                window.location.replace("/listings/search?q="+data.name);
+            }
+            
+        }).keydown(function( event ) {
+            if ( event.which == 13 ) {
+                $(this).blur();
+                $(this).focus();
+                var q = $(".typeahead").val();
+
+                $.LoadingOverlay("show");
+                window.location.replace("/listings/search?q="+q);
+                return false;
+            }
+        });
 
 
         $('#search').click(function(e) {
