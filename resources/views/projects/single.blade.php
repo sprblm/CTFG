@@ -196,7 +196,13 @@
                                         {{ @$fng->funding_date }}
                                     @endif
                                 </td>
-                                <td>$ {{ @$fng->amount }}</td>
+                                <td>
+                                    @if(@$fng->amount > 0)
+                                        $ {{ @$fng->amount }}
+                                    @else
+                                        &nbsp;
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
