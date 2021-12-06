@@ -3,7 +3,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
-            <h2>Search Results -  <span style="color: #7f8280; font-size: 22px;">{{ @$query }} ({{ @$projects->total() }})</span></h2>
+            @if(isset($query))
+                <h2>Search Results -  <span style="color: #7f8280; font-size: 22px;">       {{ @$query }} ({{ @$projects->total() }})</span>
+                </h2>
+            @else
+                <h2>Search <span style="color: #7f8280; font-size: 22px;"> {{ @$projects->total() }}</span> projects
+                </h2>
+            @endif
         </div>
 
         <div class="col-md-12" style="margin-bottom: 20px;">
