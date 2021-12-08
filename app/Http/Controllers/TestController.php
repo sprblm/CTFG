@@ -23,7 +23,31 @@ use Carbon\Carbon;
 
 class TestController extends Controller {
     public function test(Request $request) {
-        echo count(request()->all());
+        $all = null;
+        $listings = Listing::where('name', 'LIKE', '%'.request('q').'%')->get();
+        $all = $listings;
+
+        echo $all->count()."<br>";
+
+        $cats = Category::where('name', 'LIKE', '%'.request('q').'%')->get();
+        echo "Categories: ".$cats->count()."<br>";
+        foreach ($cats as $cat) {
+            $associatedListings = $cat->listings;
+            echo "associatedListings: ".$associatedListings->count()."<br>";
+            $all = $all->merge($associatedListings);
+        }
+
+        echo $all->count()."<br>";
+
+        $tags = Tag::where('name', 'LIKE', '%'.request('q').'%')->get();
+        foreach ($tags as $tag) {
+            $associatedListings = $tag->listings;
+            $all = $all->merge($associatedListings);
+        }
+
+        echo $all->count()."<br>";
+
+        //echo count(request()->all());
 
         /*$types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
 

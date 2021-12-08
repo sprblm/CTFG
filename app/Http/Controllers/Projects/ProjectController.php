@@ -116,8 +116,23 @@ class ProjectController extends Controller {
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
-            })
-            ->paginate(10);
+            })->get();
+
+            $all = $projects;
+
+            $cats = Category::where('name', 'LIKE', '%'.request('q').'%')->get();
+            foreach ($cats as $cat) {
+                $associatedListings = $cat->listings;
+                $all = $all->merge($associatedListings);
+            }
+
+            $tags = Tag::where('name', 'LIKE', '%'.request('q').'%')->get();
+            foreach ($tags as $tag) {
+                $associatedListings = $tag->listings;
+                $all = $all->merge($associatedListings);
+            }
+
+            $projects = collect($all)->paginate(10);
 
         // Queue job for logging
         if (request('q')) {
