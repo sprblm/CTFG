@@ -24,7 +24,7 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
-        $listings = Airtable::table('listings')->all();
+        $listings = Airtable::table('listings')->get();
         //print_r($listings);
         //$listings = Airtable::table('listings')->all();
 
@@ -55,6 +55,12 @@ class TestController extends Controller {
                         ]);
                     }*/
                 }
+
+                echo "<br>";
+                print_r($listing["fields"]["Host organization"]);
+                echo "<br>";
+
+
             }
 
             echo "<br>";
