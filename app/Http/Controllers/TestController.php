@@ -22,23 +22,42 @@ use App\Models\Tag;
 use Carbon\Carbon;
 
 class TestController extends Controller {
-    
+
     public function test(Request $request) {
         $listings = Airtable::table('listings')->all();
+        //print_r($listings);
+        //$listings = Airtable::table('listings')->all();
 
         foreach ($listings as $listing) {
             if (!empty(@$listing["fields"]["Host organization"]) && sizeof(@$listing["fields"]["Host organization"]) > 0) {
+                
+                echo "Host organization air ID: ".$listing["fields"]["Host organization"][0]."<br>";
+                echo "Host organization Name: ".$listing["fields"]["Project name"]."<br>";
+
                 $dbList = Listing::where('airtable_id', $listing["id"])->first();
                 if ($dbList) {
+                    echo "Child Listing DB ID: ".@$dbList->id."<br>";
+                    echo "Child Listing Airtable ID: ".@$dbList->airtable_id."<br>";
+                    echo "Child Listing Name: ".@$dbList->name."<br>";
+
                     $parentListing = Listing::where('airtable_id', $listing["fields"]["Host organization"][0])->first();
+
                     if ($parentListing) {
+                        echo "Parent Listing DB ID: ".@$parentListing->id."<br>";
+                        echo "Parent Listing Airtable ID: ".@$parentListing->airtable_id."<br>";
+                        echo "Parent Listing Name: ".@$parentListing->name."<br>";
+                    }
+
+                    /*if ($parentListing) {
                         $dbList->update([
                             'parent_id' => $parentListing->id
                         ]);
-                    }
+                    }*/
                 }
             }
-        }
+
+            echo "<br>";
+        } 
 
         /*$all = null;
         $listings = Listing::where('name', 'LIKE', '%'.request('q').'%')->get();
