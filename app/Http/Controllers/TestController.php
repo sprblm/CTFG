@@ -22,8 +22,25 @@ use App\Models\Tag;
 use Carbon\Carbon;
 
 class TestController extends Controller {
+    
     public function test(Request $request) {
-        $all = null;
+        $listings = Airtable::table('listings')->all();
+
+        foreach ($listings as $listing) {
+            if (!empty(@$listing["fields"]["Host organization"]) && sizeof(@$listing["fields"]["Host organization"]) > 0) {
+                $dbList = Listing::where('airtable_id', $listing["id"])->first();
+                if ($dbList) {
+                    $parentListing = Listing::where('airtable_id', $listing["fields"]["Host organization"][0])->first();
+                    if ($parentListing) {
+                        $dbList->update([
+                            'parent_id' => $parentListing->id
+                        ]);
+                    }
+                }
+            }
+        }
+
+        /*$all = null;
         $listings = Listing::where('name', 'LIKE', '%'.request('q').'%')->get();
         $all = $listings;
 
@@ -45,7 +62,7 @@ class TestController extends Controller {
             $all = $all->merge($associatedListings);
         }
 
-        echo $all->count()."<br>";
+        echo $all->count()."<br>"; */
 
         //echo count(request()->all());
 
