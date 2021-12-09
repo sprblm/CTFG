@@ -113,9 +113,27 @@ class ListingController extends Controller {
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Listings table sync finished at ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes ... ".$count." records synced.");
 
+        $this->updateParents($listings);
         $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
         $this->updateLocationFields($dbListings);
+    }
+
+    // Update listing parent listing relationship
+    public function updateParents($listings) {
+        foreach ($listings as $listing) {
+            if (!empty(@$listing["fields"]["Host organization"]) && sizeof(@$listing["fields"]["Host organization"]) > 0) {
+                $dbList = Listing::where('airtable_id', $listing["id"])->first();
+                if ($dbList) {
+                    $parentListing = Listing::where('airtable_id', $listing["fields"]["Host organization"][0])->first();
+                    if ($parentListing) {
+                        $dbList->update([
+                            'parent_id' => $parentListing->id
+                        ]);
+                    }
+                }
+            }
+        }
     }
 
     public function syncRelations($dbListings, $airtableListings) {
