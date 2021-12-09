@@ -31,6 +31,7 @@ class TestController extends Controller {
         foreach ($listings as $listing) {
             if (!empty(@$listing["fields"]["Host organization"]) && sizeof(@$listing["fields"]["Host organization"]) > 0) {
                 
+                echo "Airtable ID: ".$listing["id"]."<br>";
                 echo "Host organization air ID: ".$listing["fields"]["Host organization"][0]."<br>";
                 echo "Host organization Name: ".$listing["fields"]["Project name"]."<br>";
 
