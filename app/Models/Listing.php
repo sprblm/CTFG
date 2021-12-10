@@ -63,11 +63,11 @@ class Listing extends Model {
 
     
     public function children() {
-        return $this->hasMany(Category::class, 'parent_id', 'id');
+        return $this->hasMany(Listing::class, 'parent_id', 'id');
     }
 
     public function parent() {
-        return $this->belongsTo(Category::class, 'parent_id', 'id');
+        return $this->belongsTo(Listing::class, 'parent_id', 'id');
     }
 
     // Query scope

@@ -104,8 +104,8 @@
                         @if(!empty(@$project->postmortem))
                             <tr><th>Postmortem: </th><td>{{ $project->postmortem }}</td></tr>
                         @endif
-                        @if(!empty(@$project->host_organization))
-                            <tr><th>Host Organization: </th><td>{{ $project->host_organization }}</td></tr>
+                        @if(!empty(@$project->parent_id))
+                            <tr><th>Parent Organization: </th><td><a  style="color: #03cafc;" href="/listing/{{ $project->parent->slug }}">{{ $project->parent->name }}</a></td></tr>
                         @endif
                         @if(!empty(@$project->language))
                             <tr>
@@ -325,12 +325,12 @@
                         @if(!empty(@$project->blog_url))
                             <li>Blog: <span><a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></span></li>
                         @endif
-                        @if(!empty(@$project->host_organization_url))
-                            <li>Host Org: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization }}</a></span></li>
+                        @if(!empty(@$project->parent_id))
+                            <li>Parent Org: <span><a  style="color: #03cafc;" href="/listing/{{ $project->parent->slug }}">{{ @$project->parent->name }}</a></span></li>
                         @endif
-                        @if(!empty(@$project->host_organization_url))
+                        {{-- @if(!empty(@$project->host_organization_url))
                             <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>
-                        @endif
+                        @endif --}}
                     </ul>
                 </div>
             @endif
