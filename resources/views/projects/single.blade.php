@@ -66,9 +66,11 @@
                 <p>
                     {!! $project->introduction !!}
                 </p>
-                <p class="listing-description">
-                    {{ Illuminate\Mail\Markdown::parse($project->description) }}
-                </p>
+                @if(!empty($project->description))
+                    <p class="listing-description">
+                        {{ Illuminate\Mail\Markdown::parse($project->description) }}
+                    </p>
+                @endif
             </div>
 
             <div class="margin-top-35">
@@ -345,7 +347,6 @@
 @endsection
 
 @section('scripts')
-    <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script> -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm6llrO2VUicflJMJFpgXOA1aS3VIUSGs&sensor=false"></script>
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
