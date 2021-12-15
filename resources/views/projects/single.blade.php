@@ -109,6 +109,21 @@
                         @if(!empty(@$project->parent_id))
                             <tr><th>Parent Organization: </th><td><a  style="color: #03cafc;" href="/listing/{{ $project->parent->slug }}">{{ $project->parent->name }}</a></td></tr>
                         @endif
+                        @if(@$project->children->count() > 0)
+                            <tr>
+                                <th>Children Organization(s): </th>
+                                <td>
+                                    @foreach($project->children as $child)
+                                        <a  style="color: #03cafc;" href="/listing/{{ $child->slug }}">
+                                            {{ $child->name }}
+                                        </a>
+                                        @if($project->children->last()->id != $child->id)
+                                        ,&nbsp;
+                                        @endif
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endif
                         @if(!empty(@$project->language))
                             <tr>
                                 <th>Language(s): </th>
