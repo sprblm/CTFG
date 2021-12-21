@@ -112,4 +112,15 @@ class GuestController extends Controller {
             'template' => 'map',
         ]);
     }
+
+    // Log Search
+    public function logSearch($query, $total) {
+        // Create new entry
+        $log = new SearchLog;
+        $log->item = $query;
+        $log->search_count =  $total;
+        $log->total_results_count = $total;
+        $log->last_search_results_count = $total;
+        $log->save();
+    }
 }
