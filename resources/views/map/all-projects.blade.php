@@ -24,6 +24,7 @@
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 
     <script type="text/javascript">
+        var maps_key = {!! json_encode(config('services.google.key')) !!};
         var projects = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
 
         function initMap() {
@@ -105,6 +106,6 @@
           
     </script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm6llrO2VUicflJMJFpgXOA1aS3VIUSGs&callback=initMap&libraries=places"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=places&key=@json(config('services.google.key'))"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
 @endsection
