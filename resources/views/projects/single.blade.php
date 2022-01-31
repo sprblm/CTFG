@@ -364,7 +364,6 @@
 @section('scripts')
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=@json(config('services.google.key'))"></script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=places&key=@json(config('services.google.key'))"></script> -->
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/maps.js') }}"></script>
