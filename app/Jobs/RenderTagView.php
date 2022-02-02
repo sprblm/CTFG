@@ -37,6 +37,9 @@ class RenderTagView implements ShouldQueue
 
         $html = \View::make('partials.tags', ['tagHierarchies' => $tags, 'activeTag' => null, 'activeParentTag' => null])->render();
         file_put_contents(resource_path('views/cache/tags_cache.blade.php'), $html);
+
+        \Log::info("Done rendering tag view cache");
+
         return true;
     }
 }

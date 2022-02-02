@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\SearchLog;
 
 class GuestController extends Controller {
     // Welcome page
