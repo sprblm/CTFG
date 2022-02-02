@@ -106,10 +106,6 @@
           
     </script>
 
-    <script async id="gmaps"></script>
-    <script>
-        var url = "https://maps.googleapis.com/maps/api/js?key="+@json(config('services.google.key'));
-        document.getElementById('gmaps').src = url;
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{$gMapsApiKey}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
 @endsection

@@ -111,6 +111,7 @@ class GuestController extends Controller {
             'title' => 'Civic Tech Field Guide - World Map',
             'projects' => $projects,
             'template' => 'map',
+            'gMapsApiKey' => config('services.google.key'),
         ]);
     }
 

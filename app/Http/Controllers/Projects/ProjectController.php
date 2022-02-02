@@ -42,6 +42,7 @@ class ProjectController extends Controller {
         return view('projects.single', [
             'title' => 'Project - '.$project->name,
             'project' => $project,
+            'gMapsApiKey' => config('services.google.key'),
         ]);
     }
 
