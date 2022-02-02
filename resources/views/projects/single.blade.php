@@ -362,11 +362,12 @@
 @endsection
 
 @section('scripts')
-    <script  async defer id="gmaps"></script>
+    <!-- <script  async defer id="gmaps"></script>
     <script>
         var url = "https://maps.googleapis.com/maps/api/js?callback=initMap&key="+@json(config('services.google.key'));
         document.getElementById('gmaps').src = url;
-    </script>
+    </script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jg3WCIvmDs8hin1uU4WSgeRxsYOuksg&callback=initMap"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
