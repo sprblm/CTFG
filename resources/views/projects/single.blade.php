@@ -362,7 +362,7 @@
 @endsection
 
 @section('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?key={{$gMapsApiKey}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{$gMapsApiKey}}&sensor=false"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
