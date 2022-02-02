@@ -364,7 +364,7 @@
 @section('scripts')
     <script  async defer id="gmaps"></script>
     <script>
-        var url = "https://maps.googleapis.com/maps/api/js?key="+@json(config('services.google.key'));
+        var url = "https://maps.googleapis.com/maps/api/js?callback=initMap&key="+@json(config('services.google.key'));
         document.getElementById('gmaps').src = url;
     </script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
