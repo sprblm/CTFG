@@ -362,8 +362,13 @@
 @endsection
 
 @section('scripts')
+    <script id="gmaps"></script>
+    <script>
+        var url = "https://maps.googleapis.com/maps/api/js?sensor=false&key="+@json(config('services.google.key'));
+        document.getElementById('gmaps').src = url;
+    </script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=@json(config('services.google.key'))"></script>
+    
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/maps.js') }}"></script>
