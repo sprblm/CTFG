@@ -2,7 +2,7 @@
 
 @section('styles')
     <style type="text/css">
-        p.markdown a {
+        span.markdown a {
             color: blue;
         }
     </style>
@@ -56,16 +56,18 @@
             </h2>
 
             @if(!empty($categoryDesc))
-                @if(strlen($categoryDesc) > 310)
-                    {{-- <p style="line-height: 20px !important; font-size: 14px;">{{ substr($categoryDesc, 0, 310) }}<span id="dots"> ...</span><span id="more">{{ substr($categoryDesc, 310, strlen($categoryDesc)) }}</span><a href="#" onclick="myFunction()" id="readMore" style="color: blue;"> &nbsp;&nbsp;[++ Expand ++]</a></p> --}}
-                    <p style="line-height: 20px !important; font-size: 14px;" class="markdown">
-                        {{ Illuminate\Mail\Markdown::parse($categoryDesc) }}
-                    </p>
-                @else
-                    <p style="line-height: 20px !important; font-size: 14px;" class="markdown">
-                        {{ Illuminate\Mail\Markdown::parse($categoryDesc) }}
-                    </p>
-                @endif
+                <span class="markdown">
+                    @if(strlen($categoryDesc) > 310)
+                        {{-- <p style="line-height: 20px !important; font-size: 14px;">{{ substr($categoryDesc, 0, 310) }}<span id="dots"> ...</span><span id="more">{{ substr($categoryDesc, 310, strlen($categoryDesc)) }}</span><a href="#" onclick="myFunction()" id="readMore" style="color: blue;"> &nbsp;&nbsp;[++ Expand ++]</a></p> --}}
+                        <p style="line-height: 20px !important; font-size: 14px;">
+                            {{ Illuminate\Mail\Markdown::parse($categoryDesc) }}
+                        </p>
+                    @else
+                        <p style="line-height: 20px !important; font-size: 14px;">
+                            {{ Illuminate\Mail\Markdown::parse($categoryDesc) }}
+                        </p>
+                    @endif
+                </span>
             @endif
         </div>
 
