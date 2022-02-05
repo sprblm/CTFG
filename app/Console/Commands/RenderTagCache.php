@@ -39,8 +39,8 @@ class RenderTagCache extends Command
      */
     public function handle() {
         try {
-            RenderTagView::dispatch();
-            
+            //RenderTagView::dispatch();
+            app(\App\Jobs\RenderTagView::class)->handle();
         } catch (\Throwable $th) {
             \Log::error('Error from rendering tag cache cronjob: ' . $th->getMessage());
         }
