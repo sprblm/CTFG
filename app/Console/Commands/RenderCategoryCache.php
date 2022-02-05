@@ -38,7 +38,8 @@ class RenderCategoryCache extends Command
      */
     public function handle() {
         try {
-            RenderCategoryView::dispatch();
+            //RenderCategoryView::dispatch();
+            app(\App\Jobs\RenderCategoryView::class)->handle();
             
         } catch (\Throwable $th) {
             \Log::error('Error from rendering category cache cronjob: ' . $th->getMessage());
