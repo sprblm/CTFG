@@ -26,7 +26,7 @@ class Category extends Model {
     }
 
     public function childItems() {
-        return $this->hasMany(Category::class, 'parent_id')->with('items');
+        return $this->hasMany(Category::class, 'parent_id')->with('items')->orderBy('order_sort');
     } 
 
     public function children() {
