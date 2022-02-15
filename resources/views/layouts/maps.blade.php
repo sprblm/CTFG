@@ -27,7 +27,7 @@
                     <div class="left-side">
                         <a href="https://civictech.guide/">
                             <div id="logo">
-                                <h2 style="margin-top: 2px;">
+                                <h2 style="margin-top: 2px;" style="font-size: 2rem;">
                                     Civic Tech Field Guide
                                 </h2>
                             </div>

@@ -1,4 +1,4 @@
-@extends('layouts.maps')
+@extends('layouts.template')
 
 @section('styles')
 <style type="text/css">
@@ -12,9 +12,9 @@
 @endsection
 
 @section('content')    
-    <h1 class="margin-top-0 margin-bottom-30" style="font-size: 3rem">
+    <h2 class="margin-top-0 margin-bottom-30" style="font-size: 3rem">
         Listing Tags
-    </h1>
+    </h2>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="listings-container list-layout table-responsive">
