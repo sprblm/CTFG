@@ -8,7 +8,7 @@ class Tag extends Model {
     protected $table = "tags";
 
     protected $fillable = [
-        'airtable_id', 'name', 'parent_id',
+        'airtable_id', 'name', 'parent_id', 'order_sort',
     ];
 
     public function listings() {
@@ -22,7 +22,7 @@ class Tag extends Model {
     }
 
     public function childItems() {
-        return $this->hasMany(Tag::class, 'parent_id')->with('items');
+        return $this->hasMany(Tag::class, 'parent_id')->with('items')->orderBy('order_sort');
     }  
 
     public function children() {
