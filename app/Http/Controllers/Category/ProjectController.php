@@ -160,4 +160,18 @@ class ProjectController extends Controller {
             'activeParentTag' => $parentTag,
         ]);
     }
+
+    // Get tags table
+    public function tagsTable() {
+        $tags = Tag::whereNull('parent_id')
+            ->whereIn('name', ['Issue', 'Format', 'Community', 'Current event', 'Sustainable Development Goals', 'Political unit', 'Platform', 'Feature', 'coop', 'Other'])
+            ->orderByRaw("FIELD(name , 'Issue', 'Format', 'Community', 'Current event', 'Sustainable Development Goals', 'Political unit', 'Platform', 'Feature', 'coop', 'Other') ASC")
+            ->with('childItems')
+            ->get();
+
+        return view ('tags.tags-table', [
+            'tags' => $tags,
+            'title' => 'Listing Tags',
+        ]);
+    }
 }

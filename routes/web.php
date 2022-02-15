@@ -34,6 +34,8 @@ Route::get('/listing-category/{slug}', 'Category\ProjectController@getProjectsBy
 
 Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag');
 
+Route::get('/tags', 'Category\ProjectController@tagsTable');
+
 Route::get('/log-search', 'Projects\SearchController@log');
 Route::get('/search-log', 'Projects\SearchController@getLog');
 
