@@ -24,12 +24,12 @@
         <header id="header-container">
             <!-- Header -->
             <div id="header">
-                <div class="container" style="width: 100%;">
+                <div class="container" style="width: 95%;">
                     <div class="left-side">
                         <a href="https://civictech.guide/">
                             <div id="logo">
                                 <!-- <h2 style="margin-top: 2px;">Civic Tech Field Guide</h2> -->
-                                <h2 style="margin-top: 2px;" style="font-size: 2rem !important;">
+                                <h2 style="margin-top: 2px; font-size: 2.5rem;">
                                     Civic Tech Field Guide
                                 </h2>
                             </div>

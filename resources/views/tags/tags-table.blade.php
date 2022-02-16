@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.maps')
 
 @section('styles')
 <style type="text/css">
