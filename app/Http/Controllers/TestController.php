@@ -24,15 +24,9 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
-        $listings = Listing::limit(1000)->get();
+        $tags = Airtable::table('tags')->get();
 
-        foreach ($listings as $l) {
-            echo "Country: ".$l->first_country."<br>";
-            echo "Location: ".$l->first_location."<br>";
-            echo "Latitude: ".$l->latitude."<br>";
-            echo "Longitude: ".$l->longitude."<br>";
-            echo "<br>";
-        }
+        print_r($tags);
 
         /*$listings = Airtable::table('listings')->all();
 
