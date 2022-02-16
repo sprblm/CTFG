@@ -24,11 +24,10 @@
         <header id="header-container">
             <!-- Header -->
             <div id="header">
-                <div class="container" style="width: 95%;">
+                <div class="container" style="width: 100%">
                     <div class="left-side">
                         <a href="https://civictech.guide/">
                             <div id="logo">
-                                <!-- <h2 style="margin-top: 2px;">Civic Tech Field Guide</h2> -->
                                 <h2 style="margin-top: 2px; font-size: 2.5rem;">
                                     Civic Tech Field Guide
                                 </h2>
@@ -42,18 +41,6 @@
                             </span>
                             </button>
                         </div>
-                        <!-- Main Navigation -->
-                        <!-- <nav id="navigation" class="style-1">
-                            <ul id="responsive">
-                                <li>
-                                    <div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="padding: 0px !important;">
-                                        <div class="main-search-input-item">
-                                            <input type="text" class="typeahead" placeholder="Search Civic Tech Field Guide ..." value=""/>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav> -->
                         <div class="clearfix"></div>
                     </div>
 

@@ -22,7 +22,7 @@ class Category extends Model {
 
     // Recursive
     public function items() {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id')->orderBy('order_sort');
     }
 
     public function childItems() {
@@ -30,7 +30,7 @@ class Category extends Model {
     } 
 
     public function children() {
-        return $this->hasMany(Category::class, 'parent_id', 'id');
+        return $this->hasMany(Category::class, 'parent_id', 'id')->orderBy('order_sort');
     }
 
     public function parent() {
