@@ -32,7 +32,7 @@
                         @if(!empty($project->website_url))
                             <br>
                             <span>
-                                <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
+                                <a href="{{ @$project->website_url }}" target="_blank">
                                     <i class="fa fa-globe"></i>
                                     {{ @$project->website_url }}
                                 </a>
