@@ -46,13 +46,22 @@
                 </div>
                 <ul class="social-icons margin-top-20">
                     <li>
-                        <a class="facebook" href="https://www.facebook.com/civictechguide/"><i class="icon-facebook"></i></a>
+                        <a class="facebook" href="https://www.facebook.com/civictechguide/">
+                            <i class="icon-facebook"></i>
+                            <span class="visually-hidden">Civic Tech Guide Facebook account</span>
+                        </a>
                     </li>
                     <li>
-                        <a class="twitter" href="https://twitter.com/civictechguide"><i class="icon-twitter"></i></a>
+                        <a class="twitter" href="https://twitter.com/civictechguide">
+                            <i class="icon-twitter"></i>
+                            <span class="visually-hidden">Civic Tech Guide Twitter account</span>
+                        </a>
                     </li>
                     <li>
-                        <a class="instagram" href="https://www.instagram.com/civictechguide/"><i class="icon-instagram"></i></a>
+                        <a class="instagram" href="https://www.instagram.com/civictechguide/">
+                            <i class="icon-instagram"></i>
+                            <span class="visually-hidden">Civic Tech Guide Instagram account</span>
+                        </a>
                     </li>
                 </ul>
                 <div class="clearfix">&nbsp;&nbsp;</div>
