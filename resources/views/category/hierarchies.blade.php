@@ -16,7 +16,7 @@ a {
     color: inherit;
 }
 
-a:hover{color: #f91942 !important;}
+a:hover{color: #EA0630 !important;}
 
 ::-moz-focus-inner{padding:0;border-style:none;}
 .collapse:not(.show){display:none;}
@@ -41,9 +41,9 @@ a:hover{color: #f91942 !important;}
 }
 .sidebar .nav-link:hover{color:var(--bs-primary);}
 .sidebar .nav-link{display:inline-block;}
-.sidebar .menu-open{color: #f91942}
+.sidebar .menu-open{color: #EA0630}
 .sidebar .menu-open svg{margin: 0 !important; transform: rotate(90deg)}
-.sidebar .has-submenu.active {color: #fff !important;border-radius: 25px;background-color: #f91942;}
+.sidebar .has-submenu.active {color: #fff !important;border-radius: 25px;background-color: #EA0630;}
 /*! CSS Used fontfaces */
 @font-face{font-family:"bootstrap-icons";src:url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff2?8bd4575acf83c7696dc7a14a966660a3") format("woff2"), url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/fonts/bootstrap-icons.woff?8bd4575acf83c7696dc7a14a966660a3") format("woff");}
 </style>

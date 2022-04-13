@@ -23,7 +23,7 @@
         color: inherit;
     }
     a:hover{
-        color: #f91942 !important;
+        color: #EA0630 !important;
     }
     ::-moz-focus-inner{
         padding: 0;
@@ -107,7 +107,7 @@
         display: inline-block;
     }
     .sidebar .tag-open{
-        color: #f91942
+        color: #EA0630
     }
     .sidebar .tag-open svg{
         margin: 0 !important;
@@ -116,7 +116,7 @@
     .sidebar .has-subtag.active {
         color: #fff !important;
         border-radius: 25px;
-        background-color: #f91942;
+        background-color: #EA0630;
     }
 
     /*! CSS Used fontfaces */

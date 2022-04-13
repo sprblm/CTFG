@@ -22,17 +22,17 @@
         color: inherit;
     }
     a:hover {
-        color: #f91942 !important;
+        color: #EA0630 !important;
     }
-    ::-moz-focus-inner{ 
+    ::-moz-focus-inner{
         padding: 0;
         border-style: none;
     }
     .collapse:not(.show){
         display: none;
     }
-    .nav{ 
-        display: flex; 
+    .nav{
+        display: flex;
         flex-wrap: wrap;
         padding-left: 0;
         margin-bottom: 0;
@@ -104,16 +104,16 @@
         display: inline-block;
     }
     .sidebar .menu-open{
-        color: #f91942
+        color: #EA0630
     }
     .sidebar .menu-open svg{
-        margin: 0 !important; 
+        margin: 0 !important;
         transform: rotate(90deg) !important;
     }
     .sidebar .has-submenu.active {
         color: #fff !important;
         border-radius: 25px;
-        background-color: #f91942;
+        background-color: #EA0630;
     }
     .sidebar li.nav-item a.nav-link:hover{
         color: #7f8280 !important;

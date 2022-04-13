@@ -20,13 +20,13 @@
     li.cat-dropdown.active {
         color: #fff !important;
         border-radius: 25px;
-        background-color: #f91942;
+        background-color: #EA0630;
     }
 
     li.cat-dropdown.active, li.cat-dropdown-single.active {
         color: #fff !important;
         border-radius: 25px;
-        background-color: #f91942;
+        background-color: #EA0630;
     }
 
     #more {display: none;}
@@ -3571,7 +3571,7 @@ body .user-profile-name {
     display: none;
 }
 .code-button:hover {
-    background-color: #f91942;
+    background-color: #EA0630;
     color: #fff;
 }
 .coupon-link-icon {
@@ -12386,8 +12386,8 @@ body #submit_map {
     transition: .3s;
 }
 .leaflet-control-zoom-in:hover, .leaflet-control-zoom-out:hover {
-    background-color: #f91942;
-    -webkit-text-stroke: 1px #f91942;
+    background-color: #EA0630;
+    -webkit-text-stroke: 1px #EA0630;
     color: #fff;
 }
 .marker-container:hover .marker-card, .clicked .marker-container .marker-card, .map-marker-container.clicked .marker-card {
@@ -12520,8 +12520,8 @@ body #submit_map {
 }
 .leaflet-container a.leaflet-popup-close-button:hover {
     color: #fff;
-    background-color: #f91942;
-    -webkit-text-stroke: 1px #f91942;
+    background-color: #EA0630;
+    -webkit-text-stroke: 1px #EA0630;
 }
 .leaflet-container a.leaflet-popup-close-button:before {
     content: "\f00d";
@@ -12658,12 +12658,12 @@ body #submit_map {
     position: relative;
 }
 .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
-    background-color: #f91942;
+    background-color: #EA0630;
 }
 .marker-cluster div:before {
-    border: 7px solid #f91942;
+    border: 7px solid #EA0630;
     opacity: .2;
-    box-shadow: inset 0 0 0 4px #f91942;
+    box-shadow: inset 0 0 0 4px #EA0630;
     content: '';
     position: absolute;
     border-radius: 50%;
