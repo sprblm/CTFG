@@ -20,7 +20,14 @@
                     </form>
                 </div>
                 <!--End mc_embed_signup-->
-
+                <style>
+                    #mc-embedded-subscribe {
+                        background: #747674 !important;
+                    }
+                    #mc-embedded-subscribe:hover {
+                        background: #EA0630 !important;
+                    }
+                </style>
             </div>
             <div class="col-md-4 col-sm-6 ">
                 <h2>Helpful Links</h2>
