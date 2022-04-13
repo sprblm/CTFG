@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="col-md-2">
-        <a href="/search-log" style="color: #1d9bf0; line-height: 70px; float: right;">
+        <a href="/search-log" style="color: #0A78C2; line-height: 70px; float: right;">
             Search Log
         </a>
     </div>
