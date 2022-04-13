@@ -86,8 +86,8 @@
         </div>
 
         @include('layouts.partials.footer')
-        
-        <div id="backtotop"><a href="#"></a></div>
+
+        <div id="backtotop"><a href="#"><span class="visually-hidden">Back to Top</span></a></div>
     </div>
     
     

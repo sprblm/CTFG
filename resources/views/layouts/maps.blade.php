@@ -67,8 +67,8 @@
         </div>
 
         @include('layouts.partials.footer')
-        
-        <div id="backtotop"><a href="#"></a></div>
+
+        <div id="backtotop"><a href="#"><span class="visually-hidden">Back to Top</span></a></div>
     </div>
     
     <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
