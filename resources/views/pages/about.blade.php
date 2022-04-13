@@ -47,7 +47,7 @@
         <div class="col-lg-6 col-md-6">
             <div class="sidebar">
                 <div class="widget margin-bottom-40">
-                    <img src="{{ asset('images/about.png') }}">
+                    <img src="{{ asset('images/about.png') }}" alt="Matt Stempeck bows at the Innovation Alter of 3m Post-It notes">
                 </div>
             </div>
         </div>
