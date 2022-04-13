@@ -30,9 +30,9 @@
                         <a href="https://civictech.guide/">
                             <div id="logo">
                                 <!-- <h2 style="margin-top: 2px;">Civic Tech Field Guide</h2> -->
-                                <h2 style="margin-top: 2px;">
+                                <h1 class="fs-2" style="margin-top: 2px;">
                                     Civic Tech Field Guide
-                                </h2>
+                                </h1>
                             </div>
                         </a>
                         <!-- Mobile Navigation -->
