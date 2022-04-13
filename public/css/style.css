@@ -1410,7 +1410,7 @@ html.mm-opening .mm-menu.mm-opened~.mm-slideout {
     -webkit-transform: translate3d(440px, 0, 0);
     transform: translate3d(440px, 0, 0);
 }
-}.mm-sronly {
+}.mm-sronly, .visually-hidden {
     border: 0!important;
     clip: rect(1px, 1px, 1px, 1px)!important;
     -webkit-clip-path: inset(50%)!important;
