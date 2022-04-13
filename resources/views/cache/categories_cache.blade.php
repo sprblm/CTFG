@@ -2675,15 +2675,6 @@
                     </ul>
     </li>
                                     <li class="nav-item has-submenu ">
-    <a class="nav-link overlay" href="/listing-category/holidays" title="Holidays">
-        <span class="text-sm cat-wrap ">
-            Holidays
-        </span>
-    </a>
-                <ul class="submenu collapse ">
-                    </ul>
-    </li>
-                                    <li class="nav-item has-submenu ">
     <a class="nav-link overlay" href="/listing-category/awards-and-prizes" title="Awards and prizes">
         <span class="text-sm cat-wrap ">
             Awards and prizes
