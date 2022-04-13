@@ -24,12 +24,12 @@
                     <li><a href="https://civictech.guide/map/">Civic Tech World Map</a></li>
                     <li><a href="https://civictech.guide/causes/">Projects by cause</a></li>
                 </ul>
-            
+
                 <ul class="footer-links" style="width: 100%;">
                     <li><a href="https://civictech.guide/calendar/">Events</a></li>
                     <li><a href="https://civictech.guide/research/">Research</a></li>
                 </ul>
-            
+
                 <ul class="footer-links" style="width: 100%;">
                     <li><a href="https://civictech.guide/what-can-i-do-with-the-civic-tech-field-guide/">How to use this site</a></li>
                     <li><a href="https://civictech.guide/guiding-principles/">Guiding principles</a></li>
@@ -65,22 +65,22 @@
                 <div class="row social-icons margin-top-20">
                     <div class="col-md-3">
                         <h3>Founding organization</h3>
-                        <img width="150" height="150" src="{{ asset('images/civic_hall.png') }}" />
+                        <img width="150" height="150" src="{{ asset('images/civic_hall.png') }}" alt="Civic Hall logo" />
                     </div>
                     <div class="col-md-6">
                         <h3>With support from</h3>
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="{{ asset('images/knight_foundation.png') }}" />
+                                <img src="{{ asset('images/knight_foundation.png') }}" alt="Knight Foundation logo" />
                             </div>
                             <div class="col-md-6" style="vertical-align: text-top;">
-                                <img src="{{ asset('images/luminate.png') }}" />
+                                <img src="{{ asset('images/luminate.png') }}" alt="Luminate logo" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <h3>Technology partner</h3>
-                        <img src="{{ asset('images/sarapis.png') }}" />
+                        <img src="{{ asset('images/sarapis.png') }}" alt="Sarapis logo" />
                     </div>
                 </div>
             </div>
