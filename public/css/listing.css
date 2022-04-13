@@ -70,7 +70,7 @@ ul.listing-details li{width:auto;box-sizing:border-box;margin:2px;color:#868686;
 .owl-theme .owl-controls .owl-buttons .owl-next:before{content:"\f105";}
 .owl-theme .owl-controls .owl-buttons .owl-prev:after{content:"\f104";}
 .owl-theme .owl-controls .owl-buttons{position:absolute;top:-60px;right:8px;}
-.owl-theme .owl-controls.clickable .owl-buttons div:hover{color:#888;}
+.owl-theme .owl-controls.clickable .owl-buttons div:hover{color:#747674;}
 .listing-carousel.owl-theme .owl-controls .owl-buttons{position:absolute;top:50%;right:0;color:#fff;width:100%;height:100px;transform:translate(0,-50%);z-index:99;}
 .listing-carousel.owl-theme .owl-controls .owl-buttons div:hover,.listing-carousel.owl-theme .owl-controls .owl-buttons div{color:#fff;position:absolute;z-index:101;top:50%;transform:translate(0,-50%);font-size:22px;transition:all 0.3s;background-color:transparent;height:38px;width:38px;text-align:center;line-height:37px;padding:0;}
 .list-layout .listing-carousel.owl-theme .owl-controls .owl-buttons div:hover,.list-layout .listing-carousel.owl-theme .owl-controls .owl-buttons div{font-size:19px;height:32px;width:32px;line-height:31px;}

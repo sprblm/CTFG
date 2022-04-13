@@ -198,19 +198,19 @@ input[type=radio] {
     box-shadow: none;
 }
 ::-webkit-input-placeholder {
-    color: #888;
+    color: #747674;
     opacity: 1;
 }
 :-moz-placeholder {
-    color: #888;
+    color: #747674;
     opacity: 1;
 }
 ::-moz-placeholder {
-    color: #888;
+    color: #747674;
     opacity: 1;
 }
 :-ms-input-placeholder {
-    color: #888;
+    color: #747674;
     opacity: 1;
 }
 textarea {
@@ -2056,7 +2056,7 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
     line-height: 36px;
 }
 .alt-search-box.main-search-container .main-search-input-headline h4 {
-    color: #888;
+    color: #747674;
     font-size: 20px;
     margin: -18px 0 30px;
     padding: 0;
@@ -2255,7 +2255,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
 .data-radius-title {
     font-style: normal;
     font-size: 15px;
-    color: #888;
+    color: #747674;
     font-weight: 400;
     margin-top: 0;
     display: block;
@@ -2304,7 +2304,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     border: 1px solid #dbdbdb;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .08);
     background-color: #fff;
-    color: #888;
+    color: #747674;
     text-decoration: none;
     white-space: nowrap;
     font-weight: 500;
@@ -2331,7 +2331,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     margin-right: 26px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #888;
+    color: #747674;
     font-family: raleway, helveticaneue, helvetica neue, Helvetica, Arial, sans-serif;
 }
 .chosen-container-single .chosen-single-with-deselect span {
@@ -2410,7 +2410,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     left: -9999px;
 }
 .chosen-container .chosen-results {
-    color: #888;
+    color: #747674;
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
@@ -2447,7 +2447,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     transition: color .2s ease-in-out;
 }
 .chosen-container .chosen-results li.no-results {
-    color: #888;
+    color: #747674;
     display: list-item;
     background-color: #fff;
 }
@@ -2501,7 +2501,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     outline: 0;
     border: 0!important;
     background: 0 0!important;
-    color: #888;
+    color: #747674;
     line-height: normal;
     font-weight: 500;
     box-shadow: none;
@@ -2545,7 +2545,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     padding-right: 5px;
     border: 1px solid #ccc;
     background-color: #e4e4e4;
-    color: #888;
+    color: #747674;
 }
 .chosen-container-multi .chosen-choices li.search-choice-focus {
     background: #d4d4d4;
@@ -2576,7 +2576,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     background: 0 0;
 }
 .chosen-container-active .chosen-choices li.search-field input[type=text] {
-    color: #888!important;
+    color: #747674!important;
 }
 .chosen-drop ::-webkit-scrollbar {
     width: 10px;
@@ -2717,7 +2717,7 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     line-height: 44px;
     border: 1px solid #fff;
     background-color: #fff;
-    color: #888;
+    color: #747674;
     border-radius: 4px 4px 0 0;
     z-index: 100;
     box-shadow: none;
@@ -2862,7 +2862,7 @@ ul.select-options li {
     margin: 0;
     padding: 0;
     transition: all .15s ease-in;
-    color: #888;
+    color: #747674;
     margin: 0;
     padding: 10px;
     list-style: none;
@@ -3174,7 +3174,7 @@ button.fs-map-btn.button {
     top: 10px;
 }
 .showing-results {
-    color: #888;
+    color: #747674;
     font-weight: 500;
     margin: 5px 0 25px;
 }
@@ -3268,10 +3268,10 @@ button.fs-map-btn.button {
 }
 .comment-by-listing {
     display: inline-block;
-    color: #888;
+    color: #747674;
 }
 .comment-by-listing a {
-    color: #888;
+    color: #747674;
 }
 .comment-by-listing a:hover {
     color: #66676b;
@@ -3891,7 +3891,7 @@ input#booking-date, input#booking-time {
 }
 #titlebar.listing-titlebar span a, #titlebar.listing-titlebar span {
     font-size: 17px;
-    color: #888;
+    color: #747674;
     margin-top: 0;
     display: inline-block;
 }
@@ -3929,7 +3929,7 @@ input#booking-date, input#booking-time {
     color: #66676b;
 }
 .numerical-rating .rating-counter a:hover {
-    color: #888;
+    color: #747674;
 }
 #titlebar.listing-titlebar .numerical-rating {
     display: block;
@@ -4017,7 +4017,7 @@ a.button.add-review-btn i {
     display: block;
     font-size: 14px;
     font-weight: 400;
-    color: #888;
+    color: #747674;
     margin-bottom: 2px;
 }
 .hosted-by-avatar {
@@ -4187,7 +4187,7 @@ a.mfp-gallery {
     left: 0;
     top: 5px;
     font-size: 16px;
-    color: #888;
+    color: #747674;
 }
 .listing-details-sidebar.social-profiles {
     margin-top: 20px;
@@ -4338,7 +4338,7 @@ a.mfp-gallery {
     position: relative;
     background-color: #fff;
     text-align: left;
-    color: #888;
+    color: #747674;
     display: block;
     width: 100%;
     transition: color .3s;
@@ -4470,7 +4470,7 @@ h3 .listing-price {
 }
 h3 .listing-price i {
     font-weight: 400;
-    color: #888;
+    color: #747674;
     font-style: normal;
     font-size: 13px;
     position: relative;
@@ -4498,7 +4498,7 @@ h3 .listing-price i {
     position: relative;
     background-color: #fff;
     text-align: left;
-    color: #888;
+    color: #747674;
     transition: color .3s!important;
 }
 .message-vendor select, .message-vendor select:focus {
@@ -4757,7 +4757,7 @@ h3 .listing-price i {
 .rating-overview-box-percent {
     font-size: 15px;
     margin-bottom: 0;
-    color: #888;
+    color: #747674;
     display: block;
 }
 .rating-overview-box .star-rating {
@@ -4858,7 +4858,7 @@ h3 .listing-price i {
 }
 .rating-bars i.tip, .sub-ratings-container i.tip {
     background: #eaeaea;
-    color: #888;
+    color: #747674;
     height: 17px;
     width: 17px;
     display: inline-block;
@@ -4940,7 +4940,7 @@ h3 .listing-price i {
     min-height: 36px;
     top: 1px;
     position: relative;
-    color: #888;
+    color: #747674;
     background-color: transparent;
     overflow: hidden;
     line-height: 22px;
@@ -4970,7 +4970,7 @@ input#date-picker {
     position: relative;
     background-color: #fff;
     text-align: left;
-    color: #888;
+    color: #747674;
     transition: color .3s!important;
 }
 input#date-picker:hover {
@@ -5303,7 +5303,7 @@ input#date-picker:hover {
 }
 .daterangepicker .drp-buttons button.cancelBtn {
     background-color: #f4f4f4;
-    color: #888;
+    color: #747674;
 }
 .daterangepicker .drp-buttons button.cancelBtn:hover {
     background-color: #f0f0f0;
@@ -5621,7 +5621,7 @@ a.send-message-to-owner.button {
 .opening-hours ul li {
     width: 100%;
     font-weight: 600;
-    color: #888;
+    color: #747674;
     margin: 2px 0;
     transition: .2s;
     cursor: default;
@@ -5647,7 +5647,7 @@ a.send-message-to-owner.button {
 .listing-share span {
     display: block;
     font-size: 15px;
-    color: #888;
+    color: #747674;
 }
 .like-button, .suggest-button {
     outline: none;
@@ -5831,7 +5831,7 @@ a.send-message-to-owner.button {
     display: block;
 }
 .listing-desc-headline span {
-    color: #888;
+    color: #747674;
 }
 .listing-section {
     display: inline-block;
@@ -5932,7 +5932,7 @@ body .listing-nav li a {
     padding: 2px 0;
     margin: 0;
     border: none;
-    color: #888;
+    color: #747674;
 }
 body .listing-nav li:first-child a {
     font-weight: 600;
@@ -6138,14 +6138,14 @@ body .listing-nav li:first-child a {
     color: #666;
 }
 .comment-content span {
-    color: #888;
+    color: #747674;
 }
 body .comment-content p {
     padding: 5px 0;
     font-size: 15px;
 }
 .comments-amount {
-    color: #888;
+    color: #747674;
     font-weight: 500;
 }
 .avatar {
@@ -6207,7 +6207,7 @@ body .comment-content p {
     color: #fff;
 }
 .comment-by span.date {
-    color: #888;
+    color: #747674;
     font-weight: 300;
     margin: 0 0 0;
     float: none;
@@ -6802,7 +6802,7 @@ section.fullwidth .blog-post {
 .post-content .meta-tags span {
     margin: 0 0 15px;
     display: inline-block;
-    color: #888;
+    color: #747674;
 }
 .post-content a.read-more {
     color: #66676b;
@@ -6826,7 +6826,7 @@ a.read-more:hover i {
 }
 .post-meta li {
     display: inline-block;
-    color: #888;
+    color: #747674;
 }
 .post-meta li:after {
     content: "";
@@ -6842,7 +6842,7 @@ a.read-more:hover i {
     display: none;
 }
 .post-meta li a {
-    color: #888;
+    color: #747674;
 }
 .post-meta li a:hover {
     color: #66676b;
@@ -6913,7 +6913,7 @@ a.read-more:hover i {
     color: #66676b;
 }
 .widget-text span {
-    color: #888;
+    color: #747674;
     font-weight: 400;
     line-height: 22px;
     margin: 0;
@@ -7581,7 +7581,7 @@ body .style-2 .ui-accordion .ui-accordion-header, body .style-2 .trigger a {
 }
 #posts-nav li span {
     display: block;
-    color: #888;
+    color: #747674;
     font-size: 15px;
     margin-bottom: 1px;
     font-weight: 400;
@@ -7667,7 +7667,7 @@ body .style-2 .ui-accordion .ui-accordion-header, body .style-2 .trigger a {
 }
 .plan-price h3 {
     margin: 0;
-    color: #888;
+    color: #747674;
     font-weight: 400;
     font-size: 22px;
 }
@@ -7683,7 +7683,7 @@ body .style-2 .ui-accordion .ui-accordion-header, body .style-2 .trigger a {
     color: #333;
 }
 .plan-price .period {
-    color: #888;
+    color: #747674;
     margin-top: 20px;
     padding: 0 10%;
     display: block;
@@ -8121,7 +8121,7 @@ body .notification strong {
     border-radius: 6px;
     padding: 38px;
     padding-left: 110px;
-    color: #888;
+    color: #747674;
     position: relative;
     margin: 18px 0;
     box-shadow: none;
@@ -8201,7 +8201,7 @@ body .notification strong {
 }
 .testimonial-author h4 span {
     display: block;
-    color: #888;
+    color: #747674;
     padding-top: 6px;
     font-weight: 400;
     font-size: 15px;
@@ -8218,7 +8218,7 @@ body .notification strong {
     align-self: flex-start;
 }
 .testimonial-author h4 span {
-    color: #888;
+    color: #747674;
     margin-top: 8px;
     font-weight: 400;
     font-size: 14px;
@@ -9763,7 +9763,7 @@ body .notification strong {
     padding: 0;
     width: auto;
     z-index: 50;
-    color: #888;
+    color: #747674;
     box-sizing: border-box;
     font-weight: 500;
     font-size: 14px;
@@ -10204,7 +10204,7 @@ span.like-icon {
 }
 #titlebar span a, #titlebar span {
     font-size: 20px;
-    color: #888;
+    color: #747674;
     margin-bottom: 3px;
     margin-top: 6px;
     display: inline-block;
@@ -10223,7 +10223,7 @@ span.like-icon {
     display: inline-block;
     font-size: 15px;
     font-weight: 400;
-    color: #888;
+    color: #747674;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -10239,7 +10239,7 @@ span.like-icon {
     -o-transition: all .2s ease-in-out;
     -ms-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-    color: #888;
+    color: #747674;
 }
 #breadcrumbs ul li a:hover {
     color: #666;
@@ -10704,7 +10704,7 @@ a.dashboard-responsive-nav-trigger {
 }
 .message-by-headline span {
     float: right;
-    color: #888;
+    color: #747674;
     font-size: 14px;
 }
 .message-by-headline h5 {
@@ -10765,7 +10765,7 @@ a.dashboard-responsive-nav-trigger {
     white-space: nowrap;
     overflow: hidden;
     font-size: 14px;
-    color: #888;
+    color: #747674;
 }
 .messages-container-inner .message-avatar img {
     width: 40px;
@@ -11130,7 +11130,7 @@ a.close-list-item {
 .comission-taken {
     border-radius: 3px;
     font-size: 14px;
-    color: #888;
+    color: #747674;
     font-weight: 400;
     background: #f4f4f4;
     display: inline-block;
@@ -11321,13 +11321,13 @@ a.close-list-item {
 }
 .dashboard-list-box .comment-by-listing {
     display: inline-block;
-    color: #888;
+    color: #747674;
 }
 .dashboard-list-box .comment-by-listing.own-comment, .dashboard-list-box .comment-by-listing.own-comment a {
     color: #444;
 }
 .dashboard-list-box .comment-by-listing a {
-    color: #888;
+    color: #747674;
 }
 .dashboard-list-box .comment-by-listing a:hover {
     color: #66676b;
@@ -11420,7 +11420,7 @@ input:checked+.slider:before {
     margin-bottom: 17px;
 }
 #add-listing h5 span {
-    color: #888;
+    color: #747674;
     font-weight: 400;
 }
 #add-listing h5 i {
@@ -12455,7 +12455,7 @@ body #submit_map {
     position: relative;
 }
 .leaflet-listing-content .not-rated {
-    color: #888;
+    color: #747674;
 }
 .leaflet-listing-content .star-rating {
     font-size: 16px;
@@ -12853,7 +12853,7 @@ body #submit_map {
     margin: 0;
 }
 #leaflet-geocode-cont ul li {
-    color: #888;
+    color: #747674;
     font-size: 13px;
     font-weight: 400;
     line-height: 20px;
@@ -12900,7 +12900,7 @@ body #submit_map {
     border-radius: 4px;
     font-size: 13px;
     font-weight: 500;
-    color: #888;
+    color: #747674;
     line-height: 18px;
     padding: 3px 7px;
     pointer-events: none;
@@ -14073,7 +14073,7 @@ to {
     text-align: center;
     margin: 50px 0;
     font-size: 17px;
-    color: #888;
+    color: #747674;
     transition: all .3s linear;
     position: relative;
     z-index: 11;
@@ -15151,7 +15151,7 @@ strong.headline-with-separator, .headline-with-separator {
     font-size: 21px;
     line-height: 36px;
     margin-top: 10px;
-    color: #888;
+    color: #747674;
     font-weight: 300;
     display: block;
 }
