@@ -4,20 +4,20 @@
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
             <h2>
-                Tag: &nbsp; 
+                Tag: &nbsp;
                 @if(!empty($activeParentTag->name))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         <a href="/listing-tag/{{ $activeParentTag->slug }}">
                             {{ $activeParentTag->name }}
-                        </a> > 
+                        </a> >
                     </span>
                 @endif
                 @if(!empty($tag))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         {{ $tag->name }}
                     </span>
                 @endif
-                <span style="color: #7f8280; font-size: 22px;">
+                <span style="color: #747674; font-size: 22px;">
                     - ({{ @$projects->total() }})
                 </span>
             </h2>
