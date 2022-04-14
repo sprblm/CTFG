@@ -15,7 +15,7 @@
         <div id="titlebar" class="listing-titlebar">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <img src="{{ @$project->media->last()->link }}" height="150px" title="Project image"/>
+                    <img src="{{ @$project->media->last()->link }}" height="150px" title="Project image" alt="Graphic representing {!! $project->name !!}"/>
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="listing-titlebar-title">
