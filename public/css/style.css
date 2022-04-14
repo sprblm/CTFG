@@ -121,8 +121,8 @@
     .pagination a {
         text-decoration: none;
         padding: 0.2rem 0.4rem;
-        color: red;
-        border: 0.5px solid red;
+        color: #EA0630;
+        border: 0.5px solid #EA0630;
         border-radius: 4px;
     }
 
