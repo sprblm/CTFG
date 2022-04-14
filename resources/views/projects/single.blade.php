@@ -294,7 +294,7 @@
                 @endif
                 @if(!empty($project->twitter_url))
                     <li>
-                        <a class="twitter-share" target="_blank" href="{{ $project->twitter_url }}"><i class="fa fa-twitter"></i> Twitter</a>
+                        <a class="twitter-share" target="_blank" href="{{ $project->twitter_url }}"><i style="color: #1da1f2" class="fa fa-twitter"></i> Twitter</a>
                     </li>
                 @endif
                 @if(!empty($project->instagram_url))
