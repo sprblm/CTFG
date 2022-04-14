@@ -18,7 +18,7 @@
                     <div class="margin-top-0">
                         <?php $count = 1; ?>
                         @if($logs->count() > 0)
-                            <table id="search-log-table" class="display">
+                            <table id="search-log-table" class="display" style="color: #444;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -36,7 +36,7 @@
                                             </a>
                                             <td>{{ $log->times_searched }}</td>
                                             <td>{{ $log->created_at }}</td>
-                                            
+
                                         </tr>
                                         @php $count += 1; @endphp
                                     @endforeach
@@ -64,8 +64,8 @@
     <script type="text/javascript">
         $(document).ready( function () {
             $('#search-log-table').DataTable({
-                searching: false, 
-                paging: false, 
+                searching: false,
+                paging: false,
                 bPaginate: true,
             });
         });
