@@ -343,7 +343,7 @@
                             <li>Blog: <span><a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></span></li>
                         @endif
                         @if(!empty(@$project->parent_id))
-                            <li>Parent Org: <span><a  style="color: #0A78C2;" href="/listing/{{ $project->parent->slug }}">{{ @$project->parent->name }}</a></span></li>
+                            <li>Parent Org: <span><a  style="color: #0A72B8;" href="/listing/{{ $project->parent->slug }}">{{ @$project->parent->name }}</a></span></li>
                         @endif
                         {{-- @if(!empty(@$project->host_organization_url))
                             <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>
