@@ -299,7 +299,7 @@
                 @endif
                 @if(!empty($project->instagram_url))
                     <li>
-                        <a class="gplus-share" target="_blank" href="{{ $project->instagram_url }}"><i class="fa fa-instagram"></i> Instagram</a>
+                        <a class="instagram-share" target="_blank" href="{{ $project->instagram_url }}"><i class="fa fa-instagram"></i> Instagram</a>
                     </li>
                 @endif
             </ul>

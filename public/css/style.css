@@ -7570,6 +7570,14 @@ body .style-2 .ui-accordion .ui-accordion-header, body .style-2 .trigger a {
     border-color: #bd081c;
     color: #bd081c;
 }
+.share-buttons li a.instagram-share:hover {
+    background: #C13584;
+    color: #fff;
+}
+.share-buttons li a.instagram-share {
+    border-color: #C13584;
+    color: #C13584;
+}
 #posts-nav {
     padding: 0;
     list-style: none;
