@@ -5621,7 +5621,7 @@ a.send-message-to-owner.button {
 .opening-hours ul li {
     width: 100%;
     font-weight: 600;
-    color: #747674;
+    color: #444;
     margin: 2px 0;
     transition: .2s;
     cursor: default;
