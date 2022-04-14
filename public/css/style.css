@@ -3732,7 +3732,7 @@ body .user-profile-name {
     font-size: 13px;
     padding: 0 7px;
     font-weight: 500;
-    color: #909090;
+    color: #6F716F;
 }
 .payment-tab p {
     margin: 10px 0;
@@ -3846,7 +3846,7 @@ input#booking-date, input#booking-time {
     position: relative;
     background-color: #fff;
     text-align: left;
-    color: #909090;
+    color: #6F716F;
     transition: color .3s;
 }
 .booking-select select {
@@ -3923,7 +3923,7 @@ input#booking-date, input#booking-time {
     margin-left: 10px;
 }
 .rating-counter a {
-    color: #909090;
+    color: #6F716F;
 }
 .star-rating .rating-counter a:hover {
     color: #66676b;
@@ -9644,7 +9644,7 @@ body .notification strong {
     font-size: 16px;
 }
 .checkboxes label span {
-    color: #909090;
+    color: #6F716F;
 }
 .checkboxes input[type=checkbox] {
     display: none;
@@ -9955,7 +9955,7 @@ section.fullwidth .listing-item-container.list-layout, .fs-content .listing-item
     font-weight: 400;
     font-size: 15px;
     width: 150px;
-    color: #909090;
+    color: #6F716F;
 }
 .infoBox .numerical-rating .rating-counter {
     left: 12px;
@@ -9980,7 +9980,7 @@ section.fullwidth .listing-item-container.list-layout, .fs-content .listing-item
     position: relative;
 }
 .rating-counter {
-    color: #909090;
+    color: #6F716F;
     padding-left: 5px;
     display: inline-block;
     font-size: 15px;
@@ -10173,7 +10173,7 @@ span.like-icon {
 .category-small-box .category-box-counter {
     font-size: 13px;
     font-weight: 400;
-    color: #909090;
+    color: #6F716F;
     border-radius: 50px;
     background-color: rgba(0, 0, 0, .04);
     display: block;
@@ -10991,7 +10991,7 @@ a.close-list-item {
 .dashboard-list-box.invoices ul ul {
     line-height: 22px;
     padding-bottom: 2px;
-    color: #909090;
+    color: #6F716F;
 }
 .dashboard-list-box.invoices ul ul li {
     padding: 0;
