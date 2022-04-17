@@ -1850,6 +1850,7 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
     height: 44px;
     line-height: 44px;
     box-shadow: none;
+    color: #444;
 }
 .main-search-input button.button {
     font-size: 18px;
