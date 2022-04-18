@@ -6,13 +6,13 @@
             <div class="listings-container list-layout">
                 <h2>About Us</h2>
                 <p>
-                    The Civic Tech Field Guide is curated by <a href="https://twitter.com/mstem" style="color: #1d9bf0;">Matt Stempeck</a>, <a href="https://twitter.com/mlsif" style="color: #1d9bf0;">Micah Sifry</a>, and <a href="https://civictech.guide/submit-listing/" style="color: #1d9bf0;">people like you</a>. You can learn about <a href="https://blogs.microsoft.com/on-the-issues/2016/04/27/towards-taxonomy-civic-technology/" style="color: #1d9bf0;">the original motivations for this project</a>.
+                    The Civic Tech Field Guide is curated by <a href="https://twitter.com/mstem" style="color: #0A78C2;">Matt Stempeck</a>, <a href="https://twitter.com/mlsif" style="color: #0A78C2;">Micah Sifry</a>, and <a href="https://civictech.guide/submit-listing/" style="color: #0A78C2;">people like you</a>. You can learn about <a href="https://blogs.microsoft.com/on-the-issues/2016/04/27/towards-taxonomy-civic-technology/" style="color: #0A78C2;">the original motivations for this project</a>.
                 </p>
                 <p>
-                    The Field Guide is an independent project supported by <a href="https://knightfoundation.org/" style="color: #1d9bf0;">Knight Foundation</a> and <a href="https://luminategroup.com/" style="color: #1d9bf0;">Luminate</a>. <a href="http://civichall.org/" style="color: #1d9bf0;">Civic Hall</a> is our Founding Organization.
+                    The Field Guide is an independent project supported by <a href="https://knightfoundation.org/" style="color: #0A78C2;">Knight Foundation</a> and <a href="https://luminategroup.com/" style="color: #0A78C2;">Luminate</a>. <a href="http://civichall.org/" style="color: #0A78C2;">Civic Hall</a> is our Founding Organization.
                 </p>
                 <p>
-                    <a href="https://twitter.com/esmpsn?lang=en" style="color: #1d9bf0;">Erin Simpson</a> helped create <a href="https://bit.ly/organizecivictech" style="color: #1d9bf0;">the first version of this guide</a>.
+                    <a href="https://twitter.com/esmpsn?lang=en" style="color: #0A78C2;">Erin Simpson</a> helped create <a href="https://bit.ly/organizecivictech" style="color: #0A78C2;">the first version of this guide</a>.
                 </p>
                 <p>
                     We benefit from expert curators who help us stay apprised of their areas of expertise and domains within civic tech.
@@ -47,7 +47,7 @@
         <div class="col-lg-6 col-md-6">
             <div class="sidebar">
                 <div class="widget margin-bottom-40">
-                    <img src="{{ asset('images/about.png') }}">
+                    <img src="{{ asset('images/about.png') }}" alt="Matt Stempeck bows at the Innovation Alter of 3m Post-It notes">
                 </div>
             </div>
         </div>
