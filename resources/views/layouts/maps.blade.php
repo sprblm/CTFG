@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <title>{{ @$title }}</title>
     <meta charset="utf-8">
@@ -35,9 +36,10 @@
                         <!-- Mobile Navigation -->
                         <div class="mmenu-trigger">
                             <button class="hamburger hamburger--collapse" type="button">
-                            <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                            </span>
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                                <span class="visually-hidden">Toggle navigation</span>
                             </button>
                         </div>
                         <div class="clearfix"></div>
@@ -69,8 +71,8 @@
         </div>
 
         @include('layouts.partials.footer')
-        
-        <div id="backtotop"><a href="#"></a></div>
+
+        <div id="backtotop"><a href="#"><span class="visually-hidden">Back to Top</span></a></div>
     </div>
     
     <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>

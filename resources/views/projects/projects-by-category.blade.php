@@ -12,45 +12,45 @@
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
             <h2>
-                @if(!empty($activeAncestor)) 
+                @if(!empty($activeAncestor))
                     <a href="/listing-category/{{ $activeAncestor->slug }}">
                         {{ $activeAncestor->name }}
-                    </a> > 
-                @endif 
+                    </a> >
+                @endif
                 @if(!empty($activeGreatGreatGrandParent))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         <a href="/listing-category/{{ $activeGreatGreatGrandParent->slug }}">
                             {{ $activeGreatGreatGrandParent->name }}
-                        </a> > 
+                        </a> >
                     </span>
                 @endif
                 @if(!empty($activeGreatGrandParent))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         <a href="/listing-category/{{ $activeGreatGrandParent->slug }}">
                             {{ $activeGreatGrandParent->name }}
-                        </a> > 
+                        </a> >
                     </span>
                 @endif
                 @if(!empty($activeGrandParent))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         <a href="/listing-category/{{ $activeGrandParent->slug }}">
                             {{ $activeGrandParent->name }}
-                        </a> > 
+                        </a> >
                     </span>
                 @endif
                 @if(!empty($activeParent))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         <a href="/listing-category/{{ $activeParent->slug }}">
                             {{ $activeParent->name }}
-                        </a> > 
+                        </a> >
                     </span>
                 @endif
                 @if(!empty($category))
-                    <span style="color: #7f8280; font-size: 22px;">
+                    <span style="color: #747674; font-size: 22px;">
                         {{ $category->name }}
                     </span>
                 @endif
-                <span style="color: #7f8280; font-size: 22px;">
+                <span style="color: #747674; font-size: 22px;">
                     - ({{ @$projects->total() }})
                 </span>
             </h2>

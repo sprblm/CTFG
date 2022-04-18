@@ -15,7 +15,7 @@
         <div id="titlebar" class="listing-titlebar">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <img src="{{ @$project->media->last()->link }}" height="150px" title="Project image"/>
+                    <img src="{{ @$project->media->last()->link }}" height="150px" title="Project image" alt="Graphic representing {!! $project->name !!}"/>
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="listing-titlebar-title">
@@ -107,14 +107,14 @@
                             <tr><th>Postmortem: </th><td>{{ $project->postmortem }}</td></tr>
                         @endif
                         @if(!empty(@$project->parent_id))
-                            <tr><th>Parent Organization: </th><td><a  style="color: #03cafc;" href="/listing/{{ $project->parent->slug }}">{{ $project->parent->name }}</a></td></tr>
+                            <tr><th>Parent Organization: </th><td><a  style="color: #0A78C2;" href="/listing/{{ $project->parent->slug }}">{{ $project->parent->name }}</a></td></tr>
                         @endif
                         @if(@$project->children->count() > 0)
                             <tr>
                                 <th>Children Organization(s): </th>
                                 <td>
                                     @foreach($project->children as $child)
-                                        <a  style="color: #03cafc;" href="/listing/{{ $child->slug }}">
+                                        <a  style="color: #0A78C2;" href="/listing/{{ $child->slug }}">
                                             {{ $child->name }}
                                         </a>
                                         @if($project->children->last()->id != $child->id)
@@ -169,7 +169,7 @@
                 <h3 class="listing-desc-headline">Project Categories</h3>
                 <ul class="listing-features" style="list-style: inherit; padding-left: 30px;">
                     @foreach($project->categories as $category)
-                        <li><a  style="color: #03cafc;" href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
+                        <li><a  style="color: #0A78C2;" href="/listing-category/{{ $category->slug }}">{{ $category->name }}</a></li>
                     @endforeach
                 </ul>
             @endif
@@ -234,7 +234,7 @@
                 <p> 
                     {{ @$project->impact->first()->statement }}
                     @if(!empty(@$project->impact->first()->url))
-                        (<a href="{{ @$project->impact->first()->url }}" style="color: #03cafc;">Source</a>,
+                        (<a href="{{ @$project->impact->first()->url }}" style="color: #0A78C2;">Source</a>,
                     @endif
                     @if(!empty(@$project->impact->first()->impact_date))
                         <a href="{{ @$project->impact->first()->impact_date }}">
@@ -278,7 +278,7 @@
                     <div class="row with-forms">
                         <ul style="padding-left: 30px;">
                             @foreach($project->founders as $founder)
-                                <li><span>{{ @$founder->name }}</span></li>
+                                <li><span style="color: #444;">{{ @$founder->name }}</span></li>
                                 <span>&nbsp;</span>
                             @endforeach
                         </ul>
@@ -294,12 +294,12 @@
                 @endif
                 @if(!empty($project->twitter_url))
                     <li>
-                        <a class="twitter-share" target="_blank" href="{{ $project->twitter_url }}"><i class="fa fa-twitter"></i> Twitter</a>
+                        <a class="twitter-share" target="_blank" href="{{ $project->twitter_url }}"><i style="color: #1da1f2" class="fa fa-twitter"></i> Twitter</a>
                     </li>
                 @endif
                 @if(!empty($project->instagram_url))
                     <li>
-                        <a class="gplus-share" target="_blank" href="{{ $project->instagram_url }}"><i class="fa fa-instagram"></i> Instagram</a>
+                        <a class="instagram-share" target="_blank" href="{{ $project->instagram_url }}"><i class="fa fa-instagram"></i> Instagram</a>
                     </li>
                 @endif
             </ul>
@@ -343,7 +343,7 @@
                             <li>Blog: <span><a href="{{ @$project->blog_url }}" target="_blank">{{ @$project->blog_url }}</a></span></li>
                         @endif
                         @if(!empty(@$project->parent_id))
-                            <li>Parent Org: <span><a  style="color: #03cafc;" href="/listing/{{ $project->parent->slug }}">{{ @$project->parent->name }}</a></span></li>
+                            <li>Parent Org: <span><a  style="color: #0A72B8;" href="/listing/{{ $project->parent->slug }}">{{ @$project->parent->name }}</a></span></li>
                         @endif
                         {{-- @if(!empty(@$project->host_organization_url))
                             <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>

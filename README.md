@@ -1,61 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Civic Tech Field Guide Directory
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+> The Civic Tech Field Guide is the world's biggest collection of projects using tech for the common good.
 
-## About Laravel
+## General
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+We use the [Code for All](https://codeforall.org/) `#civic-tech-field-guide` Slack channel for project coordination and discussion.
+If you want to help out, you should [join the Slack community](https://slack.codeforall.org/) and the channel and say hi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+All contributions are welcome. If you found a bug and want to provide a fix, fork the repo, work on the fix and [create a PR](https://docs.github.com/en/github-ae@latest/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+If you wish to contribute a feature or provide general support, contact [Matt Stempeck](https://github.com/mstem), among many things, the Curator of the project, to fill you in on the project's priorities.
+[Benjamin Munyoki](https://github.com/bmunyoki) is the project's main developer; you should ask him to review your work.
 
-## Learning Laravel
+## Get started
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The Directory is based on Laravel 7.
+If you are not familiar with it, first [check out their docs](https://laravel.com/docs/7.x/) to understand the basic concepts and the requirements to run it locally.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The source of truth is an [Airtable database](https://airtable.com/shrfxjImCdCNw9p5U/tblELFP9tGX07UZDo).
+When listing projects or filtering them, instead of directly querying Airtable, we use a regularly synced SQL database.
+The sync is one-directional; the SQL database is read-only.
 
-## Laravel Sponsors
+### Setting up the site locally
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. Clone the forked repo (`git clone`) and run the Composer install (`composer install`) command.
+2. Create a `.env` file based (`cp .env.example .env`) on the `.env.example` and fill out the details.
+3. Generate a key (`php artisan key:generate`) then run the migration (`php artisan migrate`) command.
 
-### Premium Partners
+At this point, the Directory should be functional, although there won't be any project in the database.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+#### Importing the database
 
-## Contributing
+If you don't yet have access to the Airtable database, you can import the SQL [database dump](https://codeforall.slack.com/archives/C02S6CXE1KR/p1649871812694029) shared in the Slack channel.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+If you have access to the Airtable database and provided the `AIRTABLE_KEY` and `AIRTABLE_BASE` values in the `.env` file, run the `php artisan sync:tables` command.
 
-## Code of Conduct
+## Other ways to contribute
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+You don't have to be a developer to contribute. Check out our [Contribute page](https://civictech.guide/contribute/) to find details about all the ways you can help us.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution, and share alike with the same license.
