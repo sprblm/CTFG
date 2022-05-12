@@ -33,6 +33,7 @@ class RenderCategoryView implements ShouldQueue
 
         $html = \View::make('partials.categories', ['catHierarchies' => $categories, 'activeCat' => null, 'activeParent' => null, 'activeGrandParent' => null])->render();
         file_put_contents(resource_path('views/cache/categories_cache.blade.php'), $html);
+        \Log::info("Done rendering category view");
         return true;
     }
 }

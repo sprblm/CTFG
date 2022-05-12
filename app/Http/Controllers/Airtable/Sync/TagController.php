@@ -25,6 +25,7 @@ class TagController extends Controller {
             $tg = new Tag;
             $tg->airtable_id = @$f["id"];
             $tg->name = @$f["fields"]["Name"];
+            $tg->order_sort = @$f["fields"]["Order"];
             $tg->save();
         }
 

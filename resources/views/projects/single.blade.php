@@ -32,7 +32,7 @@
                         @if(!empty($project->website_url))
                             <br>
                             <span>
-                                <a href="{{ @$project->website_url }}" target="_blank" class="listing-address">
+                                <a href="{{ @$project->website_url }}" target="_blank">
                                     <i class="fa fa-globe"></i>
                                     {{ @$project->website_url }}
                                 </a>
@@ -362,8 +362,9 @@
 @endsection
 
 @section('scripts')
+    <script src="https://maps.googleapis.com/maps/api/js?key={{$gMapsApiKey}}&sensor=false"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=@json(config('services.google.key'))"></script>
+    
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/maps.js') }}"></script>

@@ -24,7 +24,11 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
-        $listings = Airtable::table('listings')->all();
+        $tags = Airtable::table('tags')->get();
+
+        print_r($tags);
+
+        /*$listings = Airtable::table('listings')->all();
 
         
         foreach ($listings as $listing) {
@@ -39,7 +43,7 @@ class TestController extends Controller {
                     }
                 }
             }
-        }
+        } */
 
 
 

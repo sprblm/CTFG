@@ -314,7 +314,7 @@ var infoBox_ratingType = 'star-rating';
 
     function singleListingMap() {
 
-      var myLatlng = new google.maps.LatLng({lng: $( '#singleListingMap' ).data('longitude'),lat: $( '#singleListingMap' ).data('latitude'), });
+      var myLatlng = new google.maps.LatLng({lng: $('#singleListingMap').data('longitude'),lat: $('#singleListingMap').data('latitude'), });
 
       var single_map = new google.maps.Map(document.getElementById('singleListingMap'), {
         zoom: 15,

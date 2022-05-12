@@ -42,6 +42,7 @@ class ProjectController extends Controller {
         return view('projects.single', [
             'title' => 'Project - '.$project->name,
             'project' => $project,
+            'gMapsApiKey' => config('services.google.key'),
         ]);
     }
 
@@ -111,28 +112,13 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
                 $builder->where('status', 'Active');
-            })
+            })*/
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
-            })->get();
-
-            $all = $projects;
-
-            $cats = Category::where('name', 'LIKE', '%'.request('q').'%')->get();
-            foreach ($cats as $cat) {
-                $associatedListings = $cat->listings;
-                $all = $all->merge($associatedListings);
-            }
-
-            $tags = Tag::where('name', 'LIKE', '%'.request('q').'%')->get();
-            foreach ($tags as $tag) {
-                $associatedListings = $tag->listings;
-                $all = $all->merge($associatedListings);
-            }
-
-            $projects = collect($all)->paginate(10);
+            })
+            ->paginate(10);
 
         // Queue job for logging
         if (request('q')) {
@@ -140,7 +126,7 @@ class ProjectController extends Controller {
         }
 
         return view ('projects.search-results', [
-            'title' => 'Civic Tech Field Guide - Search Results',
+            'title' => 'Civic Tech Field Guide - Directory',
             'projects' => $projects,
             'query' => request('q'),
             'filterCategories' => request('categories'),

@@ -25,13 +25,16 @@ Route::get('/projects/autocomplete', 'Projects\ProjectController@searchAutoCompl
 Route::get('/listings/search', 'Projects\ProjectController@search');
 Route::get('/world-map', 'Guest\GuestController@worldMap');
 
-Route::get('/category/parent/the-tech', 'Category\ParentCategoryController@theTech');
-Route::get('/category/parent/the-people', 'Category\ParentCategoryController@thePeople');
+Route::get('/tech', 'Category\ParentCategoryController@theTech');
+Route::get('/people', 'Category\ParentCategoryController@thePeople');
+Route::get('/adjacent', 'Category\ParentCategoryController@adjacent');
 
 Route::get('/listing-categories', 'Category\CategoryHierarchy@getCategoryHierarchy');
 Route::get('/listing-category/{slug}', 'Category\ProjectController@getProjectsByCategory');
 
 Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag');
+
+Route::get('/tags', 'Category\ProjectController@tagsTable');
 
 Route::get('/log-search', 'Projects\SearchController@log');
 Route::get('/search-log', 'Projects\SearchController@getLog');

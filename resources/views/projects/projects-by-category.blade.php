@@ -1,5 +1,13 @@
 @extends('layouts.template')
 
+@section('styles')
+    <style type="text/css">
+        span.markdown a {
+            color: blue;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12 margin-bottom-40">
@@ -48,11 +56,17 @@
             </h2>
 
             @if(!empty($categoryDesc))
-                @if(strlen($categoryDesc) > 310)
-                    <p style="line-height: 20px !important; font-size: 14px;">{{ substr($categoryDesc, 0, 310) }}<span id="dots"> ...</span><span id="more">{{ substr($categoryDesc, 310, strlen($categoryDesc)) }}</span><a href="#" onclick="myFunction()" id="readMore" style="color: blue;"> &nbsp;&nbsp;[++ Expand ++]</a></p>
-                @else
-                    <p style="line-height: 20px !important; font-size: 14px;">{{ $categoryDesc }}</p>
-                @endif
+                <span class="markdown">
+                    @if(strlen($categoryDesc) > 300)
+                        <p style="line-height: 20px !important; font-size: 14px;">
+                        {{ Markdown::parse($categoryDesc) }}
+                        </p>
+                    @else
+                        <p style="line-height: 20px !important; font-size: 14px;">
+                            {{ Markdown::parse($categoryDesc) }}
+                        </p>
+                    @endif
+                </span>
             @endif
         </div>
 

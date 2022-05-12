@@ -35,6 +35,7 @@ class CategoryController extends Controller {
                 $c->name = $name;
                 $c->description = strip_tags(@$cat["fields"]["Description"]);
                 $c->slug = Str::of($name)->slug();
+                $c->order_sort = @$cat["fields"]["Order"];
                 $c->save();
             }
         }

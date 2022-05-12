@@ -25,12 +25,11 @@
         <header id="header-container">
             <!-- Header -->
             <div id="header">
-                <div class="container">
+                <div class="container" style="width: 100%">
                     <div class="left-side">
                         <a href="https://civictech.guide/">
                             <div id="logo">
-                                <!-- <h2 style="margin-top: 2px;">Civic Tech Field Guide</h2> -->
-                                <h2 style="margin-top: 2px;">
+                                <h2 style="margin-top: 2px; font-size: 2.5rem;">
                                     Civic Tech Field Guide
                                 </h2>
                             </div>
@@ -44,27 +43,17 @@
                                 <span class="visually-hidden">Toggle navigation</span>
                             </button>
                         </div>
-                        <!-- Main Navigation -->
-                        <!-- <nav id="navigation" class="style-1">
-                            <ul id="responsive">
-                                <li>
-                                    <div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="padding: 0px !important;">
-                                        <div class="main-search-input-item">
-                                            <input type="text" class="typeahead" placeholder="Search Civic Tech Field Guide ..." value=""/>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav> -->
                         <div class="clearfix"></div>
                     </div>
 
                     <div class="right-side">
                         <div class="header-widget">
                             <span style="padding-right: 25px;">
-                                <a href="/listing-category/the-tech" class="overlay" style="padding-right: 10px;">The Tech</a>
-                                <a href="/listing-category/the-people" class="overlay" style="padding-right: 10px;">The People</a>
+                                <a href="/tech" class="overlay" style="padding-right: 10px;">The Tech</a>
+                                <a href="/people" class="overlay" style="padding-right: 10px;">The People</a>
+                                <a href="/adjacent" class="overlay" style="padding-right: 10px;">Adjacent Fields</a>
                                 <a href="/listing-categories" class="overlay" style="padding-right: 10px;">All Categories</a>
+                                <a href="/tags" class="overlay" style="padding-right: 10px;">Tags</a>
                                 <a href="/world-map" style="padding-right: 10px;">World Map</a>
                                 <a href="/about">About</a>
                             </span>

@@ -27,6 +27,14 @@ class Kernel extends ConsoleKernel
             ->dailyAt('2:00')
             ->timezone('America/New_York');
 
+        $schedule->command('render-cache:category')
+            ->dailyAt('2:30')
+            ->timezone('America/New_York');
+
+        $schedule->command('render-cache:tag')
+            ->dailyAt('2:45')
+            ->timezone('America/New_York');
+
     }
 
     /**
