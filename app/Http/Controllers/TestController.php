@@ -24,7 +24,14 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
-        $dbLocations = Location::get();
+        $locations = Airtable::table('locations')->get();
+
+        foreach ($locations as $loc) {
+            echo @$loc["fields"]["Country"]."<br>";
+        }
+
+        //$dbLocations = Location::get();
+
         /*$key = config('services.google.key');
 
         foreach($dbLocations as $loc) {
@@ -63,7 +70,7 @@ class TestController extends Controller {
         
 
 
-        foreach($dbLocations as $loc) {
+        /*foreach($dbLocations as $loc) {
             $pieces = explode(' ', $loc->name);
             //$country = array_pop($pieces);
 
@@ -87,7 +94,7 @@ class TestController extends Controller {
             }
         }
 
-        echo "Done";
+        echo "Done";*/
 
 
         /*$listings = Airtable::table('listings')->all();
