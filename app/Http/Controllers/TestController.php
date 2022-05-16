@@ -24,9 +24,71 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
-        $tags = Airtable::table('tags')->get();
+        $dbLocations = Location::get();
+        /*$key = config('services.google.key');
 
-        print_r($tags);
+        foreach($dbLocations as $loc) {
+            if (!empty($loc->name)) {
+                $pieces = explode(' ', $loc->name);
+
+                $length = sizeof($pieces);
+
+                if ($length >= 2) {
+                    $address = $pieces[$length-2].", ".$pieces[$length-1];
+                    echo "Address : ".$address."<br>";
+                    $address = urlencode($loc->name);
+                    
+                    
+                    $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?key='.$key.'&address='.$address.'&sensor=false');
+
+                    $data = @json_decode($geocode);
+                    $add_array  = @$data->results;
+                    $add_array = @$add_array[0];
+                    $add_array = @$add_array->address_components;
+                    $country = "";
+                    foreach ($add_array as $key) {
+                      if($key->types[0] == 'country'){
+                        $country = @$key->long_name;
+                      }
+                    }
+                    
+                    echo "Country : ".$country;
+                    echo "<br>";
+                }
+
+                
+            }
+            
+        }*/
+        
+
+
+        foreach($dbLocations as $loc) {
+            $pieces = explode(' ', $loc->name);
+            //$country = array_pop($pieces);
+
+            $length = sizeof($pieces);
+
+            if ($length >= 2) {
+                $country = $pieces[$length-2]." ".$pieces[$length-1];
+            }
+            
+            //echo $country."<br>";
+
+            if ($country == "SA" || $country == "South Africa") {
+                $country = "South Africa";
+            }
+
+            $ct = Country::where('country', $country)->first();
+            if ($ct) {
+                $loc->update([
+                    'country' => $ct->country
+                ]);
+            }
+        }
+
+        echo "Done";
+
 
         /*$listings = Airtable::table('listings')->all();
 

@@ -42,6 +42,10 @@ class LocationController extends Controller {
                 $country = "United Kingdom";
             }
 
+            if ($country == "SA" || $country == "South Africa") {
+                $country = "South Africa";
+            }
+
             $ct = Country::where('country', $country)->first();
             if ($ct) {
                 $loc->update([
