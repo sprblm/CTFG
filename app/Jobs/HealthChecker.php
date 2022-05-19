@@ -135,13 +135,21 @@ class HealthChecker implements ShouldQueue
 
     /**
      * Logs the data of the failed record in a log file
-     *
+     * Insert the record to Airtable
+     * 
      * @param $record
      * @param int $status
      */
     public function logToCheckManually($record, $status)
     {
         $url = $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';
+
+        Airtable::table('websites')->create([
+            'Url' => $this->record['fields']['Website URL'],
+            'Status' => $status,
+            'Listing' => [$this->record['id']]
+        ]);
+
         Log::channel('healthcheck')->info("MANUAL CHECK ID: {$record['id']} WEBSITE URL: {$url} RECEIVED STATUS: {$status}");
     }
 }

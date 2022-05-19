@@ -38,7 +38,5 @@ class TestCommand extends Command
      */
     public function handle() {
         TestJob::dispatch();
-
-        return 0;
     }
 }
