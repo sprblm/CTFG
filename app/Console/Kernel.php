@@ -39,6 +39,10 @@ class Kernel extends ConsoleKernel
             ->weekly()
             ->timezone('America/New_York');
 
+        $schedule->command('test:command')
+            ->everyFiveMinutes()
+            ->timezone('Africa/Nairobi');
+
     }
 
     /**
