@@ -144,7 +144,7 @@ class HealthChecker implements ShouldQueue
     {
         $url = $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';
 
-        Airtable::table('websites')->create([
+        Airtable::table('404s')->create([
             'Url' => $this->record['fields']['Website URL'],
             'Status' => $status,
             'Listing' => [$this->record['id']]
