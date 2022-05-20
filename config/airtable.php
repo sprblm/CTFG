@@ -71,8 +71,8 @@ return [
         'knowledge' => [
             'name' => env('AIRTABLE_TABLE_KWD', 'Knowledge'),
         ],
-        'websites' => [
-            'name' => env('AIRTABLE_TABLE_WEBSITES', 'Websites'),
+        '404s' => [
+            'name' => env('AIRTABLE_TABLE_404s', '404s'),
         ],
 
     ],
