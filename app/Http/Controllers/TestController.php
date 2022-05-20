@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Airtable;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
 use DOMDocument;
 
 use App\Models\Category;
@@ -24,7 +25,21 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
+        
+        $environment = App::environment();
+        if ($environment == "production") {
+            echo "Production";
+        } else {
+            echo "Other";
+        }
+        /*$locations = Airtable::table('locations')->get();
+
+        foreach ($locations as $loc) {
+            echo @$loc["fields"]["Country"]."<br>";
+        }
+
         $dbLocations = Location::get();
+
         /*$key = config('services.google.key');
 
         foreach($dbLocations as $loc) {
@@ -63,7 +78,7 @@ class TestController extends Controller {
         
 
 
-        foreach($dbLocations as $loc) {
+        /*foreach($dbLocations as $loc) {
             $pieces = explode(' ', $loc->name);
             //$country = array_pop($pieces);
 
@@ -87,7 +102,7 @@ class TestController extends Controller {
             }
         }
 
-        echo "Done";
+        echo "Done";*/
 
 
         /*$listings = Airtable::table('listings')->all();

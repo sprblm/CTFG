@@ -23,17 +23,7 @@ class LocationController extends Controller {
 
         // Recreate categories
         foreach($locations as $loc) {
-            $lc = new Location;
-            $lc->airtable_id = @$loc["id"];
-            $lc->name = @$loc["fields"]["Name"];
-            $lc->save();
-        }
-        
-        $dbLocations = Location::get();
-        foreach($dbLocations as $loc) {
-            $pieces = explode(' ', $loc->name);
-            $country = array_pop($pieces);
-
+            $country = @$loc["fields"]["Country"];
             if ($country == "USA" || $country == "United States" || $country == "United States of America") {
                 $country = "United States of America";
             }
@@ -46,12 +36,11 @@ class LocationController extends Controller {
                 $country = "South Africa";
             }
 
-            $ct = Country::where('country', $country)->first();
-            if ($ct) {
-                $loc->update([
-                    'country' => $ct->country
-                ]);
-            }
+            $lc = new Location;
+            $lc->airtable_id = @$loc["id"];
+            $lc->name = @$loc["fields"]["Name"];
+            $lc->country = $country;
+            $lc->save();
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
