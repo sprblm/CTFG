@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Airtable;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\App;
 use DOMDocument;
 
 use App\Models\Category;
@@ -24,130 +23,22 @@ use App\Models\Tag;
 use Carbon\Carbon;
 
 class TestController extends Controller {
-    public $record;
-
-    /**
-     * Execute the job.
-     * Check the url status: do nothing if success,
-     * try to fix if broken, log if not able to fix
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        $url = $this->record['fields']['Website URL'] ?? false;
-        if ($url) {
-            \Log::info("Record: ".$this->record['id']." url found: ".$url);
-            $url = $url."x";
-        }
-        $statusCheck = $url ? $this->statusCheck($url) : false;
-        if ($this->isSuccessfulStatus($statusCheck)) {
-            return;
-        }
-
-        if ($this->isBrokenStatus($statusCheck)) {
-            $newUrl = $this->findWaybackLink($url);
-            if($newUrl){
-                Log::channel('healthcheck')->info("FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}");
-                //$this->updateAirtableRecord($this->record, $newUrl);
-                return;
-            }
-        }
-
-        $this->logToCheckManually($this->record, $statusCheck);
-    }
-
-    /**
-     * Gets the status of a given url request
-     *
-     * @param string $url
-     *
-     * @return int
-     */
-    public function statusCheck($url)
-    {
-        try {
-            $response = Http::get($url);
-            \Log::info("Url: ".$url.", Response: ".$response->status());
-            return $response->status();
-        }catch (\Exception $exception){
-            Log::channel('healthcheck')->info("MANUAL CHECK URL: {$url} EXCEPTION: {$exception->getMessage()}");
-            return 400;
-        }
-    }
-
-    /**
-     * @param $statusCheck
-     *
-     * @return bool
-     */
-    public function isSuccessfulStatus($statusCheck)
-    {
-        return $statusCheck >= 200 && $statusCheck < 300;
-    }
-
-    /**
-     * @param $statusCheck
-     *
-     * @return bool
-     */
-    public function isBrokenStatus($statusCheck)
-    {
-        return $statusCheck >= 400;
-    }
-    /**
-     * Find the latest archived for a given url
-     *
-     * @param string $urlToFind
-     *
-     * @return null
-     */
-    public function findWaybackLink(string $urlToFind)
-    {
-        try {
-            $waybackLink = 'http://archive.org/wayback/available?url='. $urlToFind;
-            $jsonResponse = Http::get($waybackLink);
-            $responseObject = json_decode($jsonResponse);
-            $hasClosestLink = !empty($responseObject->archived_snapshots);
-            $newUrl = null;
-            if($hasClosestLink){
-                $newUrl = $responseObject->archived_snapshots->closest->url;
-            }
-
-            return $newUrl;
-        }catch (\Exception $exception){
-            return null;
-        }
-    }
-
-
-    /**
-     * Logs the data of the failed record in a log file
-     *
-     * @param $record
-     * @param int $status
-     */
-    public function logToCheckManually($record, $status)
-    {
-        $url = $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';
-        Airtable::table('websites')->create([
-            'Url' => $this->record['fields']['Website URL'],
-            'Status' => $status,
-            'Listing' => [$this->record['id']]
-        ]);
-
-        Log::channel('healthcheck')->info("MANUAL CHECK ID: {$record['id']} WEBSITE URL: {$url} RECEIVED STATUS: {$status}");
-    }
 
     public function test(Request $request) {
-        $listings = Airtable::table('listings')->get();
+        
+        $environment = App::environment();
+        if ($environment == "production") {
+            echo "Production";
+        } else {
+            echo "Other";
+        }
+        /*$locations = Airtable::table('locations')->get();
 
-        foreach ($listings as $listing) {
-            $this->record = $listing;
-            return $this->handle();
+        foreach ($locations as $loc) {
+            echo @$loc["fields"]["Country"]."<br>";
         }
 
-        //$dbLocations = Location::get();
+        $dbLocations = Location::get();
 
         /*$key = config('services.google.key');
 
