@@ -52,7 +52,7 @@ class HealthChecker implements ShouldQueue
             $newUrl = $this->findWaybackLink($url);
             if($newUrl){
                 Log::channel('healthcheck')->info("FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}");
-                $this->updateAirtableRecord($this->record, $newUrl);
+                $this->updateAirtableRecord($this->record, $newUrl, $statusCheck);
                 return;
             }
         }
@@ -128,9 +128,15 @@ class HealthChecker implements ShouldQueue
      * @param $record
      * @param $newUrl
      */
-    public function updateAirtableRecord( $record, $newUrl)
+    public function updateAirtableRecord( $record, $newUrl, $status)
     {
         Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl]);
+        Airtable::table('404s')->create([
+            'Url' => $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';,
+            'Status' => $status,
+            'Patched Archive Url' => $newUrl,
+            'Listing' => [$record['id']]
+        ]);
     }
 
     /**
@@ -145,8 +151,9 @@ class HealthChecker implements ShouldQueue
         $url = $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';
 
         Airtable::table('404s')->create([
-            'Url' => $this->record['fields']['Website URL'],
+            'Url' => $url,
             'Status' => $status,
+            'Manual Check' => "YES",
             'Listing' => [$this->record['id']]
         ]);
 
