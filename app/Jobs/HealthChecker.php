@@ -133,7 +133,7 @@ class HealthChecker implements ShouldQueue
     {
         Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl]);
         Airtable::table('404s')->create([
-            'Url' => $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';,
+            'Url' => $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED',
             'Status' => $status,
             'Patched Archive Url' => $newUrl,
             'Listing' => [$record['id']],
