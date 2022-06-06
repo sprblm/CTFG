@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-md-6">
                         <h3>With support from</h3>
-                        <img width="150" height="150" src="{{ asset('images/knight_foundation.png') }}" alt="Knight Foundation logo" />
+                        <img src="{{ asset('images/knight_foundation.png') }}" alt="Knight Foundation logo" />
                     </div>
                     <div class="col-md-3">
                         <h3>Technology partner</h3>
