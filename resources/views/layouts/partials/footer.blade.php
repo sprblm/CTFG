@@ -90,11 +90,8 @@
                     <div class="col-md-6">
                         <h3>With support from</h3>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <img src="{{ asset('images/knight_foundation.png') }}" alt="Knight Foundation logo" />
-                            </div>
-                            <div class="col-md-6" style="vertical-align: text-top;">
-                                <img src="{{ asset('images/luminate.png') }}" alt="Luminate logo" />
                             </div>
                         </div>
                     </div>
@@ -112,10 +109,10 @@
             <div class="col-md-12">
                 <div class="copyrights">
                     <span style="padding: 0 30px; font-size: 15px; line-height: 22px;">
-                        This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution, and share alike with the same license.
+                        This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution.
                     </span>
                     <div style="margin-top: 20px;">
-                        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img width="100" height="100" src="https://upload.wikimedia.org/wikipedia/commons/b/bd/CC-BY-NC-SA.svg" alt="Creative Commons license usage sign" /></a> Civic Tech Field Guide
+                        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img width="100" height="100" src="{{ asset('images/cc.png') }}" alt="Creative Commons license usage sign" /></a> Civic Tech Field Guide
                     </div>
                 </div>
             </div>
