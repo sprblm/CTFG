@@ -108,7 +108,7 @@
                         This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution.
                     </span>
                     <div style="margin-top: 20px;">
-                        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img width="100" height="100" src="{{ asset('images/cc.png') }}" alt="Creative Commons license usage sign" /></a> Civic Tech Field Guide
+                        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="{{ asset('images/cc.png') }}" alt="Creative Commons license usage sign" /></a> Civic Tech Field Guide
                     </div>
                 </div>
             </div>
