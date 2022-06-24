@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/webhooks/listing/updated', 'Api\Webhooks\Airtable\ListingController@handleUpdate');
 
+Route::get('/tp/docu', 'Api\TP\DocuController@getConf');
+
