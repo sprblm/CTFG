@@ -74,6 +74,9 @@ return [
         '404s' => [
             'name' => env('AIRTABLE_TABLE_404s', '404s'),
         ],
+        'boundaries' => [
+            'name' => env('AIRTABLE_TABLE_BOUNDARY', 'Boundaries'),
+        ],
 
     ],
 
