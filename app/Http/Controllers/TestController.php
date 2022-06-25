@@ -17,6 +17,7 @@ use App\Models\ParentCategory;
 use App\Models\GrandParentCategory;
 use App\Models\AncestorCategory;
 use App\Models\Country;
+use App\Models\Boundary;
 use App\Models\Tag;
 
 use Carbon\Carbon;
