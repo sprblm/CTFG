@@ -30,7 +30,7 @@ class GuestController extends Controller {
             })
             ->when(request('countries'), function($builder) {
                 $countries = request('countries');
-
+                /*
                 // Add variants of US
                 if (in_array('United States of America', $countries)) {
                     array_push($countries, 'USA');
@@ -40,13 +40,15 @@ class GuestController extends Controller {
                 // Add variants of UK
                 if (in_array('United Kingdom', $countries)) {
                     array_push($countries, 'UK');
-                }
+                } */
 
                 $builder->when(count($countries),function ($builder)use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                $builder->orWhere('name', 'like', '%' . $country . '%');
+                                //$builder->orWhere('name', 'like', '%' . $country . '%');
+
+                                $builder->orWhere('country', 'like', '%' . $country . '%');
                             }
                         });
                     });
