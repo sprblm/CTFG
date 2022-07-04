@@ -127,7 +127,11 @@
             },
             afterSelect: function (data) {
                 $.LoadingOverlay("show");
-                window.location.replace("/listings/search?q="+data.name);
+                //window.location.replace("/listings/search?q="+data.name);
+                var listing = data.name;
+                slug = listing.replace(/\s+/g, '-').toLowerCase();
+                //console.log(slug)
+                window.location.replace("/listing/"+slug);
             }
             
         }).keydown(function( event ) {
@@ -145,6 +149,12 @@
 
         $('#search').click(function(e) {
             var param = $(".typeahead").val();
+            /*var countries = [];
+            $('#countries option:selected').each(function(index,valor){
+                countries.push(valor.value);
+            });
+            
+            console.log(countries);*/
             $.LoadingOverlay("show");
             window.location.href  = "/listings/search?q="+param;
         });
