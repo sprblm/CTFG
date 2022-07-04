@@ -101,6 +101,8 @@ class GuestController extends Controller {
             'filterCountries' => request('countries'),
             'filterStatus' => request('status'),
             'filterOrgTypes' => request('organizationtypes'),
+            'filterOpenSource' => request('opensource'),
+            'filterTypes' => request('types'),
         ]);
 
     }
