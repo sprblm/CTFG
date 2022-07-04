@@ -66,17 +66,6 @@ class ProjectController extends Controller {
             ->when(request('countries'), function($builder) {
                 $countries = request('countries');
 
-                // Add variants of US
-                if (in_array('United States of America', $countries)) {
-                    array_push($countries, 'USA');
-                    array_push($countries, 'United States');
-                }
-
-                // Add variants of UK
-                if (in_array('United Kingdom', $countries)) {
-                    array_push($countries, 'UK');
-                }
-
                 $builder->when(count($countries),function ($builder)use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
@@ -118,6 +107,7 @@ class ProjectController extends Controller {
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
+            ->orderBy('created', 'DESC')
             ->paginate(10);
 
         // Queue job for logging
@@ -134,6 +124,8 @@ class ProjectController extends Controller {
             'filterCountries' => request('countries'),
             'filterStatus' => request('status'),
             'filterOrgTypes' => request('organizationtypes'),
+            'filterOpenSource' => request('opensource'),
+            'filterTypes' => request('types'),
         ]);
 
     }
