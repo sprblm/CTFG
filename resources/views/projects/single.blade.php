@@ -111,7 +111,7 @@
                         @endif
                         @if(@$project->children->count() > 0)
                             <tr>
-                                <th>Children Organization(s): </th>
+                                <th>Project(s): </th>
                                 <td>
                                     @foreach($project->children as $child)
                                         <a  style="color: #0A78C2;" href="/listing/{{ $child->slug }}">
