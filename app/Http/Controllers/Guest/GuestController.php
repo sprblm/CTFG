@@ -68,9 +68,9 @@ class GuestController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
                 $builder->where('status', 'Active');
-            })*/
+            })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
