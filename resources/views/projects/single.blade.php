@@ -82,6 +82,18 @@
                         @if(!empty(@$project->status))
                             <tr><th>Status: </th><td>{{ $project->status }}</td></tr>
                         @endif
+                        @if(@$project->links->count() > 0)
+                            <tr>
+                                <th>Related Links: </th>
+                                <td>
+                                    @foreach(@$project->links as $link)
+                                        <tr>
+                                            <td>{{ $link->link }}</td>
+                                        </tr>
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endif
                         {{-- @if(!empty(@$project->email))
                             <tr><th>Email: </th><td>{{ $project->email }}</td></tr>
                         @endif --}}
