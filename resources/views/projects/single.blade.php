@@ -84,7 +84,7 @@
                         @endif
                         @if(@$project->links->count() > 0)
                             <tr>
-                                <th>Related Links: </th>
+                                <th rowspan="{{ @$project->links->count() }}">Related Links: </th>
                                 <td>
                                     @foreach(@$project->links as $link)
                                         <tr>
