@@ -85,13 +85,13 @@
                         @if(@$project->links->count() > 0)
                             <tr>
                                 <th rowspan="{{ @$project->links->count() }}">Related Links: </th>
-                                <td>
-                                    @foreach(@$project->links as $link)
-                                        <tr>
-                                            <td>{{ $link->link }}</td>
-                                        </tr>
-                                    @endforeach
-                                </td>
+                                
+                                @foreach(@$project->links as $link)
+                                    <tr>
+                                        <td>{{ $link->link }}</td>
+                                    </tr>
+                                @endforeach
+                                
                             </tr>
                         @endif
                         {{-- @if(!empty(@$project->email))
