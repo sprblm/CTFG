@@ -61,6 +61,11 @@ class Listing extends Model {
           'listing_id', 'tag_id');
     }
 
+    public function links() {
+        return $this->belongsToMany('App\Models\Link', 'listing_links', 
+          'listing_id', 'link_id');
+    }
+
     
     public function children() {
         return $this->hasMany(Listing::class, 'parent_id', 'id');
