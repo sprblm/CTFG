@@ -88,7 +88,7 @@
                                 <td>
                                     <ul>
                                         @foreach(@$project->links as $link)
-                                            <li><a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}"></a>{{ $link->notes }}</li>
+                                            <li><a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">{{ $link->notes }}</a></li>
                                         @endforeach
                                     </ul>
                                 </td>
