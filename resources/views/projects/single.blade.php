@@ -88,7 +88,7 @@
                                 <td>
                                     <ul>
                                         @foreach(@$project->links as $link)
-                                            <li>{{ $link->link }}</li>
+                                            <li><a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}"></a>{{ $link->notes }}</li>
                                         @endforeach
                                     </ul>
                                 </td>
@@ -126,7 +126,7 @@
                                 <th>Project(s): </th>
                                 <td>
                                     @foreach($project->children as $child)
-                                        <a  style="color: #0A78C2;" href="/listing/{{ $child->slug }}">
+                                        <a style="color: #0A78C2;" href="/listing/{{ $child->slug }}">
                                             {{ $child->name }}
                                         </a>
                                         @if($project->children->last()->id != $child->id)
