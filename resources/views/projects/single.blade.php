@@ -73,7 +73,7 @@
                 @endif
             </div>
 
-            <div class="margin-top-35">
+            <div class="margin-top-35 table-responsive">
                 <table class="table table-responsive">
                     <tbody>
                         @if(!empty(@$project->organization_type))
