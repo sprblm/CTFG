@@ -1,4 +1,4 @@
-<div class="main-search-box no-shadow margin-bottom-30" style="border-bottom: 2px dotted #ccc;">
+<!-- <div class="main-search-box no-shadow margin-bottom-30" style="border-bottom: 2px dotted #ccc;">
     <form method="GET">
         <div class="row with-forms margin-bottom-30">
             <input type="hidden" name="q" value="{{ @$query }}">
@@ -111,4 +111,4 @@
             </div>
         </div>
     </form>
-</div>
+</div> -->

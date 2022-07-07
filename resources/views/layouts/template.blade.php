@@ -149,14 +149,8 @@
 
         $('#search').click(function(e) {
             var param = $(".typeahead").val();
-            /*var countries = [];
-            $('#countries option:selected').each(function(index,valor){
-                countries.push(valor.value);
-            });
-            
-            console.log(countries);*/
             $.LoadingOverlay("show");
-            window.location.href  = "/listings/search?q="+param;
+            //window.location.href  = "/listings/search?q="+param;
         });
 
         function myFunction() {

@@ -115,6 +115,14 @@ class ProjectController extends Controller {
             $this->logSearch(request('q'), $projects->total());
         }
 
+        if (count(request()->all()) == 0) {
+            $filterStatus = "Active";
+        } else if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = '';
+        }
+
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
             'projects' => $projects,
@@ -122,7 +130,8 @@ class ProjectController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            'filterStatus' => request('status'),
+            //'filterStatus' => request('status'),
+            'filterStatus' => $filterStatus,
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),

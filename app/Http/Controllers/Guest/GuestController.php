@@ -84,6 +84,8 @@ class GuestController extends Controller {
 
         if (count(request()->all()) == 0) {
             $filterStatus = "Active";
+        } else if(request('status')){
+            $filterStatus = request('status');
         } else {
             $filterStatus = '';
         }
