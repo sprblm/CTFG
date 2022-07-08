@@ -90,6 +90,8 @@ class GuestController extends Controller {
             $filterStatus = '';
         }
 
+        $allProjects = Listing::count();
+
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
             'projects' => $projects,
@@ -102,6 +104,7 @@ class GuestController extends Controller {
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),
+            'allProjects' => $allProjects,
         ]);
 
     }

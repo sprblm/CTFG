@@ -7,7 +7,7 @@
                 <h2>Search Results -  <span style="color: #747674; font-size: 22px;">       {{ @$query }} ({{ @$projects->total() }})</span>
                 </h2>
             @else
-                <h2>Search <span style="color: #747674; font-size: 22px;"> {{ @$projects->total() }}</span> projects
+                <h2>Search <span style="color: #747674; font-size: 22px;"> {{ @$allProjects }}</span> projects
                 </h2>
             @endif
         </div>

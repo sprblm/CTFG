@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="col-md-6" style="text-align: right;">
-                        <button class="button" id="search">Search</button>
+                        <button class="button" id="search" style="padding: 8px 30px;">Search</button>
                     </div>
                 </div>
                 
