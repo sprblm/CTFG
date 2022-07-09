@@ -74,6 +74,7 @@ class GuestController extends Controller {
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
+            ->orderByRaw('-cover_image DESC')
             ->orderBy('created', 'DESC')
             ->paginate(10);
 

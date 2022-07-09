@@ -23,6 +23,17 @@ use App\Models\Tag;
 use Carbon\Carbon;
 
 class TestController extends Controller {
+    public function fillCoverImages() {
+        $listings = Listing::get();
+
+        foreach ($listings as $record) {
+            $cover = $record->media->first()->link ?? null;
+
+            $record->update([
+                'cover_image' => $cover
+            ]);
+        }
+    }
 
     public function test(Request $request) {
         $locations = Airtable::table('locations')->get();
