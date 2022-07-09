@@ -1,7 +1,7 @@
 @foreach($projects as $project)
     <div class="listing-item">
         <a href="/listing/{{ $project->slug }}" class="listing-img-container">
-            <img src="{{ @$project->media->first()->link }}" loading="lazy" alt="{{ $project->name }}">
+            <img src="{{ @$project->cover_image }}" loading="lazy" alt="{{ $project->name }}">
         </a>
         
         <div class="listing-content">
