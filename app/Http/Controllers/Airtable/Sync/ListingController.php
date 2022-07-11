@@ -20,6 +20,7 @@ use App\Models\Impact;
 use App\Models\Location;
 use App\Models\Media;
 use App\Models\Tag;
+use App\Models\Link;
 
 class ListingController extends Controller {
     public function syncListing () {
@@ -38,6 +39,7 @@ class ListingController extends Controller {
             DB::table('listing_location')->truncate();
             DB::table('listing_media')->truncate();
             DB::table('listing_tags')->truncate();
+            DB::table('listing_links')->truncate();
         }
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
@@ -214,6 +216,17 @@ class ListingController extends Controller {
                     $dbFunding = Funding::where('airtable_id', @$artList["fields"]["Funding"][$i])->first();
                     if ($dbList && $dbFunding) {
                         $dbList->funding()->attach($dbFunding->id);
+                    }
+                }
+
+            }
+
+            // listing_links
+            if (!empty(@$artList["fields"]["Links"]) && sizeof(@$artList["fields"]["Links"]) > 0) {
+                for ($i=0; $i < sizeof(@$artList["fields"]["Links"]); $i++) { 
+                    $dbLink = Link::where('airtable_id', @$artList["fields"]["Links"][$i])->first();
+                    if ($dbList && $dbLink) {
+                        $dbList->links()->attach($dbLink->id);
                     }
                 }
 

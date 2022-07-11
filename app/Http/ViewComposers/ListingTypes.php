@@ -15,8 +15,6 @@ class ListingTypes
      * @return void
      */
     public function __construct() {
-        //$types = Listing::distinct('type')->whereNotNull('type')->orderBy('type')->pluck('type');
-
         $types = Listing::distinct('type')->orderBy('type', 'DESC')->pluck('type');
 
         $typesArray = array();

@@ -66,17 +66,6 @@ class ProjectController extends Controller {
             ->when(request('countries'), function($builder) {
                 $countries = request('countries');
 
-                // Add variants of US
-                if (in_array('United States of America', $countries)) {
-                    array_push($countries, 'USA');
-                    array_push($countries, 'United States');
-                }
-
-                // Add variants of UK
-                if (in_array('United Kingdom', $countries)) {
-                    array_push($countries, 'UK');
-                }
-
                 $builder->when(count($countries),function ($builder)use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
@@ -112,18 +101,29 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
                 $builder->where('status', 'Active');
-            })*/
+            })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
+            ->orderBy('created', 'DESC')
             ->paginate(10);
 
         // Queue job for logging
         if (request('q')) {
             $this->logSearch(request('q'), $projects->total());
         }
+
+        if (count(request()->all()) == 0) {
+            $filterStatus = "Active";
+        } else if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = '';
+        }
+
+        $allProjects = Listing::count();
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
@@ -132,8 +132,12 @@ class ProjectController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            'filterStatus' => request('status'),
+            //'filterStatus' => request('status'),
+            'filterStatus' => $filterStatus,
             'filterOrgTypes' => request('organizationtypes'),
+            'filterOpenSource' => request('opensource'),
+            'filterTypes' => request('types'),
+            'allProjects' => $allProjects,
         ]);
 
     }

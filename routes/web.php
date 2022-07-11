@@ -46,6 +46,7 @@ Route::get('/about', 'PagesController@about');
 
 
 Route::get('/sync/manual', 'Airtable\ImportsController@manualSync');
+Route::get('/sync/manual/links', 'Airtable\Sync\LinkController@syncLinks');
 Route::get('/a/test', 'Airtable\ImportsController@test');
 Route::get('/t', 'TestController@test');
 

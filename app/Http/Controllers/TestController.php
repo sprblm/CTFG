@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use DB;
 use Airtable;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\App;
 use DOMDocument;
 
 use App\Models\Category;
@@ -18,6 +17,7 @@ use App\Models\ParentCategory;
 use App\Models\GrandParentCategory;
 use App\Models\AncestorCategory;
 use App\Models\Country;
+use App\Models\Boundary;
 use App\Models\Tag;
 
 use Carbon\Carbon;
@@ -25,20 +25,13 @@ use Carbon\Carbon;
 class TestController extends Controller {
 
     public function test(Request $request) {
-        
-        $environment = App::environment();
-        if ($environment == "production") {
-            echo "Production";
-        } else {
-            echo "Other";
-        }
-        /*$locations = Airtable::table('locations')->get();
+        $locations = Airtable::table('locations')->get();
 
         foreach ($locations as $loc) {
             echo @$loc["fields"]["Country"]."<br>";
         }
 
-        $dbLocations = Location::get();
+        //$dbLocations = Location::get();
 
         /*$key = config('services.google.key');
 

@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Media;
 use App\Models\Location;
 use App\Models\Tag;
+use App\Models\Link;
 use App\Models\Funding;
 use App\Models\Impact;
 use App\Models\People;
@@ -34,6 +35,8 @@ class ImportsController extends Controller {
 
             app(\App\Http\Controllers\Airtable\Sync\KnowledgeController::class)->syncKnowledge();
 
+            app(\App\Http\Controllers\Airtable\Sync\BoundaryController::class)->syncBoundary();
+
             app(\App\Http\Controllers\Airtable\Sync\LocationController::class)->syncLocation();
 
             app(\App\Http\Controllers\Airtable\Sync\MediaController::class)->syncMedia();
@@ -41,6 +44,8 @@ class ImportsController extends Controller {
             app(\App\Http\Controllers\Airtable\Sync\PeopleController::class)->syncPeople();
 
             app(\App\Http\Controllers\Airtable\Sync\TagController::class)->syncTag();
+
+            app(\App\Http\Controllers\Airtable\Sync\LinkController::class)->syncLinks();
 
             app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
 

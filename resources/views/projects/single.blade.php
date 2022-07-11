@@ -73,7 +73,7 @@
                 @endif
             </div>
 
-            <div class="margin-top-35">
+            <div class="margin-top-35 table-responsive">
                 <table class="table table-responsive">
                     <tbody>
                         @if(!empty(@$project->organization_type))
@@ -81,6 +81,18 @@
                         @endif
                         @if(!empty(@$project->status))
                             <tr><th>Status: </th><td>{{ $project->status }}</td></tr>
+                        @endif
+                        @if(@$project->links->count() > 0)
+                            <tr>
+                                <th>Related Links: </th>
+                                <td>
+                                    <ul>
+                                        @foreach(@$project->links as $link)
+                                            <li><a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">{{ $link->notes }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                            </tr>
                         @endif
                         {{-- @if(!empty(@$project->email))
                             <tr><th>Email: </th><td>{{ $project->email }}</td></tr>
@@ -111,10 +123,10 @@
                         @endif
                         @if(@$project->children->count() > 0)
                             <tr>
-                                <th>Children Organization(s): </th>
+                                <th>Project(s): </th>
                                 <td>
                                     @foreach($project->children as $child)
-                                        <a  style="color: #0A78C2;" href="/listing/{{ $child->slug }}">
+                                        <a style="color: #0A78C2;" href="/listing/{{ $child->slug }}">
                                             {{ $child->name }}
                                         </a>
                                         @if($project->children->last()->id != $child->id)

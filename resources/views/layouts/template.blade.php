@@ -29,9 +29,10 @@
                     <div class="left-side">
                         <a href="https://civictech.guide/">
                             <div id="logo">
-                                <h2 style="margin-top: 2px; font-size: 2.5rem;">
+                                <h2 class="site-title" style="margin-top: 2px;">
                                     Civic Tech Field Guide
                                 </h2>
+                                <small>Sharing knowledge and productively growing the field</small>
                             </div>
                         </a>
                         <!-- Mobile Navigation -->
@@ -48,16 +49,20 @@
 
                     <div class="right-side">
                         <div class="header-widget">
-                            <span style="padding-right: 25px;">
+                            <div style="padding-right: 25px;">
+                                <a href="/" style="padding-right: 10px;">Directory</a>
+                                <a href="/about" style="padding-right: 10px;">About</a>
+                                <a href="https://civictech.guide/contribute" style="padding-right: 10px;">Contribute</a>
+                            </div>
+                            <div style="padding-right: 25px; margin-top: 15px;">
                                 <a href="/tech" class="overlay" style="padding-right: 10px;">The Tech</a>
                                 <a href="/people" class="overlay" style="padding-right: 10px;">The People</a>
                                 <a href="/adjacent" class="overlay" style="padding-right: 10px;">Adjacent Fields</a>
                                 <a href="/listing-categories" class="overlay" style="padding-right: 10px;">All Categories</a>
                                 <a href="/tags" class="overlay" style="padding-right: 10px;">Tags</a>
                                 <a href="/world-map" style="padding-right: 10px;">World Map</a>
-                                <a href="/about">About</a>
-                            </span>
-                            <a href="/projects/add" class="button border with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
+                                <a href="/projects/add" style="padding: 20px 0 0 0 !important; margin-bottom: -5px !important; line-height: 26px !important; color: #EA0630;" class=" with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
+                            </div>
                         </div>
                     </div>
                
@@ -127,7 +132,11 @@
             },
             afterSelect: function (data) {
                 $.LoadingOverlay("show");
-                window.location.replace("/listings/search?q="+data.name);
+                //window.location.replace("/listings/search?q="+data.name);
+                var listing = data.name;
+                slug = listing.replace(/\s+/g, '-').toLowerCase();
+                //console.log(slug)
+                window.location.replace("/listing/"+slug);
             }
             
         }).keydown(function( event ) {
@@ -146,7 +155,7 @@
         $('#search').click(function(e) {
             var param = $(".typeahead").val();
             $.LoadingOverlay("show");
-            window.location.href  = "/listings/search?q="+param;
+            //window.location.href  = "/listings/search?q="+param;
         });
 
         function myFunction() {

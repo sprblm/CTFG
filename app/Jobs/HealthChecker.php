@@ -52,7 +52,8 @@ class HealthChecker implements ShouldQueue
             $newUrl = $this->findWaybackLink($url);
             if($newUrl){
                 Log::channel('healthcheck')->info("FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}");
-                $this->updateAirtableRecord($this->record, $newUrl);
+                $log = "FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}";
+                $this->updateAirtableRecord($this->record, $newUrl, $statusCheck, $log);
                 return;
             }
         }
@@ -128,9 +129,16 @@ class HealthChecker implements ShouldQueue
      * @param $record
      * @param $newUrl
      */
-    public function updateAirtableRecord( $record, $newUrl)
+    public function updateAirtableRecord( $record, $newUrl, $status, $log)
     {
         Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl]);
+        Airtable::table('404s')->create([
+            'Url' => $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED',
+            'Status' => $status,
+            'Patched Archive Url' => $newUrl,
+            'Listing' => [$record['id']],
+            'Logs Info' => $log
+        ]);
     }
 
     /**
@@ -143,11 +151,14 @@ class HealthChecker implements ShouldQueue
     public function logToCheckManually($record, $status)
     {
         $url = $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';
+        $log = "MANUAL CHECK ID: {$record['id']} WEBSITE URL: {$url} RECEIVED STATUS: {$status}";
 
-        Airtable::table('websites')->create([
-            'Url' => $this->record['fields']['Website URL'],
+        Airtable::table('404s')->create([
+            'Url' => $url,
             'Status' => $status,
-            'Listing' => [$this->record['id']]
+            'Manual Check' => "YES",
+            'Listing' => [$this->record['id']],
+            'Logs Info' => $log
         ]);
 
         Log::channel('healthcheck')->info("MANUAL CHECK ID: {$record['id']} WEBSITE URL: {$url} RECEIVED STATUS: {$status}");

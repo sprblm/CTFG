@@ -41,10 +41,10 @@ class Kernel extends ConsoleKernel
             $schedule->command('health-checker')
                 ->weekly()
                 ->timezone('America/New_York');
-        }
 
-        $schedule->command('test:command')
-            ->everyFiveMinutes();
+            $schedule->command('confs:update')
+                ->everySixHours();
+        }
 
     }
 
