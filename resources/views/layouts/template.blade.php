@@ -52,10 +52,9 @@
                             <div style="padding-right: 25px;">
                                 <a href="/" style="padding-right: 10px;">Directory</a>
                                 <a href="/about" style="padding-right: 10px;">About</a>
-                                <a href="/contribute/" style="padding-right: 10px;">Contribute</a>
+                                <a href="https://civictech.guide/contribute" style="padding-right: 10px;">Contribute</a>
                             </div>
-                            <br>
-                            <div style="padding-right: 25px;">
+                            <div style="padding-right: 25px; margin-top: 15px;">
                                 <a href="/tech" class="overlay" style="padding-right: 10px;">The Tech</a>
                                 <a href="/people" class="overlay" style="padding-right: 10px;">The People</a>
                                 <a href="/adjacent" class="overlay" style="padding-right: 10px;">Adjacent Fields</a>
