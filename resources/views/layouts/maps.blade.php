@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/listing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
     @yield('styles')
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1HZWFGK53"></script>
     <script>
@@ -48,7 +49,7 @@
 
                     <div class="right-side">
                         <div class="header-widget">
-                            <div style="padding-right: 25px;">
+                            <div style="padding-right: 25px; font-size: 19px;">
                                 <a href="/" style="padding-right: 10px;">Directory</a>
                                 <a href="/about" style="padding-right: 10px;">About</a>
                                 <a href="https://civictech.guide/contribute" style="padding-right: 10px;">Contribute</a>

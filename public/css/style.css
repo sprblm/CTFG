@@ -307,12 +307,12 @@ header.fullwidth .container {
 }
 .left-side {
     float: left;
-    width: 30%;
+    width: 35%;
     display: inline-block;
 }
 .right-side {
     float: right;
-    width: 70%;
+    width: 65%;
     display: inline-block;
 }
 h2.site-title {

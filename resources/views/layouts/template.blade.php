@@ -25,14 +25,14 @@
         <header id="header-container">
             <!-- Header -->
             <div id="header">
-                <div class="container" style="width: 100%">
+                <div class="container" style="width: 100% !important;">
                     <div class="left-side">
                         <a href="https://civictech.guide/">
                             <div id="logo">
                                 <h2 class="site-title" style="margin-top: 2px;">
                                     Civic Tech Field Guide
                                 </h2>
-                                <small>Sharing knowledge and productively growing the field</small>
+                                <small style="font-size: .8em;">Sharing knowledge and productively growing the field</small>
                             </div>
                         </a>
                         <!-- Mobile Navigation -->
@@ -49,7 +49,7 @@
 
                     <div class="right-side">
                         <div class="header-widget">
-                            <div style="padding-right: 25px;">
+                            <div style="padding-right: 25px; font-size: 19px;">
                                 <a href="/" style="padding-right: 10px;">Directory</a>
                                 <a href="/about" style="padding-right: 10px;">About</a>
                                 <a href="https://civictech.guide/contribute" style="padding-right: 10px;">Contribute</a>
@@ -77,7 +77,7 @@
             <div>&nbsp;</div>
         @endif
         
-        <div class="container">
+        <div class="container" style="width: 100%">
             @yield('content')
         </div>
 
