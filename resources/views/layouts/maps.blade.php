@@ -50,17 +50,17 @@
                     <div class="right-side">
                         <div class="header-widget">
                             <div style="padding-right: 25px; font-size: 19px;">
-                                <a href="/" style="padding-right: 10px;">Directory</a>
-                                <a href="/about" style="padding-right: 10px;">About</a>
+                                <a href="/" class="@if(@$menu == 'directory') active @endif" style="padding-right: 10px;">Directory</a>
+                                <a href="/about" class="@if(@$menu == 'about') active @endif" style="padding-right: 10px;">About</a>
                                 <a href="https://civictech.guide/contribute" style="padding-right: 10px;">Contribute</a>
                             </div>
                             <div style="padding-right: 25px; margin-top: 15px;">
-                                <a href="/tech" class="overlay" style="padding-right: 10px;">The Tech</a>
-                                <a href="/people" class="overlay" style="padding-right: 10px;">The People</a>
-                                <a href="/adjacent" class="overlay" style="padding-right: 10px;">Adjacent Fields</a>
-                                <a href="/listing-categories" class="overlay" style="padding-right: 10px;">All Categories</a>
-                                <a href="/tags" class="overlay" style="padding-right: 10px;">Tags</a>
-                                <a href="/world-map" style="padding-right: 10px;">World Map</a>
+                                <a href="/tech" class="overlay @if(@$menu == 'tech') active @endif" style="padding-right: 10px;">The Tech</a>
+                                <a href="/people" class="overlay @if(@$menu == 'people') active @endif" style="padding-right: 10px;">The People</a>
+                                <a href="/adjacent" class="overlay @if(@$menu == 'adj') active @endif" style="padding-right: 10px;">Adjacent Fields</a>
+                                <a href="/listing-categories" class="overlay @if(@$menu == 'categories') active @endif" style="padding-right: 10px;">All Categories</a>
+                                <a href="/tags" class="overlay @if(@$menu == 'tags') active @endif" style="padding-right: 10px;">Tags</a>
+                                <a href="/world-map" class="@if(@$menu == 'map') active @endif" style="padding-right: 10px;">World Map</a>
                                 <a href="/projects/add" style="padding: 20px 0 0 0 !important; margin-bottom: -5px !important; line-height: 26px !important; color: #EA0630;" class=" with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
                             </div>
                         </div>

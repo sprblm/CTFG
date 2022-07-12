@@ -9,6 +9,7 @@ class PagesController extends Controller {
     public function about() {
         return view ('pages.about', [
             'title' => 'About Civic Tech Field Guide',
+            'menu' => 'about',
         ]);
     }
 }

@@ -377,6 +377,12 @@ h2.site-title {
     transform: translate(0, 0) scale(1);
     transition: .3s;
 }
+.header-widget a:hover{
+    border-bottom: 2px dotted #333;
+}
+.header-widget a.active{
+    border-bottom: 2px solid #333;
+}
 #footer {
     padding: 30px 0 0;
     background-color: #fff;

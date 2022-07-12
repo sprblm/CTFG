@@ -95,6 +95,7 @@ class GuestController extends Controller {
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
+            'menu' => 'directory',
             'projects' => $projects,
             'query' => request('q'),
             'filterCategories' => request('categories'),
@@ -118,6 +119,7 @@ class GuestController extends Controller {
             'title' => 'Civic Tech Field Guide - World Map',
             'projects' => $projects,
             'template' => 'map',
+            'menu' => 'map',
             'gMapsApiKey' => config('services.google.key'),
         ]);
     }

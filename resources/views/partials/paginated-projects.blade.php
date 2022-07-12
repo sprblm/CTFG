@@ -1,3 +1,10 @@
+<div class="row">
+    <div class="col-md-12 margin-bottom-40">
+        <h2>
+            Showing <span style="color: #747674; font-size: 22px;">{{ @$projects->total() }} </span> Results
+        </h2>
+    </div>
+</div>
 @foreach($projects as $project)
     <div class="listing-item">
         <a href="/listing/{{ $project->slug }}" class="listing-img-container">
