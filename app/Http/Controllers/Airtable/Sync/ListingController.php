@@ -128,11 +128,18 @@ class ListingController extends Controller {
                 $dbList = Listing::where('airtable_id', $listing["id"])->first();
                 if ($dbList) {
                     $parentListing = Listing::where('airtable_id', $listing["fields"]["Parent organization(s)"][0])->first();
+
                     if ($parentListing) {
                         $dbList->update([
                             'parent_id' => $parentListing->id
                         ]);
                     }
+
+                    // Update cover image
+                    $cover = $dbList->media->first()->link ?? null;
+                    $dbList->update([
+                        'cover_image' => $cover,
+                    ]);
                 }
             }
         }
