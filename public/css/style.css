@@ -378,10 +378,10 @@ h2.site-title {
     transition: .3s;
 }
 .header-widget a:hover{
-    border-bottom: 2px dotted #333;
+    border-bottom: 2px dotted #747674;
 }
 .header-widget a.active{
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #747674;
 }
 #footer {
     padding: 30px 0 0;
