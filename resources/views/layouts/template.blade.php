@@ -51,7 +51,7 @@
                         <div class="header-widget">
                             <div style="padding-right: 25px; font-size: 19px;">
                                 <a href="/" class="active" style="margin-right: 10px;">Directory</a>
-                                <a href="/about" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">About</a>
+                                <a href="https://civictech.guide/about" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">About</a>
                                 <a href="https://civictech.guide/contribute" style="margin-right: 10px;">Contribute</a>
                             </div>
                             <div style="padding-right: 25px; margin-top: 10px;">
