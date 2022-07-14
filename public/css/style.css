@@ -377,7 +377,7 @@ h2.site-title {
     transform: translate(0, 0) scale(1);
     transition: .3s;
 }
-.header-widget a:hover{
+.header-widget a:hover, h2 a.site-title:hover {
     border-bottom: 2px dotted #747674;
 }
 .header-widget a.active{
