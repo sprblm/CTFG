@@ -1,6 +1,6 @@
 # Civic Tech Field Guide Directory
 
-> The Civic Tech Field Guide is the world's biggest collection of projects using tech for the common good.
+> The [Civic Tech Field Guide](https://civictech.guide) is the world's biggest collection of projects using tech for the common good.
 
 ## General
 
