@@ -14,6 +14,7 @@ class CategoryHierarchy extends Controller {
         return view ('category.hierarchies', [
             'items' => $hierarchies,
             'title' => 'Category Hierarchies',
+            'menu' => 'categories',
         ]);
     }
 }

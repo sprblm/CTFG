@@ -19,6 +19,7 @@ class ProjectController extends Controller {
     public function add() {
         return view('projects.add', [
             'title' => 'Create Projects',
+            'menu' => 'add-project'
         ]);
     }
 
@@ -41,6 +42,7 @@ class ProjectController extends Controller {
 
         return view('projects.single', [
             'title' => 'Project - '.$project->name,
+            'menu' => 'directory',
             'project' => $project,
             'gMapsApiKey' => config('services.google.key'),
         ]);
@@ -115,17 +117,30 @@ class ProjectController extends Controller {
             $this->logSearch(request('q'), $projects->total());
         }
 
+        if (count(request()->all()) == 0) {
+            $filterStatus = "Active";
+        } else if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = '';
+        }
+
+        $allProjects = Listing::count();
+
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
+            'menu' => 'directory',
             'projects' => $projects,
             'query' => request('q'),
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            'filterStatus' => request('status'),
+            //'filterStatus' => request('status'),
+            'filterStatus' => $filterStatus,
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),
+            'allProjects' => $allProjects,
         ]);
 
     }

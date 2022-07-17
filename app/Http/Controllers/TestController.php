@@ -34,7 +34,7 @@ class TestController extends Controller {
             ]);
         }
     }
-
+    
     public function test(Request $request) {
         $locations = Airtable::table('locations')->get();
 

@@ -119,6 +119,7 @@ class ListingController extends Controller {
         $this->syncRelations($dbListings, $listings);
         $this->updateParents($listings);
         $this->updateLocationFields($dbListings);
+        $this->updateCoverImages($dbListings);
     }
 
     // Update listing parent listing relationship and listing cover image
@@ -305,6 +306,15 @@ class ListingController extends Controller {
             $list->update([
                 'first_location' => @$list->location->first()->name,
                 'first_country' => @$list->location->first()->country,
+            ]);
+        }
+    }
+
+    public function updateCoverImages($listings) {
+        foreach ($listings as $list) {
+            $cover = $list->media->first()->link ?? null;
+            $list->update([
+                'cover_image' => $cover,
             ]);
         }
     }

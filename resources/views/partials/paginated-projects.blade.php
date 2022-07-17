@@ -1,7 +1,19 @@
+<div class="row">
+    <div class="col-md-12 margin-bottom-40">
+        <h2>
+            Showing <span style="color: #747674; font-size: 22px;">{{ @$projects->total() }} </span> Results
+        </h2>
+    </div>
+</div>
 @foreach($projects as $project)
     <div class="listing-item">
         <a href="/listing/{{ $project->slug }}" class="listing-img-container">
-            <img src="{{ @$project->cover_image }}" loading="lazy" alt="{{ $project->name }}">
+            <!-- <img src="{{ @$project->media->first()->link }}" loading="lazy" alt="{{ $project->name }}"> -->
+            @if(@$project->media->first())
+                <img src="{{ @$project->media->first()->link }}" loading="lazy" alt="{{ $project->name }}">
+            @else
+                <img src="{{ asset('images/gray.png') }}" loading="lazy" alt="{{ $project->name }}">
+            @endif
         </a>
         
         <div class="listing-content">

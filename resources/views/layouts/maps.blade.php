@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/listing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
     @yield('styles')
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1HZWFGK53"></script>
     <script>
@@ -24,15 +25,16 @@
         <header id="header-container">
             <!-- Header -->
             <div id="header">
-                <div class="container" style="width: 95%">
+                <div class="container" style="width: 100%">
                     <div class="left-side">
-                        <a href="https://civictech.guide/">
-                            <div id="logo">
-                                <h2 style="margin-top: 2px; font-size: 2.5rem;">
+                        <div id="logo">
+                            <h2 class="site-title" style="margin-top: 2px;">
+                                <a class="site-title" href="https://civictech.guide/">
                                     Civic Tech Field Guide
-                                </h2>
-                            </div>
-                        </a>
+                                </a>
+                            </h2>
+                            <small style="font-size: .8em;">Sharing knowledge and productively growing the field</small>
+                        </div>
                         <!-- Mobile Navigation -->
                         <div class="mmenu-trigger">
                             <button class="hamburger hamburger--collapse" type="button">
@@ -47,16 +49,20 @@
 
                     <div class="right-side">
                         <div class="header-widget">
-                            <span style="padding-right: 25px;">
-                                <a href="/tech" class="overlay" style="padding-right: 10px;">The Tech</a>
-                                <a href="/people" class="overlay" style="padding-right: 10px;">The People</a>
-                                <a href="/adjacent" class="overlay" style="padding-right: 10px;">Adjacent Fields</a>
-                                <a href="/listing-categories" class="overlay" style="padding-right: 10px;">All Categories</a>
-                                <a href="/tags" class="overlay" style="padding-right: 10px;">Tags</a>
-                                <a href="/world-map" style="padding-right: 10px;">World Map</a>
-                                <a href="/about">About</a>
-                            </span>
-                            <a href="/projects/add" class="button border with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
+                            <div style="padding-right: 25px; font-size: 19px;">
+                                <a href="/" class="active" style="margin-right: 10px;">Directory</a>
+                                <a href="https://civictech.guide/about" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">About</a>
+                                <a href="https://civictech.guide/contribute" style="margin-right: 10px;">Contribute</a>
+                            </div>
+                            <div style="padding-right: 25px; margin-top: 15px;">
+                                <a href="/tech" class="overlay @if(@$menu == 'tech') active @endif" style="margin-right: 10px;">The Tech</a>
+                                <a href="/people" class="overlay @if(@$menu == 'people') active @endif" style="margin-right: 10px;">The People</a>
+                                <a href="/adjacent" class="overlay @if(@$menu == 'adj') active @endif" style="margin-right: 10px;">Adjacent Fields</a>
+                                <a href="/listing-categories" class="overlay @if(@$menu == 'categories') active @endif" style="margin-right: 10px;">All Categories</a>
+                                <a href="/tags" class="overlay @if(@$menu == 'tags') active @endif" style="margin-right: 10px;">Tags</a>
+                                <a href="/world-map" class="@if(@$menu == 'map') active @endif" style="margin-right: 10px;">World Map</a>
+                                <a href="/projects/add" style="padding: 20px 0 0 0 !important; margin-bottom: -5px !important; line-height: 26px !important; color: #EA0630;" class=" with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
+                            </div>
                         </div>
                     </div>
                

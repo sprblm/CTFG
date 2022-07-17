@@ -25,6 +25,7 @@ class ParentCategoryController extends Controller {
             'media' => $media,
             'et' => $et,
             'title' => 'The Tech',
+            'menu' => 'tech',
         ]);
     }
 
@@ -51,6 +52,7 @@ class ParentCategoryController extends Controller {
             'lact' => $lact,
             'fjsh' => $fjsh,
             'title' => 'The People',
+            'menu' => 'people',
         ]);
     }
 
@@ -71,6 +73,7 @@ class ParentCategoryController extends Controller {
             'et' => $et,
             'tpc' => $tpc,
             'title' => 'Adjacent Fields',
+            'menu' => 'adj',
         ]);
     }
 }
