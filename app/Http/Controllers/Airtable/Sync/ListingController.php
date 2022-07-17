@@ -119,6 +119,7 @@ class ListingController extends Controller {
         $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
         $this->updateLocationFields($dbListings);
+        $this->updateCoverImages($dbListings);
     }
 
     // Update listing parent listing relationship
@@ -128,6 +129,7 @@ class ListingController extends Controller {
                 $dbList = Listing::where('airtable_id', $listing["id"])->first();
                 if ($dbList) {
                     $parentListing = Listing::where('airtable_id', $listing["fields"]["Parent organization(s)"][0])->first();
+
                     if ($parentListing) {
                         $dbList->update([
                             'parent_id' => $parentListing->id
@@ -285,6 +287,15 @@ class ListingController extends Controller {
             $list->update([
                 'first_location' => @$list->location->first()->name,
                 'first_country' => @$list->location->first()->country,
+            ]);
+        }
+    }
+
+    public function updateCoverImages($listings) {
+        foreach ($listings as $list) {
+            $cover = $list->media->first()->link ?? null;
+            $list->update([
+                'cover_image' => $cover,
             ]);
         }
     }

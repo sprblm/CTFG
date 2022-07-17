@@ -307,12 +307,12 @@ header.fullwidth .container {
 }
 .left-side {
     float: left;
-    width: 30%;
+    width: 35%;
     display: inline-block;
 }
 .right-side {
     float: right;
-    width: 70%;
+    width: 65%;
     display: inline-block;
 }
 h2.site-title {
@@ -376,6 +376,12 @@ h2.site-title {
     visibility: visible;
     transform: translate(0, 0) scale(1);
     transition: .3s;
+}
+.header-widget a:hover, h2 a.site-title:hover {
+    border-bottom: 2px dotted #747674;
+}
+.header-widget a.active{
+    border-bottom: 2px solid #747674;
 }
 #footer {
     padding: 30px 0 0;

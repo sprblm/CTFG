@@ -172,6 +172,7 @@ class ProjectController extends Controller {
         return view ('tags.tags-table', [
             'tags' => $tags,
             'title' => 'Listing Tags',
+            'menu' => 'tags',
         ]);
     }
 }

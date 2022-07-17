@@ -74,6 +74,7 @@ class GuestController extends Controller {
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
+            ->orderByRaw('-cover_image DESC')
             ->orderBy('created', 'DESC')
             ->paginate(10);
 
@@ -94,6 +95,7 @@ class GuestController extends Controller {
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
+            'menu' => 'directory',
             'projects' => $projects,
             'query' => request('q'),
             'filterCategories' => request('categories'),
@@ -117,6 +119,7 @@ class GuestController extends Controller {
             'title' => 'Civic Tech Field Guide - World Map',
             'projects' => $projects,
             'template' => 'map',
+            'menu' => 'map',
             'gMapsApiKey' => config('services.google.key'),
         ]);
     }

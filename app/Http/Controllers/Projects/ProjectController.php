@@ -19,6 +19,7 @@ class ProjectController extends Controller {
     public function add() {
         return view('projects.add', [
             'title' => 'Create Projects',
+            'menu' => 'add-project'
         ]);
     }
 
@@ -41,6 +42,7 @@ class ProjectController extends Controller {
 
         return view('projects.single', [
             'title' => 'Project - '.$project->name,
+            'menu' => 'directory',
             'project' => $project,
             'gMapsApiKey' => config('services.google.key'),
         ]);
@@ -127,6 +129,7 @@ class ProjectController extends Controller {
 
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
+            'menu' => 'directory',
             'projects' => $projects,
             'query' => request('q'),
             'filterCategories' => request('categories'),
