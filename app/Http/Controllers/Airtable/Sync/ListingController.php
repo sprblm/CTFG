@@ -115,14 +115,14 @@ class ListingController extends Controller {
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Listings table sync finished at ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes ... ".$count." records synced.");
 
-        $this->updateParents($listings);
         $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
+        $this->updateParents($listings);
         $this->updateLocationFields($dbListings);
         $this->updateCoverImages($dbListings);
     }
 
-    // Update listing parent listing relationship
+    // Update listing parent listing relationship and listing cover image
     public function updateParents($listings) {
         foreach ($listings as $listing) {
             if (!empty(@$listing["fields"]["Parent organization(s)"]) && sizeof(@$listing["fields"]["Parent organization(s)"]) > 0) {
@@ -135,6 +135,12 @@ class ListingController extends Controller {
                             'parent_id' => $parentListing->id
                         ]);
                     }
+
+                    // Update cover image
+                    $cover = $dbList->media->first()->link ?? null;
+                    $dbList->update([
+                        'cover_image' => $cover
+                    ]);
                 }
             }
         }
@@ -232,6 +238,19 @@ class ListingController extends Controller {
                     }
                 }
 
+            }
+
+            // fill cover image of listings
+            public function fillCoverImages() {
+                $listings = Listing::get();
+
+                foreach ($listings as $record) {
+                    $cover = $record->media->first()->link ?? null;
+
+                    $record->update([
+                        'cover_image' => $cover
+                    ]);
+                }
             }
         }
 
