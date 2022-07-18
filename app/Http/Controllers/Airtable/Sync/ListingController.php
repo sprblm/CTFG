@@ -44,11 +44,14 @@ class ListingController extends Controller {
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         foreach ($listings as $l) {
+            $slug = Str::of(@$l["fields"]["Project name"])->slug();
+            $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+
             $list = new Listing;
             $list->airtable_id = @$l["id"];
             //$list->host_org_id = @$l["fields"]["Name"];
             $list->name = @$l["fields"]["Project name"];
-            $list->slug = Str::of(@$l["fields"]["Project name"])->slug();
+            $list->slug = $escapedSlug;
             $list->introduction = @$l["fields"]["1-liner"];
             $list->type = @$l["fields"]["Type"][0];
 

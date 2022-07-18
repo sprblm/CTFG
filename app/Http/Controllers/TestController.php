@@ -36,11 +36,16 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        $locations = Airtable::table('locations')->get();
+        $string = "right-to-be-(formerly-hollaback!)";
+
+        $r = str_replace(['.', '(', ')', '!'], '', $string);
+        echo $r;
+
+        /*$locations = Airtable::table('locations')->get();
 
         foreach ($locations as $loc) {
             echo @$loc["fields"]["Country"]."<br>";
-        }
+        }*/
 
         //$dbLocations = Location::get();
 
