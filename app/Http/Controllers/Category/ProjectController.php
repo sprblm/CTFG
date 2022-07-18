@@ -157,10 +157,81 @@ class ProjectController extends Controller {
             return abort(404);
         }
 
-        $listings = $tag->listings();
-        $projects = $listings->paginate(10);
+        //$listings = $tag->listings();
+        //$projects = $listings->paginate(10);
+
+        $projects = $tag->listings()
+            ->when(request('tags'), function($builder) {
+                $tags = request('tags');
+
+                $builder->whereHas('tags', function($builder) use ($tags) {
+                    $builder->whereIn('name', $tags);
+                });
+            })
+            ->when(request('categories'), function($builder) {
+                $categories = request('categories');
+
+                $builder->whereHas('categories', function($builder) use ($categories) {
+                    $builder->whereIn('name', $categories);
+                });
+            })
+            ->when(request('countries'), function($builder) {
+                \Log::info("Countries set: ".request('countries')[0]);
+                $countries = request('countries');
+
+                $builder->when(count($countries),function ($builder)use ($countries) {
+                    $builder->whereHas('location', function($builder) use ($countries) {
+                        $builder->where( function($builder) use ($countries) {
+                            foreach ($countries as $country) {
+                                $builder->orWhere('name', 'like', '%' . $country . '%');
+                            }
+                        });
+                    });
+                }); 
+            })
+            ->when(request('opensource'), function($builder) {
+                $builder->where('open_source', request('opensource'));
+            })
+            ->when(request('types'), function($builder) {
+                $types = request('types');
+                if (in_array("Other", $types)) {
+                    $key = array_search("Other", $types);
+                    $types[$key] = NULL;
+
+                    $builder->whereIn('type', $types)->orWhereNull('type');
+                } else {
+                    $builder->whereIn('type', $types);   
+                }
+            })
+            ->when(request('organizationtypes'), function($builder) {
+                $organizationtypes = request('organizationtypes');
+                if (in_array("Other", $organizationtypes)) {
+                    $key = array_search("Other", $organizationtypes);
+                    $organizationtypes[$key] = NULL;
+
+                    $builder->whereIn('organization_type', $organizationtypes)->orWhereNull('organization_type');
+                } else {
+                    $builder->whereIn('organization_type', $organizationtypes);   
+                }
+            })
+            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
+                $builder->where('status', 'Active');
+            })
+            ->when(request('q'), function($builder) {
+                $builder->searchQuery(request('q'));
+            })
+            ->orderBy('created', 'DESC')
+            ->paginate(10);
 
         $parentTag = $tag->parent;
+
+        if (count(request()->all()) == 0) {
+            $filterStatus = "Active";
+        } else if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = '';
+        }
 
         return view ('projects.projects-by-tag', [
             'projects' => $projects,
@@ -169,6 +240,14 @@ class ProjectController extends Controller {
             'tag' => $tag,
             'activeTag' => $tag,
             'activeParentTag' => $parentTag,
+            'query' => request('q'),
+            'filterCategories' => request('categories'),
+            'filterTags' => request('tags'),
+            'filterCountries' => request('countries'),
+            'filterStatus' => $filterStatus,
+            'filterOrgTypes' => request('organizationtypes'),
+            'filterOpenSource' => request('opensource'),
+            'filterTypes' => request('types'),
         ]);
     }
 
