@@ -13,9 +13,11 @@ class AddCoverImageToListingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function (Blueprint $table) {
-            $table->text('cover_image')->nullable()->after('introduction');
-        });
+        if (!Schema::hasColumn('listings', 'cover_image')) {
+            Schema::table('listings', function (Blueprint $table) {
+                $table->text('cover_image')->nullable()->after('introduction');
+            });
+        }
     }
 
     /**
