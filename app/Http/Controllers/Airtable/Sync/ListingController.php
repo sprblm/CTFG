@@ -243,23 +243,24 @@ class ListingController extends Controller {
 
             }
 
-            // fill cover image of listings
-            public function fillCoverImages() {
-                $listings = Listing::get();
-
-                foreach ($listings as $record) {
-                    $cover = $record->media->first()->link ?? null;
-
-                    $record->update([
-                        'cover_image' => $cover
-                    ]);
-                }
-            }
         }
 
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Attaching relations sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
         \Log::info("\n");
+    }
+
+    // fill cover image of listings
+    public function fillCoverImages() {
+        $listings = Listing::get();
+
+        foreach ($listings as $record) {
+            $cover = $record->media->first()->link ?? null;
+
+            $record->update([
+                'cover_image' => $cover
+            ]);
+        }
     }
 
     public function updateEmbeds ($listings) {
