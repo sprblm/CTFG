@@ -26,7 +26,7 @@ use Illuminate\Support\Str;
 
 class ImportsController extends Controller {
     public function manualSync() {
-        //try {
+        try {
             app(\App\Http\Controllers\Airtable\Sync\CategoryController::class)->syncCategories();
 
             app(\App\Http\Controllers\Airtable\Sync\FundingController::class)->syncFunding();
@@ -49,9 +49,9 @@ class ImportsController extends Controller {
 
             app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
 
-        /*} catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             \Log::error('Error from Airtable auto sync cronjob: ' . $th->getMessage());
-        }*/
+        }
     }
 
     public function test() {
