@@ -131,7 +131,7 @@
         @foreach($tagHierarchies as $tagHierarchy)
             <li class="nav-item has-subtag">
                 <a class="nav-link" href="/listing-tag/{{ $tagHierarchy->name }}" title="{{ $tagHierarchy->name }}">
-                    <span class="text-sm cat-wrap <?php if(@$activeTag->name == $tagHierarchy->name ) { echo 'text-white-600'; } ?>">
+                    <span class="text-sm <?php if(@$activeTag->name == $tagHierarchy->name ) { echo 'text-white-600'; } ?>">
                         {{ $tagHierarchy->name }}
                     </span>
                 </a>

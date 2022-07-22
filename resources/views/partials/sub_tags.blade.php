@@ -1,6 +1,6 @@
 <li class="nav-item has-subtag <?php if(@$activeTag->name == $sub_tags->name ) { echo 'active'; } ?>">
     <a class="nav-link overlay" href="/listing-tag/{{ $sub_tags->name }}" title="{{ $sub_tags->name }}">
-        <span class="text-sm cat-wrap <?php if(@$activeGrandParent == $sub_tags->name ) { echo 'text-white-600'; } ?>">
+        <span class="text-sm <?php if(@$activeGrandParent == $sub_tags->name ) { echo 'text-white-600'; } ?>">
             {{ $sub_tags->name }}
         </span>
     </a>
