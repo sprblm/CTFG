@@ -70,7 +70,11 @@ class HealthChecker implements ShouldQueue
     public function statusCheck($url)
     {
         try {
-            $response = Http::get($url);
+            $response = Http::withHeaders([
+                                              'User-Agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)'
+                                          ])->withOptions([
+                                                              'verify' => false,
+                                                          ])->get($url);
             return $response->status();
         }catch (\Exception $exception){
             Log::channel('healthcheck')->info("MANUAL CHECK URL: {$url} EXCEPTION: {$exception->getMessage()}");
