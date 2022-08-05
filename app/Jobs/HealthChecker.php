@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -20,7 +19,7 @@ class HealthChecker implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 5;
+    public $tries = 3;
     public $record;
 
     /**
@@ -49,14 +48,19 @@ class HealthChecker implements ShouldQueue
         }
 
         if ($this->isBrokenStatus($statusCheck)) {
+            if ($statusCheck === 403) {
+                $this->logToCheckManually($this->record, $statusCheck);
+                return;
+            }
             $newUrl = $this->findWaybackLink($url);
-            if($newUrl){
-                Log::channel('healthcheck')->info("FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}");
+            if ($newUrl) {
+                Log::channel('healthcheck')->info(
+                    "FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}"
+                );
                 $this->updateAirtableRecord($this->record, $newUrl);
                 return;
             }
         }
-
         $this->logToCheckManually($this->record, $statusCheck);
     }
 
