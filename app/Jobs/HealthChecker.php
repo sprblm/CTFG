@@ -138,7 +138,7 @@ class HealthChecker implements ShouldQueue
      */
     public function updateAirtableRecord( $record, $newUrl)
     {
-        Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl]);
+        Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl, "Status"=>'Inactive']);
     }
 
     /**
