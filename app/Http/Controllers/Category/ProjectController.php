@@ -66,14 +66,13 @@ class ProjectController extends Controller {
                 });
             })
             ->when(request('countries'), function($builder) {
-                \Log::info("Countries set: ".request('countries')[0]);
                 $countries = request('countries');
 
                 $builder->when(count($countries),function ($builder)use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                $builder->orWhere('name', 'like', '%' . $country . '%');
+                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -176,14 +175,13 @@ class ProjectController extends Controller {
                 });
             })
             ->when(request('countries'), function($builder) {
-                \Log::info("Countries set: ".request('countries')[0]);
                 $countries = request('countries');
 
                 $builder->when(count($countries),function ($builder)use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                $builder->orWhere('name', 'like', '%' . $country . '%');
+                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });

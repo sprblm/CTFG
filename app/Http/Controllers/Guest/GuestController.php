@@ -37,7 +37,7 @@ class GuestController extends Controller {
                             foreach ($countries as $country) {
                                 //$builder->orWhere('name', 'like', '%' . $country . '%');
 
-                                $builder->orWhere('country', 'like', '%' . $country . '%');
+                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
