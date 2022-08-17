@@ -103,11 +103,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     
     <script type="text/javascript">
-        /*$(window).load(function() {
-            $.LoadingOverlay("hide");
-        }); */
-        
-
         var path = "{{ route('autocomplete') }}";
 
         /*$('input.typeahead').typeahead({
@@ -133,10 +128,7 @@
             afterSelect: function (data) {
                 $.LoadingOverlay("show");
                 //window.location.replace("/listings/search?q="+data.name);
-                var listing = data.name;
-                slug = listing.replace(/\s+/g, '-').toLowerCase();
-                //console.log(slug)
-                window.location.replace("/listing/"+slug);
+                window.location.replace("/listing/"+data.slug);
             }
             
         }).keydown(function( event ) {

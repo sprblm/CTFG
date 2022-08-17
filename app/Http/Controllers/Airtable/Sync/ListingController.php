@@ -44,11 +44,14 @@ class ListingController extends Controller {
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         foreach ($listings as $l) {
+            $slug = Str::of(@$l["fields"]["Project name"])->slug();
+            $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+
             $list = new Listing;
             $list->airtable_id = @$l["id"];
             //$list->host_org_id = @$l["fields"]["Name"];
             $list->name = @$l["fields"]["Project name"];
-            $list->slug = Str::of(@$l["fields"]["Project name"])->slug();
+            $list->slug = $escapedSlug;
             $list->introduction = @$l["fields"]["1-liner"];
             $list->type = @$l["fields"]["Type"][0];
 
@@ -240,23 +243,24 @@ class ListingController extends Controller {
 
             }
 
-            // fill cover image of listings
-            public function fillCoverImages() {
-                $listings = Listing::get();
-
-                foreach ($listings as $record) {
-                    $cover = $record->media->first()->link ?? null;
-
-                    $record->update([
-                        'cover_image' => $cover
-                    ]);
-                }
-            }
         }
 
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Attaching relations sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
         \Log::info("\n");
+    }
+
+    // fill cover image of listings
+    public function fillCoverImages() {
+        $listings = Listing::get();
+
+        foreach ($listings as $record) {
+            $cover = $record->media->first()->link ?? null;
+
+            $record->update([
+                'cover_image' => $cover
+            ]);
+        }
     }
 
     public function updateEmbeds ($listings) {
