@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-md-12" style="margin-bottom: 20px;">
-            @include('partials.search')
+            @include('partials.extended-search')
         </div>
     </div>
 

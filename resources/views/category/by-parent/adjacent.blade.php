@@ -77,6 +77,75 @@ a:hover{color: #f91942 !important;}
             </div>
         </div>
 
+        <!-- Ethical tech -->
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="listings-container list-layout">
+                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">
+                    {{ @$et[0]->name }}
+                </h3>
+                @foreach ($et as $item)
+                <nav class="sidebar py-2 mb-4">
+                    <ul class="nav flex-column" id="nav_accordion">
+                        @if(count($item->childItems))
+                            @foreach ($item->childItems as $childItems)
+                            
+                                @include('partials.parent-menus.parent-menu-subcategories', ['sub_items' => $childItems])
+                            
+                            @endforeach
+                        @endif
+                    </ul>
+                </nav>
+                @endforeach
+            </div>
+        </div>
+        <!-- Digital security and privacy -->
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="listings-container list-layout">
+                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">
+                    {{ @$dsp[0]->name }}
+                </h3>
+                @foreach ($dsp as $item)
+                <nav class="sidebar py-2 mb-4">
+                    <ul class="nav flex-column" id="nav_accordion">
+                        @if(count($item->childItems))
+                            @foreach ($item->childItems as $childItems)
+                            
+                                @include('partials.parent-menus.parent-menu-subcategories', ['sub_items' => $childItems])
+                            
+                            @endforeach
+                        @endif
+                    </ul>
+                </nav>
+                @endforeach
+            </div>
+        </div>
+        
+    </div>
+    <div class="clearfix" style="margin-bottom: 15px;"></div>
+    <div class="row">
+
+        <!-- Tech for public challenges -->
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="listings-container list-layout">
+                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">
+                    {{ @$tpc[0]->name }}
+                </h3>
+                @foreach ($tpc as $item)
+                <nav class="sidebar py-2 mb-4">
+                    <ul class="nav flex-column" id="nav_accordion">
+                        @if(count($item->childItems))
+                            @foreach ($item->childItems as $childItems)
+                            
+                                @include('partials.parent-menus.parent-menu-subcategories', ['sub_items' => $childItems])
+                            
+                            @endforeach
+                        @endif
+                    </ul>
+                </nav>
+                @endforeach
+            </div>
+        </div>
+
         <!-- Digital literacy -->
         <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="listings-container list-layout">
@@ -106,74 +175,6 @@ a:hover{color: #f91942 !important;}
                     {{ @$rtpd[0]->name }}
                 </h3>
                 @foreach ($rtpd as $item)
-                <nav class="sidebar py-2 mb-4">
-                    <ul class="nav flex-column" id="nav_accordion">
-                        @if(count($item->childItems))
-                            @foreach ($item->childItems as $childItems)
-                            
-                                @include('partials.parent-menus.parent-menu-subcategories', ['sub_items' => $childItems])
-                            
-                            @endforeach
-                        @endif
-                    </ul>
-                </nav>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="clearfix" style="margin-bottom: 15px;"></div>
-    <div class="row">
-        <!-- Digital security and privacy -->
-        <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="listings-container list-layout">
-                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">
-                    {{ @$dsp[0]->name }}
-                </h3>
-                @foreach ($dsp as $item)
-                <nav class="sidebar py-2 mb-4">
-                    <ul class="nav flex-column" id="nav_accordion">
-                        @if(count($item->childItems))
-                            @foreach ($item->childItems as $childItems)
-                            
-                                @include('partials.parent-menus.parent-menu-subcategories', ['sub_items' => $childItems])
-                            
-                            @endforeach
-                        @endif
-                    </ul>
-                </nav>
-                @endforeach
-            </div>
-        </div>
-
-        <!-- Ethical tech -->
-        <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="listings-container list-layout">
-                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">
-                    {{ @$et[0]->name }}
-                </h3>
-                @foreach ($et as $item)
-                <nav class="sidebar py-2 mb-4">
-                    <ul class="nav flex-column" id="nav_accordion">
-                        @if(count($item->childItems))
-                            @foreach ($item->childItems as $childItems)
-                            
-                                @include('partials.parent-menus.parent-menu-subcategories', ['sub_items' => $childItems])
-                            
-                            @endforeach
-                        @endif
-                    </ul>
-                </nav>
-                @endforeach
-            </div>
-        </div>
-
-        <!-- Tech for public challenges -->
-        <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="listings-container list-layout">
-                <h3 class="margin-top-0 margin-bottom-30" style="font-size: 2rem">
-                    {{ @$tpc[0]->name }}
-                </h3>
-                @foreach ($tpc as $item)
                 <nav class="sidebar py-2 mb-4">
                     <ul class="nav flex-column" id="nav_accordion">
                         @if(count($item->childItems))

@@ -71,6 +71,12 @@ return [
         'knowledge' => [
             'name' => env('AIRTABLE_TABLE_KWD', 'Knowledge'),
         ],
+        '404s' => [
+            'name' => env('AIRTABLE_TABLE_404s', '404s'),
+        ],
+        'boundaries' => [
+            'name' => env('AIRTABLE_TABLE_BOUNDARY', 'Boundaries'),
+        ],
 
     ],
 

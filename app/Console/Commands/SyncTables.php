@@ -45,6 +45,8 @@ class SyncTables extends Command
 
             app(\App\Http\Controllers\Airtable\Sync\KnowledgeController::class)->syncKnowledge();
 
+            app(\App\Http\Controllers\Airtable\Sync\BoundaryController::class)->syncBoundary();
+
             app(\App\Http\Controllers\Airtable\Sync\LocationController::class)->syncLocation();
 
             app(\App\Http\Controllers\Airtable\Sync\MediaController::class)->syncMedia();

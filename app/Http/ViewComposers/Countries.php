@@ -16,7 +16,6 @@ class Countries
      * @return void
      */
     public function __construct() {
-        //$countries = Country::distinct('name')->orderBy('country')->get();
         $countries = Location::select('country')->distinct()->orderBy('country')->get();
         
         $this->countries = $countries;

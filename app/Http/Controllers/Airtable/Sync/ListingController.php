@@ -20,6 +20,7 @@ use App\Models\Impact;
 use App\Models\Location;
 use App\Models\Media;
 use App\Models\Tag;
+use App\Models\Link;
 
 class ListingController extends Controller {
     public function syncListing () {
@@ -38,15 +39,19 @@ class ListingController extends Controller {
             DB::table('listing_location')->truncate();
             DB::table('listing_media')->truncate();
             DB::table('listing_tags')->truncate();
+            DB::table('listing_links')->truncate();
         }
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         foreach ($listings as $l) {
+            $slug = Str::of(@$l["fields"]["Project name"])->slug();
+            $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+
             $list = new Listing;
             $list->airtable_id = @$l["id"];
             //$list->host_org_id = @$l["fields"]["Name"];
             $list->name = @$l["fields"]["Project name"];
-            $list->slug = Str::of(@$l["fields"]["Project name"])->slug();
+            $list->slug = $escapedSlug;
             $list->introduction = @$l["fields"]["1-liner"];
             $list->type = @$l["fields"]["Type"][0];
 
@@ -113,24 +118,32 @@ class ListingController extends Controller {
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Listings table sync finished at ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes ... ".$count." records synced.");
 
-        $this->updateParents($listings);
         $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
+        $this->updateParents($listings);
         $this->updateLocationFields($dbListings);
+        $this->updateCoverImages($dbListings);
     }
 
-    // Update listing parent listing relationship
+    // Update listing parent listing relationship and listing cover image
     public function updateParents($listings) {
         foreach ($listings as $listing) {
             if (!empty(@$listing["fields"]["Parent organization(s)"]) && sizeof(@$listing["fields"]["Parent organization(s)"]) > 0) {
                 $dbList = Listing::where('airtable_id', $listing["id"])->first();
                 if ($dbList) {
                     $parentListing = Listing::where('airtable_id', $listing["fields"]["Parent organization(s)"][0])->first();
+
                     if ($parentListing) {
                         $dbList->update([
                             'parent_id' => $parentListing->id
                         ]);
                     }
+
+                    // Update cover image
+                    $cover = $dbList->media->first()->link ?? null;
+                    $dbList->update([
+                        'cover_image' => $cover
+                    ]);
                 }
             }
         }
@@ -218,11 +231,36 @@ class ListingController extends Controller {
                 }
 
             }
+
+            // listing_links
+            if (!empty(@$artList["fields"]["Links"]) && sizeof(@$artList["fields"]["Links"]) > 0) {
+                for ($i=0; $i < sizeof(@$artList["fields"]["Links"]); $i++) { 
+                    $dbLink = Link::where('airtable_id', @$artList["fields"]["Links"][$i])->first();
+                    if ($dbList && $dbLink) {
+                        $dbList->links()->attach($dbLink->id);
+                    }
+                }
+
+            }
+
         }
 
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Attaching relations sync finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
         \Log::info("\n");
+    }
+
+    // fill cover image of listings
+    public function fillCoverImages() {
+        $listings = Listing::get();
+
+        foreach ($listings as $record) {
+            $cover = $record->media->first()->link ?? null;
+
+            $record->update([
+                'cover_image' => $cover
+            ]);
+        }
     }
 
     public function updateEmbeds ($listings) {
@@ -272,6 +310,15 @@ class ListingController extends Controller {
             $list->update([
                 'first_location' => @$list->location->first()->name,
                 'first_country' => @$list->location->first()->country,
+            ]);
+        }
+    }
+
+    public function updateCoverImages($listings) {
+        foreach ($listings as $list) {
+            $cover = $list->media->first()->link ?? null;
+            $list->update([
+                'cover_image' => $cover,
             ]);
         }
     }

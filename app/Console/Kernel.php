@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\App;
 
 class Kernel extends ConsoleKernel
 {
@@ -35,9 +36,15 @@ class Kernel extends ConsoleKernel
             ->dailyAt('2:45')
             ->timezone('America/New_York');
 
-        $schedule->command('health-checker')
-            ->weekly()
-            ->timezone('America/New_York');
+        $environment = App::environment();
+        if ($environment == "production") {
+            $schedule->command('health-checker')
+                ->weekly()
+                ->timezone('America/New_York');
+
+            $schedule->command('confs:update')
+                ->everySixHours();
+        }
 
     }
 

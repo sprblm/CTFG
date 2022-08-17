@@ -10,11 +10,13 @@ use DB;
 
 use App\Models\Location;
 use App\Models\Country;
+use App\Models\Boundary;
 
 class LocationController extends Controller {
     public function syncLocation () {
         \Log::info("Location table sync started at ".date('Y-m-d H:i:s'));
         $locations = Airtable::table('locations')->all();
+
 
         if ((Location::count() > 0) && (sizeof($locations) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -23,35 +25,18 @@ class LocationController extends Controller {
 
         // Recreate categories
         foreach($locations as $loc) {
+            $boundary = @$loc["fields"]["Boundaries"][0];
+            $boundary = Boundary::where('airtable_id', $boundary)->first();
+            $country = null;
+            if ($boundary) {
+                $country = $boundary->name;
+            }
+
             $lc = new Location;
             $lc->airtable_id = @$loc["id"];
             $lc->name = @$loc["fields"]["Name"];
+            $lc->country = $country;
             $lc->save();
-        }
-        
-        $dbLocations = Location::get();
-        foreach($dbLocations as $loc) {
-            $pieces = explode(' ', $loc->name);
-            $country = array_pop($pieces);
-
-            if ($country == "USA" || $country == "United States" || $country == "United States of America") {
-                $country = "United States of America";
-            }
-
-            if ($country == "UK" || $country == "United Kingdom") {
-                $country = "United Kingdom";
-            }
-
-            if ($country == "SA" || $country == "South Africa") {
-                $country = "South Africa";
-            }
-
-            $ct = Country::where('country', $country)->first();
-            if ($ct) {
-                $loc->update([
-                    'country' => $ct->country
-                ]);
-            }
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
