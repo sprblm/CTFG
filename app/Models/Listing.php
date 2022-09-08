@@ -100,6 +100,9 @@ class Listing extends Model {
                 //$builder->where("name", "=", $escapedQuery);
                 $builder->where("name", "LIKE", "%{$escapedQuery}%");
             })
+            ->orWhereHas("tags", function($builder) use ($escapedQuery) {
+                $builder->where("name", "LIKE", "%{$escapedQuery}%");
+            })
             ->orderByRaw("CASE
                 WHEN name = '{$escapedQuery}' THEN 1
                 WHEN name LIKE '{$escapedQuery}%' THEN 2
