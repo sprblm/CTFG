@@ -47,7 +47,11 @@
                         @if($project->location->count() > 0)
                             <br>
                             <span>
-                                <a href="#" class="listing-address">
+                                <!-- <a href="#" class="listing-address">
+                                    <i class="fa fa-map-marker"></i>
+                                    {{ @$project->location->first()->name }}
+                                </a> -->
+                                <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}&label={{ $project->name }}" class="popup-gmaps">
                                     <i class="fa fa-map-marker"></i>
                                     {{ @$project->location->first()->name }}
                                 </a>
@@ -284,7 +288,7 @@
         @if(!empty($project->latitude) && !empty($project->longitude))
             <div id="listing-location" class="listing-section">
                 <div id="singleListingMap-container">
-                    <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-map-icon="fa fa-map-marker"></div>
+                    <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-name="{{ $project->name }}" data-map-icon="fa fa-map-marker"></div>
                 </div>
             </div>
         @endif

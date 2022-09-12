@@ -377,7 +377,8 @@ var infoBox_ratingType = 'star-rating';
         myLatlng,
         single_map,
         {
-          marker_id: '1'
+          marker_id: '1',
+          title: $('#singleListingMap').data('name')
         },
         singleMapIco
       );
