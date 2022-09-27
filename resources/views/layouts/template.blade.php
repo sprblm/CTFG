@@ -35,7 +35,7 @@
                             </h2>
                             <small style="font-size: .8em;">Sharing knowledge and productively growing the field</small>
                         </div>
-                        <!-- Mobile Navigation -->
+                        <!-- Mobile Navigation
                         <div class="mmenu-trigger">
                             <button class="hamburger hamburger--collapse" type="button">
                                 <span class="hamburger-box">
@@ -43,7 +43,7 @@
                                 </span>
                                 <span class="visually-hidden">Toggle navigation</span>
                             </button>
-                        </div>
+                        </div> -->
                         <div class="clearfix"></div>
                     </div>
 
