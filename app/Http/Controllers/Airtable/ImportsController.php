@@ -77,12 +77,10 @@ class ImportsController extends Controller {
 
         $listings = Airtable::table('listings')->get();
 
-        print_r($listings);
-
-        /*foreach($listings as $list) {
-            echo "HQ: ".$list["fields"]["Headquarters Location"][0]."<br>";
+        foreach($listings as $list) {
+            echo "HQ Airtable ID: ".$list["fields"]["Headquarters Location"][0]."<br>";
             
-        } */
+        }
 
         /*echo sizeof($listings[0]["fields"]["Categories"]);
         print_r($listings[0]);
