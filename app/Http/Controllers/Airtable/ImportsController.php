@@ -77,7 +77,7 @@ class ImportsController extends Controller {
 
         $listings = Airtable::table('listings')->get();
 
-        print_r($listings[0]);
+        print_r($listings);
 
         /*foreach($listings as $list) {
             echo "HQ: ".$list["fields"]["Headquarters Location"][0]."<br>";
@@ -150,13 +150,13 @@ class ImportsController extends Controller {
             
         } */
 
-        $listings = Listing::whereNotNull('name')->get();
+        /*$listings = Listing::whereNotNull('name')->get();
 
         foreach ($listings as $list) {
             $list->update([
                 'slug' => Str::of($list->name)->slug(),
             ]);
-        }
+        } */
     }
 
 
