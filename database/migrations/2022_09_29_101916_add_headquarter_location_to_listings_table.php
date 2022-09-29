@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCoverImageToListingsTable extends Migration
+class AddHeadquarterLocationToListingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class AddCoverImageToListingsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('listings', 'cover_image')) {
-            Schema::table('listings', function (Blueprint $table) {
-                $table->text('cover_image')->nullable()->after('introduction');
-            });
-        }
-        
+        Schema::table('listings', function (Blueprint $table) {
+            $table->string('hq_location')->nullable()->after('longitude');
+        });
     }
 
     /**

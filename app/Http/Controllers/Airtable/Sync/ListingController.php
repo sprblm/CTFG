@@ -70,6 +70,7 @@ class ListingController extends Controller {
             $list->project_stage = @$l["fields"]["Project stage"];
             $list->latitude = @$l["fields"]["Latitude"];
             $list->longitude = @$l["fields"]["Longitude"];
+            $list->hq_location = @$l["fields"]["Headquarters location"][0];
 
             $list->website_url = @$l["fields"]["Website URL"];
             $list->twitter_url = @$l["fields"]["Twitter URL"];
