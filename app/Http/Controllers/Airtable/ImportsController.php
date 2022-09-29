@@ -79,7 +79,8 @@ class ImportsController extends Controller {
 
         foreach($listings as $list) {
             echo "HQ Airtable ID: ".@$list["fields"]["Headquarters Location"][0]."<br>";
-            
+            echo "HQ Name: ".Location::where('airtable_id', @$list["fields"]["Headquarters Location"][0])->first()->name."<br>";
+            echo "<br>";
         }
 
         /*echo sizeof($listings[0]["fields"]["Categories"]);
