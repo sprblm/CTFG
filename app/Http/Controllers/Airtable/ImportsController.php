@@ -78,7 +78,7 @@ class ImportsController extends Controller {
         $listings = Airtable::table('listings')->get();
 
         foreach($listings as $list) {
-            echo "HQ Airtable ID: ".$list["fields"]["Headquarters Location"][0]."<br>";
+            echo "HQ Airtable ID: ".@$list["fields"]["Headquarters Location"][0]."<br>";
             
         }
 
