@@ -51,7 +51,7 @@
                 var latitude = Number(projects[i].latitude);
                 var longitude = Number(projects[i].longitude);
                 var project = projects[i].name;
-                var address = projects[i].first_location;
+                var address = projects[i].hq_location;
                 var url = '/listing/'+projects[i].slug;
 
                 var entry = {

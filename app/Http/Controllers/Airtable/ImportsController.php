@@ -75,25 +75,12 @@ class ImportsController extends Controller {
 
 
 
-        /*$listings = Airtable::table('listings')->all();
+        $listings = Airtable::table('listings')->get();
 
-        foreach($listings as $list) {
-            if (!empty(@$list["fields"]["Categories"]) && sizeof(@$list["fields"]["Categories"]) > 0) {
-                foreach (@$list["fields"]["Categories"] as $lc) {
-                    $dbCat = Category::where('airtable_id', $lc)->first();
-                    $dbList = Listing::where('airtable_id', $list["id"])->first();
+        print_r($listings[0]);
 
-                    if ($dbList) {
-                        if ($dbCat) {
-                            $dbList->categories()->attach($dbCat->id);
-                            DB::table('listing_categories')->insert([
-                                'listing_id' => $dbList->id,
-                                'category_id' => $dbCat->id
-                            ]);
-                        }
-                    }
-                }
-            }
+        /*foreach($listings as $list) {
+            echo "HQ: ".$list["fields"]["Headquarters Location"][0]."<br>";
             
         } */
 
