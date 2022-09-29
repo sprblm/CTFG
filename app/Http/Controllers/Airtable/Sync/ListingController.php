@@ -47,6 +47,12 @@ class ListingController extends Controller {
             $slug = Str::of(@$l["fields"]["Project name"])->slug();
             $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
 
+            $hq = null;
+            $location = Location::where('airtable_id', @$l["fields"]["Headquarters Location"][0])->first();
+            if ($location) {
+                $hq = $location->name;
+            }
+
             $list = new Listing;
             $list->airtable_id = @$l["id"];
             //$list->host_org_id = @$l["fields"]["Name"];
@@ -70,7 +76,7 @@ class ListingController extends Controller {
             $list->project_stage = @$l["fields"]["Project stage"];
             $list->latitude = @$l["fields"]["Latitude"];
             $list->longitude = @$l["fields"]["Longitude"];
-            $list->hq_location = @$l["fields"]["Headquarters location"][0];
+            $list->hq_location = $hq;
 
             $list->website_url = @$l["fields"]["Website URL"];
             $list->twitter_url = @$l["fields"]["Twitter URL"];
