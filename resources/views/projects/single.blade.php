@@ -252,7 +252,7 @@
 
         @if(@$project->impact->count() > 0 && !empty(@$project->impact->first()->statement))
             <div id="add-review" class="add-review-box" style="margin-top: 10px; background-color: #fcfcfc;">
-                <h3 class="listing-desc-headline margin-bottom-10">Impact Stament</h3>
+                <h3 class="listing-desc-headline margin-bottom-10">Evidence of this project's impact:"</h3>
                 <p> 
                     {{ @$project->impact->first()->statement }}
                     @if(!empty(@$project->impact->first()->url))
