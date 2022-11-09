@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -14,12 +15,7 @@ use Airtable;
 class HealthChecker implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    /**
-     * The number of times the job may be attempted.
-     *
-     * @var int
-     */
-    public $tries = 3;
+
     public $record;
 
     /**
@@ -38,26 +34,32 @@ class HealthChecker implements ShouldQueue
      * try to fix if broken, log if not able to fix
      *
      * @return void
+     * @throws Exception
      */
     public function handle()
     {
+        $noFixStatus = [403, 52];
         $url = $this->record['fields']['Website URL'] ?? false;
+        if (strpos($url, 'archive.org') !== false) {
+            $this->maybeFixWaybackLink($url, $noFixStatus);
+            return;
+        }
         $statusCheck = $url ? $this->statusCheck($url) : false;
         if ($this->isSuccessfulStatus($statusCheck)) {
             return;
         }
 
         if ($this->isBrokenStatus($statusCheck)) {
-            if ($statusCheck === 403) {
+            if (in_array($statusCheck, $noFixStatus, true)) {
                 $this->logToCheckManually($this->record, $statusCheck);
                 return;
             }
-            $newUrl = $this->findWaybackLink($url);
-            if ($newUrl) {
+            $waybackLink = $this->findWaybackLink($url);
+            if ($waybackLink) {
                 Log::channel('healthcheck')->info(
-                    "FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}"
+                    "FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$waybackLink}"
                 );
-                $this->updateAirtableRecord($this->record, $newUrl);
+                $this->updateAirtableRecord($this->record, $waybackLink);
                 return;
             }
         }
@@ -74,15 +76,17 @@ class HealthChecker implements ShouldQueue
     public function statusCheck($url)
     {
         try {
-            $response = Http::withHeaders([
-                                              'User-Agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)'
-                                          ])->withOptions([
-                                                              'verify' => false,
-                                                          ])->get($url);
+            $response = Http::withHeaders(['User-Agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)'])
+                ->withOptions(['verify' => false,])
+                ->timeout(10)
+                ->retry(2, 10)
+                ->get($url);
             return $response->status();
         }catch (\Exception $exception){
-            Log::channel('healthcheck')->info("MANUAL CHECK URL: {$url} EXCEPTION: {$exception->getMessage()}");
-            return 400;
+            if (strpos($exception->getMessage(), 'error 52') !== false) {
+                return 52;
+            }
+            return $exception->getCode();
         }
     }
 
@@ -103,7 +107,7 @@ class HealthChecker implements ShouldQueue
      */
     public function isBrokenStatus($statusCheck)
     {
-        return $statusCheck >= 400;
+        return $statusCheck >= 400 || $statusCheck < 100;
     }
     /**
      * Find the latest archived for a given url
@@ -151,5 +155,34 @@ class HealthChecker implements ShouldQueue
     {
         $url = $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED';
         Log::channel('healthcheck')->info("MANUAL CHECK ID: {$record['id']} WEBSITE URL: {$url} RECEIVED STATUS: {$status}");
+    }
+
+    private function getOriginalUrl($url)
+    {
+        return substr( $url, strrpos($url,"http"), strlen($url)-strrpos($url,"http") );
+    }
+
+    /**
+     * @param       $url
+     * @param array $noFixStatus
+     *
+     * @return void
+     */
+    protected function maybeFixWaybackLink($url, array $noFixStatus): void
+    {
+        $url = $this->getOriginalUrl($url);
+        $statusCheck = $url ? $this->statusCheck($url) : false;
+        if ($this->isSuccessfulStatus($statusCheck)
+            || in_array(
+                $statusCheck,
+                $noFixStatus,
+                true
+            )
+        ) {
+            Log::channel('healthcheck')->info(
+                "FALSE POSITIVE FIXED: {$this->record['id']} WEBSITE URL: {$url} RECEIVED STATUS: {$statusCheck}"
+            );
+            $this->updateAirtableRecord($this->record, $url);
+        }
     }
 }
