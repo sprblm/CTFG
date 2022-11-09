@@ -135,7 +135,7 @@
         @foreach($catHierarchies as $catHierachy)
             <li class="nav-item has-submenu <?php if(/*@$activeParent->name == $catHierachy->name || */@$activeCat == $catHierachy->name ) { echo 'active'; } ?>">
                 <a class="nav-link overlay" href="/listing-category/{{ $catHierachy->slug }}" title="{{ $catHierachy->name }}">
-                    <span class="text-sm cat-wrap <?php if(@$activeCat == $catHierachy->name ) { echo 'text-white-600'; } ?>">
+                    <span class="text-sm <?php if(@$activeCat == $catHierachy->name ) { echo 'text-white-600'; } ?>">
                         {{ $catHierachy->name }}
                     </span>
                 </a>

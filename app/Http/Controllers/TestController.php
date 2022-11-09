@@ -17,14 +17,38 @@ use App\Models\ParentCategory;
 use App\Models\GrandParentCategory;
 use App\Models\AncestorCategory;
 use App\Models\Country;
+use App\Models\Boundary;
 use App\Models\Tag;
 
 use Carbon\Carbon;
 
 class TestController extends Controller {
+    public function fillCoverImages() {
+        $listings = Listing::get();
 
+        foreach ($listings as $record) {
+            $cover = $record->media->first()->link ?? null;
+
+            $record->update([
+                'cover_image' => $cover
+            ]);
+        }
+    }
+    
     public function test(Request $request) {
-        $dbLocations = Location::get();
+        $string = "right-to-be-(formerly-hollaback!)";
+
+        $r = str_replace(['.', '(', ')', '!'], '', $string);
+        echo $r;
+
+        /*$locations = Airtable::table('locations')->get();
+
+        foreach ($locations as $loc) {
+            echo @$loc["fields"]["Country"]."<br>";
+        }*/
+
+        //$dbLocations = Location::get();
+
         /*$key = config('services.google.key');
 
         foreach($dbLocations as $loc) {
@@ -63,7 +87,7 @@ class TestController extends Controller {
         
 
 
-        foreach($dbLocations as $loc) {
+        /*foreach($dbLocations as $loc) {
             $pieces = explode(' ', $loc->name);
             //$country = array_pop($pieces);
 
@@ -87,7 +111,7 @@ class TestController extends Controller {
             }
         }
 
-        echo "Done";
+        echo "Done";*/
 
 
         /*$listings = Airtable::table('listings')->all();

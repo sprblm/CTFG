@@ -1,4 +1,4 @@
-<form method="GET" action="/listings/search">
+<form method="GET">
     <div class="row">
         <div class="col-md-12">
             <div class="main-search-input gray-style margin-top-0 margin-bottom-10" style="z-index: 10000;">

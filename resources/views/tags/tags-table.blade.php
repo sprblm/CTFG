@@ -31,9 +31,9 @@
                             @foreach($tags as $tag)
                                 <td>
                                     @foreach($tag->items as $item)
-                                        
-                                        <li>{{ $item->name }}</li>
-                                        
+                                        <a style="color: #707070 !important;" href="/listing-tag/{{ $item->name }}">
+                                            <li>{{ $item->name }}</li>
+                                        </a>
                                     @endforeach
                                 </td>
                             @endforeach
@@ -45,10 +45,4 @@
     </div>
     
 
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        
-    </script>
 @endsection

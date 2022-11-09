@@ -19,6 +19,7 @@ class ProjectController extends Controller {
     public function add() {
         return view('projects.add', [
             'title' => 'Create Projects',
+            'menu' => 'add-project'
         ]);
     }
 
@@ -41,6 +42,7 @@ class ProjectController extends Controller {
 
         return view('projects.single', [
             'title' => 'Project - '.$project->name,
+            'menu' => 'directory',
             'project' => $project,
             'gMapsApiKey' => config('services.google.key'),
         ]);
@@ -66,22 +68,11 @@ class ProjectController extends Controller {
             ->when(request('countries'), function($builder) {
                 $countries = request('countries');
 
-                // Add variants of US
-                if (in_array('United States of America', $countries)) {
-                    array_push($countries, 'USA');
-                    array_push($countries, 'United States');
-                }
-
-                // Add variants of UK
-                if (in_array('United Kingdom', $countries)) {
-                    array_push($countries, 'UK');
-                }
-
                 $builder->when(count($countries),function ($builder)use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                $builder->orWhere('name', 'like', '%' . $country . '%');
+                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -112,12 +103,13 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
                 $builder->where('status', 'Active');
-            })*/
+            })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
+            ->orderBy('created', 'DESC')
             ->paginate(10);
 
         // Queue job for logging
@@ -125,15 +117,30 @@ class ProjectController extends Controller {
             $this->logSearch(request('q'), $projects->total());
         }
 
+        if (count(request()->all()) == 0) {
+            $filterStatus = "Active";
+        } else if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = '';
+        }
+
+        $allProjects = Listing::count();
+
         return view ('projects.search-results', [
             'title' => 'Civic Tech Field Guide - Directory',
+            'menu' => 'directory',
             'projects' => $projects,
             'query' => request('q'),
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            'filterStatus' => request('status'),
+            //'filterStatus' => request('status'),
+            'filterStatus' => $filterStatus,
             'filterOrgTypes' => request('organizationtypes'),
+            'filterOpenSource' => request('opensource'),
+            'filterTypes' => request('types'),
+            'allProjects' => $allProjects,
         ]);
 
     }
@@ -141,7 +148,7 @@ class ProjectController extends Controller {
     // Search autocomplete
     public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
-        $data = Listing::select("name")
+        $data = Listing::select("name", "slug")
                 ->where("name", "LIKE", "%{$q}%")
                 ->orWhere("introduction", "LIKE", "%{$q}%")
                 ->get();

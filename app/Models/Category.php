@@ -22,15 +22,15 @@ class Category extends Model {
 
     // Recursive
     public function items() {
-        return $this->hasMany(Category::class, 'parent_id')->orderBy('order_sort');
+        return $this->hasMany(Category::class, 'parent_id')->orderBy('order_sort', 'ASC');
     }
 
     public function childItems() {
-        return $this->hasMany(Category::class, 'parent_id')->with('items')->orderBy('order_sort');
+        return $this->hasMany(Category::class, 'parent_id')->with('items')->orderBy('order_sort', 'ASC');
     } 
 
     public function children() {
-        return $this->hasMany(Category::class, 'parent_id', 'id')->orderBy('order_sort');
+        return $this->hasMany(Category::class, 'parent_id', 'id')->orderBy('order_sort', 'ASC');
     }
 
     public function parent() {
