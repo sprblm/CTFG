@@ -125,8 +125,8 @@ class ListingController extends Controller {
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Listings table sync finished at ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes ... ".$count." records synced.");
 
-        $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
+        $this->updateEmbeds($dbListings);
         $this->updateParents($listings);
         $this->updateLocationFields($dbListings);
         $this->updateCoverImages($dbListings);
@@ -196,9 +196,9 @@ class ListingController extends Controller {
             }
 
             // listing_location
-            if (!empty(@$artList["fields"]["Location"]) && sizeof(@$artList["fields"]["Location"]) > 0) {
-                for ($i=0; $i < sizeof(@$artList["fields"]["Location"]); $i++) { 
-                    $dbLocation = Location::where('airtable_id', @$artList["fields"]["Location"][$i])->first();
+            if (!empty(@$artList["fields"]["Headquarters Location"]) && sizeof(@$artList["fields"]["Headquarters Location"]) > 0) {
+                for ($i=0; $i < sizeof(@$artList["fields"]["Headquarters Location"]); $i++) { 
+                    $dbLocation = Location::where('airtable_id', @$artList["fields"]["Headquarters Location"][$i])->first();
                     if ($dbList && $dbLocation) {
                         $dbList->location()->attach($dbLocation->id);
                     }
