@@ -449,5 +449,5 @@
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/maps.js') }}"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.key') }}"></script>
 @endsection
