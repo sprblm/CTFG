@@ -58,6 +58,7 @@ class ListingController extends Controller {
             //$list->host_org_id = @$l["fields"]["Name"];
             $list->name = @$l["fields"]["Project name"];
             $list->slug = $escapedSlug;
+            $list->contact_form_email = @$l["fields"]["Contact form email"];
             $list->introduction = @$l["fields"]["1-liner"];
             $list->type = @$l["fields"]["Type"][0];
 
