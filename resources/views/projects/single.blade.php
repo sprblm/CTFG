@@ -67,7 +67,9 @@
             @if($project->tags->count() > 0)
                 <ul class="apartment-details">
                     @foreach($project->tags as $tag)
-                        <li>{{ $tag->name }}</li>
+                        <li>
+                            <a href="/listing-tag/{{ @$tag->name }}">{{ @$tag->name }}</a>
+                        </li>
                     @endforeach
                 </ul>
             @endif
