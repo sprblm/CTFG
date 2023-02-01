@@ -386,6 +386,8 @@
                                 @endif
                             </div>
                             <div class="form-group mt-3 col-3 text-right" style="margin-top: -60px;">
+                                <input type="hidden" name="recipient" id="recipient" value="{{ $project->contact_form_email }}">
+                                <input type="hidden" name="slug" id="slug" value="{{ $project->slug }}">
                                 <button type="submit" class="button button-contactForm boxed-btn">Send</button>
                             </div>
                             <div class="mt-3 col-12">
