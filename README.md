@@ -31,7 +31,7 @@ At this point, the Directory should be functional, although there won't be any p
 
 #### Importing the database
 
-If you don't yet have access to the Airtable database, you can import the SQL [database dump](https://codeforall.slack.com/archives/C02S6CXE1KR/p1649871812694029) shared in the Slack channel.
+If you don't yet have access to the Airtable database, you can import the SQL by requesting the database dump in the Slack channel. The dump which will be sent to you privately.
 
 If you have access to the Airtable database and provided the `AIRTABLE_KEY` and `AIRTABLE_BASE` values in the `.env` file, run the `php artisan sync:tables` command.
 
