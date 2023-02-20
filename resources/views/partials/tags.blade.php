@@ -116,7 +116,7 @@
     .sidebar .has-subtag.active {
         color: #fff !important;
         border-radius: 25px;
-        background-color: #EA0630;
+        /* background-color: #EA0630; */
     }
 
     /*! CSS Used fontfaces */
@@ -143,7 +143,13 @@
                     </span>
                 </a>
                 @if(count($tagHierarchy->childItems))
-                    <ul class="subtag collapse <?php if(@$activeParentTag->name == $tagHierarchy->name ) { echo 'show'; } ?>">
+                    {{-- <ul class="subtag collapse <?php if(@$activeParentTag->name == $tagHierarchy->name ) { echo 'show'; } ?>">
+                        @foreach($tagHierarchy->childItems as $childItems)
+                            @include('partials.sub_tags', ['sub_tags' => $childItems])
+                        @endforeach
+                    </ul> --}}
+
+                    <ul class="subtag collapse">
                         @foreach($tagHierarchy->childItems as $childItems)
                             @include('partials.sub_tags', ['sub_tags' => $childItems])
                         @endforeach

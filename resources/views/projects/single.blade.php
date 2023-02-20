@@ -47,7 +47,11 @@
                         @if($project->location->count() > 0)
                             <br>
                             <span>
-                                <a href="#" class="listing-address">
+                                <!-- <a href="#" class="listing-address">
+                                    <i class="fa fa-map-marker"></i>
+                                    {{ @$project->location->first()->name }}
+                                </a> -->
+                                <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}&label={{ $project->name }}" class="popup-gmaps">
                                     <i class="fa fa-map-marker"></i>
                                     {{ @$project->location->first()->name }}
                                 </a>
@@ -63,7 +67,9 @@
             @if($project->tags->count() > 0)
                 <ul class="apartment-details">
                     @foreach($project->tags as $tag)
-                        <li>{{ $tag->name }}</li>
+                        <li>
+                            <a href="/listing-tag/{{ @$tag->name }}">{{ @$tag->name }}</a>
+                        </li>
                     @endforeach
                 </ul>
             @endif
@@ -248,7 +254,7 @@
 
         @if(@$project->impact->count() > 0 && !empty(@$project->impact->first()->statement))
             <div id="add-review" class="add-review-box" style="margin-top: 10px; background-color: #fcfcfc;">
-                <h3 class="listing-desc-headline margin-bottom-10">Impact Stament</h3>
+                <h3 class="listing-desc-headline margin-bottom-10">Evidence of this project's impact:"</h3>
                 <p> 
                     {{ @$project->impact->first()->statement }}
                     @if(!empty(@$project->impact->first()->url))
@@ -284,7 +290,7 @@
         @if(!empty($project->latitude) && !empty($project->longitude))
             <div id="listing-location" class="listing-section">
                 <div id="singleListingMap-container">
-                    <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-map-icon="fa fa-map-marker"></div>
+                    <div id="singleListingMap" data-latitude="{{ @$project->latitude }}" data-longitude="{{ @$project->longitude }}" data-name="{{ $project->name }}" data-map-icon="fa fa-map-marker"></div>
                 </div>
             </div>
         @endif
@@ -334,6 +340,65 @@
                     </div>
                 @endif
             </ul>
+
+            {{-- @if(!empty(@$project->contact_form_email))
+                <div class="boxed-widget margin-top-35" style="text-align: left;">
+                    <h3>Contact {{ $project->name }}</h3>
+                    <form action="/listing-contact-form" method="POST">
+                        @csrf
+                        <div class="row">
+                            @if(Session::has('success'))
+                                <div class="col-12">
+                                    <div class="alert alert-success" style="padding: 10px 25px; color: #006600;">
+                                        <p style="color: #006600 !important;">
+                                            {{ Session('success') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endif
+                            @if ($errors->any())
+                                <div class="col-12" style="color: #EA0630;">
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email" />
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" id="msg" rows="4" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mt-3 col-9">
+                                @if(config('services.recaptcha.key'))
+                                    <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}">
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group mt-3 col-3 text-right" style="margin-top: -60px;">
+                                <input type="hidden" name="recipient" id="recipient" value="{{ $project->contact_form_email }}">
+                                <input type="hidden" name="slug" id="slug" value="{{ $project->slug }}">
+                                <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                            </div>
+                            <div class="mt-3 col-12">
+                                <p style="margin-top: 20px; font-size: 14px;">
+                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide.
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            @endif --}}
 
             @if(!empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
@@ -386,4 +451,5 @@
     <script type="text/javascript" src="{{ asset('js/infobox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/markerclusterer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/maps.js') }}"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 @endsection

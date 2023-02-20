@@ -9,7 +9,7 @@ class Listing extends Model {
     protected $table = "listings";
 
     protected $fillable = [
-        'parent_id', 'host_org_id', 'host_organization', 'slug', 'name', 'raw_description', 'markdown_description', 'is_twitter_feed', 'is_youtube_channel', 'is_slideshare_embed', 'project_stage', 'features', 'used_by', 'no_of_employees', 'pricing_information', 'wikidata_api_field', 'last_modified', 'created', 'slack_url', 'crunchbase_url', 'wikimedia_url', 'tiktok_url', 'has_iframe_embed', 'has_twitter_feed', 'first_location', 'first_country', 'cover_image', 'introduction', 'type', 'github_url', 
+        'parent_id', 'host_org_id', 'host_organization', 'slug', 'name', 'raw_description', 'markdown_description', 'is_twitter_feed', 'is_youtube_channel', 'is_slideshare_embed', 'project_stage', 'features', 'used_by', 'no_of_employees', 'pricing_information', 'wikidata_api_field', 'last_modified', 'created', 'slack_url', 'crunchbase_url', 'wikimedia_url', 'tiktok_url', 'has_iframe_embed', 'has_twitter_feed', 'first_location', 'first_country', 'cover_image', 'introduction', 'type', 'github_url', 'hq_location', 'contact_form_email',
     ];
 
     protected $casts = [
@@ -97,7 +97,11 @@ class Listing extends Model {
             ->orWhere("introduction", "LIKE", "%{$escapedQuery}%")
             ->orWhere("description", "LIKE", "%{$escapedQuery}%")
             ->orWhereHas("categories", function($builder) use ($escapedQuery) {
-                $builder->where("name", "=", $escapedQuery);
+                //$builder->where("name", "=", $escapedQuery);
+                $builder->where("name", "LIKE", "%{$escapedQuery}%");
+            })
+            ->orWhereHas("tags", function($builder) use ($escapedQuery) {
+                $builder->where("name", "LIKE", "%{$escapedQuery}%");
             })
             ->orderByRaw("CASE
                 WHEN name = '{$escapedQuery}' THEN 1

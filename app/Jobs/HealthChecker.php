@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -20,7 +19,7 @@ class HealthChecker implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 5;
+    public $tries = 3;
     public $record;
 
     /**
@@ -49,15 +48,19 @@ class HealthChecker implements ShouldQueue
         }
 
         if ($this->isBrokenStatus($statusCheck)) {
+            if ($statusCheck === 403) {
+                $this->logToCheckManually($this->record, $statusCheck);
+                return;
+            }
             $newUrl = $this->findWaybackLink($url);
-            if($newUrl){
-                Log::channel('healthcheck')->info("FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}");
-                $log = "FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}";
-                $this->updateAirtableRecord($this->record, $newUrl, $statusCheck, $log);
+            if ($newUrl) {
+                Log::channel('healthcheck')->info(
+                    "FIXED RECORD ID: {$this->record['id']} WEBSITE URL: {$newUrl}"
+                );
+                $this->updateAirtableRecord($this->record, $newUrl);
                 return;
             }
         }
-
         $this->logToCheckManually($this->record, $statusCheck);
     }
 
@@ -71,7 +74,11 @@ class HealthChecker implements ShouldQueue
     public function statusCheck($url)
     {
         try {
-            $response = Http::get($url);
+            $response = Http::withHeaders([
+                                              'User-Agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)'
+                                          ])->withOptions([
+                                                              'verify' => false,
+                                                          ])->get($url);
             return $response->status();
         }catch (\Exception $exception){
             Log::channel('healthcheck')->info("MANUAL CHECK URL: {$url} EXCEPTION: {$exception->getMessage()}");
@@ -131,14 +138,7 @@ class HealthChecker implements ShouldQueue
      */
     public function updateAirtableRecord( $record, $newUrl, $status, $log)
     {
-        Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl]);
-        Airtable::table('404s')->create([
-            'Url' => $this->record['fields']['Website URL'] ?? 'NO URL PROVIDED',
-            'Status' => $status,
-            'Patched Archive Url' => $newUrl,
-            'Listing' => [$record['id']],
-            'Logs Info' => $log
-        ]);
+        Airtable::table('listings')->patch($record['id'],["Website URL"=>$newUrl, "Status"=>'Inactive']);
     }
 
     /**

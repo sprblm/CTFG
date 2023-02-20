@@ -75,27 +75,16 @@ class ImportsController extends Controller {
 
 
 
-        /*$listings = Airtable::table('listings')->all();
+        $listings = Airtable::table('listings')->get();
 
         foreach($listings as $list) {
-            if (!empty(@$list["fields"]["Categories"]) && sizeof(@$list["fields"]["Categories"]) > 0) {
-                foreach (@$list["fields"]["Categories"] as $lc) {
-                    $dbCat = Category::where('airtable_id', $lc)->first();
-                    $dbList = Listing::where('airtable_id', $list["id"])->first();
-
-                    if ($dbList) {
-                        if ($dbCat) {
-                            $dbList->categories()->attach($dbCat->id);
-                            DB::table('listing_categories')->insert([
-                                'listing_id' => $dbList->id,
-                                'category_id' => $dbCat->id
-                            ]);
-                        }
-                    }
-                }
+            echo "HQ Airtable ID: ".@$list["fields"]["Headquarters Location"][0]."<br>";
+            $location = Location::where('airtable_id', @$list["fields"]["Headquarters Location"][0])->first();
+            if ($location) {
+                echo "HQ Name: ".$location->name."<br>";
             }
-            
-        } */
+            echo "<br>";
+        }
 
         /*echo sizeof($listings[0]["fields"]["Categories"]);
         print_r($listings[0]);
@@ -163,13 +152,13 @@ class ImportsController extends Controller {
             
         } */
 
-        $listings = Listing::whereNotNull('name')->get();
+        /*$listings = Listing::whereNotNull('name')->get();
 
         foreach ($listings as $list) {
             $list->update([
                 'slug' => Str::of($list->name)->slug(),
             ]);
-        }
+        } */
     }
 
 

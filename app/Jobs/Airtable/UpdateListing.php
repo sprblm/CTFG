@@ -56,10 +56,6 @@ class UpdateListing implements ShouldQueue
                 'features' => $this->request['features'],
                 'project_stage' => $this->request['projectStage'],
 
-                
-                'name' => $this->request['name'],
-                'name' => $this->request['name'],
-
             ]);
         }
     }

@@ -28,7 +28,7 @@
                             @foreach($categories as $cat)
                                 <option value="{{ $cat->name }}"
                                     <?php
-                                        if (@in_array($cat->name, @$filterCategories)) {
+                                        if (is_array($filterCategories) && @in_array($cat->name, @$filterCategories)) {
                                             echo "selected";
                                         }
                                     ?>
@@ -43,7 +43,7 @@
                             @foreach($allTags as $tag)
                                 <option value="{{ $tag->name }}"
                                     <?php
-                                        if (@in_array($tag->name, @$filterTags)) {
+                                        if (is_array($filterTags) && @in_array($tag->name, @$filterTags)) {
                                             echo "selected";
                                         }
                                     ?>
@@ -58,7 +58,7 @@
                             @foreach($listingTypes as $type)
                                 <option value="{{ $type }}"
                                     <?php
-                                        if (@in_array($type, @$filterTypes)) {
+                                        if (is_array($filterTypes) && @in_array($type, @$filterTypes)) {
                                             echo "selected";
                                         }
                                     ?>
@@ -73,7 +73,7 @@
                             @foreach($organizationTypes as $orgType)
                                 <option value="{{ $orgType }}"
                                     <?php
-                                        if (@in_array($orgType, @$filterOrgTypes)) {
+                                        if (is_array($filterOrgTypes) && @in_array($orgType, @$filterOrgTypes)) {
                                             echo "selected";
                                         }
                                     ?>
@@ -88,7 +88,7 @@
                             @foreach($allCountries as $country)
                                 <option value="{{ $country->country }}"
                                     <?php
-                                        if (@in_array($country->country, @$filterCountries)) {
+                                        if (is_array($filterCountries) && @in_array($country->country, @$filterCountries)) {
                                             echo "selected";
                                         }
                                     ?>
@@ -106,7 +106,7 @@
                             @foreach($opensourceArray as $ops)
                                 <option value="{{ $ops }}"
                                     <?php
-                                        if (@in_array($ops, @$filterOpenSource)) {
+                                        if (is_array($filterOpenSource) && @in_array($ops, @$filterOpenSource)) {
                                             echo "selected";
                                         }
                                     ?>

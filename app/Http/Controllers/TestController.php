@@ -36,10 +36,17 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        $string = "right-to-be-(formerly-hollaback!)";
+        return view('emails.listing-contact-form', [
+            'email' => 'test@contact.com',
+            'message' => 'Create the controller, where we conjugate all the logic that is required to send the mail using Markdown. So, first, create the controller using below command.',
+            'link' => 'https://directory.civictech.guide/listing/the-newsroom'
+        ]);
+
+
+        /*$string = "right-to-be-(formerly-hollaback!)";
 
         $r = str_replace(['.', '(', ')', '!'], '', $string);
-        echo $r;
+        echo $r;*/
 
         /*$locations = Airtable::table('locations')->get();
 

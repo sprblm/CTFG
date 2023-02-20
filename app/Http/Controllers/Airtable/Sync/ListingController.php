@@ -47,11 +47,18 @@ class ListingController extends Controller {
             $slug = Str::of(@$l["fields"]["Project name"])->slug();
             $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
 
+            $hq = null;
+            $location = Location::where('airtable_id', @$l["fields"]["Headquarters Location"][0])->first();
+            if ($location) {
+                $hq = $location->name;
+            }
+
             $list = new Listing;
             $list->airtable_id = @$l["id"];
             //$list->host_org_id = @$l["fields"]["Name"];
             $list->name = @$l["fields"]["Project name"];
             $list->slug = $escapedSlug;
+            $list->contact_form_email = @$l["fields"]["Contact form email"];
             $list->introduction = @$l["fields"]["1-liner"];
             $list->type = @$l["fields"]["Type"][0];
 
@@ -70,6 +77,7 @@ class ListingController extends Controller {
             $list->project_stage = @$l["fields"]["Project stage"];
             $list->latitude = @$l["fields"]["Latitude"];
             $list->longitude = @$l["fields"]["Longitude"];
+            $list->hq_location = $hq;
 
             $list->website_url = @$l["fields"]["Website URL"];
             $list->twitter_url = @$l["fields"]["Twitter URL"];
@@ -118,8 +126,8 @@ class ListingController extends Controller {
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Listings table sync finished at ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes ... ".$count." records synced.");
 
-        $this->updateEmbeds($dbListings);
         $this->syncRelations($dbListings, $listings);
+        $this->updateEmbeds($dbListings);
         $this->updateParents($listings);
         $this->updateLocationFields($dbListings);
         $this->updateCoverImages($dbListings);
@@ -189,9 +197,9 @@ class ListingController extends Controller {
             }
 
             // listing_location
-            if (!empty(@$artList["fields"]["Location"]) && sizeof(@$artList["fields"]["Location"]) > 0) {
-                for ($i=0; $i < sizeof(@$artList["fields"]["Location"]); $i++) { 
-                    $dbLocation = Location::where('airtable_id', @$artList["fields"]["Location"][$i])->first();
+            if (!empty(@$artList["fields"]["Headquarters Location"]) && sizeof(@$artList["fields"]["Headquarters Location"]) > 0) {
+                for ($i=0; $i < sizeof(@$artList["fields"]["Headquarters Location"]); $i++) { 
+                    $dbLocation = Location::where('airtable_id', @$artList["fields"]["Headquarters Location"][$i])->first();
                     if ($dbList && $dbLocation) {
                         $dbList->location()->attach($dbLocation->id);
                     }

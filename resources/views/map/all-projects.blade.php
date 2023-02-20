@@ -51,7 +51,7 @@
                 var latitude = Number(projects[i].latitude);
                 var longitude = Number(projects[i].longitude);
                 var project = projects[i].name;
-                var address = projects[i].first_location;
+                var headquarters = projects[i].hq_location;
                 var url = '/listing/'+projects[i].slug;
 
                 var entry = {
@@ -61,7 +61,7 @@
                         "</div>" +
                         '<h3 id="firstHeading" class="firstHeading"><a class="location" title="Go to listing profile" href="'+url+'">'+project+'</a></h3>' +
                         '<div id="bodyContent">' +
-                        "<p><i class='fa fa-map-marker'></i> "+address+"</p>" +
+                        "<p><i class='fa fa-map-marker'></i> "+headquarters+"</p>" +
                         "</div>" +
                         "</div>"
                 }

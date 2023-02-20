@@ -8,6 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,5 +53,7 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+        Validator::extend('recaptcha', 'App\\Validators\\ReCaptcha@validate');
     }
 }
