@@ -58,7 +58,7 @@
                             @foreach($listingTypes as $type)
                                 <option value="{{ $type }}"
                                     <?php
-                                        if (is_array($filterOrgTypes) && @in_array($type, @$filterTypes)) {
+                                        if (is_array($filterTypes) && @in_array($type, @$filterTypes)) {
                                             echo "selected";
                                         }
                                     ?>
