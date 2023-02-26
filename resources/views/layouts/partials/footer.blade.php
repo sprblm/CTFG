@@ -84,18 +84,24 @@
             <div class="col-md-12" style="text-align: center;">
                 <div class="row social-icons margin-top-20">
                     <div class="col-md-3">
-                        <h3>Founding organization</h3>
-                        <img width="150" height="150" src="{{ asset('images/civic_hall.png') }}" alt="Civic Hall logo" />
+                        <h3>A project of</h3>
+                        <img width="150" height="150" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
                     </div>
                     <div class="col-md-6">
                         <h3>With support from</h3>
-                        <img src="{{ asset('images/knight_foundation.png') }}" alt="Knight Foundation logo" />
+                        <img src="{{ asset('images/ned.png') }}" alt="NED logo" />
                     </div>
                     <div class="col-md-3">
                         <h3>Technology partner</h3>
                         <img src="{{ asset('images/sarapis.png') }}" alt="Sarapis logo" />
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row social-icons margin-top-20">
+            <div class="col-md-12" style="text-align: center;">
+                <h3>Founding Organization</h3>
+                <p><strong>Civic Hall</strong></p>
             </div>
         </div>
     </div>
