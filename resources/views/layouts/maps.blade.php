@@ -50,9 +50,15 @@
                     <div class="right-side">
                         <div class="header-widget">
                             <div style="padding-right: 25px; font-size: 19px;">
-                                <a href="/" class="active" style="margin-right: 10px;">Directory</a>
-                                <a href="https://civictech.guide/about" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">About</a>
-                                <a href="https://civictech.guide/contribute" style="margin-right: 10px;">Contribute</a>
+                                <a href="/" class="active" style="margin-right: 10px;">
+                                    Directory
+                                </a>
+                                <a href="http://eepurl.com/gkg4WH" target="_blank" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">
+                                    Subscribe
+                                </a>
+                                <a href="https://civictech.guide/contribute" style="margin-right: 10px;">
+                                    Contribute
+                                </a>
                             </div>
                             <div style="padding-right: 25px; margin-top: 15px;">
                                 <a href="/tech" class="overlay @if(@$menu == 'tech') active @endif" style="margin-right: 10px;">The Tech</a>
