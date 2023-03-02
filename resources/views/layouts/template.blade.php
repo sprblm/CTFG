@@ -53,11 +53,11 @@
                                 <a href="/" class="active" style="margin-right: 10px;">
                                     Directory
                                 </a>
-                                <a href="http://eepurl.com/gkg4WH" target="_blank" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">
-                                    Subscribe
-                                </a>
                                 <a href="https://civictech.guide/contribute" style="margin-right: 10px;">
                                     Contribute
+                                </a>
+                                <a href="http://eepurl.com/gkg4WH" target="_blank" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">
+                                    Subscribe
                                 </a>
                             </div>
                             <div style="padding-right: 25px; margin-top: 10px;">

@@ -85,11 +85,11 @@
                 <div class="row social-icons margin-top-20">
                     <div class="col-md-3">
                         <h3>A project of</h3>
-                        <img width="150" height="150" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
+                        <img width="220" height="150" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
                     </div>
                     <div class="col-md-6">
                         <h3>With support from</h3>
-                        <img src="{{ asset('images/ned.png') }}" alt="NED logo" />
+                        <img width="380" height="150" src="{{ asset('images/ned.png') }}" alt="NED logo" />
                     </div>
                     <div class="col-md-3">
                         <h3>Technology partner</h3>
