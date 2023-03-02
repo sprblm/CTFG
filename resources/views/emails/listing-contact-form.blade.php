@@ -161,7 +161,7 @@
                                                             <p>
                                                                 <strong>Message:</strong>
                                                                 <br/>
-                                                                {{ $message }}
+                                                                {{ $body }}
                                                             </p>
                                                             
                                                             <p

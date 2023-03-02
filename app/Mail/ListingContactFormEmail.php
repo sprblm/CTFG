@@ -11,7 +11,7 @@ class ListingContactFormEmail extends Mailable {
     use Queueable, SerializesModels;
 
     public $email;
-    public $message;
+    public $body;
     public $link;
 
     /**
@@ -19,9 +19,9 @@ class ListingContactFormEmail extends Mailable {
      *
      * @return void
      */
-    public function __construct($email, $message, $link) {
+    public function __construct($email, $body, $link) {
         $this->email = $email;
-        $this->message = $message;
+        $this->body = $body;
         $this->link = $link;
     }
 
@@ -33,7 +33,7 @@ class ListingContactFormEmail extends Mailable {
     public function build() {
         return $this->view('emails.listing-contact-form')->with([
             'email' => $this->email,
-            'message' => $this->message,
+            'body' => $this->body,
             'link' => $this->link,
         ]);
     }
