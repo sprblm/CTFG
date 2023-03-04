@@ -23,6 +23,15 @@ use App\Models\Tag;
 use Carbon\Carbon;
 
 class TestController extends Controller {
+    public function contactFormTemplate() {
+        return view('emails.listing-contact-form', [
+            'link' => 'https://civictech.guide/listing/%PROJECTNAME%',
+            'email' => '<sender email>',
+            'body' => '<email body>',
+            ''
+        ]);
+    }
+
     public function fillCoverImages() {
         $listings = Listing::get();
 

@@ -178,6 +178,11 @@
                                                                 CTFG Team.
                                                             </p>
 
+                                                            <p>
+                                                                <br><br>
+                                                                This message was sent via your contact form at {{ $link }}. You can email us at info@civictech.guide with any questions. 
+                                                            </p>
+
                                                         </td>
                                                     </tr>
                                                 </tbody>

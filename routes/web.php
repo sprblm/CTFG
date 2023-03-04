@@ -57,4 +57,6 @@ Route::get('/a/test', 'Airtable\ImportsController@test');
 Route::get('/t', 'TestController@test');
 Route::get('/fill', 'TestController@fillCoverImages');
 
+Route::get('/email-templates/contact-form', 'TestController@contactFormTemplate');
+
 

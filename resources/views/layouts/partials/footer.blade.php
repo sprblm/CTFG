@@ -85,11 +85,12 @@
                 <div class="row social-icons margin-top-20">
                     <div class="col-md-3">
                         <h3>A project of</h3>
-                        <img width="220" height="150" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
+                        <img width="436" height="199" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
                     </div>
                     <div class="col-md-6">
                         <h3>With support from</h3>
-                        <img width="380" height="150" src="{{ asset('images/ned.png') }}" alt="NED logo" />
+                        <!-- <img width="380" height="150" src="{{ asset('images/ned.png') }}" alt="NED logo" /> -->
+                        <p style="color: #28303d"><strong>National Endowment for Democracy</strong></p>
                     </div>
                     <div class="col-md-3">
                         <h3>Technology partner</h3>
@@ -101,7 +102,7 @@
         <div class="row social-icons margin-top-20">
             <div class="col-md-12" style="text-align: center;">
                 <h3>Founding Organization</h3>
-                <p><strong>Civic Hall</strong></p>
+                <p style="color: #28303d"><strong>Civic Hall</strong></p>
             </div>
         </div>
     </div>
