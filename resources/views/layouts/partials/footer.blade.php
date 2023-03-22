@@ -85,7 +85,7 @@
                 <div class="row social-icons margin-top-20">
                     <div class="col-md-4 col-sm-12 margin-top-20">
                         <h3>A project of</h3>
-                        <img width="436" height="199" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
+                        <img width="287" height="131" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
                     </div>
                     <div class="col-md-5 col-sm-12 margin-top-20">
                         <div class="row">
