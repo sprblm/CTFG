@@ -24,10 +24,12 @@
                 </h4>
 
                 @if(!empty(@$project->location->first()->name))
-                    <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="popup-gmaps">
+                    {{-- <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}" class="popup-gmaps">
                         <i class="fa fa-map-marker"></i>
                         {{ @$project->location->first()->name }}
-                    </a>
+                    </a> --}}
+                    <i class="fa fa-map-marker"></i>
+                    {{ @$project->location->first()->name }}
                 @endif
             </div>
 

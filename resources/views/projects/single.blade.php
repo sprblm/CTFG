@@ -47,14 +47,12 @@
                         @if($project->location->count() > 0)
                             <br>
                             <span>
-                                <!-- <a href="#" class="listing-address">
+                                {{-- <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}&label={{ $project->name }}" class="popup-gmaps">
                                     <i class="fa fa-map-marker"></i>
                                     {{ @$project->location->first()->name }}
-                                </a> -->
-                                <a href="https://maps.google.com/?q={{ $project->latitude }},{{ $project->longitude }}&label={{ $project->name }}" class="popup-gmaps">
-                                    <i class="fa fa-map-marker"></i>
-                                    {{ @$project->location->first()->name }}
-                                </a>
+                                </a> --}}
+                                <i class="fa fa-map-marker"></i>
+                                {{ @$project->location->first()->name }}
                             </span>
                         @endif
                     </div>
