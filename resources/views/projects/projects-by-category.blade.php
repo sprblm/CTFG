@@ -59,11 +59,15 @@
                 <span class="markdown">
                     @if(strlen($categoryDesc) > 300)
                         <p style="line-height: 20px !important; font-size: 14px;">
-                        {{ Markdown::parse($categoryDesc) }}
+                            {{-- Markdown::parse($categoryDesc) --}}
+
+                            {{ app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($categoryDesc) }}
                         </p>
                     @else
                         <p style="line-height: 20px !important; font-size: 14px;">
-                            {{ Markdown::parse($categoryDesc) }}
+                            {{-- Markdown::parse($categoryDesc) --}}
+
+                            {{ app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($categoryDesc) }}
                         </p>
                     @endif
                 </span>
