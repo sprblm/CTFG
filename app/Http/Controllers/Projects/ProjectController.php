@@ -104,7 +104,7 @@ class ProjectController extends Controller {
                 }
             })
             ->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                $builder->where('status', 'Active');
+                $builder->where('status', 'Active')->orWhere('status', 'N/A');
                 //$builder->where('status', 'Active')->orWhereNull('status');
             })
             ->when(request('q'), function($builder) {
