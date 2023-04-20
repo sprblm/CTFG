@@ -56,7 +56,7 @@
             </h2>
 
             @if(!empty($categoryDesc))
-                <?php $mkd = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $str); ?>
+                <?php $mkd = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $categoryDesc); ?>
                 <span class="markdown">
                     @if(strlen($categoryDesc) > 300)
                         <p style="line-height: 20px !important; font-size: 14px;">
