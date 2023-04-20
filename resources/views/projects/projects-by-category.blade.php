@@ -62,13 +62,13 @@
                         <p style="line-height: 20px !important; font-size: 14px;">
                             {{-- Markdown::parse($categoryDesc) --}}
 
-                            {{ app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($mkd) }}
+                            {!! app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($mkd) !!}
                         </p>
                     @else
                         <p style="line-height: 20px !important; font-size: 14px;">
                             {{-- Markdown::parse($categoryDesc) --}}
 
-                            {{ app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($mkd) }}
+                            {!! app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($mkd) !!}
                         </p>
                     @endif
                 </span>
