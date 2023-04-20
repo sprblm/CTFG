@@ -56,18 +56,19 @@
             </h2>
 
             @if(!empty($categoryDesc))
+                <?php $mkd = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $str); ?>
                 <span class="markdown">
                     @if(strlen($categoryDesc) > 300)
                         <p style="line-height: 20px !important; font-size: 14px;">
                             {{-- Markdown::parse($categoryDesc) --}}
 
-                            {{ app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($categoryDesc) }}
+                            {{ app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($mkd) }}
                         </p>
                     @else
                         <p style="line-height: 20px !important; font-size: 14px;">
                             {{-- Markdown::parse($categoryDesc) --}}
 
-                            {{ app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($categoryDesc) }}
+                            {{ app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($mkd) }}
                         </p>
                     @endif
                 </span>

@@ -45,11 +45,13 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        return view('emails.listing-contact-form', [
-            'email' => 'test@contact.com',
-            'message' => 'Create the controller, where we conjugate all the logic that is required to send the mail using Markdown. So, first, create the controller using below command.',
-            'link' => 'https://directory.civictech.guide/listing/the-newsroom'
-        ]);
+        $str = '<p>The web and other technologies should be accessible to all people. The ability to use technology regardless of disability or status is a fundamental precursor to that technology serving civic goals.</p> <p>**Suggested resources: ** <a href="https://www.youtube.com/watch?v=JdbPd_ACGOA">Dollars for Change: How to fund accessibility panel at Code for All Summit 2022</a></p>';
+
+        
+
+        $text = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', $str);
+
+        echo app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($text);
 
 
         /*$string = "right-to-be-(formerly-hollaback!)";
