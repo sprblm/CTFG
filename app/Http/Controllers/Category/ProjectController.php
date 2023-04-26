@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Listing;
+use App\Models\ListingCategory;
 use App\Models\Tag;
 
 class ProjectController extends Controller {
@@ -49,8 +51,12 @@ class ProjectController extends Controller {
             }
         }
 
+        //$projects = $category->listings()
 
-        $projects = $category->listings()
+        $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
+
+        $projects = Listing::query()
+            ->whereIn('id', $listingIds)
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
 
@@ -103,7 +109,7 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            ->when(request('status'), function($builder) {
                 $builder->where('status', 'Active')->orWhere('status', 'N/A');
             })
             ->when(request('q'), function($builder) {
