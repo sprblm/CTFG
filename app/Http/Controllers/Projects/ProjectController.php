@@ -103,10 +103,10 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
                 $builder->where('status', 'Active')->orWhere('status', 'N/A');
                 //$builder->where('status', 'Active')->orWhereNull('status');
-            })
+            })*/
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
