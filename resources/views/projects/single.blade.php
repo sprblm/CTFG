@@ -339,7 +339,7 @@
                 @endif
             </ul>
 
-            {{-- @if(!empty(@$project->contact_form_email))
+            @if(!empty(@$project->contact_form_email))
                 <div class="boxed-widget margin-top-35" style="text-align: left;">
                     <h3>Contact {{ $project->name }}</h3>
                     <form action="/listing-contact-form" method="POST">
@@ -396,7 +396,7 @@
                         </div>
                     </form>
                 </div>
-            @endif --}
+            @endif
 
             @if(!empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
