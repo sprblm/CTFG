@@ -55,6 +55,8 @@ class ProjectController extends Controller {
 
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
 
+        //\DB::enableQueryLog();
+
         $projects = Listing::query()
             ->whereIn('id', $listingIds)
             ->when(request('tags'), function($builder) {
@@ -117,6 +119,8 @@ class ProjectController extends Controller {
             })
             ->orderBy('created', 'DESC')
             ->paginate(10);
+
+        //dd(\DB::getQueryLog());
 
         $category->update([
             'hits' => $category->hits + 1,

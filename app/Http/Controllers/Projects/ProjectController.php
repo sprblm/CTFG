@@ -18,7 +18,7 @@ class ProjectController extends Controller {
     // Embed add project Airtable form view
     public function add() {
         return view('projects.add', [
-            'title' => 'Create Projects',
+            'title' => 'Share a project',
             'menu' => 'add-project'
         ]);
     }
