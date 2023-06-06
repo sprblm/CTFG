@@ -28,8 +28,7 @@ class LocationController extends Controller {
         \Log::info($locations[1]["fields"]["Country"][0]);
         \Log::info($locations[2]["fields"]["Country"][0]);
         foreach($locations as $loc) {
-            //$boundary = @$loc["fields"]["Boundaries"][0];
-            $boundary = @$loc["fields"]["Country"][0];
+            $boundary = @$loc["fields"]["Boundaries"][0];
             $boundary = Boundary::where('airtable_id', $boundary)->first();
             $country = null;
             if ($boundary) {
