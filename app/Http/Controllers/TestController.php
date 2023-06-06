@@ -48,7 +48,7 @@ class TestController extends Controller {
         $locations = Airtable::table('locations')->get();
 
         // Recreate locations
-        dd($locations[0]["fields"]["Country"]);
+        dd($locations[1]["fields"]["Country"]);
         /*\Log::info($locations[0]["fields"]["Country"][0]->Country);
         \Log::info($locations[1]["fields"]["Country"][0]->Country);
         \Log::info($locations[2]["fields"]["Country"][0]->Country);*/
