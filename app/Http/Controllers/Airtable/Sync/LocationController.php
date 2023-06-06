@@ -23,9 +23,10 @@ class LocationController extends Controller {
             Location::truncate();
         }
 
-        // Recreate categories
+        // Recreate locations
         foreach($locations as $loc) {
-            $boundary = @$loc["fields"]["Boundaries"][0];
+            //$boundary = @$loc["fields"]["Boundaries"][0];
+            $boundary = @$loc["fields"]["Country"];
             $boundary = Boundary::where('airtable_id', $boundary)->first();
             $country = null;
             if ($boundary) {
