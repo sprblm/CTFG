@@ -80,7 +80,8 @@ class ProjectController extends Controller {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                $builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
