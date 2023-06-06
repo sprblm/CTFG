@@ -24,9 +24,6 @@ class LocationController extends Controller {
         }
 
         // Recreate locations
-        \Log::info($locations[0]["fields"]["Country"][0]);
-        \Log::info($locations[1]["fields"]["Country"][0]);
-        \Log::info($locations[2]["fields"]["Country"][0]);
         foreach($locations as $loc) {
             $boundary = @$loc["fields"]["Boundaries"][0];
             $boundary = Boundary::where('airtable_id', $boundary)->first();

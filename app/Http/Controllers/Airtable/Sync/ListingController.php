@@ -44,78 +44,81 @@ class ListingController extends Controller {
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         foreach ($listings as $l) {
-            $slug = Str::of(@$l["fields"]["Project name"])->slug();
-            $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+            if (!empty(@$l["fields"]["Project name"])) {
+                $slug = Str::of(@$l["fields"]["Project name"])->slug();
+                $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
 
-            $hq = null;
-            $location = Location::where('airtable_id', @$l["fields"]["Headquarters Location"][0])->first();
-            if ($location) {
-                $hq = $location->name;
+                $hq = null;
+                $location = Location::where('airtable_id', @$l["fields"]["Headquarters Location"][0])->first();
+                if ($location) {
+                    $hq = $location->name;
+                }
+
+                $list = new Listing;
+                $list->airtable_id = @$l["id"];
+                //$list->host_org_id = @$l["fields"]["Name"];
+                $list->name = @$l["fields"]["Project name"];
+                $list->slug = $escapedSlug;
+                $list->contact_form_email = @$l["fields"]["Contact form email"];
+                $list->introduction = @$l["fields"]["1-liner"];
+                $list->type = @$l["fields"]["Type"][0];
+
+                $list->organization_type = @$l["fields"]["Organization type"][0];
+                $list->description = @$l["fields"]["Longer description"];
+                $list->markdown_description = @$l["fields"]["Longer description"];
+                $list->raw_description = @$l["fields"]["deprecated Longer description html"];
+                $list->status = @$l["fields"]["Status"];
+
+                $list->wikidata_api_field = @$l["fields"]["Wikidata API Field"];
+                $list->pricing_information = @$l["fields"]["Pricing information"];
+                $list->no_of_employees = @$l["fields"]["Number of employees"][0];
+                $list->used_by = @$l["fields"]["Who's it used by?"];
+                $list->features = @$l["fields"]["Features"][0];
+
+                $list->project_stage = @$l["fields"]["Project stage"];
+                $list->latitude = @$l["fields"]["Latitude"];
+                $list->longitude = @$l["fields"]["Longitude"];
+                $list->hq_location = $hq;
+
+                $list->website_url = @$l["fields"]["Website URL"];
+                $list->twitter_url = @$l["fields"]["Twitter URL"];
+                $list->facebook_url = @$l["fields"]["Facebook URL"];
+                $list->instagram_url = @$l["fields"]["Instagram URL"];
+                $list->youtube_channel = @$l["fields"]["YouTube URL"];
+
+                $list->linkedin_url = @$l["fields"]["LinkedIn URL"];
+                $list->contact_page_url = @$l["fields"]["Contact page URL"];
+                $list->github_url = @$l["fields"]["Github URL"];
+                $list->email = @$l["fields"]["Email"];
+                $list->events_page_url = @$l["fields"]["Events page URL"];
+
+                $list->jobs_page_url = @$l["fields"]["Jobs page URL"];
+                $list->blog_url = @$l["fields"]["Blog feed URL"];
+                $list->tiktok_url = @$l["fields"]["TikTok URL"];
+                $list->wikimedia_url = @$l["fields"]["Wikimedia URL"];
+                $list->crunchbase_url = @$l["fields"]["Crunchbase URL"];
+
+                $list->slack_url = @$l["fields"]["Slack URL"];
+                $list->built_with = @$l["fields"]["Builtwith.com"];
+                $list->claimed_status = @$l["fields"]["Claimed status"];
+                $list->founded = @$l["fields"]["Founded"];
+                $list->closed = @$l["fields"]["Closed"];
+
+                $list->shutdown_reason = @$l["fields"]["If shutdown,what happened?"];
+                $list->postmortem = @$l["fields"]["Postmortem"];
+                //$list->host_organization = @$l["fields"]["Name"];
+                $list->host_organization_url = @$l["fields"]["Host organization URL"];
+                $list->language = @$l["fields"]["Languages(s)"][0];
+
+                $list->secondary_language = @$l["fields"]["Languages(s)"][1];
+                $list->open_source = @$l["fields"]["Open source"];
+                $list->open_source_license = @$l["fields"]["Open source license"];
+                $list->created = @$l["fields"]["Created"];
+                $list->last_modified = @$l["fields"]["Last Modified"];
+
+                $list->save();
             }
-
-            $list = new Listing;
-            $list->airtable_id = @$l["id"];
-            //$list->host_org_id = @$l["fields"]["Name"];
-            $list->name = @$l["fields"]["Project name"];
-            $list->slug = $escapedSlug;
-            $list->contact_form_email = @$l["fields"]["Contact form email"];
-            $list->introduction = @$l["fields"]["1-liner"];
-            $list->type = @$l["fields"]["Type"][0];
-
-            $list->organization_type = @$l["fields"]["Organization type"][0];
-            $list->description = @$l["fields"]["Longer description"];
-            $list->markdown_description = @$l["fields"]["Longer description"];
-            $list->raw_description = @$l["fields"]["deprecated Longer description html"];
-            $list->status = @$l["fields"]["Status"];
-
-            $list->wikidata_api_field = @$l["fields"]["Wikidata API Field"];
-            $list->pricing_information = @$l["fields"]["Pricing information"];
-            $list->no_of_employees = @$l["fields"]["Number of employees"][0];
-            $list->used_by = @$l["fields"]["Who's it used by?"];
-            $list->features = @$l["fields"]["Features"][0];
-
-            $list->project_stage = @$l["fields"]["Project stage"];
-            $list->latitude = @$l["fields"]["Latitude"];
-            $list->longitude = @$l["fields"]["Longitude"];
-            $list->hq_location = $hq;
-
-            $list->website_url = @$l["fields"]["Website URL"];
-            $list->twitter_url = @$l["fields"]["Twitter URL"];
-            $list->facebook_url = @$l["fields"]["Facebook URL"];
-            $list->instagram_url = @$l["fields"]["Instagram URL"];
-            $list->youtube_channel = @$l["fields"]["YouTube URL"];
-
-            $list->linkedin_url = @$l["fields"]["LinkedIn URL"];
-            $list->contact_page_url = @$l["fields"]["Contact page URL"];
-            $list->github_url = @$l["fields"]["Github URL"];
-            $list->email = @$l["fields"]["Email"];
-            $list->events_page_url = @$l["fields"]["Events page URL"];
-
-            $list->jobs_page_url = @$l["fields"]["Jobs page URL"];
-            $list->blog_url = @$l["fields"]["Blog feed URL"];
-            $list->tiktok_url = @$l["fields"]["TikTok URL"];
-            $list->wikimedia_url = @$l["fields"]["Wikimedia URL"];
-            $list->crunchbase_url = @$l["fields"]["Crunchbase URL"];
-
-            $list->slack_url = @$l["fields"]["Slack URL"];
-            $list->built_with = @$l["fields"]["Builtwith.com"];
-            $list->claimed_status = @$l["fields"]["Claimed status"];
-            $list->founded = @$l["fields"]["Founded"];
-            $list->closed = @$l["fields"]["Closed"];
-
-            $list->shutdown_reason = @$l["fields"]["If shutdown,what happened?"];
-            $list->postmortem = @$l["fields"]["Postmortem"];
-            //$list->host_organization = @$l["fields"]["Name"];
-            $list->host_organization_url = @$l["fields"]["Host organization URL"];
-            $list->language = @$l["fields"]["Languages(s)"][0];
-
-            $list->secondary_language = @$l["fields"]["Languages(s)"][1];
-            $list->open_source = @$l["fields"]["Open source"];
-            $list->open_source_license = @$l["fields"]["Open source license"];
-            $list->created = @$l["fields"]["Created"];
-            $list->last_modified = @$l["fields"]["Last Modified"];
-
-            $list->save();
+            
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
