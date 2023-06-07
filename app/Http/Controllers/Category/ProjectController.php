@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\ListingCategory;
+use App\Models\ListingTag;
 use App\Models\Tag;
 
 class ProjectController extends Controller {
