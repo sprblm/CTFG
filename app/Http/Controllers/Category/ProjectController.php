@@ -112,8 +112,11 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status'), function($builder) {
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+            ->when(request('status'), function($builder){
+                $builder->where('status', request('status'));
+            }, function($builder){
+                //Different from guest controller since when checkbox not checked, we should load everything.
+                $builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
@@ -166,9 +169,6 @@ class ProjectController extends Controller {
         if (!$tag) {
             return abort(404);
         }
-
-        //$listings = $tag->listings();
-        //$projects = $listings->paginate(10);
 
         $projects = $tag->listings()
             ->when(request('tags'), function($builder) {
@@ -223,8 +223,11 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                $builder->where('status', 'Active');
+            ->when(request('status'), function($builder){
+                $builder->where('status', request('status'));
+            }, function($builder){
+                //Different from guest controller since when checkbox not checked, we should load everything.
+                $builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));

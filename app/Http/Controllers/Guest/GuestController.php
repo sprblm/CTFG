@@ -67,9 +67,15 @@ class GuestController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
+            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
                 //$builder->where('status', 'Active');
                 $builder->where('status', 'Active')->orWhereNull('status')->orWhere('status', 'N/A');
+            })*/
+            ->when(request('status'), function($builder){
+                $builder->where('status', 'Active');
+            }, function($builder){
+                // Since on load we only show active projects only
+                $builder->where('status', 'Active');
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
