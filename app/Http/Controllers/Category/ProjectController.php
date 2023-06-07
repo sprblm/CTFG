@@ -75,12 +75,12 @@ class ProjectController extends Controller {
             ->when(request('countries'), function($builder) {
                 $countries = request('countries');
 
-                $builder->when(count($countries),function ($builder)use ($countries) {
+                $builder->when(count($countries),function ($builder) use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                //$builder->orWhere('country', 'LIKE', '%' . $country . '%');
-                                $builder->orWhere('name', 'LIKE', '%' . $country . '%');
+                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -197,7 +197,8 @@ class ProjectController extends Controller {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                $builder->orWhere('name', 'LIKE', '%' . $country . '%');
+                                $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
