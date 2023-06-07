@@ -34,13 +34,13 @@
                 <label for="filter-countries-input" class="visually-hidden">Countries</label>
                 <select id="filter-countries-input" name="countries[]" data-placeholder="All Countries" id="countries" class="chosen-select-no-single" multiple style="display: none;">
                     @foreach($allCountries as $country)
-                        <option value="{{ $country->country }}"
+                        <option value="{{ $country->name }}"
                             <?php
-                                if (is_array($filterCountries) && @in_array($country->country, @$filterCountries)) {
+                                if (is_array($filterCountries) && @in_array($country->name, @$filterCountries)) {
                                     echo "selected";
                                 }
                             ?>
-                            >{{ $country->country }}</option>
+                            >{{ $country->name }}</option>
                     @endforeach
                 </select>
             </div>
