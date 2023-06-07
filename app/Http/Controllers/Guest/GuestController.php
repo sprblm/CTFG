@@ -82,7 +82,7 @@ class GuestController extends Controller {
             })
             ->orderByRaw('-cover_image DESC')
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         // Queue job for logging
         if (request('q')) {

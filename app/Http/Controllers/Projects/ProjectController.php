@@ -114,7 +114,7 @@ class ProjectController extends Controller {
                 $builder->searchQuery(request('q'));
             })
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         // Queue job for logging
         if (request('q')) {

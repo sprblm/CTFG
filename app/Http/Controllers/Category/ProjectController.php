@@ -51,8 +51,6 @@ class ProjectController extends Controller {
             }
         }
 
-        //$projects = $category->listings()
-
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
 
         //\DB::enableQueryLog();
@@ -122,7 +120,7 @@ class ProjectController extends Controller {
                 $builder->searchQuery(request('q'));
             })
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         //dd(\DB::getQueryLog());
 
@@ -170,7 +168,13 @@ class ProjectController extends Controller {
             return abort(404);
         }
 
-        $projects = $tag->listings()
+        //$projects = $tag->listings()
+        $listingIds = ListingTag::where('tag_id', $tag->id)->pluck('listing_id')->toArray();
+
+        //\DB::enableQueryLog();
+
+        $projects = Listing::query()
+            ->whereIn('id', $listingIds)
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
 
@@ -233,7 +237,7 @@ class ProjectController extends Controller {
                 $builder->searchQuery(request('q'));
             })
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         $parentTag = $tag->parent;
 
