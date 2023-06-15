@@ -54,8 +54,6 @@ class ProjectController extends Controller {
 
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
 
-        \Log::info("Listings count: ".sizeof($listingIds));
-
         //\DB::enableQueryLog();
 
         $projects = Listing::query()
@@ -114,10 +112,10 @@ class ProjectController extends Controller {
                 }
             })
             ->when(request('status'), function($builder){
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                $builder->where('status', 'Active');
             }, function($builder){
                 //Different from guest controller since when checkbox not checked, we should load everything.
-                //$builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
+                $builder->where('status', 'Active')->orWhere('status', 'N/A')->orWhereNull('status');
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
