@@ -117,7 +117,7 @@ class ProjectController extends Controller {
                 $builder->where('status', request('status'))->orWhere('status', 'N/A');
             }, function($builder){
                 //Different from guest controller since when checkbox not checked, we should load everything.
-                $builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
+                //$builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
