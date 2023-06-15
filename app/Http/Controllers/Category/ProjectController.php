@@ -125,6 +125,9 @@ class ProjectController extends Controller {
             ->orderBy('created', 'DESC')
             ->paginate(50);
 
+        \Log::info("Total projects: ".$projects->total());
+        \Log::info("Projects count: ".count($projects));
+
         //dd(\DB::getQueryLog());
 
         $category->update([
