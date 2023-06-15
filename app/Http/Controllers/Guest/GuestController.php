@@ -67,12 +67,8 @@ class GuestController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                //$builder->where('status', 'Active');
-                $builder->where('status', 'Active')->orWhereNull('status')->orWhere('status', 'N/A');
-            })*/
             ->when(request('status'), function($builder){
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                $builder->where('status', 'Active');
             }, function($builder){
                 // Since on load we only show active projects and N/A only
                 $builder->where('status', 'Active')->orWhere('status', 'N/A');
