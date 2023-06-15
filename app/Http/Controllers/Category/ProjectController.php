@@ -54,6 +54,8 @@ class ProjectController extends Controller {
 
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
 
+        \Log::info("Listings count: ".sizeof($listingIds));
+
         //\DB::enableQueryLog();
 
         $projects = Listing::query()
