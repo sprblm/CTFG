@@ -16,10 +16,6 @@ class LinkController extends Controller {
         \Log::info("Links table sync started at ".date('Y-m-d H:i:s'));
 
         $links = Airtable::table('links')->all();
-        /*$links = Airtable::table('links')->get();
-        $a = Carbon::parse($links[0]['createdTime'])->format('Y-m-d H:i:s');
-
-        echo $a;*/
         
         if ((Link::count() > 0) && (sizeof($links) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');

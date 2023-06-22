@@ -400,7 +400,7 @@
 
             @if(!empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
-                    <h3>Links</h3>
+                    <h3>Resources</h3>
                     <ul>
                         @if(!empty(@$project->linkedin_url))
                             <li>LinkedIn: <span><a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></span></li>
@@ -430,6 +430,22 @@
                             <li>Host Org Url: <span><a href="{{ @$project->host_organization_url }}" target="_blank">{{ @$project->host_organization_url }}</a></span></li>
                         @endif --}}
                     </ul>
+                </div>
+            @endif
+
+            @if($project->links->count() > 0)
+                <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
+                    <h3>Links</h3>
+                    <ol>
+                        @foreach($project->links as $link)
+                            <li>
+                                <h5>Link:</h5> <span><a href="{{ @$link->link }}" target="_blank">{{ @$link->link }}</a></span>
+                            </li>
+                           <br/>
+                            <h5>Notes:</h5> <span>{{ $link->notes }}</span>
+                            
+                        @endforeach
+                    </ol>
                 </div>
             @endif
 
