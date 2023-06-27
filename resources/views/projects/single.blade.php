@@ -100,7 +100,7 @@
                                         @foreach(@$project->links as $link)
                                             <li>
                                                 <a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">
-                                                    {{ $link->link }}
+                                                    {{ $link->notes }}
                                                 </a>
                                             </li>
                                         @endforeach
