@@ -13,50 +13,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
-Route::get('/', 'Guest\GuestController@index');
-Route::get('/all-categories', 'Guest\GuestController@index');
-Route::get('/projects/add', 'Projects\ProjectController@add');
-Route::get('/listing/{slug}', 'Projects\ProjectController@singleProject');
-Route::get('/projects/autocomplete', 'Projects\ProjectController@searchAutoComplete')->name('autocomplete');
-Route::get('/listings/search', 'Projects\ProjectController@search');
-Route::get('/world-map', 'Guest\GuestController@worldMap');
+Route::get('/', [\App\Http\Controllers\Guest\GuestController::class, 'index']);
+Route::get('/all-categories', [\App\Http\Controllers\Guest\GuestController::class, 'index']);
+Route::get('/projects/add', [\App\Http\Controllers\Projects\ProjectController::class, 'add']);
+Route::get('/listing/{slug}', [\App\Http\Controllers\Projects\ProjectController::class, 'singleProject']);
+Route::get('/projects/autocomplete', [\App\Http\Controllers\Projects\ProjectController::class, 'searchAutoComplete'])->name('autocomplete');
+Route::get('/listings/search', [\App\Http\Controllers\Projects\ProjectController::class, 'search']);
+Route::get('/world-map', [\App\Http\Controllers\Guest\GuestController::class, 'worldMap']);
 
-Route::get('/tech', 'Category\ParentCategoryController@theTech');
-Route::get('/people', 'Category\ParentCategoryController@thePeople');
-Route::get('/adjacent', 'Category\ParentCategoryController@adjacent');
+Route::get('/tech', [\App\Http\Controllers\Category\ParentCategoryController::class, 'theTech']);
+Route::get('/people', [\App\Http\Controllers\Category\ParentCategoryController::class, 'thePeople']);
+Route::get('/adjacent', [\App\Http\Controllers\Category\ParentCategoryController::class, 'adjacent']);
 
-Route::get('/listing-categories', 'Category\CategoryHierarchy@getCategoryHierarchy');
-Route::get('/listing-category/{slug}', 'Category\ProjectController@getProjectsByCategory');
+Route::get('/listing-categories', [\App\Http\Controllers\Category\CategoryHierarchy::class, 'getCategoryHierarchy']);
+Route::get('/listing-category/{slug}', [\App\Http\Controllers\Category\ProjectController::class, 'getProjectsByCategory']);
 
-Route::get('/listing-tag/{name}', 'Category\ProjectController@getProjectsByTag');
+Route::get('/listing-tag/{name}', [\App\Http\Controllers\Category\ProjectController::class, 'getProjectsByTag']);
 
-Route::get('/tags', 'Category\ProjectController@tagsTable');
+Route::get('/tags', [\App\Http\Controllers\Category\ProjectController::class, 'tagsTable']);
 
-Route::get('/log-search', 'Projects\SearchController@log');
-Route::get('/search-log', 'Projects\SearchController@getLog');
+Route::get('/log-search', [\App\Http\Controllers\Projects\SearchController::class, 'log']);
+Route::get('/search-log', [\App\Http\Controllers\Projects\SearchController::class, 'getLog']);
 
 /**
  * Process listing contact form
  * 
  */
-Route::post('/listing-contact-form', 'Projects\ListingContactForm@processForm');
+Route::post('/listing-contact-form', [\App\Http\Controllers\Projects\ListingContactForm::class, 'processForm']);
 
 
 
-Route::get('/about', 'PagesController@about');
+Route::get('/about', [\App\Http\Controllers\PagesController::class, 'about']);
 
 
 
-Route::get('/sync/manual', 'Airtable\ImportsController@manualSync');
-Route::get('/sync/manual/links', 'Airtable\Sync\LinkController@syncLinks');
-Route::get('/a/test', 'Airtable\ImportsController@test');
-Route::get('/t', 'TestController@test');
-Route::get('/fill', 'TestController@fillCoverImages');
+Route::get('/sync/manual', [\App\Http\Controllers\Airtable\ImportsController::class, 'manualSync']);
+Route::get('/sync/manual/links', [\App\Http\Controllers\Airtable\Sync\LinkController::class, 'syncLinks']);
+Route::get('/a/test', [\App\Http\Controllers\Airtable\ImportsController::class, 'test']);
+Route::get('/t', [\App\Http\Controllers\TestController::class, 'test']);
+Route::get('/fill', [\App\Http\Controllers\TestController::class, 'fillCoverImages']);
 
-Route::get('/email-templates/contact-form', 'TestController@contactFormTemplate');
+Route::get('/email-templates/contact-form', [\App\Http\Controllers\TestController::class, 'contactFormTemplate']);
 
 

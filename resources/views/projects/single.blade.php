@@ -98,7 +98,11 @@
                                 <td>
                                     <ul>
                                         @foreach(@$project->links as $link)
-                                            <li><a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">{{ $link->notes }}</a></li>
+                                            <li>
+                                                <a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">
+                                                    {{ $link->link }}
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </td>
@@ -433,7 +437,7 @@
                 </div>
             @endif
 
-            @if($project->links->count() > 0)
+            {{-- @if($project->links->count() > 0)
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
                     <h3>Links</h3>
                     <ol>
@@ -447,7 +451,7 @@
                         @endforeach
                     </ol>
                 </div>
-            @endif
+            @endif --}}
 
             <div class="margin-top-35">
                 <a class="suggest-button" target="_blank" href="https://airtable.com/shrAPHxxye5l9CIpQ">Suggest a change</a>
