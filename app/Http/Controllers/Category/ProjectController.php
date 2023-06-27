@@ -112,10 +112,9 @@ class ProjectController extends Controller {
                 }
             })
             ->when(request('status'), function($builder){
-                $builder->where('status', 'Active');
+                $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
-                //Different from guest controller since when checkbox not checked, we should load everything.
-                //$builder->where('status', 'Active')->orWhere('status', 'N/A')->orWhereNull('status');
+                $builder = $builder;
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
@@ -230,10 +229,9 @@ class ProjectController extends Controller {
                 }
             })
             ->when(request('status'), function($builder){
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
-                //Different from guest controller since when checkbox not checked, we should load everything.
-                //$builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
+                $builder = $builder;
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));

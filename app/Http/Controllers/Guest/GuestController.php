@@ -68,10 +68,9 @@ class GuestController extends Controller {
                 }
             })
             ->when(request('status'), function($builder){
-                $builder->where('status', 'Active');
+                $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
-                // Since on load we only show active projects and N/A only
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                $builder = $builder;
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
