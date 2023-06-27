@@ -51,6 +51,9 @@ class ProjectController extends Controller {
     // Search
     public function search(Request $request) {
         $projects = Listing::query()
+            ->when(request('q'), function($builder) {
+                $builder->searchQuery(request('q'));
+            })
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
 
@@ -104,14 +107,10 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('q'), function($builder) {
-                $builder->searchQuery(request('q'));
-            })
             ->when(request('status'), function($builder){
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
-                //Different from guest controller since when checkbox not checked, we should load everything.
-                //$builder->whereIn('status', ['Active', 'Inactive', 'N/A', 'Document',])->orWhereNull('status');
+                $builder = $builder;
             })
             ->orderBy('created', 'DESC')
             ->paginate(50);
