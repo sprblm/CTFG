@@ -92,7 +92,7 @@
                         @if(!empty(@$project->status))
                             <tr><th>Status: </th><td>{{ $project->status }}</td></tr>
                         @endif
-                        @if($project->links)
+                        @if($project->links->count() > 0)
                             <tr>
                                 <th>Related Links: </th>
                                 <td>
