@@ -114,7 +114,7 @@ class ProjectController extends Controller {
             ->when(request('status'), function($builder){
                 $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
-                $builder = $builder;
+                $builder->whereIn('status', ['Active', 'N/A']);
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
