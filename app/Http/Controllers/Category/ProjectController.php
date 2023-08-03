@@ -111,10 +111,13 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status'), function($builder){
-                $builder->whereIn('status', ['Active', 'N/A']);
-            }, function($builder){
-                $builder->whereIn('status', ['Active', 'N/A']);
+            ->when(request('status'), function($builder) {
+                $status = request('status');
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    $builder = $builder;
+                }
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
@@ -127,14 +130,6 @@ class ProjectController extends Controller {
         $category->update([
             'hits' => $category->hits + 1,
         ]);
-
-        if (count(request()->all()) == 0) {
-            $filterStatus = "Active";
-        } else if(request('status')){
-            $filterStatus = request('status');
-        } else {
-            $filterStatus = '';
-        }
 
         return view ('projects.projects-by-category', [
             'title' => 'Projects - '.$category->name,
@@ -151,7 +146,7 @@ class ProjectController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            'filterStatus' => $filterStatus,
+            'filterStatus' => request('status'),
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),

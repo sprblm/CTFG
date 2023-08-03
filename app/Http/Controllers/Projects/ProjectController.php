@@ -50,6 +50,18 @@ class ProjectController extends Controller {
 
     // Search
     public function search(Request $request) {
+        /*if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = 'Show active projects only';
+        }
+
+        request()->merge([
+            'status' => $filterStatus
+        ]);
+
+        \Log::info("Status param: ".request('status')); */
+
         $projects = Listing::query()
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
@@ -107,25 +119,25 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status'), function($builder){
+            ->when(request('status'), function($builder) {
+                $status = request('status');
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
+                }
+            })
+            /*->when(request('status'), function($builder){
                 $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
                 $builder = $builder;
-            })
+            }) */
             ->orderBy('created', 'DESC')
             ->paginate(50);
 
         // Queue job for logging
         if (request('q')) {
             $this->logSearch(request('q'), $projects->total());
-        }
-
-        if (count(request()->all()) == 0) {
-            $filterStatus = "Active";
-        } else if(request('status')){
-            $filterStatus = request('status');
-        } else {
-            $filterStatus = '';
         }
 
         $allProjects = Listing::count();
@@ -138,8 +150,7 @@ class ProjectController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            //'filterStatus' => request('status'),
-            'filterStatus' => $filterStatus,
+            'filterStatus' => request('status'),
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),

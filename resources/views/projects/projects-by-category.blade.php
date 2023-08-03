@@ -105,9 +105,6 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-                            @include('partials.filters')
-                        </div>
-                        <div class="col-lg-12 col-md-12">
                             <div class="listings-container list-layout">
                                 @include('partials.paginated-projects')
                             </div>

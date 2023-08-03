@@ -2347,7 +2347,9 @@ input[type=range]:focus+.rangeslider .rangeslider__handle {
     margin-right: 26px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #747674;
+    /*color: #747674; */
+    color: #EA0630;
+    font-size: 16px;
     font-family: raleway, helveticaneue, helvetica neue, Helvetica, Arial, sans-serif;
 }
 .chosen-container-single .chosen-single-with-deselect span {
