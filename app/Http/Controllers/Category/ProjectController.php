@@ -52,6 +52,16 @@ class ProjectController extends Controller {
             }
         }
 
+        if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = 'Show active projects only';
+        }
+
+        request()->merge([
+            'status' => $filterStatus
+        ]);
+
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
 
         //\DB::enableQueryLog();

@@ -23,8 +23,6 @@ class GuestController extends Controller {
             'status' => $filterStatus
         ]);
 
-        \Log::info("Status param: ".request('status'));
-
         $projects = Listing::query()
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
