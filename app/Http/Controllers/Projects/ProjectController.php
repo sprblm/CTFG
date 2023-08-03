@@ -50,18 +50,6 @@ class ProjectController extends Controller {
 
     // Search
     public function search(Request $request) {
-        /*if(request('status')){
-            $filterStatus = request('status');
-        } else {
-            $filterStatus = 'Show active projects only';
-        }
-
-        request()->merge([
-            'status' => $filterStatus
-        ]);
-
-        \Log::info("Status param: ".request('status')); */
-
         $projects = Listing::query()
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
@@ -124,7 +112,8 @@ class ProjectController extends Controller {
                 if ($status == "Show active projects only") {
                     $builder->whereIn('status', ['Active', 'N/A']);
                 } else {
-                    $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
+                    //$builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
+                    $builder = $builder;
                 }
             })
             /*->when(request('status'), function($builder){
