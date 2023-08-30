@@ -13,6 +13,10 @@ use App\Models\Country;
 use App\Models\Boundary;
 
 class LocationController extends Controller {
+    /**
+     * Sync locations - truncate current database locations, fill the table
+     * with new Airtable locations
+     */ 
     public function syncLocation () {
         \Log::info("Location table sync started at ".date('Y-m-d H:i:s'));
         $locations = Airtable::table('locations')->all();

@@ -45,10 +45,16 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        $locations = Airtable::table('locations')->get();
+        $listings = Airtable::table('listings')->get();
 
         // Recreate locations
-        dd($locations[1]["fields"]["Country"]);
+        //dd($locations[1]["fields"]["Country"]);
+        //dd($listings[2]);
+
+        echo "Latitude: ".$listings[2]["fields"]["Latitude lookup"][0];
+        echo "<br>Longititude: ".$listings[2]["fields"]["Longitude lookup"][0];
+
+
         /*\Log::info($locations[0]["fields"]["Country"][0]->Country);
         \Log::info($locations[1]["fields"]["Country"][0]->Country);
         \Log::info($locations[2]["fields"]["Country"][0]->Country);*/

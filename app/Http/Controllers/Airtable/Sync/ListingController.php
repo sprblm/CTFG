@@ -23,6 +23,10 @@ use App\Models\Tag;
 use App\Models\Link;
 
 class ListingController extends Controller {
+    /**
+     * Sync listings - truncate current database listings, fill the table
+     * with new Airtable listings
+     */ 
     public function syncListing () {
         \Log::info("Listings table sync started at ".date('Y-m-d H:i:s'));
 
@@ -76,8 +80,10 @@ class ListingController extends Controller {
                 $list->features = @$l["fields"]["Features"][0];
 
                 $list->project_stage = @$l["fields"]["Project stage"];
-                $list->latitude = @$l["fields"]["Latitude"];
-                $list->longitude = @$l["fields"]["Longitude"];
+                /*$list->latitude = @$l["fields"]["Latitude"];
+                $list->longitude = @$l["fields"]["Longitude"]; */
+                $list->latitude = @$l["fields"]["Latitude lookup"][0];
+                $list->longitude = @$l["fields"]["Longitude lookup"][0];
                 $list->hq_location = $hq;
 
                 $list->website_url = @$l["fields"]["Website URL"];
@@ -136,7 +142,9 @@ class ListingController extends Controller {
         $this->updateCoverImages($dbListings);
     }
 
-    // Update listing parent listing relationship and listing cover image
+    /**
+     *  Update listing parent listing relationship and listing cover image
+     */ 
     public function updateParents($listings) {
         foreach ($listings as $listing) {
             if (!empty(@$listing["fields"]["Parent organization(s)"]) && sizeof(@$listing["fields"]["Parent organization(s)"]) > 0) {
@@ -160,6 +168,13 @@ class ListingController extends Controller {
         }
     }
 
+    /**
+     * Sync listing relationships
+     * 
+     * @param <array> $dbListings
+     * @param <array> $airtableListings
+     * 
+     */ 
     public function syncRelations($dbListings, $airtableListings) {
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
 
@@ -261,19 +276,25 @@ class ListingController extends Controller {
         \Log::info("\n");
     }
 
-    // fill cover image of listings
+    /**
+     * fill cover image of listings
+     */ 
     public function fillCoverImages() {
         $listings = Listing::get();
 
         foreach ($listings as $record) {
             $cover = $record->media->first()->link ?? null;
-
             $record->update([
                 'cover_image' => $cover
             ]);
         }
     }
 
+    /**
+     * Update listing emebeded data (tweets, iframes etc)
+     * 
+     * @param <array>
+     */ 
     public function updateEmbeds ($listings) {
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
 
@@ -296,7 +317,6 @@ class ListingController extends Controller {
                         ]);
                     }
 
-                    
                     if ($element->tagName == "a") {
                         $parsed = $this->get_string_between($string, '<a class="twitter-timeline"', 'Tweets');
                         if (!empty($parsed) && $foundTwitter == 0) {
@@ -312,10 +332,16 @@ class ListingController extends Controller {
             }
 
         }
+
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Extracting youtube videos, twitter timeline and slideshare embeds finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
     }
 
+    /**
+     * Update listing location fields
+     * 
+     * @param <array>
+     */ 
     public function updateLocationFields($listings){
         foreach ($listings as $list) {
             $list->update([
@@ -325,6 +351,11 @@ class ListingController extends Controller {
         }
     }
 
+    /**
+     * Update listing cover images
+     * 
+     * @param <array>
+     */ 
     public function updateCoverImages($listings) {
         foreach ($listings as $list) {
             $cover = $list->media->first()->link ?? null;
@@ -334,6 +365,15 @@ class ListingController extends Controller {
         }
     }
 
+    /**
+     * Get characters between a string
+     * 
+     * @param <string> $string
+     * @param <integer> $start
+     * @param <integer> $end
+     *
+     * @return <string>
+     */ 
     public function get_string_between($string, $start, $end){
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
