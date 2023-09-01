@@ -45,14 +45,17 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        $listings = Airtable::table('listings')->get();
-
-        // Recreate locations
-        //dd($locations[1]["fields"]["Country"]);
-        //dd($listings[2]);
-
-        echo "Latitude: ".$listings[2]["fields"]["Latitude lookup"][0];
-        echo "<br>Longititude: ".$listings[2]["fields"]["Longitude lookup"][0];
+        // Turkey
+        $alias = "Türkiye";
+        $turkey = Location::where('name', 'LIKE', '%'.$alias.'%')->get();
+        \Log::info("Count of Turkiye: ".$turkey->count());
+        if ($turkey->count() > 0) {
+            foreach ($turkey as $tk) {
+                $tk->update([
+                    'country' => 'Turkey',
+                ]);
+            }
+        }
 
 
         /*\Log::info($locations[0]["fields"]["Country"][0]->Country);

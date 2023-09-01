@@ -45,7 +45,26 @@ class LocationController extends Controller {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        //Sync country names
+
         $count = Location::count();
         \Log::info("Location table sync finished at ".date('Y-m-d H:i:s')." ... ".$count." records synced.");
     }
+
+    /**
+     * Sync country names
+     * 
+     */
+    public function syncCountryNames() {
+        // Turkey
+        $alias = "Türkiye";
+        $turkey = Location::where('name', 'LIKE', '%'.$alias.'%')->get();
+        if ($turkey->count() > 0) {
+            foreach ($turkey as $tk) {
+                $tk->update([
+                    'country' => 'Turkey',
+                ]);
+            }
+        }
+    } 
 }
