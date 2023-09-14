@@ -393,8 +393,8 @@
                                 <button type="submit" class="button button-contactForm boxed-btn">Send</button>
                             </div>
                             <div class="mt-3 col-12">
-                                <p style="margin-top: 20px; font-size: 14px;">
-                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide. Your email address will be shared with the recipient of this contact form. You will not be signed up for anything.
+                                <p style="margin-top: 30px; font-size: 12px; line-height: 20px;">
+                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide. You will not be signed up for anything.
                                 </p>
                             </div>
                         </div>
