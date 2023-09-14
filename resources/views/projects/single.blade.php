@@ -343,7 +343,7 @@
                 @endif
             </ul>
 
-            {{-- @if(!empty(@$project->contact_form_email))
+            @if(!empty(@$project->contact_form_email))
                 <div class="boxed-widget margin-top-35" style="text-align: left;">
                     <h3>Contact {{ $project->name }}</h3>
                     <form action="/listing-contact-form" method="POST">
@@ -394,13 +394,13 @@
                             </div>
                             <div class="mt-3 col-12">
                                 <p style="margin-top: 20px; font-size: 14px;">
-                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide.
+                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide. Your email address will be shared with the recipient of this contact form. You will not be signed up for anything.
                                 </p>
                             </div>
                         </div>
                     </form>
                 </div>
-            @endif --}}
+            @endif
 
             @if(!empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
