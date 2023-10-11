@@ -233,10 +233,22 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status'), function($builder){
+            /*->when(request('status'), function($builder){
                 $builder->whereIn('status', ['Active', 'N/A']);
             }, function($builder){
                 $builder = $builder;
+            })*/
+            ->when(request('status'), function($builder) {
+                $status = request('status');
+                //\Log::info($status);
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document']);
+                }
+            }, function($builder) {
+                \Log::info("Default executed");
+                $builder->whereIn('status', ['Active', 'N/A']);
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
