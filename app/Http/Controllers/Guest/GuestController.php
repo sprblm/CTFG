@@ -91,6 +91,8 @@ class GuestController extends Controller {
                 } else {
                     $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
                 }
+            }, function($builder) {
+                $builder->whereIn('status', ['Active', 'N/A']);
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
