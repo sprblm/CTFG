@@ -241,7 +241,6 @@ class ProjectController extends Controller {
                     $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document']);
                 }
             }, function($builder) {
-                \Log::info("Default executed");
                 $builder->whereIn('status', ['Active', 'N/A']);
             })
             ->when(request('q'), function($builder) {
