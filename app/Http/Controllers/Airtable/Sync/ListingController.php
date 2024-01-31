@@ -158,7 +158,7 @@ class ListingController extends Controller {
                         ]);
                     }
 
-                    // Update cover image
+                    // Update cover image - used in sort algo
                     $cover = $dbList->media->first()->link ?? null;
                     $dbList->update([
                         'cover_image' => $cover
@@ -189,7 +189,6 @@ class ListingController extends Controller {
                         $dbList->categories()->attach($dbCat->id);
                     }
                 }
-
             }
 
             // listing_tags
@@ -200,7 +199,6 @@ class ListingController extends Controller {
                         $dbList->tags()->attach($dbTag->id);
                     }
                 }
-
             }
 
             // listing_media
@@ -211,7 +209,6 @@ class ListingController extends Controller {
                         $dbList->media()->attach($dbMedia->id);
                     }
                 }
-
             }
 
             // listing_location
@@ -222,7 +219,6 @@ class ListingController extends Controller {
                         $dbList->location()->attach($dbLocation->id);
                     }
                 }
-
             }
 
             // listing_founders
@@ -233,7 +229,6 @@ class ListingController extends Controller {
                         $dbList->founders()->attach($dbFounder->id);
                     }
                 }
-
             }
 
             // listing_impact

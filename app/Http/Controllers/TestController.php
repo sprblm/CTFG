@@ -45,8 +45,12 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
+        $locations = Airtable::table('locations')->get();
+
+        dd ($locations);
+        //dd(config('services.airtable.key'));
         // Turkey
-        $alias = "Türkiye";
+        /*$alias = "Türkiye";
         $turkey = Location::where('name', 'LIKE', '%'.$alias.'%')->get();
         \Log::info("Count of Turkiye: ".$turkey->count());
         if ($turkey->count() > 0) {
@@ -55,7 +59,7 @@ class TestController extends Controller {
                     'country' => 'Turkey',
                 ]);
             }
-        }
+        }*/
 
 
         /*\Log::info($locations[0]["fields"]["Country"][0]->Country);
