@@ -11,6 +11,12 @@ use DB;
 use App\Models\Impact;
 
 class ImpactController extends Controller {
+    /**
+     * Sync impact table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncImpact () {
         \Log::info("Impact table sync started at ".date('Y-m-d H:i:s'));
 
@@ -20,7 +26,7 @@ class ImpactController extends Controller {
             Impact::truncate();
         }
 
-        // Recreate categories
+        // Recreate impacts
         foreach ($impact as $f) {
             $imp = new Impact;
             $imp->airtable_id = @$f["id"];

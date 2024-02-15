@@ -16,6 +16,8 @@ class LocationController extends Controller {
     /**
      * Sync locations - truncate current database locations, fill the table
      * with new Airtable locations
+     * 
+     * @return void
      */ 
     public function syncLocation () {
         \Log::info("Location table sync started at ".date('Y-m-d H:i:s'));
@@ -44,8 +46,6 @@ class LocationController extends Controller {
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        //Sync country names
 
         $count = Location::count();
         \Log::info("Location table sync finished at ".date('Y-m-d H:i:s')." ... ".$count." records synced.");

@@ -11,7 +11,12 @@ use Carbon\Carbon;
 use App\Models\Link;
 
 class LinkController extends Controller {
-    // Sync links
+    /**
+     * Sync links table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncLinks() {
         \Log::info("Links table sync started at ".date('Y-m-d H:i:s'));
 
@@ -22,7 +27,7 @@ class LinkController extends Controller {
             Link::truncate();
         }
 
-        // Recreate categories
+        // Recreate links
         foreach ($links as $record) {
             $link = new Link;
             $link->airtable_id = @$record["id"];

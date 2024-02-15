@@ -11,6 +11,11 @@ use DB;
 use App\Models\Boundary;
 
 class BoundaryController extends Controller {
+    /**
+     * Sync boundaries table
+     * 
+     * @return void
+     */ 
     public function syncBoundary () {
         \Log::info("Boundary table sync started at ".date('Y-m-d H:i:s'));
 

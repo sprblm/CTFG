@@ -26,6 +26,8 @@ class ListingController extends Controller {
     /**
      * Sync listings - truncate current database listings, fill the table
      * with new Airtable listings
+     * 
+     * @return void
      */ 
     public function syncListing () {
         \Log::info("Listings table sync started at ".date('Y-m-d H:i:s'));
@@ -60,7 +62,6 @@ class ListingController extends Controller {
 
                 $list = new Listing;
                 $list->airtable_id = @$l["id"];
-                //$list->host_org_id = @$l["fields"]["Name"];
                 $list->name = @$l["fields"]["Project name"];
                 $list->slug = $escapedSlug;
                 $list->contact_form_email = @$l["fields"]["Contact form email"];
@@ -80,8 +81,6 @@ class ListingController extends Controller {
                 $list->features = @$l["fields"]["Features"][0];
 
                 $list->project_stage = @$l["fields"]["Project stage"];
-                /*$list->latitude = @$l["fields"]["Latitude"];
-                $list->longitude = @$l["fields"]["Longitude"]; */
                 $list->latitude = @$l["fields"]["Latitude lookup"][0];
                 $list->longitude = @$l["fields"]["Longitude lookup"][0];
                 $list->hq_location = $hq;
@@ -112,7 +111,6 @@ class ListingController extends Controller {
 
                 $list->shutdown_reason = @$l["fields"]["If shutdown,what happened?"];
                 $list->postmortem = @$l["fields"]["Postmortem"];
-                //$list->host_organization = @$l["fields"]["Name"];
                 $list->host_organization_url = @$l["fields"]["Host organization URL"];
                 $list->language = @$l["fields"]["Languages(s)"][0];
 
@@ -289,6 +287,8 @@ class ListingController extends Controller {
      * Update listing emebeded data (tweets, iframes etc)
      * 
      * @param <array>
+     * 
+     * @return void
      */ 
     public function updateEmbeds ($listings) {
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
@@ -336,6 +336,8 @@ class ListingController extends Controller {
      * Update listing location fields
      * 
      * @param <array>
+     * 
+     * @return void
      */ 
     public function updateLocationFields($listings){
         foreach ($listings as $list) {
@@ -350,6 +352,8 @@ class ListingController extends Controller {
      * Update listing cover images
      * 
      * @param <array>
+     * 
+     * @return void
      */ 
     public function updateCoverImages($listings) {
         foreach ($listings as $list) {
@@ -374,6 +378,7 @@ class ListingController extends Controller {
         if ($ini == 0) return '';
         $ini += strlen($start);
         $len = strpos($string, $end, $ini) - $ini;
+        
         return substr($string, $ini, $len);
     }
 

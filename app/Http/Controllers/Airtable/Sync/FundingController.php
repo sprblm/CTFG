@@ -11,6 +11,12 @@ use DB;
 use App\Models\Funding;
 
 class FundingController extends Controller {
+    /**
+     * Sync funding table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncFunding () {
         \Log::info("Funding table sync started at ".date('Y-m-d H:i:s'));
 
@@ -21,7 +27,7 @@ class FundingController extends Controller {
             Funding::truncate();
         }
 
-        // Recreate categories
+        // Recreate funding
         foreach ($funding as $f) {
             $fund = new Funding;
             $fund->airtable_id = @$f["id"];
