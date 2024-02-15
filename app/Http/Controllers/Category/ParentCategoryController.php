@@ -25,6 +25,7 @@ class ParentCategoryController extends Controller {
         $people = Category::where('name', 'The People')->first();
 
         $categories = Category::where('parent_id', $people->id)->orderBy('order_sort', 'ASC')->with('childItems')->get();
+
         return view ('category.hierarchies', [
             'items' => $categories,
             'title' => 'The People',
@@ -37,6 +38,7 @@ class ParentCategoryController extends Controller {
         $adj = Category::where('name', 'Adjacent Fields')->first();
 
         $categories = Category::where('parent_id', $adj->id)->orderBy('order_sort', 'ASC')->with('childItems')->get();
+        
         return view ('category.hierarchies', [
             'items' => $categories,
             'title' => 'Adjacent Fields',

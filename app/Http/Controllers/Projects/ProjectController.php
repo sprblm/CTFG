@@ -161,7 +161,6 @@ class ProjectController extends Controller {
 
     // Log Search
     public function logSearch($query, $total) {
-        // Create new entry
         $log = new SearchLog;
         $log->item = $query;
         $log->search_count =  $total;

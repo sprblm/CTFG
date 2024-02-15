@@ -64,8 +64,6 @@ class ProjectController extends Controller {
 
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
 
-        //\DB::enableQueryLog();
-
         $projects = Listing::query()
             ->whereIn('id', $listingIds)
             ->when(request('tags'), function($builder) {

@@ -11,7 +11,13 @@ use App\Models\Tag;
 use App\Models\SearchLog;
 
 class GuestController extends Controller {
-    // Welcome page
+    /**
+     * Get index page
+     * 
+     * @param Illuminate\Http\Request $request
+     * 
+     * @return view
+     */ 
     public function index(Request $request) {
         if(request('status')){
             $filterStatus = request('status');
@@ -149,7 +155,6 @@ class GuestController extends Controller {
 
     // Log Search
     public function logSearch($query, $total) {
-        // Create new entry
         $log = new SearchLog;
         $log->item = $query;
         $log->search_count =  $total;
