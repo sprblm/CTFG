@@ -50,12 +50,8 @@ class ImportsController extends Controller {
             app(\App\Http\Controllers\Airtable\Sync\ListingController::class)->syncListing();
 
         } catch (\Throwable $th) {
-            \Log::error('Error from Airtable auto sync cronjob: ' . $th->getMessage());
+            \Log::error('Error from Airtable auto sync cron job: ' . $th->getMessage());
         }
-    }
-
-    public function test() {
-
     }
     
 }

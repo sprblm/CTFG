@@ -11,6 +11,12 @@ use DB;
 use App\Models\People;
 
 class PeopleController extends Controller {
+    /**
+     * Sync people table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncPeople () {
         \Log::info("People table sync started at ".date('Y-m-d H:i:s'));
 

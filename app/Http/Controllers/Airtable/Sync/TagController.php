@@ -11,6 +11,12 @@ use DB;
 use App\Models\Tag;
 
 class TagController extends Controller {
+    /**
+     * Sync tags table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncTag () {
         \Log::info("Tag table sync started at ".date('Y-m-d H:i:s'));
 
@@ -20,7 +26,7 @@ class TagController extends Controller {
             Tag::truncate();
         }
 
-        // Recreate people
+        // Recreate tags
         foreach ($tags as $f) {
             $tg = new Tag;
             $tg->airtable_id = @$f["id"];

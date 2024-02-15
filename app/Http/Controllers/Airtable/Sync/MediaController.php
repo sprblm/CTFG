@@ -11,6 +11,12 @@ use DB;
 use App\Models\Media;
 
 class MediaController extends Controller {
+    /**
+     * Sync media table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncMedia () {
         \Log::info("Media table sync started at ".date('Y-m-d H:i:s'));
 
