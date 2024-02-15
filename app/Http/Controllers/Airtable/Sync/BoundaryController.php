@@ -15,7 +15,6 @@ class BoundaryController extends Controller {
         \Log::info("Boundary table sync started at ".date('Y-m-d H:i:s'));
 
         $boundaries = Airtable::table('boundaries')->all();
-        
         if ((Boundary::count() > 0) && (sizeof($boundaries) > 0)) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             Boundary::truncate();
