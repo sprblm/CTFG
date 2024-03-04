@@ -16,7 +16,7 @@ class ListingContactFormEmailJob implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $email;
-    protected $message;
+    protected $body;
     protected $recipient;
     protected $link;
 
@@ -25,10 +25,10 @@ class ListingContactFormEmailJob implements ShouldQueue {
      *
      * @return void
      */
-    public function __construct($recipient, $email, $message, $link) {
+    public function __construct($recipient, $email, $body, $link) {
         $this->recipient = $recipient;
         $this->email = $email;
-        $this->message = $message;
+        $this->body = $body;
         $this->link = $link;
     }
 
@@ -38,6 +38,6 @@ class ListingContactFormEmailJob implements ShouldQueue {
      * @return void
      */
     public function handle() {
-        Mail::to($this->recipient)->queue(new ListingContactFormEmail($this->email, $this->message, $this->link));
+        Mail::to($this->recipient)->queue(new ListingContactFormEmail($this->email, $this->body, $this->link));
     }
 }

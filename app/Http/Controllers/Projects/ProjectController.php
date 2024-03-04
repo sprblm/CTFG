@@ -18,7 +18,7 @@ class ProjectController extends Controller {
     // Embed add project Airtable form view
     public function add() {
         return view('projects.add', [
-            'title' => 'Create Projects',
+            'title' => 'Share a project',
             'menu' => 'add-project'
         ]);
     }
@@ -103,9 +103,10 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                $builder->where('status', 'Active');
-            })
+            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
+                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                //$builder->where('status', 'Active')->orWhereNull('status');
+            })*/
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })

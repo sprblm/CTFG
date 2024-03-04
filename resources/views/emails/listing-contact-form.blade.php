@@ -161,7 +161,7 @@
                                                             <p>
                                                                 <strong>Message:</strong>
                                                                 <br/>
-                                                                {{ $message }}
+                                                                {{ $body }}
                                                             </p>
                                                             
                                                             <p
@@ -176,6 +176,11 @@
                                                             >
                                                                 Regards,<br />
                                                                 CTFG Team.
+                                                            </p>
+
+                                                            <p>
+                                                                <br><br>
+                                                                This message was sent via your contact form at {{ $link }}. You can email us at info@civictech.guide with any questions. 
                                                             </p>
 
                                                         </td>

@@ -83,21 +83,31 @@
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
                 <div class="row social-icons margin-top-20">
-                    <div class="col-md-3">
-                        <h3>Founding organization</h3>
-                        <img width="150" height="150" src="{{ asset('images/civic_hall.png') }}" alt="Civic Hall logo" />
+                    <div class="col-md-4 col-sm-12 margin-top-20">
+                        <h3>A project of</h3>
+                        <img width="287" height="131" src="{{ asset('images/superbloom.png') }}" alt="Superbloom logo" />
                     </div>
-                    <div class="col-md-6">
-                        <h3>With support from</h3>
-                        <img src="{{ asset('images/knight_foundation.png') }}" alt="Knight Foundation logo" />
+                    <div class="col-md-5 col-sm-12 margin-top-20">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>With support from</h3>
+                                <!-- <img width="380" height="150" src="{{ asset('images/ned.png') }}" alt="NED logo" /> -->
+                                <p style="color: #28303d"><strong>National Endowment for Democracy</strong></p>
+                            </div>
+                            <div class="col-md-12 margin-top-20" style="text-align: center;">
+                                <h3>Founding Organization</h3>
+                                <p style="color: #28303d"><strong>Civic Hall</strong></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-12 margin-top-20">
                         <h3>Technology partner</h3>
                         <img src="{{ asset('images/sarapis.png') }}" alt="Sarapis logo" />
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
     <div class="container">
         <!-- Copyright -->

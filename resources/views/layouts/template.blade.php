@@ -50,9 +50,15 @@
                     <div class="right-side">
                         <div class="header-widget">
                             <div style="padding-right: 25px; font-size: 19px;">
-                                <a href="/" class="active" style="margin-right: 10px;">Directory</a>
-                                <a href="https://civictech.guide/about" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">About</a>
-                                <a href="https://civictech.guide/contribute" style="margin-right: 10px;">Contribute</a>
+                                <a href="/" class="active" style="margin-right: 10px;">
+                                    Directory
+                                </a>
+                                <a href="https://civictech.guide/contribute" style="margin-right: 10px;">
+                                    Contribute
+                                </a>
+                                <a href="http://eepurl.com/gkg4WH" target="_blank" class="@if(@$menu == 'about') active @endif" style="margin-right: 10px;">
+                                    Subscribe
+                                </a>
                             </div>
                             <div style="padding-right: 25px; margin-top: 10px;">
                                 <a href="/tech" class="overlay @if(@$menu == 'tech') active @endif" style="margin-right: 10px;">The Tech</a>
@@ -61,7 +67,7 @@
                                 <a href="/listing-categories" class="overlay @if(@$menu == 'categories') active @endif" style="margin-right: 10px;">All Categories</a>
                                 <a href="/tags" class="overlay @if(@$menu == 'tags') active @endif" style="margin-right: 10px;">Tags</a>
                                 <a href="/world-map" class="@if(@$menu == 'map') active @endif" style="margin-right: 10px;">World Map</a>
-                                <a href="/projects/add"  class="@if(@$menu == 'add-project') active @endif" style="margin: 20px 0 0 0 !important; margin-bottom: -5px !important; line-height: 26px !important; color: #EA0630;" class=" with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
+                                <a href="https://airtable.com/embed/shrM34qRWRywrgENk?backgroundColor=blueLight" target="_blank" class="@if(@$menu == 'add-project') active @endif" style="margin: 20px 0 0 0 !important; margin-bottom: -5px !important; line-height: 26px !important; color: #EA0630;" class=" with-icon">Add Project <i class="sl sl-icon-plus"></i></a>
                             </div>
                         </div>
                     </div>
