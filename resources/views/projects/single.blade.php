@@ -92,13 +92,17 @@
                         @if(!empty(@$project->status))
                             <tr><th>Status: </th><td>{{ $project->status }}</td></tr>
                         @endif
-                        @if(@$project->links->count() > 0)
+                        @if($project->links->count() > 0)
                             <tr>
                                 <th>Related Links: </th>
                                 <td>
                                     <ul>
                                         @foreach(@$project->links as $link)
-                                            <li><a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">{{ $link->notes }}</a></li>
+                                            <li>
+                                                <a style="color: #0A78C2;" target="_blank" href="{{ $link->link }}">
+                                                    {{ $link->notes }}
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </td>
@@ -389,8 +393,8 @@
                                 <button type="submit" class="button button-contactForm boxed-btn">Send</button>
                             </div>
                             <div class="mt-3 col-12">
-                                <p style="margin-top: 20px; font-size: 14px;">
-                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide.
+                                <p style="margin-top: 30px; font-size: 12px; line-height: 20px;">
+                                    By hitting "Send", you agree that the Civic Tech Field Guide will share your email address and message with {{ $project->name }}. {{ $project->name }} has agreed to receive messages via this form but may not be able to reply to every message. This service does not imply any affiliation between {{ $project->name }} and the Civic Tech Field Guide. You will not be signed up for anything.
                                 </p>
                             </div>
                         </div>
@@ -400,7 +404,7 @@
 
             @if(!empty(@$project->linkedin_url) || !empty(@$project->youtube_channel) || !empty(@$project->contact_page_url) || !empty(@$project->github_url) || !empty(@$project->events_page_url) || !empty(@$project->jobs_page_url) || !empty(@$project->blog_url) || !empty(@$project->host_organization_url) || !empty(@$project->host_organization_url))
                 <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
-                    <h3>Links</h3>
+                    <h3>Resources</h3>
                     <ul>
                         @if(!empty(@$project->linkedin_url))
                             <li>LinkedIn: <span><a href="{{ @$project->linkedin_url }}" target="_blank">{{ @$project->linkedin_url }}</a></span></li>
@@ -432,6 +436,22 @@
                     </ul>
                 </div>
             @endif
+
+            {{-- @if($project->links->count() > 0)
+                <div class="boxed-widget opening-hours margin-top-35" style="text-align: left;">
+                    <h3>Links</h3>
+                    <ol>
+                        @foreach($project->links as $link)
+                            <li>
+                                <h5>Link:</h5> <span><a href="{{ @$link->link }}" target="_blank">{{ @$link->link }}</a></span>
+                            </li>
+                           <br/>
+                            <h5>Notes:</h5> <span>{{ $link->notes }}</span>
+                            
+                        @endforeach
+                    </ol>
+                </div>
+            @endif --}}
 
             <div class="margin-top-35">
                 <a class="suggest-button" target="_blank" href="https://airtable.com/shrAPHxxye5l9CIpQ">Suggest a change</a>

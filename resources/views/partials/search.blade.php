@@ -86,13 +86,13 @@
                         <label for="filter-countries-input" class="visually-hidden">Countries</label>
                         <select id="filter-countries-input" name="countries[]" data-placeholder="All Countries" id="countries" class="chosen-select-no-single" multiple style="display: none;">
                             @foreach($allCountries as $country)
-                                <option value="{{ $country->country }}"
+                                <option value="{{ $country->name }}"
                                     <?php
-                                        if (is_array($filterCountries) && @in_array($country->country, @$filterCountries)) {
+                                        if (is_array($filterCountries) && @in_array($country->name, @$filterCountries)) {
                                             echo "selected";
                                         }
                                     ?>
-                                    >{{ $country->country }}</option>
+                                    >{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -117,8 +117,23 @@
 
                 </div>
                 <div class="row with-forms margin-bottom-30">
-                    <div class="col-md-6">
-                        <div class="checkboxes in-row">
+                    <div class="col-md-4">
+                        <select id="filter-open-source-input" name="status" class="chosen-select-no-single" style="color: #EA0630;">
+                            <?php
+                                $statusArray = array("Show active projects only", "Show all projects");
+                            ?>
+                            @foreach($statusArray as $stry)
+                                <option value="{{ $stry }}"
+                                    <?php
+                                        if ($stry == @$filterStatus) {
+                                            echo "selected";
+                                        }
+                                    ?>
+                                    >{{ $stry }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <!-- <div class="checkboxes in-row">
                             <input id="check-2" type="checkbox" name="status" value="Active"
                                 <?php
                                     if (@$filterStatus == "Active") {
@@ -127,10 +142,10 @@
                                 ?>
                             >
                             <label for="check-2">Show active projects only</label>
-                        </div>
+                        </div> -->
                     </div>
 
-                    <div class="col-md-6" style="text-align: right;">
+                    <div class="col-md-8" style="text-align: right;">
                         <button class="button" id="search" style="padding: 8px 30px;">Search</button>
                     </div>
                 </div>

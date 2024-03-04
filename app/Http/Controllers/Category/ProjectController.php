@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\ListingCategory;
+use App\Models\ListingTag;
 use App\Models\Tag;
 
 class ProjectController extends Controller {
@@ -51,11 +52,17 @@ class ProjectController extends Controller {
             }
         }
 
-        //$projects = $category->listings()
+        if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = 'Show active projects only';
+        }
+
+        request()->merge([
+            'status' => $filterStatus
+        ]);
 
         $listingIds = ListingCategory::where('category_id', $category->id)->pluck('listing_id')->toArray();
-
-        //\DB::enableQueryLog();
 
         $projects = Listing::query()
             ->whereIn('id', $listingIds)
@@ -76,11 +83,12 @@ class ProjectController extends Controller {
             ->when(request('countries'), function($builder) {
                 $countries = request('countries');
 
-                $builder->when(count($countries),function ($builder)use ($countries) {
+                $builder->when(count($countries),function ($builder) use ($countries) {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
                                 $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -112,27 +120,24 @@ class ProjectController extends Controller {
                 }
             })
             ->when(request('status'), function($builder) {
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
+                $status = request('status');
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    $builder = $builder;
+                }
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         //dd(\DB::getQueryLog());
 
         $category->update([
             'hits' => $category->hits + 1,
         ]);
-
-        if (count(request()->all()) == 0) {
-            $filterStatus = "Active";
-        } else if(request('status')){
-            $filterStatus = request('status');
-        } else {
-            $filterStatus = '';
-        }
 
         return view ('projects.projects-by-category', [
             'title' => 'Projects - '.$category->name,
@@ -149,7 +154,7 @@ class ProjectController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            'filterStatus' => $filterStatus,
+            'filterStatus' => request('status'),
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),
@@ -166,10 +171,13 @@ class ProjectController extends Controller {
             return abort(404);
         }
 
-        //$listings = $tag->listings();
-        //$projects = $listings->paginate(10);
+        //$projects = $tag->listings()
+        $listingIds = ListingTag::where('tag_id', $tag->id)->pluck('listing_id')->toArray();
 
-        $projects = $tag->listings()
+        //\DB::enableQueryLog();
+
+        $projects = Listing::query()
+            ->whereIn('id', $listingIds)
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
 
@@ -192,6 +200,7 @@ class ProjectController extends Controller {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
                                 $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -222,14 +231,21 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                $builder->where('status', 'Active');
+            ->when(request('status'), function($builder) {
+                $status = request('status');
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document']);
+                }
+            }, function($builder) {
+                $builder->whereIn('status', ['Active', 'N/A']);
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         $parentTag = $tag->parent;
 

@@ -13,6 +13,12 @@ use App\Models\Country;
 use App\Models\Boundary;
 
 class LocationController extends Controller {
+    /**
+     * Sync locations - truncate current database locations, fill the table
+     * with new Airtable locations
+     * 
+     * @return void
+     */ 
     public function syncLocation () {
         \Log::info("Location table sync started at ".date('Y-m-d H:i:s'));
         $locations = Airtable::table('locations')->all();
@@ -23,7 +29,7 @@ class LocationController extends Controller {
             Location::truncate();
         }
 
-        // Recreate categories
+        // Recreate locations
         foreach($locations as $loc) {
             $boundary = @$loc["fields"]["Boundaries"][0];
             $boundary = Boundary::where('airtable_id', $boundary)->first();
@@ -44,4 +50,21 @@ class LocationController extends Controller {
         $count = Location::count();
         \Log::info("Location table sync finished at ".date('Y-m-d H:i:s')." ... ".$count." records synced.");
     }
+
+    /**
+     * Sync country names
+     * 
+     */
+    public function syncCountryNames() {
+        // Turkey
+        $alias = "Türkiye";
+        $turkey = Location::where('name', 'LIKE', '%'.$alias.'%')->get();
+        if ($turkey->count() > 0) {
+            foreach ($turkey as $tk) {
+                $tk->update([
+                    'country' => 'Turkey',
+                ]);
+            }
+        }
+    } 
 }

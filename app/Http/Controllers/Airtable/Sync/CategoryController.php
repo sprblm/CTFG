@@ -11,6 +11,12 @@ use Airtable;
 use App\Models\Category;
 
 class CategoryController extends Controller {
+    /**
+     * Sync categories table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncCategories () {
         \Log::info("Categories sync started at ".date('Y-m-d H:i:s'));
         $airtableCategories = Airtable::table('categories')->all();
@@ -21,11 +27,6 @@ class CategoryController extends Controller {
         }
 
         // Recreate categories
-        
-        //print_r($airtableCategories[0]);
-
-        //echo $airtableCategories[0]["fields"]["Name"];
-        
         foreach ($airtableCategories as $cat) {
             if(!empty(trim(@$cat["fields"]["Name"]))){
                 $name = trim(@$cat["fields"]["Name"]);

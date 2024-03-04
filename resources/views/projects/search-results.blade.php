@@ -42,9 +42,6 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-                            @include('partials.filters')
-                        </div>
-                        <div class="col-lg-12 col-md-12">
                             <div class="listings-container list-layout">
                                 @if($projects->count() > 0)
                                     @include('partials.paginated-projects')

@@ -51,6 +51,9 @@ class ProjectController extends Controller {
     // Search
     public function search(Request $request) {
         $projects = Listing::query()
+            ->when(request('q'), function($builder) {
+                $builder->searchQuery(request('q'));
+            })
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
 
@@ -73,6 +76,7 @@ class ProjectController extends Controller {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
                                 $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -103,27 +107,26 @@ class ProjectController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            /*->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                $builder->where('status', 'Active')->orWhere('status', 'N/A');
-                //$builder->where('status', 'Active')->orWhereNull('status');
-            })*/
-            ->when(request('q'), function($builder) {
-                $builder->searchQuery(request('q'));
+            ->when(request('status'), function($builder) {
+                $status = request('status');
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    //$builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
+                    $builder = $builder;
+                }
             })
+            /*->when(request('status'), function($builder){
+                $builder->whereIn('status', ['Active', 'N/A']);
+            }, function($builder){
+                $builder = $builder;
+            }) */
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         // Queue job for logging
         if (request('q')) {
             $this->logSearch(request('q'), $projects->total());
-        }
-
-        if (count(request()->all()) == 0) {
-            $filterStatus = "Active";
-        } else if(request('status')){
-            $filterStatus = request('status');
-        } else {
-            $filterStatus = '';
         }
 
         $allProjects = Listing::count();
@@ -136,8 +139,7 @@ class ProjectController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            //'filterStatus' => request('status'),
-            'filterStatus' => $filterStatus,
+            'filterStatus' => request('status'),
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
             'filterTypes' => request('types'),
@@ -159,7 +161,6 @@ class ProjectController extends Controller {
 
     // Log Search
     public function logSearch($query, $total) {
-        // Create new entry
         $log = new SearchLog;
         $log->item = $query;
         $log->search_count =  $total;

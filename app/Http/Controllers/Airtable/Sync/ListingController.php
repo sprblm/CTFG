@@ -23,6 +23,12 @@ use App\Models\Tag;
 use App\Models\Link;
 
 class ListingController extends Controller {
+    /**
+     * Sync listings - truncate current database listings, fill the table
+     * with new Airtable listings
+     * 
+     * @return void
+     */ 
     public function syncListing () {
         \Log::info("Listings table sync started at ".date('Y-m-d H:i:s'));
 
@@ -44,78 +50,79 @@ class ListingController extends Controller {
         
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         foreach ($listings as $l) {
-            $slug = Str::of(@$l["fields"]["Project name"])->slug();
-            $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+            if (!empty(@$l["fields"]["Project name"])) {
+                $slug = Str::of(@$l["fields"]["Project name"])->slug();
+                $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
 
-            $hq = null;
-            $location = Location::where('airtable_id', @$l["fields"]["Headquarters Location"][0])->first();
-            if ($location) {
-                $hq = $location->name;
+                $hq = null;
+                $location = Location::where('airtable_id', @$l["fields"]["Headquarters Location"][0])->first();
+                if ($location) {
+                    $hq = $location->name;
+                }
+
+                $list = new Listing;
+                $list->airtable_id = @$l["id"];
+                $list->name = @$l["fields"]["Project name"];
+                $list->slug = $escapedSlug;
+                $list->contact_form_email = @$l["fields"]["Contact form email"];
+                $list->introduction = @$l["fields"]["1-liner"];
+                $list->type = @$l["fields"]["Type"][0];
+
+                $list->organization_type = @$l["fields"]["Organization type"][0];
+                $list->description = @$l["fields"]["Longer description"];
+                $list->markdown_description = @$l["fields"]["Longer description"];
+                $list->raw_description = @$l["fields"]["deprecated Longer description html"];
+                $list->status = @$l["fields"]["Status"];
+
+                $list->wikidata_api_field = @$l["fields"]["Wikidata API Field"];
+                $list->pricing_information = @$l["fields"]["Pricing information"];
+                $list->no_of_employees = @$l["fields"]["Number of employees"][0];
+                $list->used_by = @$l["fields"]["Who's it used by?"];
+                $list->features = @$l["fields"]["Features"][0];
+
+                $list->project_stage = @$l["fields"]["Project stage"];
+                $list->latitude = @$l["fields"]["Latitude lookup"][0];
+                $list->longitude = @$l["fields"]["Longitude lookup"][0];
+                $list->hq_location = $hq;
+
+                $list->website_url = @$l["fields"]["Website URL"];
+                $list->twitter_url = @$l["fields"]["Twitter URL"];
+                $list->facebook_url = @$l["fields"]["Facebook URL"];
+                $list->instagram_url = @$l["fields"]["Instagram URL"];
+                $list->youtube_channel = @$l["fields"]["YouTube URL"];
+
+                $list->linkedin_url = @$l["fields"]["LinkedIn URL"];
+                $list->contact_page_url = @$l["fields"]["Contact page URL"];
+                $list->github_url = @$l["fields"]["Github URL"];
+                $list->email = @$l["fields"]["Email"];
+                $list->events_page_url = @$l["fields"]["Events page URL"];
+
+                $list->jobs_page_url = @$l["fields"]["Jobs page URL"];
+                $list->blog_url = @$l["fields"]["Blog feed URL"];
+                $list->tiktok_url = @$l["fields"]["TikTok URL"];
+                $list->wikimedia_url = @$l["fields"]["Wikimedia URL"];
+                $list->crunchbase_url = @$l["fields"]["Crunchbase URL"];
+
+                $list->slack_url = @$l["fields"]["Slack URL"];
+                $list->built_with = @$l["fields"]["Builtwith.com"];
+                $list->claimed_status = @$l["fields"]["Claimed status"];
+                $list->founded = @$l["fields"]["Founded"];
+                $list->closed = @$l["fields"]["Closed"];
+
+                $list->shutdown_reason = @$l["fields"]["If shutdown,what happened?"];
+                $list->postmortem = @$l["fields"]["Postmortem"];
+                $list->host_organization_url = @$l["fields"]["Host organization URL"];
+                $list->language = @$l["fields"]["Languages(s)"][0];
+
+                $list->secondary_language = @$l["fields"]["Languages(s)"][1];
+                $list->open_source = @$l["fields"]["Open source"];
+                $list->open_source_license = @$l["fields"]["Open source license"];
+                $list->created = @$l["fields"]["Created"];
+                $list->last_modified = @$l["fields"]["Last Modified"];
+
+                $list->save();
             }
-
-            $list = new Listing;
-            $list->airtable_id = @$l["id"];
-            //$list->host_org_id = @$l["fields"]["Name"];
-            $list->name = @$l["fields"]["Project name"];
-            $list->slug = $escapedSlug;
-            $list->contact_form_email = @$l["fields"]["Contact form email"];
-            $list->introduction = @$l["fields"]["1-liner"];
-            $list->type = @$l["fields"]["Type"][0];
-
-            $list->organization_type = @$l["fields"]["Organization type"][0];
-            $list->description = @$l["fields"]["Longer description"];
-            $list->markdown_description = @$l["fields"]["Longer description"];
-            $list->raw_description = @$l["fields"]["deprecated Longer description html"];
-            $list->status = @$l["fields"]["Status"];
-
-            $list->wikidata_api_field = @$l["fields"]["Wikidata API Field"];
-            $list->pricing_information = @$l["fields"]["Pricing information"];
-            $list->no_of_employees = @$l["fields"]["Number of employees"][0];
-            $list->used_by = @$l["fields"]["Who's it used by?"];
-            $list->features = @$l["fields"]["Features"][0];
-
-            $list->project_stage = @$l["fields"]["Project stage"];
-            $list->latitude = @$l["fields"]["Latitude"];
-            $list->longitude = @$l["fields"]["Longitude"];
-            $list->hq_location = $hq;
-
-            $list->website_url = @$l["fields"]["Website URL"];
-            $list->twitter_url = @$l["fields"]["Twitter URL"];
-            $list->facebook_url = @$l["fields"]["Facebook URL"];
-            $list->instagram_url = @$l["fields"]["Instagram URL"];
-            $list->youtube_channel = @$l["fields"]["YouTube URL"];
-
-            $list->linkedin_url = @$l["fields"]["LinkedIn URL"];
-            $list->contact_page_url = @$l["fields"]["Contact page URL"];
-            $list->github_url = @$l["fields"]["Github URL"];
-            $list->email = @$l["fields"]["Email"];
-            $list->events_page_url = @$l["fields"]["Events page URL"];
-
-            $list->jobs_page_url = @$l["fields"]["Jobs page URL"];
-            $list->blog_url = @$l["fields"]["Blog feed URL"];
-            $list->tiktok_url = @$l["fields"]["TikTok URL"];
-            $list->wikimedia_url = @$l["fields"]["Wikimedia URL"];
-            $list->crunchbase_url = @$l["fields"]["Crunchbase URL"];
-
-            $list->slack_url = @$l["fields"]["Slack URL"];
-            $list->built_with = @$l["fields"]["Builtwith.com"];
-            $list->claimed_status = @$l["fields"]["Claimed status"];
-            $list->founded = @$l["fields"]["Founded"];
-            $list->closed = @$l["fields"]["Closed"];
-
-            $list->shutdown_reason = @$l["fields"]["If shutdown,what happened?"];
-            $list->postmortem = @$l["fields"]["Postmortem"];
-            //$list->host_organization = @$l["fields"]["Name"];
-            $list->host_organization_url = @$l["fields"]["Host organization URL"];
-            $list->language = @$l["fields"]["Languages(s)"][0];
-
-            $list->secondary_language = @$l["fields"]["Languages(s)"][1];
-            $list->open_source = @$l["fields"]["Open source"];
-            $list->open_source_license = @$l["fields"]["Open source license"];
-            $list->created = @$l["fields"]["Created"];
-            $list->last_modified = @$l["fields"]["Last Modified"];
-
-            $list->save();
+            
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -133,7 +140,9 @@ class ListingController extends Controller {
         $this->updateCoverImages($dbListings);
     }
 
-    // Update listing parent listing relationship and listing cover image
+    /**
+     *  Update listing parent listing relationship and listing cover image
+     */ 
     public function updateParents($listings) {
         foreach ($listings as $listing) {
             if (!empty(@$listing["fields"]["Parent organization(s)"]) && sizeof(@$listing["fields"]["Parent organization(s)"]) > 0) {
@@ -147,7 +156,7 @@ class ListingController extends Controller {
                         ]);
                     }
 
-                    // Update cover image
+                    // Update cover image - used in sort algo
                     $cover = $dbList->media->first()->link ?? null;
                     $dbList->update([
                         'cover_image' => $cover
@@ -157,6 +166,13 @@ class ListingController extends Controller {
         }
     }
 
+    /**
+     * Sync listing relationships
+     * 
+     * @param <array> $dbListings
+     * @param <array> $airtableListings
+     * 
+     */ 
     public function syncRelations($dbListings, $airtableListings) {
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
 
@@ -171,7 +187,6 @@ class ListingController extends Controller {
                         $dbList->categories()->attach($dbCat->id);
                     }
                 }
-
             }
 
             // listing_tags
@@ -182,7 +197,6 @@ class ListingController extends Controller {
                         $dbList->tags()->attach($dbTag->id);
                     }
                 }
-
             }
 
             // listing_media
@@ -193,7 +207,6 @@ class ListingController extends Controller {
                         $dbList->media()->attach($dbMedia->id);
                     }
                 }
-
             }
 
             // listing_location
@@ -204,7 +217,6 @@ class ListingController extends Controller {
                         $dbList->location()->attach($dbLocation->id);
                     }
                 }
-
             }
 
             // listing_founders
@@ -215,7 +227,6 @@ class ListingController extends Controller {
                         $dbList->founders()->attach($dbFounder->id);
                     }
                 }
-
             }
 
             // listing_impact
@@ -258,19 +269,27 @@ class ListingController extends Controller {
         \Log::info("\n");
     }
 
-    // fill cover image of listings
+    /**
+     * fill cover image of listings
+     */ 
     public function fillCoverImages() {
         $listings = Listing::get();
 
         foreach ($listings as $record) {
             $cover = $record->media->first()->link ?? null;
-
             $record->update([
                 'cover_image' => $cover
             ]);
         }
     }
 
+    /**
+     * Update listing emebeded data (tweets, iframes etc)
+     * 
+     * @param <array>
+     * 
+     * @return void
+     */ 
     public function updateEmbeds ($listings) {
         $start = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
 
@@ -293,7 +312,6 @@ class ListingController extends Controller {
                         ]);
                     }
 
-                    
                     if ($element->tagName == "a") {
                         $parsed = $this->get_string_between($string, '<a class="twitter-timeline"', 'Tweets');
                         if (!empty($parsed) && $foundTwitter == 0) {
@@ -309,10 +327,18 @@ class ListingController extends Controller {
             }
 
         }
+
         $to = Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         \Log::info("Extracting youtube videos, twitter timeline and slideshare embeds finished at - ".date('Y-m-d H:i:s')." - ".$to->diffInMinutes($start)." minutes.");
     }
 
+    /**
+     * Update listing location fields
+     * 
+     * @param <array>
+     * 
+     * @return void
+     */ 
     public function updateLocationFields($listings){
         foreach ($listings as $list) {
             $list->update([
@@ -322,6 +348,13 @@ class ListingController extends Controller {
         }
     }
 
+    /**
+     * Update listing cover images
+     * 
+     * @param <array>
+     * 
+     * @return void
+     */ 
     public function updateCoverImages($listings) {
         foreach ($listings as $list) {
             $cover = $list->media->first()->link ?? null;
@@ -331,11 +364,21 @@ class ListingController extends Controller {
         }
     }
 
+    /**
+     * Get characters between a string
+     * 
+     * @param <string> $string
+     * @param <integer> $start
+     * @param <integer> $end
+     *
+     * @return <string>
+     */ 
     public function get_string_between($string, $start, $end){
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
         $ini += strlen($start);
         $len = strpos($string, $end, $ini) - $ini;
+        
         return substr($string, $ini, $len);
     }
 

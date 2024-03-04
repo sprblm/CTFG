@@ -11,6 +11,12 @@ use DB;
 use App\Models\Knowledge;
 
 class KnowledgeController extends Controller {
+    /**
+     * Sync knowledge table - Truncates the
+     * table and recreates it with Airtable data
+     * 
+     * @return void
+     */ 
     public function syncKnowledge () {
         \Log::info("Knowledge table sync started at ".date('Y-m-d H:i:s'));
 
@@ -21,7 +27,7 @@ class KnowledgeController extends Controller {
             Knowledge::truncate();
         }
 
-        // Recreate categories
+        // Recreate knowledge
         foreach ($knowledge as $f) {
             $kng = new Knowledge;
             $kng->airtable_id = @$f["id"];

@@ -11,8 +11,24 @@ use App\Models\Tag;
 use App\Models\SearchLog;
 
 class GuestController extends Controller {
-    // Welcome page
+    /**
+     * Get index page
+     * 
+     * @param Illuminate\Http\Request $request
+     * 
+     * @return view
+     */ 
     public function index(Request $request) {
+        if(request('status')){
+            $filterStatus = request('status');
+        } else {
+            $filterStatus = 'Show active projects only';
+        }
+
+        request()->merge([
+            'status' => $filterStatus
+        ]);
+
         $projects = Listing::query()
             ->when(request('tags'), function($builder) {
                 $tags = request('tags');
@@ -35,9 +51,8 @@ class GuestController extends Controller {
                     $builder->whereHas('location', function($builder) use ($countries) {
                         $builder->where( function($builder) use ($countries) {
                             foreach ($countries as $country) {
-                                //$builder->orWhere('name', 'like', '%' . $country . '%');
-
                                 $builder->orWhere('country', 'LIKE', '%' . $country . '%');
+                                //$builder->orWhere('name', 'LIKE', '%' . $country . '%');
                             }
                         });
                     });
@@ -68,29 +83,43 @@ class GuestController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            ->when(request('status') || (count(request()->all()) == 0), function($builder) {
-                //$builder->where('status', 'Active');
-                $builder->where('status', 'Active')->orWhereNull('status')->orWhere('status', 'N/A');
+            /*->when(request('status'), function($builder){
+                \Log::info("Status set: ".request('status'));
+                $builder->whereIn('status', ['Active', 'N/A']);
+            }, function($builder){
+                \Log::info("Status NOT set: ".request('status'));
+                $builder->whereIn('status', ['Active', 'N/A']);
+            }) */
+            ->when(request('status'), function($builder) {
+                $status = request('status');
+                if ($status == "Show active projects only") {
+                    $builder->whereIn('status', ['Active', 'N/A']);
+                } else {
+                    $builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
+                }
+            }, function($builder) {
+                $builder->whereIn('status', ['Active', 'N/A']);
             })
             ->when(request('q'), function($builder) {
                 $builder->searchQuery(request('q'));
             })
             ->orderByRaw('-cover_image DESC')
             ->orderBy('created', 'DESC')
-            ->paginate(10);
+            ->paginate(50);
 
         // Queue job for logging
         if (request('q')) {
             $this->logSearch(request('q'), $projects->total());
         }
 
-        if (count(request()->all()) == 0) {
+        /*if (count(request()->all()) == 0) {
             $filterStatus = "Active";
         } else if(request('status')){
             $filterStatus = request('status');
         } else {
             $filterStatus = '';
-        }
+        } */
+
 
         $allProjects = Listing::count();
 
@@ -102,7 +131,6 @@ class GuestController extends Controller {
             'filterCategories' => request('categories'),
             'filterTags' => request('tags'),
             'filterCountries' => request('countries'),
-            //'filterStatus' => request('status'),
             'filterStatus' => $filterStatus,
             'filterOrgTypes' => request('organizationtypes'),
             'filterOpenSource' => request('opensource'),
@@ -127,7 +155,6 @@ class GuestController extends Controller {
 
     // Log Search
     public function logSearch($query, $total) {
-        // Create new entry
         $log = new SearchLog;
         $log->item = $query;
         $log->search_count =  $total;

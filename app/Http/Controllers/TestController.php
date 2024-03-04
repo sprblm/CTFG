@@ -45,7 +45,27 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        echo Category::count();
+        $locations = Airtable::table('locations')->get();
+
+        dd ($locations);
+        //dd(config('services.airtable.key'));
+        // Turkey
+        /*$alias = "Türkiye";
+        $turkey = Location::where('name', 'LIKE', '%'.$alias.'%')->get();
+        \Log::info("Count of Turkiye: ".$turkey->count());
+        if ($turkey->count() > 0) {
+            foreach ($turkey as $tk) {
+                $tk->update([
+                    'country' => 'Turkey',
+                ]);
+            }
+        }*/
+
+
+        /*\Log::info($locations[0]["fields"]["Country"][0]->Country);
+        \Log::info($locations[1]["fields"]["Country"][0]->Country);
+        \Log::info($locations[2]["fields"]["Country"][0]->Country);*/
+        
 
         //$str = '<p>The web and other technologies should be accessible to all people. The ability to use technology regardless of disability or status is a fundamental precursor to that technology serving civic goals.</p> <p>**Suggested resources: ** <a href="https://www.youtube.com/watch?v=JdbPd_ACGOA">Dollars for Change: How to fund accessibility panel at Code for All Summit 2022</a></p>';
 

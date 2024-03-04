@@ -9,7 +9,7 @@
     <div class="listing-item">
         <a href="/listing/{{ $project->slug }}" class="listing-img-container">
             @if(@$project->media->first())
-                <img src="{{ @$project->media->first()->link }}" loading="lazy" alt="{{ $project->name }}">
+                <img src="{{ @$project->media->first()->link }}" loading="lazy" alt="{{ $project->name }}" style="display: block !important; height: auto; width: auto;">
             @else
                 <img src="{{ asset('images/gray.png') }}" loading="lazy" alt="{{ $project->name }}">
             @endif
