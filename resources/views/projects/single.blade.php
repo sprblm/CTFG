@@ -184,7 +184,13 @@
                         @if(!empty(@$project->last_modified))
                             <tr>
                                 <th>Last Modified: </th>
-                                <td>{{ @$project->last_modified }}</td>
+                                <td>{{  Carbon\Carbon::parse(@$project->last_modified)->format('Y-m-d') }}</td>
+                            </tr>
+                        @endif
+                        @if(!empty(@$project->created))
+                            <tr>
+                                <th>Created: </th>
+                                <td>{{ Carbon\Carbon::parse(@$project->created)->format('Y-m-d') }}</td>
                             </tr>
                         @endif
                     </tbody>
