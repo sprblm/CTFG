@@ -110,17 +110,12 @@ class ProjectController extends Controller {
             ->when(request('status'), function($builder) {
                 $status = request('status');
                 if ($status == "Show active projects only") {
-                    $builder->whereIn('status', ['Active', 'N/A', 'NULL']);
-                } else {
-                    //$builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
-                    $builder = $builder;
+                    $builder->where(function($query) {
+                        return $query->whereIn('status', ['Active', 'N/A'])
+                                     ->orWhereNull('status');
+                    });
                 }
             })
-            /*->when(request('status'), function($builder){
-                $builder->whereIn('status', ['Active', 'N/A']);
-            }, function($builder){
-                $builder = $builder;
-            }) */
             ->orderBy('created', 'DESC')
             ->paginate(50);
 
