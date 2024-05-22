@@ -76,13 +76,21 @@ class HealthChecker implements ShouldQueue
     public function statusCheck($url)
     {
         try {
-            $response = Http::withHeaders(['User-Agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)'])
-                ->withOptions(['verify' => false,])
+            $userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36';
+            $referer = 'https://directory.civictech.guide';
+
+            $response = Http::withHeaders([
+                'User-Agent' => $userAgent,
+                'Referer' => $referer
+            ])
+                ->withOptions([
+                    'verify' => true, // Enable SSL verification
+                ])
                 ->timeout(10)
                 ->retry(2, 10)
                 ->get($url);
             return $response->status();
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             if (strpos($exception->getMessage(), 'error 52') !== false) {
                 return 52;
             }
@@ -118,20 +126,20 @@ class HealthChecker implements ShouldQueue
      */
     public function findWaybackLink(string $urlToFind)
     {
+        $waybackLink = 'http://archive.org/wayback/available?url=' . urlencode($urlToFind);
         try {
-            $waybackLink = 'http://archive.org/wayback/available?url='. $urlToFind;
-            $jsonResponse = Http::get($waybackLink);
-            $responseObject = json_decode($jsonResponse);
-            $hasClosestLink = !empty($responseObject->archived_snapshots);
-            $newUrl = null;
-            if($hasClosestLink){
-                $newUrl = $responseObject->archived_snapshots->closest->url;
+            $response = Http::get($waybackLink);
+            if ($response->successful()) {
+                $data = json_decode($response->body());
+                if (!empty($data->archived_snapshots->closest) && $data->archived_snapshots->closest->status == '200') {
+                    return $data->archived_snapshots->closest->url;
+                }
             }
-
-            return $newUrl;
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return null;
         }
+
+        return null;
     }
 
     /**
@@ -148,7 +156,7 @@ class HealthChecker implements ShouldQueue
     /**
      * Logs the data of the failed record in a log file
      * Insert the record to Airtable
-     * 
+     *
      * @param $record
      * @param int $status
      */
