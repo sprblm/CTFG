@@ -146,9 +146,14 @@ class ProjectController extends Controller {
     // Search autocomplete
     public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
-        $data = Listing::select("name", "slug")
+        /*$data = Listing::select("name", "slug")
                 ->where("name", "LIKE", "%{$q}%")
                 ->orWhere("introduction", "LIKE", "%{$q}%")
+                ->get(); */
+
+        $data = Listing::select("name", "slug")
+                ->where("name", "LIKE", "%".$q."%")
+                ->orWhere("introduction", "LIKE", "%".$q."%")
                 ->get();
    
         return response()->json($data);
