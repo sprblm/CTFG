@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Projects;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use DB;
 
@@ -146,14 +147,13 @@ class ProjectController extends Controller {
     // Search autocomplete
     public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
-        /*$data = Listing::select("name", "slug")
-                ->where("name", "LIKE", "%{$q}%")
-                ->orWhere("introduction", "LIKE", "%{$q}%")
-                ->get(); */
-
+        $slug = Str::of($q)->slug();
+        $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+        
         $data = Listing::select("name", "slug")
-                ->where("name", "LIKE", "%".$q."%")
-                ->orWhere("introduction", "LIKE", "%".$q."%")
+                ->where("name", "LIKE", "%{$q}%")
+                ->orWhere("slug", "LIKE", "%{$escapedSlug}%")
+                ->orWhere("introduction", "LIKE", "%{$q}%")
                 ->get();
    
         return response()->json($data);
