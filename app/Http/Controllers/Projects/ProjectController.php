@@ -147,15 +147,16 @@ class ProjectController extends Controller {
     // Search autocomplete
     public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
-        $slug = Str::of($q)->slug();
-        $escapedSlug = str_replace(['.', '(', ')', '!'], '', $slug);
+        $q = trim($q);
         
-        $data = Listing::select("name", "slug")
-                ->where("name", "LIKE", "%{$q}%")
-                ->orWhere("slug", "LIKE", "%{$escapedSlug}%")
-                ->orWhere("introduction", "LIKE", "%{$q}%")
-                ->get();
-   
+        /*$data = Listing::select("name", "slug")
+            ->where("name", "LIKE", "%{$q}%")
+            ->orWhere("introduction", "LIKE", "%{$q}%")
+            ->get(); */ 
+
+        $data = \DB::select(DB::raw("SELECT * FROM listings WHERE name LIKE '%{$q}%' OR introduction LIKE '%{$q}%'"));
+
+            
         return response()->json($data);
     }
 

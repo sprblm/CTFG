@@ -284,11 +284,11 @@
                 {!! $project->has_iframe_embed !!}
             @endif
         </div>
-        <div class="margin-top-50" style="max-height: 600px; overflow-y: scroll;">
+        {{-- <div class="margin-top-50" style="max-height: 600px; overflow-y: scroll;">
             @if(!empty($project->has_twitter_feed))
                 {!! $project->has_twitter_feed !!}
             @endif
-        </div>
+        </div> --}}
 
     </div>
 
