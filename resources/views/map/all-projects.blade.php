@@ -21,11 +21,63 @@
 @endsection
 
 @section('scripts')
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{$gMapsApiKey}}&callback=initMap&libraries=places"></script>
-    <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$gMapsApiKey}}&callback=initMap&libraries=places"></script> -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "{{$gMapsApiKey}}", v: "weekly"});
+    </script>
+
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        window.initMap = function() {
+        async function initMap() {
+          // Request needed libraries.
+          const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+          const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+            "marker",
+          );
+          const map = new google.maps.Map(document.getElementById("worldMap"), {
+            zoom: 3,
+            center: { lat: -28.024, lng: 140.887 },
+            mapId: "DEMO_MAP_ID",
+          });
+          const infoWindow = new google.maps.InfoWindow({
+            content: "",
+            disableAutoPan: true,
+          });
+          // Create an array of alphabetical characters used to label the markers.
+          const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          // Add some markers to the map.
+          const markers = locations.map((position, i) => {
+            const label = labels[i % labels.length];
+            const pinGlyph = new google.maps.marker.PinElement({
+              glyph: label,
+              glyphColor: "white",
+            });
+            const marker = new google.maps.marker.AdvancedMarkerElement({
+              position,
+              content: pinGlyph.element,
+            });
+
+            // markers can only be keyboard focusable when they have click listeners
+            // open info window when marker is clicked
+            marker.addListener("click", () => {
+              infoWindow.setContent(position.lat + ", " + position.lng);
+              infoWindow.open(map, marker);
+            });
+            return marker;
+          });
+
+          // Add a marker clusterer to manage the markers.
+          new MarkerClusterer({ markers, map });
+        }
+
+        const locations = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
+
+        initMap();
+
+
+
+        /*window.initMap = function() {
           var projects = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
 
           // map options
@@ -98,8 +150,8 @@
             return marker;
           }
 
-          new MarkerClusterer({ map: map, markers: gmarkers });
-        }
+          const markerCluster = new markerClusterer.MarkerClusterer({ markers, map });
+        } */
       });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
