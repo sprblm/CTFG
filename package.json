@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@googlemaps/markerclusterer": "^2.5.3",
         "feather-icons": "^4.28.0"
     }
 }
