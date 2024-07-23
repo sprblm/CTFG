@@ -29,49 +29,69 @@
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        const projects = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
+
         async function initMap() {
-          // Request needed libraries.
-          const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-          const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-            "marker",
-          );
-          const map = new google.maps.Map(document.getElementById("worldMap"), {
-            zoom: 3,
-            center: { lat: -28.024, lng: 140.887 },
-            mapId: "DEMO_MAP_ID",
-          });
-          const infoWindow = new google.maps.InfoWindow({
-            content: "",
-            disableAutoPan: true,
-          });
-          // Create an array of alphabetical characters used to label the markers.
-          const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-          // Add some markers to the map.
-          const markers = locations.map((position, i) => {
-            const label = labels[i % labels.length];
-            const pinGlyph = new google.maps.marker.PinElement({
-              glyph: label,
-              glyphColor: "white",
-            });
-            const marker = new google.maps.marker.AdvancedMarkerElement({
-              position,
-              content: pinGlyph.element,
+            // Request needed libraries.
+            const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
+            // Map options
+            const mapOptions = {
+                zoom: 2,
+                center: new google.maps.LatLng(0, 0),
+                streetViewControl: false,
+                mapTypeControl: false,
+            };
+
+            const map = new google.maps.Map(document.getElementById("worldMap"), mapOptions);
+
+            const oms = new OverlappingMarkerSpiderfier(map, {
+                markersWontMove: true,
+                markersWontHide: true,
+                basicFormatEvents: true,
+                ignoreMapClick: true,
+                keepSpiderfied: true,
             });
 
-            // markers can only be keyboard focusable when they have click listeners
-            // open info window when marker is clicked
-            marker.addListener("click", () => {
-              infoWindow.setContent(position.lat + ", " + position.lng);
-              infoWindow.open(map, marker);
-            });
-            return marker;
-          });
+            const markers = projects.map((project, i) => {
+                const latitude = Number(project.latitude);
+                const longitude = Number(project.longitude);
+                const name = project.name;
+                const headquarters = project.hq_location;
+                const url = '/listing/' + project.slug;
 
-          // Add a marker clusterer to manage the markers.
-          new MarkerClusterer({ markers, map });
+                const content = `
+                    <div id="content">
+                        <div id="siteNotice"></div>
+                        <h3 id="firstHeading" class="firstHeading">
+                            <a class="location" title="Go to listing profile" href="${url}">${name}</a>
+                        </h3>
+                        <div id="bodyContent">
+                            <p><i class='fa fa-map-marker'></i> ${headquarters}</p>
+                        </div>
+                    </div>
+                `;
+
+                const marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: { lat: latitude, lng: longitude },
+                    content: new PinElement({ glyph: (i + 1).toString(), glyphColor: "white" }).element,
+                });
+
+                const infoWindow = new google.maps.InfoWindow({ content, disableAutoPan: true });
+
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
+
+                oms.trackMarker(marker);
+
+                return marker;
+            });
+
+            // Add a marker clusterer to manage the markers.
+            const markerCluster = new markerClusterer.MarkerClusterer({ markers, map });
         }
-
-        const locations = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
 
         initMap();
 
