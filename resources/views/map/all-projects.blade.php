@@ -27,8 +27,6 @@
       $(document).ready(function() {
         window.initMap = function() {
           var projects = {!! json_encode($projects->toArray(), JSON_HEX_TAG) !!};
-          var key = json_encode({{$gMapsApiKey}})
-          console.log("Key: "+key)
 
           // map options
           var options = {
