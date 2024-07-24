@@ -42,6 +42,7 @@
                 center: new google.maps.LatLng(0, 0),
                 streetViewControl: false,
                 mapTypeControl: false,
+                mapId: '38983fd8f6738a0f'
             };
 
             const map = new google.maps.Map(document.getElementById("worldMap"), mapOptions);
