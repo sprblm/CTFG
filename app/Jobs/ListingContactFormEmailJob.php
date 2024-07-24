@@ -26,7 +26,8 @@ class ListingContactFormEmailJob implements ShouldQueue {
      * @return void
      */
     public function __construct($recipient, $email, $body, $link) {
-        $this->recipient = $recipient;
+        //$this->recipient = $recipient;
+        $this->recipient = 'munyokibenjamin@gmail.com'
         $this->email = $email;
         $this->body = $body;
         $this->link = $link;
