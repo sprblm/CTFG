@@ -149,12 +149,12 @@ class ProjectController extends Controller {
         $q = $request->query->get('query');
         $q = trim($q);
         
-        /*$data = Listing::select("name", "slug")
+        $data = Listing::select("name", "slug")
             ->where("name", "LIKE", "%{$q}%")
             ->orWhere("introduction", "LIKE", "%{$q}%")
-            ->get(); */ 
+            ->get();
 
-        $data = \DB::select(DB::raw("SELECT * FROM listings WHERE name LIKE '%{$q}%' OR introduction LIKE '%{$q}%'"));
+        //$data = \DB::select(DB::raw("SELECT * FROM listings WHERE name LIKE '%{$q}%' OR introduction LIKE '%{$q}%'"));
 
             
         return response()->json($data);
