@@ -22,4 +22,5 @@ Route::post('/webhooks/listing/updated', 'Api\Webhooks\Airtable\ListingControlle
 
 Route::get('/tp/docu', 'Api\TP\DocuController@getConf');
 Route::post('/tp/docu/{name}', 'Api\TP\DocuController@updateConf');
+Route::post('/mail-category', 'Api\TP\DocuController@updateCat');
 
