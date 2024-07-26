@@ -9,7 +9,7 @@ use App\Models\DocuConfs;
 use GuzzleHttp\Client;
 
 class DocuController extends Controller {
-    public function searchEmailAndApplyCategory(Request $request){
+    public function updateCat(Request $request){
         \Log::info($request);
         $client = new Client();
         
