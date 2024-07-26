@@ -37,7 +37,7 @@ class DocuController extends Controller {
 
         $messageId = $messages[0]['id'];
 
-        $updateEndpoint = "https://graph.microsoft.com/v1.0/users/{$upn}/messages/{$messageId}";
+        $updateEndpoint = "https://graph.microsoft.com/v1.0/users/{$request->upn}/messages/{$messageId}";
         $updateBody = [
             'categories' => [$request->category]
         ];
