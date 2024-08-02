@@ -9,6 +9,8 @@ use Airtable;
 use Illuminate\Support\Str;
 use DOMDocument;
 
+use App\Jobs\ListingContactFormEmailJob;
+
 use App\Models\Category;
 use App\Models\Listing;
 use App\Models\Media;
@@ -45,9 +47,27 @@ class TestController extends Controller {
     }
     
     public function test(Request $request) {
-        $locations = Airtable::table('locations')->get();
+        $slug = "bertelsmann-stiftung";
+        $recipient = "munyokibenjamin@gmail.com";
+        $email = "kizagila@gmail.com";
+        $message = "This is a test message";
 
-        dd ($locations);
+        try {
+            $link = 'https://directory.civictech.guide/listing/'.$slug;
+            // Sent email
+            ListingContactFormEmailJob::dispatch($recipient, $email, $message, $link);
+
+            return redirect()->back()->with('success', 'Email sent! Thank you for reaching out.');
+
+        } catch (Exception $e) {
+            return redirect()->back()->with('errors', $e->getMessage());
+        }
+
+
+
+        //$locations = Airtable::table('locations')->get();
+
+        //dd ($locations);
         //dd(config('services.airtable.key'));
         // Turkey
         /*$alias = "Türkiye";

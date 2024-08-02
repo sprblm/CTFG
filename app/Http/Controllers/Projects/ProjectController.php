@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Projects;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use DB;
 
@@ -110,17 +111,12 @@ class ProjectController extends Controller {
             ->when(request('status'), function($builder) {
                 $status = request('status');
                 if ($status == "Show active projects only") {
-                    $builder->whereIn('status', ['Active', 'N/A']);
-                } else {
-                    //$builder->whereIn('status', ['Active', 'N/A', 'Inactive', 'Document'])->orWhereNull('status');
-                    $builder = $builder;
+                    $builder->where(function($query) {
+                        return $query->whereIn('status', ['Active', 'N/A'])
+                                     ->orWhereNull('status');
+                    });
                 }
             })
-            /*->when(request('status'), function($builder){
-                $builder->whereIn('status', ['Active', 'N/A']);
-            }, function($builder){
-                $builder = $builder;
-            }) */
             ->orderBy('created', 'DESC')
             ->paginate(50);
 
@@ -151,11 +147,16 @@ class ProjectController extends Controller {
     // Search autocomplete
     public function searchAutoComplete(Request $request) {
         $q = $request->query->get('query');
+        $q = trim($q);
+        
         $data = Listing::select("name", "slug")
-                ->where("name", "LIKE", "%{$q}%")
-                ->orWhere("introduction", "LIKE", "%{$q}%")
-                ->get();
-   
+            ->where("name", "LIKE", "%{$q}%")
+            ->orWhere("introduction", "LIKE", "%{$q}%")
+            ->get();
+
+        //$data = \DB::select(DB::raw("SELECT * FROM listings WHERE name LIKE '%{$q}%' OR introduction LIKE '%{$q}%'"));
+
+            
         return response()->json($data);
     }
 

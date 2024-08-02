@@ -83,13 +83,6 @@ class GuestController extends Controller {
                     $builder->whereIn('organization_type', $organizationtypes);   
                 }
             })
-            /*->when(request('status'), function($builder){
-                \Log::info("Status set: ".request('status'));
-                $builder->whereIn('status', ['Active', 'N/A']);
-            }, function($builder){
-                \Log::info("Status NOT set: ".request('status'));
-                $builder->whereIn('status', ['Active', 'N/A']);
-            }) */
             ->when(request('status'), function($builder) {
                 $status = request('status');
                 if ($status == "Show active projects only") {
