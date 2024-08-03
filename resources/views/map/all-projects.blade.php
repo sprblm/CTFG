@@ -107,7 +107,7 @@
                 }
             ];
 
-            const markerCluster = new MarkerClusterer(map, markers, {
+            const markerCluster = new markerClusterer.MarkerClusterer(map, markers, {
                 styles: clusterStyles,
                 textSize: 0 // Set textSize to 0 to hide the text
             });
