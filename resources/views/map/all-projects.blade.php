@@ -74,9 +74,14 @@
                     </div>
                 `;
 
+                /*const marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: { lat: latitude, lng: longitude },
+                    content: new PinElement({ glyph: (i + 1).toString(), glyphColor: "white" }).element,
+                }); */
+
                 const marker = new google.maps.marker.AdvancedMarkerElement({
                     position: { lat: latitude, lng: longitude },
-                    content: new PinElement({ /*glyph: (i + 1).toString()*/ '', glyphColor: "white" }).element,
+                    content: null,
                 });
 
                 const infoWindow = new google.maps.InfoWindow({ content, disableAutoPan: true });
