@@ -76,6 +76,7 @@
 
                 const marker = new google.maps.marker.AdvancedMarkerElement({
                     position: { lat: latitude, lng: longitude },
+                    content: content,
                     //content: new PinElement({ glyph: (i + 1).toString(), glyphColor: "white" }).element,
                 });
 
