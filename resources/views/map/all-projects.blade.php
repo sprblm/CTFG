@@ -96,7 +96,9 @@
             });
 
             // Add a marker clusterer to manage the markers.
-            const markerCluster = new markerClusterer.MarkerClusterer({ markers, map });
+            const markerCluster = new markerClusterer.MarkerClusterer(markers, map, {
+                textSize: 0
+            });
         }
 
         initMap();
