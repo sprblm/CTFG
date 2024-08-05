@@ -96,21 +96,18 @@
             });
 
             // Add a marker clusterer to manage the markers.
-            const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
+            //const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
 
-            /*const clusterStyles = [
+            const clusterStyles = [
                 {
-                  textColor: 'transparent', // Make the text transparent
-                  url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png', // Use your custom icon URL
-                  height: 53,
-                  width: 53
+                    textColor: 'transparent',
+                    url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png',
+                    height: 53,
+                    width: 53
                 }
             ];
 
-            const markerCluster = new markerClusterer.MarkerClusterer(map, markers, {
-                styles: clusterStyles,
-                textSize: 0
-            }); */
+            const markerCluster = new markerClusterer.MarkerClusterer({map, markers, clusterStyles});
         }
 
         initMap();
