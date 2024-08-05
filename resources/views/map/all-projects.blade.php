@@ -96,9 +96,9 @@
             });
 
             // Add a marker clusterer to manage the markers.
-            //const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
+            const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
 
-            const clusterStyles = [
+            /*const clusterStyles = [
                 {
                   textColor: 'transparent', // Make the text transparent
                   url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png', // Use your custom icon URL
@@ -109,8 +109,8 @@
 
             const markerCluster = new markerClusterer.MarkerClusterer(map, markers, {
                 styles: clusterStyles,
-                textSize: 0 // Set textSize to 0 to hide the text
-            });
+                textSize: 0
+            }); */
         }
 
         initMap();
