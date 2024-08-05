@@ -108,6 +108,11 @@
             ];
 
             const markerCluster = new markerClusterer.MarkerClusterer({map, markers, clusterStyles});
+            const styles = markerCluster.getStyles();
+            for (let i=0; i<styles.length; i++) {
+              styles[i].textColor = "red";
+              styles[i].textSize = 0;
+            }
         }
 
         initMap();
