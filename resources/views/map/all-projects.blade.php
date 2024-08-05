@@ -98,21 +98,27 @@
             // Add a marker clusterer to manage the markers.
             //const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
 
-            const clusterStyles = [
-                {
-                    textColor: 'transparent',
-                    url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png',
-                    height: 53,
-                    width: 53
-                }
-            ];
+            const markerClusterer = new MarkerClusterer.MarkerClusterer(markers, map, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                calculator: function(markers, numStyles) {
+                    var index = 0;
+                    var title = "";
+                    var count = markers.length.toString();
 
-            const markerCluster = new markerClusterer.MarkerClusterer({map, markers, clusterStyles});
-            const styles = markerCluster.getStyles();
-            for (let i=0; i<styles.length; i++) {
-              styles[i].textColor = "red";
-              styles[i].textSize = 0;
-            }
+                    var dv = count;
+                    while (dv !== 0) {
+                        dv = parseInt(dv / 10, 10);
+                        index++;
+                    }
+
+                    index = Math.min(index, numStyles);
+                    return {
+                        text: "",
+                        index: index,
+                        title: count
+                    };
+                }
+            })
         }
 
         initMap();
