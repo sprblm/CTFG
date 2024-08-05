@@ -98,7 +98,7 @@
             // Add a marker clusterer to manage the markers.
             //const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
 
-            const markerClusterer = new MarkerClusterer.MarkerClusterer(markers, map, {
+            const markerClusterer = new markerClusterer.MarkerClusterer(markers, map, {
                 imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 calculator: function(markers, numStyles) {
                     var index = 0;
