@@ -4,8 +4,8 @@
 
 ## General
 
-We use the [Code for All](https://codeforall.org/) `#civic-tech-field-guide` Slack channel for project coordination and discussion.
-If you want to help out, you should [join the Slack community](https://slack.codeforall.org/) and the channel and say hi.
+We use Superbloom Design's `#civic-tech-field-guide` Slack channel for project coordination and discussion.
+If you want to help out, you should [join the Slack community](https://simplysecure.slack.com) and the channel and say hi.
 
 All contributions are welcome. If you found a bug and want to provide a fix, fork the repo, work on the fix and [create a PR](https://docs.github.com/en/github-ae@latest/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
