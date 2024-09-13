@@ -41,4 +41,4 @@ You don't have to be a developer to contribute. Check out our [Contribute page](
 
 ## License
 
-This guide and directory are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution, and share alike with the same license.
+Our directory code is open source, available under [MIT License]([url](https://github.com/sprblm/CTFG?tab=MIT-1-ov-file#readme)). Our [website content]([[url](https://civictech.guide/)]) and [database]([url](https://directory.civictech.guide/)) are free to use, re-use, adapt, and modify for non-commercial purposes as long as you link back with attribution, and share alike with the same license ([Creative Commons BY-NC-SA]([url](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en))).
