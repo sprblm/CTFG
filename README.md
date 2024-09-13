@@ -12,6 +12,12 @@ All contributions are welcome. If you found a bug and want to provide a fix, for
 If you wish to contribute a feature or provide general support, contact [Matt Stempeck](https://github.com/mstem), among many things, the Curator of the project, to fill you in on the project's priorities.
 [Benjamin Munyoki](https://github.com/bmunyoki) is the project's main developer; you should ask him to review your work.
 
+<<<<<<< patch-2
+=======
+The Directory is based on Laravel 9.
+If you are not familiar with it, first [check out their docs](https://laravel.com/docs/7.x/) to understand the basic concepts and the requirements to run it locally.
+>>>>>>> main
+
 ## Get started
 
 The source of truth is an [Airtable database](https://airtable.com/shrfxjImCdCNw9p5U/tblELFP9tGX07UZDo).
