@@ -14,9 +14,6 @@ If you wish to contribute a feature or provide general support, contact [Matt St
 
 ## Get started
 
-The Directory is based on Laravel 7.
-If you are not familiar with it, first [check out their docs](https://laravel.com/docs/9.x/) to understand the basic concepts and the requirements to run it locally.
-
 The source of truth is an [Airtable database](https://airtable.com/shrfxjImCdCNw9p5U/tblELFP9tGX07UZDo).
 When listing projects or filtering them, instead of directly querying Airtable, we use a regularly synced SQL database.
 The sync is one-directional; the SQL database is read-only.
