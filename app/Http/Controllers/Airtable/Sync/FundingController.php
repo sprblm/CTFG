@@ -46,6 +46,7 @@ class FundingController extends Controller {
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $count = Funding::count();
+        
         \Log::info("Funding table sync finished at ".date('Y-m-d H:i:s')." ... ".$count." records synced.");
     }
 }

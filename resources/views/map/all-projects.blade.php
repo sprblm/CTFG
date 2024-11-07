@@ -74,9 +74,14 @@
                     </div>
                 `;
 
-                const marker = new google.maps.marker.AdvancedMarkerElement({
+                /*const marker = new google.maps.marker.AdvancedMarkerElement({
                     position: { lat: latitude, lng: longitude },
                     content: new PinElement({ glyph: (i + 1).toString(), glyphColor: "white" }).element,
+                }); */
+
+                const marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: { lat: latitude, lng: longitude },
+                    content: null,
                 });
 
                 const infoWindow = new google.maps.InfoWindow({ content, disableAutoPan: true });
@@ -91,7 +96,29 @@
             });
 
             // Add a marker clusterer to manage the markers.
-            const markerCluster = new markerClusterer.MarkerClusterer({ markers, map });
+            //const markerCluster = new markerClusterer.MarkerClusterer({markers, map});
+
+            const markerClusterer = new markerClusterer.MarkerClusterer(markers, map, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                calculator: function(markers, numStyles) {
+                    var index = 0;
+                    var title = "";
+                    var count = markers.length.toString();
+
+                    var dv = count;
+                    while (dv !== 0) {
+                        dv = parseInt(dv / 10, 10);
+                        index++;
+                    }
+
+                    index = Math.min(index, numStyles);
+                    return {
+                        text: "",
+                        index: index,
+                        title: count
+                    };
+                }
+            })
         }
 
         initMap();
